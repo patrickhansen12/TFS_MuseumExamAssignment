@@ -66,6 +66,10 @@ public class LoginScreenController implements Initializable {
         {
             publicMessageLabel.setText("Venlist indtast kodeord");
         }
+        else if (!Brugernavn.getText().equals("t") || !Brugernavn.getText().equals("t"))
+        {
+            publicMessageLabel.setText("Forkert brugernavn eller kodeord");
+        }
     }
     
     private void logIn() throws IOException

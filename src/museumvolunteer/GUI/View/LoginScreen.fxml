@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="188.0" prefWidth="354.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="museumvolunteer.GUI.Controller.LoginScreenController">
+<AnchorPane id="AnchorPane" prefHeight="199.0" prefWidth="354.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.LoginScreenController">
    <children>
       <TextField fx:id="Brugernavn" layoutX="150.0" layoutY="49.0" />
       <PasswordField fx:id="Kodeord" layoutX="150.0" layoutY="96.0" />
@@ -23,6 +22,9 @@
          </font>
       </Label>
       <Button layoutX="145.0" layoutY="143.0" mnemonicParsing="false" onAction="#LogInButton" text="Log in" />
-      <Label fx:id="publicMessageLabel" layoutX="133.0" layoutY="14.0" text="Label" />
+      <Label fx:id="publicMessageLabel" layoutX="14.0" layoutY="14.0" prefHeight="35.0">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
    </children>
 </AnchorPane>
