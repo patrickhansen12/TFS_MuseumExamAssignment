@@ -45,13 +45,13 @@ public class MainViewController implements Initializable {
     }
 
     @FXML
-    private void AdministratorButton(ActionEvent event) throws IOException 
+    private void ManagerButton(ActionEvent event) throws IOException 
     {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/LoginScreen.fxml"));
         
         Scene scene = new Scene(root);
-        stage.setTitle("Admin");
+        stage.setTitle("Login");
         stage.setResizable(false);
 
         stage.setScene(scene);
