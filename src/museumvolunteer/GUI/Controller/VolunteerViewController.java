@@ -7,13 +7,29 @@ package museumvolunteer.GUI.Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 /**
  * FXML Controller class
  * @author Nicolai, Emil, Patrick, Kasper, Casper
  */
 public class VolunteerViewController implements Initializable {
+
+    @FXML
+    private TableView<?> LaugTable;
+    @FXML
+    private TableColumn<?, ?> LaugColumn;
+    @FXML
+    private TableView<?> NavneTable;
+    @FXML
+    private TableColumn<?, ?> NavneColumn;
+    @FXML
+    private Label ConfirmationLabel;
 
     /**
      * Initializes the controller class.
@@ -22,5 +38,17 @@ public class VolunteerViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void SøgNavnField(ActionEvent event) {
+    }
+
+    @FXML
+    private void NoterTimerField(ActionEvent event) {
+    }
+
+    @FXML
+    private void IndsætTimer(ActionEvent event) {
+    }
     
 }
