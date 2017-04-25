@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -29,6 +30,10 @@ public class VolunteerViewController implements Initializable {
     @FXML
     private TableColumn<?, ?> NavneColumn;
     @FXML
+    private TextField SøgNavnField;
+    @FXML
+    private TextField NoterTimerField;
+    @FXML
     private Label ConfirmationLabel;
 
     /**
@@ -38,14 +43,6 @@ public class VolunteerViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
-    @FXML
-    private void SøgNavnField(ActionEvent event) {
-    }
-
-    @FXML
-    private void NoterTimerField(ActionEvent event) {
-    }
 
     @FXML
     private void IndsætTimer(ActionEvent event) {
