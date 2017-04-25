@@ -6,11 +6,11 @@
 
 <AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.MainViewController">
    <children>
-      <Button layoutX="100.0" layoutY="31.0" mnemonicParsing="false" onAction="#FrivilligButton" text="Frivillig" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+      <Button layoutX="100.0" layoutY="31.0" mnemonicParsing="false" onAction="#FrivilligButton" text="Frivillig" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
          <font>
             <Font size="24.0" />
          </font></Button>
-      <Button layoutX="91.0" layoutY="109.0" mnemonicParsing="false" onAction="#ManagerButton" prefHeight="51.0" prefWidth="139.0" text="Manager" AnchorPane.leftAnchor="91.0" AnchorPane.rightAnchor="90.0">
+      <Button layoutX="91.0" layoutY="109.0" mnemonicParsing="false" onAction="#ManagerButton" prefHeight="51.0" prefWidth="139.0" text="Manager" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
          <font>
             <Font size="24.0" />
          </font></Button>
