@@ -5,9 +5,59 @@
  */
 package museumvolunteer.BLL;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+import museumvolunteer.BE.Volunteer;
+import museumvolunteer.DAL.NamesDAO;
+
 /**
  * @author Nicolai, Emil, Patrick, Kasper, Casper
  */
 public class NamesManager {
+    private NamesDAO namesDAO;
+
+    public NamesManager() throws IOException {
+        namesDAO = new NamesDAO();
+    }
     
+    /**
+     * Creates annd returns a new Volunteer object.
+     * @param name
+     * @return The new Volunteer object.
+     */
+    public Volunteer createNewStudent(String name)
+    {
+        return new Volunteer(name);
+    }
+    
+    /**
+     * Method for calling getAllVolunteers() in namesDAO.
+     * @return
+     * @throws SQLException 
+     */
+    public List<Volunteer> getAllVolunteers() throws SQLException {
+        return namesDAO.getAllVolunteers();
+    }
+    
+    /**
+     * Method for calling add() in namesDAO.
+     * @param v
+     * @return
+     * @throws SQLException 
+     */
+    public Volunteer add(Volunteer v) throws SQLException
+    {
+        return namesDAO.add(v);
+    }
+    
+    /**
+     * Method for calling delete() in namesDAO.
+     * @param v
+     * @throws SQLException 
+     */
+    public void delete(Volunteer v) throws SQLException
+    {
+        namesDAO.delete(v);
+    }
 }

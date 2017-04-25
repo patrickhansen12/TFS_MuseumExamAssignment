@@ -22,6 +22,10 @@ public class Volunteer {
         this.phoneNumber = phoneNumber;
     }
 
+    public Volunteer(String name) {
+        this(-1, name, null, null);
+    }
+
     public int getId() {
         return id;
     }
