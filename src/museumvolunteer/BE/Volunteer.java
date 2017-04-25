@@ -13,9 +13,9 @@ public class Volunteer {
     private int id;
     private String name;
     private String email;
-    private int phoneNumber;
+    private String phoneNumber;
 
-    public Volunteer(int id, String name, String email, int phoneNumber) {
+    public Volunteer(int id, String name, String email, String phoneNumber) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -46,13 +46,22 @@ public class Volunteer {
         this.email = email;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
   
+        /**
+     * returns name, currentClass and attendance as strings
+     * @return 
+     */
+    @Override
+    public String toString() {
+        return name;
+    }
+
     
 }

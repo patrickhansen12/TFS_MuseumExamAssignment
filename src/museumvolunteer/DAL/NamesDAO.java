@@ -5,9 +5,125 @@
  */
 package museumvolunteer.DAL;
 
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import museumvolunteer.BE.Volunteer;
+
 /**
  * @author Nicolai, Emil, Patrick, Kasper, Casper
  */
-public class NamesDAO {
+public class NamesDAO
+{
     
+    private final ConnectionManager cm;
+
+    public NamesDAO() throws IOException {
+        cm = new ConnectionManager();
+    }
+
+    /**
+     * Method for selecting all volunteers in database table Names.
+     * @return
+     * @throws SQLException 
+     */
+    public List<Volunteer> getAllVolunteers() throws SQLException {
+        List<Volunteer> allVolunteers = new ArrayList<>();
+
+        String sql = "SELECT * FROM Names";
+        try (Connection con = cm.getConnection())
+        {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next())
+            {
+                allVolunteers.add(getOneVolunteer(rs));
+              
+            }
+            return allVolunteers;
+        }
+    }
+    
+    /**
+     * Method for adding a new volunteer to database table Volunteer.
+     * @param v
+     * @return
+     * @throws SQLException 
+     */
+    public Volunteer add(Volunteer v) throws SQLException
+    {
+        String sql = "INSERT INTO Names(name) VALUES(?, ?, ?)";
+        try (Connection con = cm.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setString(1, v.getName());
+            ps.setString(2, v.getEmail());
+            ps.setString(3, v.getPhoneNumber());
+
+            ps.executeUpdate();
+            ResultSet generatedKey = ps.getGeneratedKeys();
+            generatedKey.next();
+            int id = generatedKey.getInt(1);
+            return new Volunteer(id, v.getName(), v.getEmail(), v.getPhoneNumber());
+        }
+    }
+    
+    
+    /**
+     * Updates database table Volunteer.
+     * @param v
+     * @throws SQLException 
+     */
+    public void update(Volunteer v) throws SQLException
+    {
+        String sql = "UPDATE Names"
+                + "SET name = ?, "
+                + "WHERE id = ?";
+        try (Connection con = cm.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, v.getName());
+            ps.setInt(3, v.getId());
+
+            ps.executeUpdate();
+        }
+    }
+
+    /**
+     * Deletes a selected volunteer from database table Volunteer.
+     * @param v
+     * @throws SQLException 
+     */
+    public void delete(Volunteer v) throws SQLException
+    {
+        String sql = "DELETE FROM Volunteer where id = ?";
+        try (Connection con = cm.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, v.getId());
+
+            ps.executeUpdate();
+        }
+    }
+
+    /**
+     * Reflects attributes for a volunteer in database table Volunteer.
+     * @param rs
+     * @return
+     * @throws SQLException 
+     */
+    private Volunteer getOneVolunteer(ResultSet rs) throws SQLException
+    {
+        int id = rs.getInt("id");
+        String name = rs.getString("name");
+        String email = rs.getString("email");
+        String phoneNumber = rs.getString("phoneNumber");
+        
+        return new Volunteer(id, name, email, phoneNumber);
+    }
 }
