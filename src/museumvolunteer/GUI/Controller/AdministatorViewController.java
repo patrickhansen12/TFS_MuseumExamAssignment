@@ -18,20 +18,24 @@ import javafx.scene.control.TableView;
  *
  * @author Nicolai
  */
-public class ManagerViewController implements Initializable {
+public class AdministatorViewController implements Initializable {
 
     @FXML
-    private TableView<?> LaugManagerTable;
+    private TableView<?> LaugAdminTable;
     @FXML
-    private TableColumn<?, ?> LaugManagerColumn;
+    private TableColumn<?, ?> LaugAdminColumn;
     @FXML
-    private TableView<?> NavneManagerTable;
+    private TableView<?> NavneAdminTable;
     @FXML
-    private TableColumn<?, ?> NavneManagerColumn;
+    private TableColumn<?, ?> NavneAdminColumn;
     @FXML
-    private TableView<?> TimerManagerTable;
+    private TableView<?> TimerAdminTable;
     @FXML
-    private TableColumn<?, ?> TimerManagerColumn;
+    private TableColumn<?, ?> TimerAdminColumn;
+    @FXML
+    private TableView<?> ManagerAdminTable;
+    @FXML
+    private TableColumn<?, ?> ManagerAdminColumn;
 
     /**
      * Initializes the controller class.
@@ -42,7 +46,15 @@ public class ManagerViewController implements Initializable {
     }    
 
     @FXML
+    private void TilføjLaugButton(ActionEvent event) {
+    }
+
+    @FXML
     private void TilføjFrivilligeButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void SletLaugButton(ActionEvent event) {
     }
 
     @FXML
@@ -50,11 +62,19 @@ public class ManagerViewController implements Initializable {
     }
 
     @FXML
-    private void TilføjTimerButton(ActionEvent event) {
+    private void TilføjManagerButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void SletManagerButton(ActionEvent event) {
     }
 
     @FXML
     private void SletTimerButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void TilføjTimerButton(ActionEvent event) {
     }
     
 }
