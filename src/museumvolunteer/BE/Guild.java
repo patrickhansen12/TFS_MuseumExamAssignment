@@ -12,11 +12,17 @@ package museumvolunteer.BE;
 public class Guild {
     private int id;
     private String name;
+    private int nameId;
 
-    public Guild(int id, String name) {
+    public Guild(int id, String name, int nameId) {
         this.id = id;
         this.name = name;
+        this.nameId = nameId;
     }
+
+//    public Guild(int id, Guild g) {
+//        this(id, g.getName(), g.getNameId());
+//    }
 
     public int getId() {
         return id;
@@ -33,6 +39,12 @@ public class Guild {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
+
+    public int getNameId() {
+        return nameId;
+    }
+
+    public void setNameId(int nameId) {
+        this.nameId = nameId;
+    }
 }
