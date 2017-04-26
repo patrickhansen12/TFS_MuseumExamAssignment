@@ -7,7 +7,9 @@ package museumvolunteer.GUI.Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +20,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import museumvolunteer.BE.Guild;
+import museumvolunteer.BE.Volunteer;
+import museumvolunteer.GUI.Model.GuildsModel;
+import museumvolunteer.GUI.Model.VolunteerModel;
 
 /**
  * FXML Controller class
@@ -27,19 +33,21 @@ import javafx.stage.Stage;
 public class ManagerViewController implements Initializable {
 
     @FXML
-    private TableView<?> LaugManagerTable;
+    private TableView<Guild> LaugManagerTable;
     @FXML
-    private TableColumn<?, ?> LaugManagerColumn;
+    private TableColumn<Guild, String> LaugManagerColumn;
     @FXML
-    private TableView<?> NavneManagerTable;
+    private TableView<Volunteer> NavneManagerTable;
     @FXML
-    private TableColumn<?, ?> NavneManagerColumn;
+    private TableColumn<Volunteer, String> NavneManagerColumn;
     @FXML
     private TableView<?> TimerManagerTable;
     @FXML
     private TableColumn<?, ?> TimerManagerColumn;
     @FXML
     private AnchorPane ManagerScreen;
+       private VolunteerModel volunteerModel;
+    private GuildsModel guildsModel;
 
     /**
      * Initializes the controller class.
@@ -47,8 +55,14 @@ public class ManagerViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        dataBind();
     }    
-
+    public ManagerViewController() throws IOException, SQLException 
+    {
+        volunteerModel = VolunteerModel.getInstance();
+        guildsModel = GuildsModel.getInstance();
+    }
+    
     @FXML
     private void TilføjFrivilligeButton(ActionEvent event) throws IOException 
     {
@@ -91,5 +105,16 @@ public class ManagerViewController implements Initializable {
         stage = (Stage) ManagerScreen.getScene().getWindow();
         stage.close();
     }
-    
+        private void dataBind()
+    {
+       NavneManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+       NavneManagerTable.setItems(volunteerModel.getAllVolunteers());
+       LaugManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+       LaugManagerTable.setItems(guildsModel.getGuilds());
+    }
+  public void setModel(VolunteerModel volunteerModel) 
+    {
+        this.volunteerModel = volunteerModel;
+    }
 }
+
