@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" fx:id="AddScreen" prefHeight="450.0" prefWidth="285.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="museumvolunteer.GUI.Controller.AddVolunteerController">
+   <children>
+      <TextField fx:id="NavneBox" layoutX="82.0" layoutY="14.0" />
+      <Label layoutX="15.0" layoutY="19.0" text="Navn" />
+      <Label layoutX="20.0" layoutY="141.0" text="Laug" />
+      <Label layoutX="14.0" layoutY="60.0" text="Email" />
+      <Label layoutX="15.0" layoutY="101.0" text="Telefon" />
+      <Label layoutX="20.0" layoutY="182.0" text="Noter" />
+      <TextField fx:id="EmailBox" layoutX="82.0" layoutY="55.0" />
+      <TextField fx:id="TelefonBox" layoutX="82.0" layoutY="96.0" />
+      <TextField fx:id="LaugBox" layoutX="82.0" layoutY="136.0" />
+      <TextArea fx:id="NoterBox" layoutX="82.0" layoutY="182.0" prefHeight="200.0" prefWidth="187.0" />
+      <Button layoutX="14.0" layoutY="392.0" mnemonicParsing="false" onAction="#udførButton" text="Udfør">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="176.0" layoutY="392.0" mnemonicParsing="false" onAction="#tilbageTilføj" text="Tilbage">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

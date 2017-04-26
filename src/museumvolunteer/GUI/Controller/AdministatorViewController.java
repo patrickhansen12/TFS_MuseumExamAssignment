@@ -100,6 +100,5 @@ public class AdministatorViewController implements Initializable {
         
         stage = (Stage) AdminScreen.getScene().getWindow();
         stage.close();
-    }
-    
+    } 
 }

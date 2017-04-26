@@ -50,7 +50,17 @@ public class ManagerViewController implements Initializable {
     }    
 
     @FXML
-    private void TilføjFrivilligeButton(ActionEvent event) {
+    private void TilføjFrivilligeButton(ActionEvent event) throws IOException 
+    {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AddVolunteer.fxml"));
+        
+        Scene scene = new Scene(root);
+        stage.setTitle("Tilføj frivillig");
+        stage.setResizable(false);
+
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
