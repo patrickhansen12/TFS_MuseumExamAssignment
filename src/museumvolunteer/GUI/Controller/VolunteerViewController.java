@@ -24,6 +24,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Volunteer;
+import museumvolunteer.GUI.Model.GuildsModel;
 import museumvolunteer.GUI.Model.VolunteerModel;
 
 /**
@@ -50,6 +51,7 @@ public class VolunteerViewController implements Initializable {
     private AnchorPane VolunteerScreen;
 
     private VolunteerModel volunteerModel;
+    private GuildsModel guildsModel;
 
 
     /**
@@ -63,6 +65,7 @@ public class VolunteerViewController implements Initializable {
     public VolunteerViewController() throws IOException, SQLException 
     {
         volunteerModel = VolunteerModel.getInstance();
+        guildsModel = GuildsModel.getInstance();
     }
     
     @FXML
@@ -90,6 +93,8 @@ public class VolunteerViewController implements Initializable {
     {
        NavneColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
        NavneTable.setItems(volunteerModel.getAllVolunteers());
+       LaugColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+       LaugTable.setItems(guildsModel.getGuilds());
     }
     
     public void setModel(VolunteerModel volunteerModel) 
