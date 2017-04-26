@@ -19,14 +19,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-<<<<<<< HEAD
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-=======
 import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Volunteer;
 import museumvolunteer.GUI.Model.VolunteerModel;
->>>>>>> origin/master
 
 /**
  * FXML Controller class
@@ -48,13 +45,11 @@ public class VolunteerViewController implements Initializable {
     private TextField NoterTimerField;
     @FXML
     private Label ConfirmationLabel;
-<<<<<<< HEAD
     @FXML
     private AnchorPane VolunteerScreen;
-=======
-    
+
     private VolunteerModel volunteerModel;
->>>>>>> origin/master
+
 
     /**
      * Initializes the controller class.
