@@ -41,7 +41,7 @@ public class VolunteerModel {
     }
     
     /**
-     * Constructs a new NamesManager and creates an observable arraylist out  of the observable list Student.
+     * Constructs a new NamesManager and creates an observable arraylist out  of the observable list Volunteer.
      */
     private VolunteerModel() throws IOException, SQLException
     {
@@ -49,5 +49,15 @@ public class VolunteerModel {
         allVolunteers = FXCollections.observableArrayList();
         
         allVolunteers.addAll(namesManager.getAllVolunteers());
+    }
+    
+    /**
+     * Gets the list of all volunteers added to the system.
+     *
+     * @return
+     */
+    public ObservableList<Volunteer> getAllVolunteers()
+    {
+        return allVolunteers;
     }
 }
