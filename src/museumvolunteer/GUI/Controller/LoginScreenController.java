@@ -19,6 +19,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -37,6 +39,11 @@ public class LoginScreenController implements Initializable {
     @FXML
     private AnchorPane logInScreen;
 
+    public LoginScreenController()
+    {
+        
+    }
+    
     /**
      * Initializes the controller class.
      */
@@ -52,14 +59,23 @@ public class LoginScreenController implements Initializable {
         signIn();
     }
     
+    @FXML
+    public void handleEnterPressed(KeyEvent event) throws IOException
+    {
+        if (event.getCode() == KeyCode.ENTER) 
+        {
+            signIn();
+        }
+    }
+    
     private void signIn()throws IOException
     {   
         if (Brugernavn.getText().equals("t") && (Kodeord.getText().equals("t")))
         {
             publicMessageLabel.setText("");
+            logIn();
             Brugernavn.clear();
             Kodeord.clear();
-            logIn();
         }
         else if (Brugernavn.getText().isEmpty()) 
         {
@@ -80,7 +96,7 @@ public class LoginScreenController implements Initializable {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/ManagerView.fxml"));
         Scene scene = new Scene(root);
-        stage.setTitle("Logged in as T");
+        stage.setTitle("Logged in as " + Brugernavn.getText());
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show(); 

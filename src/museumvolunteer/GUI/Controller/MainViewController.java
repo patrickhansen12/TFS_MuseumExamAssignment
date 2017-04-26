@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -58,7 +59,7 @@ public class MainViewController implements Initializable {
         Scene scene = new Scene(root);
         stage.setTitle("Login");
         stage.setResizable(false);
-
+        
         stage.setScene(scene);
         stage.show();
         closeWindow();

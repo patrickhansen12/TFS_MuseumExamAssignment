@@ -7,25 +7,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="logInScreen" prefHeight="199.0" prefWidth="354.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.LoginScreenController">
+<AnchorPane id="AnchorPane" fx:id="logInScreen" onKeyPressed="#handleEnterPressed" prefHeight="199.0" prefWidth="354.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.LoginScreenController">
    <children>
-      <TextField fx:id="Brugernavn" layoutX="150.0" layoutY="49.0" />
-      <PasswordField fx:id="Kodeord" layoutX="150.0" layoutY="96.0" />
-      <Label layoutX="14.0" layoutY="47.0" text="Brugernavn">
+      <TextField fx:id="Brugernavn" layoutX="150.0" layoutY="49.0" onKeyPressed="#handleEnterPressed" />
+      <PasswordField fx:id="Kodeord" layoutX="150.0" layoutY="96.0" onKeyPressed="#handleEnterPressed" />
+      <Label layoutX="14.0" layoutY="47.0" onKeyPressed="#handleEnterPressed" text="Brugernavn">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="45.0" layoutY="94.0" text="Kodeord">
+      <Label layoutX="45.0" layoutY="94.0" onKeyPressed="#handleEnterPressed" text="Kodeord">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="145.0" layoutY="143.0" mnemonicParsing="false" onAction="#LogInButton" text="Log in" />
-      <Label fx:id="publicMessageLabel" layoutX="14.0" layoutY="14.0" prefHeight="35.0">
+      <Button layoutX="145.0" layoutY="143.0" mnemonicParsing="false" onAction="#LogInButton" onKeyPressed="#handleEnterPressed" text="Log in" />
+      <Label fx:id="publicMessageLabel" layoutX="14.0" layoutY="14.0" onKeyPressed="#handleEnterPressed" prefHeight="35.0">
          <font>
             <Font size="24.0" />
          </font></Label>
-      <Button layoutX="268.0" layoutY="143.0" mnemonicParsing="false" onAction="#tilbageLogIn" text="Tilbage" />
+      <Button layoutX="268.0" layoutY="143.0" mnemonicParsing="false" onAction="#tilbageLogIn" onKeyPressed="#handleEnterPressed" text="Tilbage" />
    </children>
 </AnchorPane>
