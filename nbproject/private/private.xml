@@ -3,13 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Casper/Desktop/TFS_MuseumExamAssignment/MuseumVolunteer/src/museumvolunteer/BE/Manager.java</file>
-            <file>file:/C:/Users/Casper/Desktop/TFS_MuseumExamAssignment/MuseumVolunteer/src/museumvolunteer/BLL/NamesManager.java</file>
-            <file>file:/C:/Users/Casper/Desktop/TFS_MuseumExamAssignment/MuseumVolunteer/src/museumvolunteer/DAL/ConnectionManager.java</file>
-            <file>file:/C:/Users/Casper/Desktop/TFS_MuseumExamAssignment/MuseumVolunteer/src/museumvolunteer/BE/Admin.java</file>
-            <file>file:/C:/Users/Casper/Desktop/TFS_MuseumExamAssignment/MuseumVolunteer/src/museumvolunteer/DAL/NamesDAO.java</file>
-            <file>file:/C:/Users/Casper/Desktop/TFS_MuseumExamAssignment/MuseumVolunteer/src/museumvolunteer/GUI/View/LoginScreen.fxml</file>
-            <file>file:/C:/Users/Casper/Desktop/TFS_MuseumExamAssignment/MuseumVolunteer/src/museumvolunteer/BE/Volenteer.java</file>
+            <file>file:/C:/Users/Casper/Desktop/TFS_MuseumExamAssignment/src/museumvolunteer/GUI/Model/VolunteerModel.java</file>
         </group>
     </open-files>
 </project-private>

@@ -26,7 +26,7 @@ public class NamesManager {
      * @param name
      * @return The new Volunteer object.
      */
-    public Volunteer createNewStudent(String name)
+    public Volunteer createNewVolunteer(String name)
     {
         return new Volunteer(name);
     }
