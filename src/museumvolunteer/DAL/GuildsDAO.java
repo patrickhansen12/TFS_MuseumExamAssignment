@@ -58,14 +58,12 @@ public class GuildsDAO {
     {
         String sql = "UPDATE Guilds "
                 + "SET name = ?, "
-                + "    nameId = ?, "
                 + "WHERE id = ?";
         try (Connection con = cm.getConnection())
         {
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(2, g.getId());
             ps.setString(1, g.getName());
-            ps.setInt(2, g.getNameId());
-            ps.setInt(3, g.getId());
 
             ps.executeUpdate();
         }
@@ -136,29 +134,29 @@ public class GuildsDAO {
         }
     }
     
-    /**
-     * Populates a new ArrayList of Guilds with guilds for a specific guild gathered from database table Guilds.
-     * @param id
-     * @return
-     * @throws SQLException 
-     */
-    public List<Guild> getByNameId(int id) throws SQLException{
-        
-      List<Guild> allGuilds = new ArrayList<>();
-      String sql = "SELECT * FROM Guilds WHERE nameId = ?";
-      try (Connection con = cm.getConnection())
-        {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next())
-            {
-                allGuilds.add(getOneGuild(rs));
-            }
-            return allGuilds;
-        }
-      
-    }
+//    /**
+//     * Populates a new ArrayList of Guilds with guilds for a specific guild gathered from database table Guilds.
+//     * @param id
+//     * @return
+//     * @throws SQLException 
+//     */
+//    public List<Guild> getByNameId(int id) throws SQLException{
+//        
+//      List<Guild> allGuilds = new ArrayList<>();
+//      String sql = "SELECT * FROM Guilds WHERE guildsId = ?";
+//      try (Connection con = cm.getConnection())
+//        {
+//            PreparedStatement ps = con.prepareStatement(sql);
+//            ps.setInt(1, id);
+//            ResultSet rs = ps.executeQuery();
+//            while (rs.next())
+//            {
+//                allGuilds.add(getOneGuild(rs));
+//            }
+//            return allGuilds;
+//        }
+//      
+//    }
     
     /**
      * Reflects the attributes for 1 guild in the database.
@@ -170,9 +168,8 @@ public class GuildsDAO {
     {
         int id = rs.getInt("id");
         String name = rs.getString("name");
-        int nameId = rs.getInt("nameId");
         
-        return new Guild(id, name, nameId);
+        return new Guild(id, name);
     }
 
     /**
@@ -196,20 +193,20 @@ public class GuildsDAO {
         }
     }
 
-    /**
-     * Method for deleting a selected guild for a specific volunteer.
-     * @param id
-     * @throws SQLException 
-     */
-    public void deleteByNameId(int id) throws SQLException
-    {
-        String sql = "DELETE FROM Guilds where nameId = ?";
-        try (Connection con = cm.getConnection())
-        {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
-
-            ps.executeUpdate();
-        }
-    }
+//    /**
+//     * Method for deleting a selected guild for a specific volunteer.
+//     * @param id
+//     * @throws SQLException 
+//     */
+//    public void deleteByNameId(int id) throws SQLException
+//    {
+//        String sql = "DELETE FROM Guilds where nameId = ?";
+//        try (Connection con = cm.getConnection())
+//        {
+//            PreparedStatement ps = con.prepareStatement(sql);
+//            ps.setInt(1, id);
+//
+//            ps.executeUpdate();
+//        }
+//    }
 }

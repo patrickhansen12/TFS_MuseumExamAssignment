@@ -14,16 +14,18 @@ public class Volunteer {
     private String name;
     private String email;
     private String phoneNumber;
+    private int guildsId;
 
-    public Volunteer(int id, String name, String email, String phoneNumber) {
+    public Volunteer(int id, String name, String email, String phoneNumber, int guildsId) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.guildsId = guildsId;
     }
 
     public Volunteer(String name) {
-        this(-1, name, null, null);
+        this(-1, name, null, null, -1);
     }
 
     public int getId() {
@@ -66,6 +68,16 @@ public class Volunteer {
     public String toString() {
         return name;
     }
+
+    public int getGuildsId() {
+        return guildsId;
+    }
+
+    public void setGuildsId(int guildsId) {
+        this.guildsId = guildsId;
+    }
+    
+    
 
     
 }
