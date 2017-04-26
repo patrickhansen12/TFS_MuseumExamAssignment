@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -33,6 +34,8 @@ public class LoginScreenController implements Initializable {
     private PasswordField Kodeord;
     @FXML
     private Label publicMessageLabel;
+    @FXML
+    private AnchorPane logInScreen;
 
     /**
      * Initializes the controller class.
@@ -80,6 +83,26 @@ public class LoginScreenController implements Initializable {
         stage.setTitle("Logged in as T");
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.show();      
+        stage.show(); 
+        
+        stage = (Stage) logInScreen.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void tilbageLogIn(ActionEvent event) throws IOException 
+    {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/MainView.fxml"));
+        
+        Scene scene = new Scene(root);
+        stage.setTitle("Frivillig dokumentation");
+        stage.setResizable(false);
+
+        stage.setScene(scene);
+        stage.show();
+        
+        stage = (Stage) logInScreen.getScene().getWindow();
+        stage.close();
     }
 }

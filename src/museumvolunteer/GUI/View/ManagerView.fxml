@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="336.0" prefWidth="537.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.ManagerViewController">
+<AnchorPane id="AnchorPane" fx:id="ManagerScreen" prefHeight="380.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.ManagerViewController">
    <children>
       <TableView fx:id="LaugManagerTable" layoutX="14.0" layoutY="115.0" prefHeight="200.0" prefWidth="150.0">
         <columns>
@@ -39,5 +39,10 @@
          <font>
             <Font size="20.0" />
          </font></Button>
+      <Button layoutX="410.0" layoutY="322.0" mnemonicParsing="false" onAction="#TilbageManager" text="Tilbage">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -16,12 +16,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
  * @author Nicolai, Emil, Patrick, Kasper, Casper
  */
 public class MainViewController implements Initializable {
+
+    @FXML
+    private AnchorPane MainScreen;
     
     
     @Override
@@ -42,6 +46,7 @@ public class MainViewController implements Initializable {
 
         stage.setScene(scene);
         stage.show();
+        closeWindow();
     }
 
     @FXML
@@ -56,6 +61,12 @@ public class MainViewController implements Initializable {
 
         stage.setScene(scene);
         stage.show();
+        closeWindow();
     }
     
+    private void closeWindow()
+    {
+        Stage stage = (Stage) MainScreen.getScene().getWindow();
+        stage.close();
+    }
 }
