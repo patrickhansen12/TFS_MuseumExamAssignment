@@ -7,6 +7,7 @@ package museumvolunteer.GUI.Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
@@ -59,6 +60,11 @@ public class VolunteerViewController implements Initializable {
         dataBind();
     }    
 
+    public VolunteerViewController() throws IOException, SQLException 
+    {
+        volunteerModel = VolunteerModel.getInstance();
+    }
+    
     @FXML
     private void IndsætTimer(ActionEvent event) {
     }
