@@ -97,6 +97,8 @@ public class VolunteerViewController implements Initializable {
     private void dataBind() {
         LaugColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
         LaugTable.setItems(guildsModel.getGuilds());
+        NavneTable.setPlaceholder(new Label("Der er ikke \nnogen navne \nat vise"));
+        LaugTable.setPlaceholder(new Label("Der er ikke \nnogen laug \nat vise"));
     }
 
     public void setModel(VolunteerModel volunteerModel) {
