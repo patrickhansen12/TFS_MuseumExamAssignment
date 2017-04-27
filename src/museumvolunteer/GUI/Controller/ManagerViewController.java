@@ -33,23 +33,20 @@ import museumvolunteer.GUI.Model.VolunteerModel;
  */
 public class ManagerViewController implements Initializable {
 
-    @FXML
-    private TableView<Guild> LaugManagerTable;
-    @FXML
-    private TableColumn<Guild, String> LaugManagerColumn;
-    @FXML
-    private TableView<Volunteer> NavneManagerTable;
-    @FXML
-    private TableColumn<Volunteer, String> NavneManagerColumn;
-    @FXML
-    private TableView<?> TimerManagerTable;
-    @FXML
-    private TableColumn<?, ?> TimerManagerColumn;
+    private TableView<Guild> guildManagerTable;
+    private TableColumn<Guild, String> guildManagerColumn;
+    private TableView<Volunteer> nameManagerTable;
+    private TableColumn<Volunteer, String> nameManagerColumn;
     @FXML
     private AnchorPane ManagerScreen;
        private VolunteerModel volunteerModel;
     private GuildsModel guildsModel;
     private Volunteer volunteer;
+
+    @FXML
+    private TableView<?> hoursManagerTable;
+    @FXML
+    private TableColumn<?, ?> hoursManagerColumn;
 
     /**
      * Initializes the controller class.
@@ -65,8 +62,7 @@ public class ManagerViewController implements Initializable {
         guildsModel = GuildsModel.getInstance();
     }
     
-    @FXML
-    private void TilføjFrivilligeButton(ActionEvent event) throws IOException 
+    private void addVolunteersButton (ActionEvent event) throws IOException 
     {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AddVolunteer.fxml"));
@@ -79,27 +75,18 @@ public class ManagerViewController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    private void SletFrivilligeButton(ActionEvent event) throws SQLException 
+    private void deleteVolunteersButton(ActionEvent event) throws SQLException 
     {
-       Volunteer selectedItem = NavneManagerTable.getSelectionModel().getSelectedItem();
+       Volunteer selectedItem = nameManagerTable.getSelectionModel().getSelectedItem();
        volunteer = selectedItem;
        volunteerModel.deleteVolunteer(volunteer);
-       NavneManagerTable.getItems().remove(selectedItem);
-       NavneManagerTable.getSelectionModel().clearSelection();
+       nameManagerTable.getItems().remove(selectedItem);
+       nameManagerTable.getSelectionModel().clearSelection();
        
     }
 
-    @FXML
-    private void TilføjTimerButton(ActionEvent event) {
-    }
 
-    @FXML
-    private void SletTimerButton(ActionEvent event) {
-    }
-
-    @FXML
-    private void TilbageManager(ActionEvent event) throws IOException 
+    private void returnManager(ActionEvent event) throws IOException 
     {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/MainView.fxml"));
@@ -117,8 +104,8 @@ public class ManagerViewController implements Initializable {
         private void dataBind()
     {
      
-       LaugManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-       LaugManagerTable.setItems(guildsModel.getGuilds());
+       guildManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+       guildManagerTable.setItems(guildsModel.getGuilds());
     }
   public void setModel(VolunteerModel volunteerModel) 
     {
@@ -128,11 +115,23 @@ public class ManagerViewController implements Initializable {
     @FXML
     private void handleGuildsVolunteers(MouseEvent event) throws SQLException {
         if (event.isPrimaryButtonDown() == false) {
-            int guildId = LaugManagerTable.getSelectionModel().getSelectedItem().getId();
+            int guildId = guildManagerTable.getSelectionModel().getSelectedItem().getId();
             volunteerModel.setNamesByGuildId(guildId);
-            NavneManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-            NavneManagerTable.setItems(volunteerModel.getAllVolunteers());
+            nameManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+            nameManagerTable.setItems(volunteerModel.getAllVolunteers());
         }
     }
+
+ 
+
+    @FXML
+    private void addHoursButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void deleteHoursButton(ActionEvent event) {
+    }
+
+  
 }
 

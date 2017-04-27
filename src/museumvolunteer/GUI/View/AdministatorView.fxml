@@ -6,69 +6,69 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="AdminScreen" prefHeight="408.0" prefWidth="714.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AdministatorViewController">
+<AnchorPane id="AnchorPane" fx:id="adminScreen" prefHeight="408.0" prefWidth="714.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AdministatorViewController">
    <children>
-      <TableView fx:id="LaugAdminTable" layoutX="16.0" layoutY="130.0" prefHeight="200.0" prefWidth="150.0">
+      <TableView fx:id="guildAdminTable" layoutX="16.0" layoutY="130.0" prefHeight="200.0" prefWidth="150.0">
         <columns>
-          <TableColumn fx:id="LaugAdminColumn" prefWidth="150.0" text="Laug" />
+          <TableColumn fx:id="guildAdminColumn" prefWidth="150.0" text="Laug" />
         </columns>
       </TableView>
-      <TableView fx:id="NavneAdminTable" layoutX="194.0" layoutY="130.0" prefHeight="200.0" prefWidth="150.0">
+      <TableView fx:id="nameAdminTable" layoutX="194.0" layoutY="130.0" prefHeight="200.0" prefWidth="150.0">
         <columns>
-          <TableColumn fx:id="NavneAdminColumn" prefWidth="150.0" text="Navne" />
+          <TableColumn fx:id="nameAdminColumn" prefWidth="150.0" text="Navne" />
         </columns>
       </TableView>
-      <TableView fx:id="TimerAdminTable" layoutX="554.0" layoutY="130.0" prefHeight="200.0" prefWidth="150.0">
+      <TableView fx:id="hoursAdminTable" layoutX="554.0" layoutY="130.0" prefHeight="200.0" prefWidth="150.0">
         <columns>
-          <TableColumn fx:id="TimerAdminColumn" prefWidth="150.0" text="Timer" />
+          <TableColumn fx:id="hoursAdminColumn" prefWidth="150.0" text="Timer" />
         </columns>
       </TableView>
-      <Button layoutX="32.0" layoutY="23.0" mnemonicParsing="false" onAction="#TilføjLaugButton" text="Tilføj Laug">
+      <Button layoutX="32.0" layoutY="23.0" mnemonicParsing="false" onAction="#addGuildButton" text="Tilføj Laug">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="199.0" layoutY="23.0" mnemonicParsing="false" onAction="#TilføjFrivilligeButton" text="Tilføj Frivillig">
+      <Button layoutX="199.0" layoutY="23.0" mnemonicParsing="false" onAction="#addVolunteerButton" text="Tilføj Frivillig">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="37.0" layoutY="77.0" mnemonicParsing="false" onAction="#SletLaugButton" text="Slet Laug">
+      <Button layoutX="37.0" layoutY="77.0" mnemonicParsing="false" onAction="#removeGuildButton" text="Slet Laug">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="204.0" layoutY="77.0" mnemonicParsing="false" onAction="#SletFrivilligeButton" text="Slet Frivillig">
+      <Button layoutX="204.0" layoutY="77.0" mnemonicParsing="false" onAction="#removeVolunteersButton" text="Slet Frivillig">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="370.0" layoutY="23.0" mnemonicParsing="false" onAction="#TilføjManagerButton" text="Tilføj Manager">
+      <Button layoutX="370.0" layoutY="23.0" mnemonicParsing="false" onAction="#addManagerButton" text="Tilføj Manager">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="375.0" layoutY="77.0" mnemonicParsing="false" onAction="#SletManagerButton" text="Slet Manager">
+      <Button layoutX="375.0" layoutY="77.0" mnemonicParsing="false" onAction="#removeManagerButton" text="Slet Manager">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <TableView fx:id="ManagerAdminTable" layoutX="373.0" layoutY="130.0" prefHeight="200.0" prefWidth="150.0">
+      <TableView fx:id="managerAdminTable" layoutX="373.0" layoutY="130.0" prefHeight="200.0" prefWidth="150.0">
         <columns>
-          <TableColumn fx:id="ManagerAdminColumn" prefWidth="150.0" text="Manager" />
+          <TableColumn fx:id="managerAdminColumn" prefWidth="150.0" text="Manager" />
         </columns>
       </TableView>
-      <Button layoutX="571.0" layoutY="77.0" mnemonicParsing="false" onAction="#SletTimerButton" text="Slet Timer">
+      <Button layoutX="571.0" layoutY="77.0" mnemonicParsing="false" onAction="#removeHoursButton" text="Slet Timer">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="566.0" layoutY="23.0" mnemonicParsing="false" onAction="#TilføjTimerButton" text="Tilføj Timer">
+      <Button layoutX="566.0" layoutY="23.0" mnemonicParsing="false" onAction="#addHoursButton" text="Tilføj Timer">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="611.0" layoutY="350.0" mnemonicParsing="false" onAction="#tilbageAdmin" text="Tilbage">
+      <Button layoutX="611.0" layoutY="350.0" mnemonicParsing="false" onAction="#returnAdmin" text="Tilbage">
          <font>
             <Font size="20.0" />
          </font>

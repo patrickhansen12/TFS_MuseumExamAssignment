@@ -31,13 +31,15 @@ import javafx.stage.Stage;
 public class LoginScreenController implements Initializable {
 
     @FXML
-    private TextField Brugernavn;
+    private AnchorPane logInScreen;
     @FXML
-    private PasswordField Kodeord;
+    private TextField usernameField;
+    @FXML
+    private PasswordField passwordField;
     @FXML
     private Label publicMessageLabel;
-    @FXML
-    private AnchorPane logInScreen;
+
+ 
 
     public LoginScreenController()
     {
@@ -70,22 +72,22 @@ public class LoginScreenController implements Initializable {
     
     private void signIn()throws IOException
     {   
-        if (Brugernavn.getText().equals("t") && (Kodeord.getText().equals("t")))
+        if (usernameField.getText().equals("t") && (passwordField.getText().equals("t")))
         {
             publicMessageLabel.setText("");
             logIn();
-            Brugernavn.clear();
-            Kodeord.clear();
+            usernameField.clear();
+            passwordField.clear();
         }
-        else if (Brugernavn.getText().isEmpty()) 
+        else if (usernameField.getText().isEmpty()) 
         {
             publicMessageLabel.setText("Venlist indtast brugernavn");
         }
-        else if (Kodeord.getText().isEmpty()) 
+        else if (passwordField.getText().isEmpty()) 
         {
             publicMessageLabel.setText("Venlist indtast kodeord");
         }
-        else if (!Brugernavn.getText().equals("t") || !Brugernavn.getText().equals("t"))
+        else if (!usernameField.getText().equals("t") || !usernameField.getText().equals("t"))
         {
             publicMessageLabel.setText("Forkert brugernavn eller kodeord");
         }
@@ -96,7 +98,7 @@ public class LoginScreenController implements Initializable {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/ManagerView.fxml"));
         Scene scene = new Scene(root);
-        stage.setTitle("Logged in as " + Brugernavn.getText());
+        stage.setTitle("Logged in as " + usernameField.getText());
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show(); 
@@ -106,7 +108,7 @@ public class LoginScreenController implements Initializable {
     }
 
     @FXML
-    private void tilbageLogIn(ActionEvent event) throws IOException 
+    private void returnLogIn(ActionEvent event) throws IOException 
     {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/MainView.fxml"));
@@ -121,4 +123,6 @@ public class LoginScreenController implements Initializable {
         stage = (Stage) logInScreen.getScene().getWindow();
         stage.close();
     }
+
+
 }

@@ -38,25 +38,20 @@ import museumvolunteer.GUI.Model.VolunteerModel;
  */
 public class VolunteerViewController implements Initializable {
 
-    @FXML
-    private TableView<Guild> LaugTable;
-    @FXML
-    private TableColumn<Guild, String> LaugColumn;
-    @FXML
-    private TableView<Volunteer> NavneTable;
-    @FXML
-    private TableColumn<Volunteer, String> NavneColumn;
-    @FXML
-    private TextField SøgNavnField;
-    @FXML
-    private TextField NoterTimerField;
-    @FXML
-    private Label ConfirmationLabel;
+    private TableView<Guild> guildTable;
+    private TableColumn<Guild, String> guildColumn;
+    private TableView<Volunteer> nameTable;
+    private TableColumn<Volunteer, String> nameColumn;
     @FXML
     private AnchorPane VolunteerScreen;
 
     private VolunteerModel volunteerModel;
     private GuildsModel guildsModel;
+    @FXML
+    private TextField searchnameField;
+    @FXML
+    private TextField noteHoursField;
+
 
     /**
      * Initializes the controller class.
@@ -74,12 +69,8 @@ public class VolunteerViewController implements Initializable {
         guildsModel = GuildsModel.getInstance();
     }
 
-    @FXML
-    private void IndsætTimer(ActionEvent event) {
-    }
 
-    @FXML
-    private void TilbageVolunteer(ActionEvent event) throws IOException {
+    private void backVolunteer(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/MainView.fxml"));
 
@@ -95,10 +86,10 @@ public class VolunteerViewController implements Initializable {
     }
 
     private void dataBind() {
-        LaugColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-        LaugTable.setItems(guildsModel.getGuilds());
-        NavneTable.setPlaceholder(new Label("Der er ikke \nnogen navne \nat vise"));
-        LaugTable.setPlaceholder(new Label("Der er ikke \nnogen laug \nat vise"));
+        guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+        guildTable.setItems(guildsModel.getGuilds());
+        nameTable.setPlaceholder(new Label("Der er ikke \nnogen navne \nat vise"));
+        guildTable.setPlaceholder(new Label("Der er ikke \nnogen laug \nat vise"));
     }
 
     public void setModel(VolunteerModel volunteerModel) {
@@ -108,10 +99,16 @@ public class VolunteerViewController implements Initializable {
     @FXML
     private void handleGuildsVolunteers(MouseEvent event) throws SQLException {
         if (event.isPrimaryButtonDown() == false) {
-            int guildId = LaugTable.getSelectionModel().getSelectedItem().getId();
+            int guildId = guildTable.getSelectionModel().getSelectedItem().getId();
             volunteerModel.setNamesByGuildId(guildId);
-            NavneColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-            NavneTable.setItems(volunteerModel.getAllVolunteers());
+            nameColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+            nameTable.setItems(volunteerModel.getAllVolunteers());
         }
     }
+
+    @FXML
+    private void insertHours(ActionEvent event) {
+    }
+
+  
 }

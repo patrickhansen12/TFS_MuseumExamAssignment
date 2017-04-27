@@ -9,20 +9,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="VolunteerScreen" prefHeight="304.0" prefWidth="582.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.VolunteerViewController">
+<AnchorPane id="AnchorPane" fx:id="VolunteerScreen" prefHeight="304.0" prefWidth="582.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.VolunteerViewController">
    <children>
-      <TableView fx:id="LaugTable" layoutX="24.0" layoutY="91.0" onMouseClicked="#handleGuildsVolunteers" prefHeight="200.0" prefWidth="150.0">
+      <TableView fx:id="guildTable" layoutX="24.0" layoutY="91.0" onMouseClicked="#handleGuildsVolunteers" prefHeight="200.0" prefWidth="150.0">
         <columns>
-          <TableColumn fx:id="LaugColumn" prefWidth="150.0" text="Laug" />
+          <TableColumn fx:id="guildColumn" prefWidth="150.0" text="Laug" />
         </columns>
       </TableView>
-      <TableView fx:id="NavneTable" layoutX="224.0" layoutY="91.0" prefHeight="200.0" prefWidth="150.0">
+      <TableView fx:id="nameTable" layoutX="224.0" layoutY="91.0" prefHeight="200.0" prefWidth="150.0">
         <columns>
-          <TableColumn fx:id="NavneColumn" prefWidth="150.0" text="Navne" />
+          <TableColumn fx:id="nameColumn" prefWidth="150.0" text="Navne" />
         </columns>
       </TableView>
-      <TextField fx:id="SøgNavnField" layoutX="206.0" layoutY="42.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
-      <TextField fx:id="NoterTimerField" layoutX="393.0" layoutY="144.0" prefHeight="31.0" prefWidth="117.0" />
+      <TextField fx:id="searchnameField" layoutX="206.0" layoutY="42.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
+      <TextField fx:id="noteHoursField" layoutX="393.0" layoutY="144.0" prefHeight="31.0" prefWidth="117.0" />
       <Label layoutX="260.0" layoutY="7.0" text="Find dit navn" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0">
          <font>
             <Font size="24.0" />
@@ -38,17 +38,12 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="398.0" layoutY="183.0" mnemonicParsing="false" onAction="#IndsætTimer" prefHeight="51.0" styleClass="buttonGreen" text="Indsæt timer">
+      <Button layoutX="398.0" layoutY="183.0" mnemonicParsing="false" onAction="#insertHours" prefHeight="51.0" styleClass="buttonGreen" text="Indsæt timer">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Label fx:id="ConfirmationLabel" layoutX="393.0" layoutY="191.0" prefHeight="35.0" prefWidth="91.0">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Button layoutX="473.0" layoutY="246.0" mnemonicParsing="false" onAction="#TilbageVolunteer" styleClass="buttonGreen" text="Tilbage">
+      <Button layoutX="473.0" layoutY="246.0" mnemonicParsing="false" onAction="#backVolunteer" styleClass="buttonGreen" text="Tilbage">
          <font>
             <Font size="20.0" />
          </font>

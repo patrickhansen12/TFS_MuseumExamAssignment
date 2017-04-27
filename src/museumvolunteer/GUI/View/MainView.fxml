@@ -5,13 +5,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="MainScreen" prefHeight="200" prefWidth="320" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.MainViewController">
+<AnchorPane id="AnchorPane" fx:id="MainScreen" prefHeight="200" prefWidth="320" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.MainViewController">
    <children>
-      <Button layoutX="100.0" layoutY="31.0" mnemonicParsing="false" onAction="#FrivilligButton" styleClass="buttonGreen" text="Frivillig" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+      <Button layoutX="100.0" layoutY="31.0" mnemonicParsing="false" onAction="#volunteerButton" styleClass="buttonGreen" text="Frivillig" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
          <font>
             <Font size="24.0" />
          </font></Button>
-      <Button layoutX="91.0" layoutY="109.0" mnemonicParsing="false" onAction="#ManagerButton" prefHeight="51.0" prefWidth="139.0" styleClass="buttonGreen" text="Manager" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+      <Button layoutX="49.0" layoutY="109.0" mnemonicParsing="false" onAction="#managerButton" prefHeight="51.0" prefWidth="139.0" styleClass="buttonGreen" text="Manager" AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="51.0">
          <font>
             <Font size="24.0" />
          </font></Button>

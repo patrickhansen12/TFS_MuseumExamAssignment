@@ -26,24 +26,25 @@ import javafx.stage.Stage;
  */
 public class AdministatorViewController implements Initializable {
 
+
     @FXML
-    private TableView<?> LaugAdminTable;
+    private AnchorPane adminScreen;
     @FXML
-    private TableColumn<?, ?> LaugAdminColumn;
+    private TableView<?> guildAdminTable;
     @FXML
-    private TableView<?> NavneAdminTable;
+    private TableColumn<?, ?> guildAdminColumn;
     @FXML
-    private TableColumn<?, ?> NavneAdminColumn;
+    private TableView<?> nameAdminTable;
     @FXML
-    private TableView<?> TimerAdminTable;
+    private TableColumn<?, ?> nameAdminColumn;
     @FXML
-    private TableColumn<?, ?> TimerAdminColumn;
+    private TableView<?> hoursAdminTable;
     @FXML
-    private TableView<?> ManagerAdminTable;
+    private TableColumn<?, ?> hoursAdminColumn;
     @FXML
-    private TableColumn<?, ?> ManagerAdminColumn;
+    private TableView<?> managerAdminTable;
     @FXML
-    private AnchorPane AdminScreen;
+    private TableColumn<?, ?> managerAdminColumn;
 
     /**
      * Initializes the controller class.
@@ -53,40 +54,9 @@ public class AdministatorViewController implements Initializable {
         // TODO
     }    
 
-    @FXML
-    private void TilføjLaugButton(ActionEvent event) {
-    }
 
     @FXML
-    private void TilføjFrivilligeButton(ActionEvent event) {
-    }
-
-    @FXML
-    private void SletLaugButton(ActionEvent event) {
-    }
-
-    @FXML
-    private void SletFrivilligeButton(ActionEvent event) {
-    }
-
-    @FXML
-    private void TilføjManagerButton(ActionEvent event) {
-    }
-
-    @FXML
-    private void SletManagerButton(ActionEvent event) {
-    }
-
-    @FXML
-    private void SletTimerButton(ActionEvent event) {
-    }
-
-    @FXML
-    private void TilføjTimerButton(ActionEvent event) {
-    }
-
-    @FXML
-    private void tilbageAdmin(ActionEvent event) throws IOException 
+    private void returnAdmin(ActionEvent event) throws IOException 
     {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/MainView.fxml"));
@@ -98,7 +68,39 @@ public class AdministatorViewController implements Initializable {
         stage.setScene(scene);
         stage.show();
         
-        stage = (Stage) AdminScreen.getScene().getWindow();
+        stage = (Stage) adminScreen.getScene().getWindow();
         stage.close();
     } 
+
+    @FXML
+    private void addGuildButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void addVolunteerButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void removeGuildButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void removeVolunteersButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void addManagerButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void removeManagerButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void removeHoursButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void addHoursButton(ActionEvent event) {
+    }
 }

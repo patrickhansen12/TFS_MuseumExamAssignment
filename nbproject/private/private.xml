@@ -6,8 +6,12 @@
             <file>file:/D:/github/TFS_MuseumExamAssignment/src/museumvolunteer/BLL/NamesManager.java</file>
             <file>file:/D:/github/TFS_MuseumExamAssignment/src/museumvolunteer/GUI/Controller/VolunteerViewController.java</file>
             <file>file:/D:/github/TFS_MuseumExamAssignment/src/museumvolunteer/GUI/View/ManagerView.fxml</file>
+            <file>file:/D:/github/TFS_MuseumExamAssignment/src/museumvolunteer/GUI/Controller/ManagerViewController.java</file>
+            <file>file:/D:/github/TFS_MuseumExamAssignment/src/museumvolunteer/GUI/Controller/AddVolunteerController.java</file>
             <file>file:/D:/github/TFS_MuseumExamAssignment/src/museumvolunteer/BLL/CheckInManager.java</file>
+            <file>file:/D:/github/TFS_MuseumExamAssignment/src/museumvolunteer/GUI/View/VolunteerView.fxml</file>
             <file>file:/D:/github/TFS_MuseumExamAssignment/src/museumvolunteer/BLL/GuildsManager.java</file>
+            <file>file:/D:/github/TFS_MuseumExamAssignment/src/museumvolunteer/GUI/Model/VolunteerModel.java</file>
         </group>
     </open-files>
 </project-private>

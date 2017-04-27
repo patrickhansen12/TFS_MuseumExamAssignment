@@ -35,8 +35,7 @@ public class MainViewController implements Initializable {
         // TODO
     }    
 
-    @FXML
-    private void FrivilligButton(ActionEvent event) throws IOException 
+    private void volunteerButton(ActionEvent event) throws IOException 
     {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/VolunteerView.fxml"));
@@ -50,8 +49,7 @@ public class MainViewController implements Initializable {
         closeWindow();
     }
 
-    @FXML
-    private void ManagerButton(ActionEvent event) throws IOException 
+    private void managerButton(ActionEvent event) throws IOException 
     {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/LoginScreen.fxml"));
@@ -70,4 +68,5 @@ public class MainViewController implements Initializable {
         Stage stage = (Stage) MainScreen.getScene().getWindow();
         stage.close();
     }
+
 }

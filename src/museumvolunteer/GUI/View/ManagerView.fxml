@@ -8,38 +8,38 @@
 
 <AnchorPane id="AnchorPane" fx:id="ManagerScreen" prefHeight="380.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.ManagerViewController">
    <children>
-      <TableView fx:id="LaugManagerTable" layoutX="14.0" layoutY="115.0" onMouseClicked="#handleGuildsVolunteers" prefHeight="200.0" prefWidth="150.0">
+      <TableView fx:id="guildManagerTable" layoutX="14.0" layoutY="115.0" onMouseClicked="#handleGuildsVolunteers" prefHeight="200.0" prefWidth="150.0">
         <columns>
-          <TableColumn fx:id="LaugManagerColumn" prefWidth="150.0" text="Laug" />
+          <TableColumn fx:id="guildManagerColumn" prefWidth="150.0" text="Laug" />
         </columns>
       </TableView>
-      <TableView fx:id="NavneManagerTable" layoutX="183.0" layoutY="115.0" prefHeight="200.0" prefWidth="150.0">
+      <TableView fx:id="nameManagerTable" layoutX="183.0" layoutY="115.0" prefHeight="200.0" prefWidth="150.0">
         <columns>
-          <TableColumn fx:id="NavneManagerColumn" prefWidth="150.0" text="Navne" />
+          <TableColumn fx:id="nameManagerColumn" prefWidth="150.0" text="Navne" />
         </columns>
       </TableView>
-      <TableView fx:id="TimerManagerTable" layoutX="353.0" layoutY="115.0" prefHeight="200.0" prefWidth="150.0">
+      <TableView fx:id="hoursManagerTable" layoutX="353.0" layoutY="115.0" prefHeight="200.0" prefWidth="150.0">
         <columns>
-          <TableColumn fx:id="TimerManagerColumn" prefWidth="150.0" text="Timer" />
+          <TableColumn fx:id="hoursManagerColumn" prefWidth="150.0" text="Timer" />
         </columns>
       </TableView>
-      <Button layoutX="185.0" layoutY="14.0" mnemonicParsing="false" onAction="#TilføjFrivilligeButton" text="Tilføj frivillige">
+      <Button layoutX="185.0" layoutY="14.0" mnemonicParsing="false" onAction="#addVolunteersButton" text="Tilføj frivillige">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button layoutX="190.0" layoutY="60.0" mnemonicParsing="false" onAction="#SletFrivilligeButton" text="Slet frivillige">
+      <Button layoutX="190.0" layoutY="60.0" mnemonicParsing="false" onAction="#deleteVolunteersButton" text="Slet frivillige">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button layoutX="365.0" layoutY="14.0" mnemonicParsing="false" onAction="#TilføjTimerButton" text="Tilføj Timer">
+      <Button layoutX="365.0" layoutY="14.0" mnemonicParsing="false" onAction="#addHoursButton" text="Tilføj Timer">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button layoutX="370.0" layoutY="60.0" mnemonicParsing="false" onAction="#SletTimerButton" text="Slet Timer">
+      <Button layoutX="370.0" layoutY="61.0" mnemonicParsing="false" onAction="#deleteHoursButton" text="Slet Timer">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button layoutX="410.0" layoutY="322.0" mnemonicParsing="false" onAction="#TilbageManager" text="Tilbage">
+      <Button layoutX="410.0" layoutY="322.0" mnemonicParsing="false" onAction="#returnManager" text="Tilbage">
          <font>
             <Font size="20.0" />
          </font>

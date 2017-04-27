@@ -8,10 +8,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="logInScreen" onKeyPressed="#handleEnterPressed" prefHeight="199.0" prefWidth="354.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.LoginScreenController">
+<AnchorPane id="AnchorPane" fx:id="logInScreen" onKeyPressed="#handleEnterPressed" prefHeight="199.0" prefWidth="354.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.LoginScreenController">
    <children>
-      <TextField fx:id="Brugernavn" layoutX="150.0" layoutY="49.0" onKeyPressed="#handleEnterPressed" />
-      <PasswordField fx:id="Kodeord" layoutX="150.0" layoutY="96.0" onKeyPressed="#handleEnterPressed" />
+      <TextField fx:id="usernameField" layoutX="150.0" layoutY="49.0" onKeyPressed="#handleEnterPressed" />
+      <PasswordField fx:id="passwordField" layoutX="150.0" layoutY="96.0" onKeyPressed="#handleEnterPressed" />
       <Label layoutX="14.0" layoutY="47.0" onKeyPressed="#handleEnterPressed" text="Brugernavn">
          <font>
             <Font size="24.0" />
@@ -27,7 +27,7 @@
          <font>
             <Font size="24.0" />
          </font></Label>
-      <Button layoutX="268.0" layoutY="143.0" mnemonicParsing="false" onAction="#tilbageLogIn" onKeyPressed="#handleEnterPressed" styleClass="buttonGreen" text="Tilbage" />
+      <Button layoutX="268.0" layoutY="143.0" mnemonicParsing="false" onAction="#returnLogIn" onKeyPressed="#handleEnterPressed" styleClass="buttonGreen" text="Tilbage" />
    </children>
    <stylesheets>
        <URL value="@css/ColorSchemes.css" />

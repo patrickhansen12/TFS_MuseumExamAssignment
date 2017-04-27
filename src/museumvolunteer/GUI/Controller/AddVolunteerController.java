@@ -23,17 +23,19 @@ import javafx.stage.Stage;
 public class AddVolunteerController implements Initializable {
 
     @FXML
-    private AnchorPane AddScreen;
+    private AnchorPane addScreen;
     @FXML
-    private TextField NavneBox;
+    private TextField nameBox;
     @FXML
-    private TextField EmailBox;
+    private TextField emailBox;
     @FXML
-    private TextField TelefonBox;
+    private TextField phoneBox;
     @FXML
-    private TextField LaugBox;
+    private TextField guildBox;
     @FXML
-    private TextArea NoterBox;
+    private TextArea noteBox;
+
+
 
     /**
      * Initializes the controller class.
@@ -44,16 +46,16 @@ public class AddVolunteerController implements Initializable {
     }    
 
     @FXML
-    private void udførButton(ActionEvent event) 
+    private void performButton(ActionEvent event) 
     {
-        Stage stage = (Stage) AddScreen.getScene().getWindow();
+        Stage stage = (Stage) addScreen.getScene().getWindow();
         stage.close();
     }
 
     @FXML
-    private void tilbageTilføj(ActionEvent event) 
+    private void returnButton(ActionEvent event) 
     {
-        Stage stage = (Stage) AddScreen.getScene().getWindow();
+        Stage stage = (Stage) addScreen.getScene().getWindow();
         stage.close();
     }
     
