@@ -104,11 +104,13 @@ public class VolunteerViewController implements Initializable {
     }
 
     @FXML
-    private void handleGuildsVolunteers(MouseEvent event) {
+    private void handleGuildsVolunteers(MouseEvent event) throws SQLException {
         if (event.isPrimaryButtonDown() == false) {
+            int guildId = LaugTable.getSelectionModel().getSelectedItem().getId();
+            volunteerModel.setNamesByGuildId(guildId);
             NavneColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
             NavneTable.setItems(volunteerModel.getAllVolunteers());
-            teacherTblClicked2();
+            //teacherTblClicked2();
         }
     }
 

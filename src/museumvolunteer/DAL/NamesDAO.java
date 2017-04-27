@@ -141,7 +141,7 @@ public class NamesDAO
       try (Connection con = cm.getConnection())
         {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(5, guildsId);
+            ps.setInt(1, guildsId);
             ResultSet rs = ps.executeQuery();
             while (rs.next())
             {
