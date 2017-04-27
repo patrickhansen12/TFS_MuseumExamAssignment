@@ -48,6 +48,7 @@ public class ManagerViewController implements Initializable {
     private AnchorPane ManagerScreen;
        private VolunteerModel volunteerModel;
     private GuildsModel guildsModel;
+    private Volunteer volunteer;
 
     /**
      * Initializes the controller class.
@@ -78,7 +79,14 @@ public class ManagerViewController implements Initializable {
     }
 
     @FXML
-    private void SletFrivilligeButton(ActionEvent event) {
+    private void SletFrivilligeButton(ActionEvent event) throws SQLException 
+    {
+       Volunteer selectedItem = NavneManagerTable.getSelectionModel().getSelectedItem();
+       volunteer = selectedItem;
+       volunteerModel.deleteVolunteer(volunteer);
+       NavneManagerTable.getItems().remove(selectedItem);
+       NavneManagerTable.getSelectionModel().clearSelection();
+       
     }
 
     @FXML

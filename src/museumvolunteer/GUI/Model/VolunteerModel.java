@@ -60,4 +60,10 @@ public class VolunteerModel {
     {
         return allVolunteers;
     }
+    
+    public void deleteVolunteer(Volunteer v) throws SQLException
+    {
+        namesManager.delete(v);
+        allVolunteers.remove(v);
+    }
 }

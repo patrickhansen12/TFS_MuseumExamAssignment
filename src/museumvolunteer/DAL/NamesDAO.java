@@ -73,27 +73,6 @@ public class NamesDAO
             return new Volunteer(id, v.getName(), v.getEmail(), v.getPhoneNumber(), v.getGuildsId());
         }
     }
-    
-    
-    /**
-     * Updates database table Volunteer.
-     * @param v
-     * @throws SQLException 
-     */
-    public void update(Volunteer v) throws SQLException
-    {
-        String sql = "UPDATE Names"
-                + "SET name = ?, "
-                + "WHERE id = ?";
-        try (Connection con = cm.getConnection())
-        {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, v.getName());
-            ps.setInt(3, v.getId());
-
-            ps.executeUpdate();
-        }
-    }
 
     /**
      * Deletes a selected volunteer from database table Volunteer.
@@ -102,7 +81,7 @@ public class NamesDAO
      */
     public void delete(Volunteer v) throws SQLException
     {
-        String sql = "DELETE FROM Volunteer where id = ?";
+        String sql = "DELETE FROM Names where id = ?";
         try (Connection con = cm.getConnection())
         {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -127,5 +106,25 @@ public class NamesDAO
         int guildsId = rs.getInt("guildsId");
         
         return new Volunteer(id, name, email, phoneNumber, guildsId);
+    }
+    
+    /**
+     * Updates database table Volunteer.
+     * @param v
+     * @throws SQLException 
+     */
+    public void update(Volunteer v) throws SQLException
+    {
+        String sql = "UPDATE Names"
+                + "SET name = ?, "
+                + "WHERE id = ?";
+        try (Connection con = cm.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, v.getName());
+            ps.setInt(3, v.getId());
+
+            ps.executeUpdate();
+        }
     }
 }
