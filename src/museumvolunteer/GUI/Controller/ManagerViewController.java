@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import museumvolunteer.BE.Guild;
@@ -115,14 +116,21 @@ public class ManagerViewController implements Initializable {
     }
         private void dataBind()
     {
-       NavneManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-       NavneManagerTable.setItems(volunteerModel.getAllVolunteers());
+     
        LaugManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
        LaugManagerTable.setItems(guildsModel.getGuilds());
     }
   public void setModel(VolunteerModel volunteerModel) 
     {
         this.volunteerModel = volunteerModel;
+    }
+
+    @FXML
+    private void handleGuildsVolunteers(MouseEvent event) {
+         if (event.isPrimaryButtonDown() == false) {
+            NavneManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+       NavneManagerTable.setItems(volunteerModel.getAllVolunteers());
+        }
     }
 }
 

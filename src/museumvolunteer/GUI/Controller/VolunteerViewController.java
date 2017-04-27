@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import museumvolunteer.BE.Guild;
@@ -91,8 +92,8 @@ public class VolunteerViewController implements Initializable {
     
     private void dataBind()
     {
-       NavneColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-       NavneTable.setItems(volunteerModel.getAllVolunteers());
+ 
+        
        LaugColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
        LaugTable.setItems(guildsModel.getGuilds());
     }
@@ -101,5 +102,14 @@ public class VolunteerViewController implements Initializable {
     {
         this.volunteerModel = volunteerModel;
     }
+
+    @FXML
+    private void handleGuildsVolunteers(MouseEvent event) {
+    if (event.isPrimaryButtonDown() == false) {
+            NavneColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+       NavneTable.setItems(volunteerModel.getAllVolunteers());
+        }
+    }
+    
     
 }
