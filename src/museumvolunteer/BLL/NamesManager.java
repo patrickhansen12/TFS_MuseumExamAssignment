@@ -60,4 +60,14 @@ public class NamesManager {
     {
         namesDAO.delete(v);
     }
+    
+    /**
+     * ArrayList of BE class Volunteer.
+     * @param id
+     * @return
+     * @throws SQLException 
+     */
+    public List<Volunteer> getAllVolunteersByGuildId(int id) throws SQLException {
+        return namesDAO.getByGuildId(id);
+    }
 }

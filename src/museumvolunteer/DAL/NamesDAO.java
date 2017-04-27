@@ -149,6 +149,5 @@ public class NamesDAO
             }
             return allVolunteers;
         }
-      
     }
 }
