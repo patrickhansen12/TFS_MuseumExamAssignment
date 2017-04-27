@@ -112,25 +112,6 @@ public class VolunteerViewController implements Initializable {
             volunteerModel.setNamesByGuildId(guildId);
             NavneColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
             NavneTable.setItems(volunteerModel.getAllVolunteers());
-            //teacherTblClicked2();
         }
     }
-
-    private void teacherTblClicked2() {
-        NavneTable.setRowFactory(tv -> {
-            TableRow<Volunteer> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 1 && (!row.isEmpty())) {
-                    Volunteer rowData = row.getItem();
-                    try {
-                        volunteerModel.setNamesByGuildId(rowData.getGuildsId());
-                    } catch (SQLException ex) {
-                        Logger.getLogger(VolunteerViewController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            });
-            return row;
-        });
-    }
-
 }

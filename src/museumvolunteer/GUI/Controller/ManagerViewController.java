@@ -126,10 +126,12 @@ public class ManagerViewController implements Initializable {
     }
 
     @FXML
-    private void handleGuildsVolunteers(MouseEvent event) {
-         if (event.isPrimaryButtonDown() == false) {
+    private void handleGuildsVolunteers(MouseEvent event) throws SQLException {
+        if (event.isPrimaryButtonDown() == false) {
+            int guildId = LaugManagerTable.getSelectionModel().getSelectedItem().getId();
+            volunteerModel.setNamesByGuildId(guildId);
             NavneManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-       NavneManagerTable.setItems(volunteerModel.getAllVolunteers());
+            NavneManagerTable.setItems(volunteerModel.getAllVolunteers());
         }
     }
 }
