@@ -63,11 +63,11 @@ public class NamesManager {
     
     /**
      * ArrayList of BE class Volunteer.
-     * @param id
+     * @param guildsId
      * @return
      * @throws SQLException 
      */
-    public List<Volunteer> getAllVolunteersByGuildId(int id) throws SQLException {
-        return namesDAO.getByGuildId(id);
+    public List<Volunteer> getAllVolunteersByGuildId(int guildsId) throws SQLException {
+        return namesDAO.getByGuildId(guildsId);
     }
 }

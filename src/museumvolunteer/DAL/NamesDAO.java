@@ -134,14 +134,14 @@ public class NamesDAO
      * @return
      * @throws SQLException 
      */
-    public List<Volunteer> getByGuildId(int id) throws SQLException{
+    public List<Volunteer> getByGuildId(int guildsId) throws SQLException{
         
       List<Volunteer> allVolunteers = new ArrayList<>();
       String sql = "SELECT * FROM Names WHERE guildsId = ?";
       try (Connection con = cm.getConnection())
         {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setInt(5, guildsId);
             ResultSet rs = ps.executeQuery();
             while (rs.next())
             {

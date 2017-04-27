@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -30,6 +33,7 @@ import museumvolunteer.GUI.Model.VolunteerModel;
 
 /**
  * FXML Controller class
+ *
  * @author Nicolai, Emil, Patrick, Kasper, Casper
  */
 public class VolunteerViewController implements Initializable {
@@ -54,62 +58,75 @@ public class VolunteerViewController implements Initializable {
     private VolunteerModel volunteerModel;
     private GuildsModel guildsModel;
 
-
     /**
      * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         dataBind();
-    }    
+    }
 
-    public VolunteerViewController() throws IOException, SQLException 
-    {
+    public VolunteerViewController() throws IOException, SQLException {
         volunteerModel = VolunteerModel.getInstance();
         guildsModel = GuildsModel.getInstance();
     }
-    
+
     @FXML
     private void IndsætTimer(ActionEvent event) {
     }
 
     @FXML
-    private void TilbageVolunteer(ActionEvent event) throws IOException 
-    {
+    private void TilbageVolunteer(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/MainView.fxml"));
-        
+
         Scene scene = new Scene(root);
         stage.setTitle("Frivillig dokumentation");
         stage.setResizable(false);
 
         stage.setScene(scene);
         stage.show();
-        
+
         stage = (Stage) VolunteerScreen.getScene().getWindow();
         stage.close();
     }
-    
-    private void dataBind()
-    {
- 
-        
-       LaugColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-       LaugTable.setItems(guildsModel.getGuilds());
+
+    private void dataBind() {
+        LaugColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+        LaugTable.setItems(guildsModel.getGuilds());
     }
-    
-    public void setModel(VolunteerModel volunteerModel) 
-    {
+
+    public void setModel(VolunteerModel volunteerModel) {
         this.volunteerModel = volunteerModel;
     }
 
     @FXML
     private void handleGuildsVolunteers(MouseEvent event) {
-    if (event.isPrimaryButtonDown() == false) {
+        if (event.isPrimaryButtonDown() == false) {
             NavneColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-       NavneTable.setItems(volunteerModel.getAllVolunteers());
+            NavneTable.setItems(volunteerModel.getAllVolunteers());
+            teacherTblClicked2();
         }
     }
-    
-    
+
+    private void teacherTblClicked2() {
+        NavneTable.setRowFactory(tv -> {
+            TableRow<Volunteer> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 1 && (!row.isEmpty())) {
+                    Volunteer rowData = row.getItem();
+                    try {
+                        volunteerModel.setNamesByGuildId(rowData.getGuildsId());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(VolunteerViewController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+            return row;
+        });
+    }
+
 }

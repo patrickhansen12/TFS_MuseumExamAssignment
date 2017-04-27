@@ -23,7 +23,7 @@ public class VolunteerModel {
     /**
      * The list of all volunteers currently in view
      */
-    private final ObservableList<Volunteer> allVolunteers;
+    private ObservableList<Volunteer> allVolunteers;
     
     /**
      * The method to get a reference to this Singleton:
@@ -65,5 +65,11 @@ public class VolunteerModel {
     {
         namesManager.delete(v);
         allVolunteers.remove(v);
+    }
+    
+    public void setNamesByGuildId(int guildsId) throws SQLException {
+
+        allVolunteers = FXCollections.observableArrayList();
+        allVolunteers.addAll(namesManager.getAllVolunteersByGuildId(guildsId));
     }
 }
