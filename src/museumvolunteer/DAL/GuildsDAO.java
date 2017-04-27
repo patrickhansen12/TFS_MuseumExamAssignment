@@ -134,30 +134,6 @@ public class GuildsDAO {
         }
     }
     
-//    /**
-//     * Populates a new ArrayList of Guilds with guilds for a specific guild gathered from database table Guilds.
-//     * @param id
-//     * @return
-//     * @throws SQLException 
-//     */
-//    public List<Guild> getByNameId(int id) throws SQLException{
-//        
-//      List<Guild> allGuilds = new ArrayList<>();
-//      String sql = "SELECT * FROM Guilds WHERE guildsId = ?";
-//      try (Connection con = cm.getConnection())
-//        {
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setInt(1, id);
-//            ResultSet rs = ps.executeQuery();
-//            while (rs.next())
-//            {
-//                allGuilds.add(getOneGuild(rs));
-//            }
-//            return allGuilds;
-//        }
-//      
-//    }
-    
     /**
      * Reflects the attributes for 1 guild in the database.
      * @param rs

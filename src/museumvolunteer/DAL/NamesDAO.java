@@ -127,4 +127,28 @@ public class NamesDAO
             ps.executeUpdate();
         }
     }
+    
+    /**
+     * Populates a new ArrayList of Volunteers with volunteers for a specific guild gathered from database table Guilds.
+     * @param id
+     * @return
+     * @throws SQLException 
+     */
+    public List<Volunteer> getByGuildId(int id) throws SQLException{
+        
+      List<Volunteer> allVolunteers = new ArrayList<>();
+      String sql = "SELECT * FROM Names WHERE guildsId = ?";
+      try (Connection con = cm.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                allVolunteers.add(getOneVolunteer(rs));
+            }
+            return allVolunteers;
+        }
+      
+    }
 }
