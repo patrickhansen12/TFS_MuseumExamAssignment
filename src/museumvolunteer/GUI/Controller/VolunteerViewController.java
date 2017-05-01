@@ -8,6 +8,9 @@ package museumvolunteer.GUI.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
@@ -16,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -52,6 +56,8 @@ public class VolunteerViewController implements Initializable {
     private TextField searchnameField;
     @FXML
     private TextField noteHoursField;
+    @FXML
+    private DatePicker datePick;
 
 
     /**
@@ -63,6 +69,8 @@ public class VolunteerViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         dataBind();
+          datePick.setValue(LocalDate.now());
+        datePick.setVisible(false);
     }
 
     public VolunteerViewController() throws IOException, SQLException {
@@ -110,6 +118,8 @@ public class VolunteerViewController implements Initializable {
 
     @FXML
     private void insertHours(ActionEvent event) {
+  
+//    CheckIn CheckIn = checkInModel.calcAttendance(test, Volunteer);
     }
 
   

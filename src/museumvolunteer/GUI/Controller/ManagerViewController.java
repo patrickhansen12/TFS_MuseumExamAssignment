@@ -8,6 +8,7 @@ package museumvolunteer.GUI.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
@@ -16,8 +17,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -52,6 +55,10 @@ public class ManagerViewController implements Initializable {
     private TableView<CheckIn> hoursManagerTable;
     @FXML
     private TableColumn<CheckIn, Integer> hoursManagerColumn;
+    @FXML
+    private DatePicker datePicker;
+    @FXML
+    private TextField txtFieldHours;
 
     /**
      * Initializes the controller class.
@@ -59,6 +66,7 @@ public class ManagerViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+               datePicker.setValue(LocalDate.now());
         dataBind();
     }    
     public ManagerViewController() throws IOException, SQLException 
