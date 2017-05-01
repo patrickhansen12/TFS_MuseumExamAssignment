@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +18,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -38,9 +35,13 @@ import museumvolunteer.GUI.Model.VolunteerModel;
  */
 public class VolunteerViewController implements Initializable {
 
+    @FXML
     private TableView<Guild> guildTable;
+    @FXML
     private TableColumn<Guild, String> guildColumn;
+    @FXML
     private TableView<Volunteer> nameTable;
+    @FXML
     private TableColumn<Volunteer, String> nameColumn;
     @FXML
     private AnchorPane VolunteerScreen;
@@ -70,6 +71,7 @@ public class VolunteerViewController implements Initializable {
     }
 
 
+    @FXML
     private void backVolunteer(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/MainView.fxml"));

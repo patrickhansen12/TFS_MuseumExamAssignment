@@ -28,6 +28,11 @@ public class Volunteer {
         this(-1, name, null, null, -1);
     }
 
+    public Volunteer(String name, String email, String phoneNumber, int guildsId)
+    {
+       this(-1, name, email, phoneNumber, guildsId); 
+    }
+
     public int getId() {
         return id;
     }

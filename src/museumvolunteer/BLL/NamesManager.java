@@ -15,6 +15,7 @@ import museumvolunteer.DAL.NamesDAO;
  * @author Nicolai, Emil, Patrick, Kasper, Casper
  */
 public class NamesManager {
+
     private NamesDAO namesDAO;
 
     public NamesManager() throws IOException {

@@ -18,6 +18,7 @@ import museumvolunteer.BLL.NamesManager;
 public class VolunteerModel {
     //local variables for NamesManager and VolunteerModel.
     private static VolunteerModel INSTANCE;
+
     private final NamesManager namesManager;
     
     /**
@@ -59,6 +60,12 @@ public class VolunteerModel {
     public ObservableList<Volunteer> getAllVolunteers()
     {
         return allVolunteers;
+    }
+    
+    public void addVolunteer(Volunteer v) throws SQLException
+    {
+        namesManager.add(v);
+        allVolunteers.add(v);
     }
     
     public void deleteVolunteer(Volunteer v) throws SQLException

@@ -33,9 +33,13 @@ import museumvolunteer.GUI.Model.VolunteerModel;
  */
 public class ManagerViewController implements Initializable {
 
+    @FXML
     private TableView<Guild> guildManagerTable;
+    @FXML
     private TableColumn<Guild, String> guildManagerColumn;
+    @FXML
     private TableView<Volunteer> nameManagerTable;
+    @FXML
     private TableColumn<Volunteer, String> nameManagerColumn;
     @FXML
     private AnchorPane ManagerScreen;
@@ -62,6 +66,7 @@ public class ManagerViewController implements Initializable {
         guildsModel = GuildsModel.getInstance();
     }
     
+    @FXML
     private void addVolunteersButton (ActionEvent event) throws IOException 
     {
         Stage stage = new Stage();
@@ -75,6 +80,7 @@ public class ManagerViewController implements Initializable {
         stage.show();
     }
 
+    @FXML
     private void deleteVolunteersButton(ActionEvent event) throws SQLException 
     {
        Volunteer selectedItem = nameManagerTable.getSelectionModel().getSelectedItem();
@@ -86,6 +92,7 @@ public class ManagerViewController implements Initializable {
     }
 
 
+    @FXML
     private void returnManager(ActionEvent event) throws IOException 
     {
         Stage stage = new Stage();
