@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="adminScreen" prefHeight="408.0" prefWidth="714.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AdministatorViewController">
+<AnchorPane id="AnchorPane" fx:id="adminScreen" prefHeight="408.0" prefWidth="714.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AdministatorViewController">
    <children>
-      <TableView fx:id="guildAdminTable" layoutX="16.0" layoutY="130.0" prefHeight="200.0" prefWidth="150.0">
+      <TableView fx:id="guildAdminTable" layoutX="16.0" layoutY="130.0" onMouseClicked="#handleGuildsVolunteers" prefHeight="200.0" prefWidth="150.0">
         <columns>
           <TableColumn fx:id="guildAdminColumn" prefWidth="150.0" text="Laug" />
         </columns>
