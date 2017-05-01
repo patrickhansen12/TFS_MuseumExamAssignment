@@ -118,7 +118,13 @@ public class VolunteerViewController implements Initializable {
 
     @FXML
     private void insertHours(ActionEvent event) {
-  
+          LocalDateTime test = datePick.getValue().atTime(LocalTime.now());
+    
+        
+        datePicker timeStamp = datePick.getDayCellFactory().trim();
+        int nameId = Integer.parseInt(nameColumn.getText().trim());
+        int hours = Integer.parseInt(noteHoursField.getText().trim());
+        VolunteerModel.getInstance().addVolunteer(new Volunteer(timeStamp, nameId, hours));
 //    CheckIn CheckIn = checkInModel.calcAttendance(test, Volunteer);
     }
 
