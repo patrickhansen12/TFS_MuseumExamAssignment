@@ -82,7 +82,7 @@ public class LoginScreenController implements Initializable {
         else if (usernameField.getText().equals("a") && (passwordField.getText().equals("a")))
         {
             publicMessageLabel.setText("");
-            logIn();
+            logInA();
             usernameField.clear();
             passwordField.clear();
         }
@@ -104,6 +104,20 @@ public class LoginScreenController implements Initializable {
     {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/ManagerView.fxml"));
+        Scene scene = new Scene(root);
+        stage.setTitle("Logged in as " + usernameField.getText());
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show(); 
+        
+        stage = (Stage) logInScreen.getScene().getWindow();
+        stage.close();
+    }
+    
+    private void logInA() throws IOException
+    {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AdministatorView.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Logged in as " + usernameField.getText());
         stage.setScene(scene);

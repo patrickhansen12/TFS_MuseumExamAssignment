@@ -95,7 +95,17 @@ public class AdministatorViewController implements Initializable {
     }
 
     @FXML
-    private void addVolunteerButton(ActionEvent event) {
+    private void addVolunteerButton(ActionEvent event) throws IOException 
+    {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AddVolunteer.fxml"));
+        
+        Scene scene = new Scene(root);
+        stage.setTitle("Tilføj frivillig");
+        stage.setResizable(false);
+
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -103,7 +113,13 @@ public class AdministatorViewController implements Initializable {
     }
 
     @FXML
-    private void removeVolunteersButton(ActionEvent event) {
+    private void removeVolunteersButton(ActionEvent event) throws SQLException 
+    {
+       Volunteer selectedItem = nameAdminTable.getSelectionModel().getSelectedItem();
+       volunteer = selectedItem;
+       volunteerModel.deleteVolunteer(volunteer);
+       nameAdminTable.getItems().remove(selectedItem);
+       nameAdminTable.getSelectionModel().clearSelection();   
     }
 
     @FXML
