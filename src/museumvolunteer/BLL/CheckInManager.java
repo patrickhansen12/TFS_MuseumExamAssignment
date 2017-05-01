@@ -29,8 +29,8 @@ public class CheckInManager {
     
     
     
-    public List<CheckIn> getAllCheckInsById(int id) throws SQLException {
-        return checkInDAO.getByVoulunteerId(id);
+    public List<CheckIn> getAllCheckInsById(int nameId) throws SQLException {
+        return checkInDAO.getByNameId(nameId);
     }
     
     
@@ -41,7 +41,7 @@ public class CheckInManager {
     
     public List<CheckIn> getCheckIn() throws SQLException
     {
-        return checkInDAO.getAllCheckIns();
+        return checkInDAO.getAll();
     }
 
     public void delete(CheckIn studCheckIn) throws SQLException {

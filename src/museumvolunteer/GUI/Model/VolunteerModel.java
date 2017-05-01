@@ -9,7 +9,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import museumvolunteer.BE.CheckIn;
 import museumvolunteer.BE.Volunteer;
+import museumvolunteer.BLL.CheckInManager;
 import museumvolunteer.BLL.NamesManager;
 
 /**
@@ -20,11 +22,14 @@ public class VolunteerModel {
     private static VolunteerModel INSTANCE;
 
     private final NamesManager namesManager;
+    private final CheckInManager checkInManager;
     
     /**
      * The list of all volunteers currently in view
      */
     private ObservableList<Volunteer> allVolunteers;
+    
+    private ObservableList<CheckIn> allCheckIns;
     
     /**
      * The method to get a reference to this Singleton:
@@ -47,9 +52,12 @@ public class VolunteerModel {
     private VolunteerModel() throws IOException, SQLException
     {
         namesManager = new NamesManager();
+        checkInManager = new CheckInManager();
         allVolunteers = FXCollections.observableArrayList();
-        
         allVolunteers.addAll(namesManager.getAllVolunteers());
+        allCheckIns = FXCollections.observableArrayList();
+        allCheckIns.addAll(checkInManager.getCheckIn());
+        
     }
     
     /**
@@ -60,6 +68,11 @@ public class VolunteerModel {
     public ObservableList<Volunteer> getAllVolunteers()
     {
         return allVolunteers;
+    }
+    
+    public ObservableList<CheckIn> getAll()
+    {
+        return allCheckIns;
     }
     
     public void addVolunteer(Volunteer v) throws SQLException
@@ -78,5 +91,11 @@ public class VolunteerModel {
 
         allVolunteers = FXCollections.observableArrayList();
         allVolunteers.addAll(namesManager.getAllVolunteersByGuildId(guildsId));
+    }
+    
+    public void setCheckInsByNameId(int nameId) throws SQLException
+    {
+        allCheckIns = FXCollections.observableArrayList();
+        allCheckIns.addAll(checkInManager.getAllCheckInsById(nameId));
     }
 }

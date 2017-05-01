@@ -21,6 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import museumvolunteer.BE.CheckIn;
 import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Volunteer;
 import museumvolunteer.GUI.Model.GuildsModel;
@@ -48,9 +49,9 @@ public class ManagerViewController implements Initializable {
     private Volunteer volunteer;
 
     @FXML
-    private TableView<?> hoursManagerTable;
+    private TableView<CheckIn> hoursManagerTable;
     @FXML
-    private TableColumn<?, ?> hoursManagerColumn;
+    private TableColumn<CheckIn, Integer> hoursManagerColumn;
 
     /**
      * Initializes the controller class.
@@ -137,6 +138,16 @@ public class ManagerViewController implements Initializable {
 
     @FXML
     private void deleteHoursButton(ActionEvent event) {
+    }
+    
+    @FXML
+    private void handleVolunteersHours(MouseEvent event) throws SQLException {
+        if (event.isPrimaryButtonDown() == false) {
+            int nameId = nameManagerTable.getSelectionModel().getSelectedItem().getId();
+            volunteerModel.setCheckInsByNameId(nameId);
+            hoursManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
+            hoursManagerTable.setItems(volunteerModel.getAll());
+        }
     }
 
   

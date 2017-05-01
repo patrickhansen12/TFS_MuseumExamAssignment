@@ -6,7 +6,6 @@
 package museumvolunteer.BE;
 
 import java.sql.Timestamp;
-import static javafx.util.Duration.hours;
 
 /**
  * @author Jens, Patrick, Casper, Kasper
@@ -14,30 +13,30 @@ import static javafx.util.Duration.hours;
 public class CheckIn{
     private int id;
     private Timestamp dateTime;
-    private int volunteerId;
-    private int Hours;
+    private int nameId;
+    private int hours;
 
     public int getHours() {
-        return Hours;
+        return hours;
     }
 
-    public void setHours(int getHours) {
-        this.Hours = Hours;
+    public void setHours(int hours) {
+        this.hours = hours;
     }
 
     public CheckIn(int id, CheckIn ts) {
-        this(id, ts.getDateTime(), ts.getStudentId(), ts.getHours());
+        this(id, ts.getDateTime(), ts.getNameId(), ts.getHours());
     }
     
     public CheckIn(Timestamp dateTime, int volunteerId, int hours){
         this(-1, dateTime, volunteerId, hours);
     }
 
-    public CheckIn(int id, Timestamp dateTime, int studentId, int hours) {
+    public CheckIn(int id, Timestamp dateTime, int nameId, int hours) {
         this.id = id;
         this.dateTime = dateTime;
-        this.volunteerId = studentId;
-        this.Hours = hours;
+        this.nameId = nameId;
+        this.hours = hours;
     }
     
     public CheckIn(Timestamp dateTime, int hours)
@@ -61,12 +60,12 @@ public class CheckIn{
         this.dateTime = dateTime;
     }
 
-    public int getStudentId() {
-        return volunteerId;
+    public int getNameId() {
+        return nameId;
     }
 
-    public void setVolunteerId(int volunteerId) {
-        this.id = volunteerId;
+    public void setNameId(int nameId) {
+        this.id = nameId;
     }
     
 }
