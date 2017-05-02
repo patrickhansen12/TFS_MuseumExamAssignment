@@ -81,6 +81,12 @@ public class VolunteerModel {
         allVolunteers.add(v);
     }
     
+    public void addHours(CheckIn ci) throws SQLException
+    {
+        checkInManager.add(ci);
+        allCheckIns.add(ci);
+    }
+    
     public void deleteVolunteer(Volunteer v) throws SQLException
     {
         namesManager.delete(v);

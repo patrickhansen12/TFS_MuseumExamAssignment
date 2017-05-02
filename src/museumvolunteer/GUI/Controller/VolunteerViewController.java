@@ -27,6 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import museumvolunteer.BE.CheckIn;
 import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Volunteer;
 import museumvolunteer.GUI.Model.GuildsModel;
@@ -117,14 +118,19 @@ public class VolunteerViewController implements Initializable {
     }
 
     @FXML
-    private void insertHours(ActionEvent event) {
-          LocalDateTime test = datePick.getValue().atTime(LocalTime.now());
+    private void insertHours(ActionEvent event) throws SQLException, IOException {
+          LocalDateTime timeStamp = datePick.getValue().atTime(LocalTime.now());
+          java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(timeStamp);
+          
+          
     
         
-        datePicker timeStamp = datePick.getDayCellFactory().trim();
-        int nameId = Integer.parseInt(nameColumn.getText().trim());
+        //datePicker timeStamp = datePick.getDayCellFactory().trim();
+        int nameId = nameTable.getSelectionModel().getSelectedItem().getId();
+        volunteerModel.setCheckInsByNameId(nameId);
+        //int nameId = Integer.parseInt(nameColumn.getText().trim());
         int hours = Integer.parseInt(noteHoursField.getText().trim());
-        VolunteerModel.getInstance().addVolunteer(new Volunteer(timeStamp, nameId, hours));
+        VolunteerModel.getInstance().addHours(new CheckIn(dateTime, nameId, hours));
 //    CheckIn CheckIn = checkInModel.calcAttendance(test, Volunteer);
     }
 

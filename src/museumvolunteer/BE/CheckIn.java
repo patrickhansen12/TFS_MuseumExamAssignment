@@ -16,6 +16,10 @@ public class CheckIn{
     private int nameId;
     private int hours;
 
+    public CheckIn(Timestamp dateTime, int nameId, int hours) {
+        this(-1, dateTime, nameId, hours);
+    }
+
     public int getHours() {
         return hours;
     }
@@ -26,10 +30,6 @@ public class CheckIn{
 
     public CheckIn(int id, CheckIn ts) {
         this(id, ts.getDateTime(), ts.getNameId(), ts.getHours());
-    }
-    
-    public CheckIn(Timestamp dateTime, int volunteerId, int hours){
-        this(-1, dateTime, volunteerId, hours);
     }
 
     public CheckIn(int id, Timestamp dateTime, int nameId, int hours) {
