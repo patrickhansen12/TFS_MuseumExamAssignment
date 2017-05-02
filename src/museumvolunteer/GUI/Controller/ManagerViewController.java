@@ -51,7 +51,7 @@ public class ManagerViewController implements Initializable {
     private TableColumn<Volunteer, String> nameManagerColumn;
     @FXML
     private AnchorPane ManagerScreen;
-       private VolunteerModel volunteerModel;
+    private VolunteerModel volunteerModel;
     private GuildsModel guildsModel;
     private Volunteer volunteer;
 
@@ -72,21 +72,20 @@ public class ManagerViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-               datePicker.setValue(LocalDate.now());
+        datePicker.setValue(LocalDate.now());
         dataBind();
-    }    
-    public ManagerViewController() throws IOException, SQLException 
-    {
+    }
+
+    public ManagerViewController() throws IOException, SQLException {
         volunteerModel = VolunteerModel.getInstance();
         guildsModel = GuildsModel.getInstance();
     }
-    
+
     @FXML
-    private void addVolunteersButton (ActionEvent event) throws IOException 
-    {
+    private void addVolunteersButton(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AddVolunteer.fxml"));
-        
+
         Scene scene = new Scene(root);
         stage.setTitle("Tilføj frivillig");
         stage.setResizable(false);
@@ -96,41 +95,38 @@ public class ManagerViewController implements Initializable {
     }
 
     @FXML
-    private void deleteVolunteersButton(ActionEvent event) throws SQLException 
-    {
-       Volunteer selectedItem = nameManagerTable.getSelectionModel().getSelectedItem();
-       volunteer = selectedItem;
-       volunteerModel.deleteVolunteer(volunteer);
-       nameManagerTable.getItems().remove(selectedItem);
-       nameManagerTable.getSelectionModel().clearSelection();
-       
+    private void deleteVolunteersButton(ActionEvent event) throws SQLException {
+        Volunteer selectedItem = nameManagerTable.getSelectionModel().getSelectedItem();
+        volunteer = selectedItem;
+        volunteerModel.deleteVolunteer(volunteer);
+        nameManagerTable.getItems().remove(selectedItem);
+        nameManagerTable.getSelectionModel().clearSelection();
+
     }
 
-
     @FXML
-    private void returnManager(ActionEvent event) throws IOException 
-    {
+    private void returnManager(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/MainView.fxml"));
-        
+
         Scene scene = new Scene(root);
         stage.setTitle("Frivillig dokumentation");
         stage.setResizable(false);
 
         stage.setScene(scene);
         stage.show();
-        
+
         stage = (Stage) ManagerScreen.getScene().getWindow();
         stage.close();
     }
-        private void dataBind()
-    {
-     
-       guildManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-       guildManagerTable.setItems(guildsModel.getGuilds());
+
+    private void dataBind() {
+
+        guildManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+        guildManagerTable.setItems(guildsModel.getGuilds());
     }
-  public void setModel(VolunteerModel volunteerModel) 
-    {
+
+    public void setModel(VolunteerModel volunteerModel) {
         this.volunteerModel = volunteerModel;
     }
 
@@ -144,11 +140,8 @@ public class ManagerViewController implements Initializable {
         }
     }
 
- 
-
     @FXML
-    private void addHoursButton(ActionEvent event) throws SQLException, IOException 
-    {
+    private void addHoursButton(ActionEvent event) throws SQLException, IOException {
         if (datePicker.getValue() != null && guildManagerTable.getSelectionModel().getSelectedItem() != null && nameManagerTable.getSelectionModel().getSelectedItem() != null && !txtFieldHours.getText().isEmpty()) {
 
             LocalDateTime timeStamp = datePicker.getValue().atTime(LocalTime.now());
@@ -173,7 +166,7 @@ public class ManagerViewController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fejl");
             alert.setHeaderText(null);
-            alert.setContentText("Du skal vælge både laug og navn, før du kan indtaste timer.");
+            alert.setContentText("Du skal vælge både laug, navn og antal timers frivilligt arbejde, før du kan indtaste timer.");
             alert.showAndWait();
         }
     }
@@ -181,7 +174,7 @@ public class ManagerViewController implements Initializable {
     @FXML
     private void deleteHoursButton(ActionEvent event) {
     }
-    
+
     @FXML
     private void handleVolunteersHours(MouseEvent event) throws SQLException {
         if (event.isPrimaryButtonDown() == false) {
@@ -193,6 +186,4 @@ public class ManagerViewController implements Initializable {
         }
     }
 
-  
 }
-

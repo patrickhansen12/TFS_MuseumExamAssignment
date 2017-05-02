@@ -141,7 +141,7 @@ public class VolunteerViewController implements Initializable {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Fejl");
             alert.setHeaderText(null);
-            alert.setContentText("Du skal vælge både laug og navn, før du kan indtaste timer.");
+            alert.setContentText("Du skal vælge både laug, navn og antal timers frivilligt arbjede, før du kan indtaste timer.");
             alert.showAndWait();
         }
     }
