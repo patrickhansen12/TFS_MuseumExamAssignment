@@ -70,7 +70,7 @@ public class VolunteerModel {
         return allVolunteers;
     }
     
-    public ObservableList<CheckIn> getAll()
+    public ObservableList<CheckIn> getAllCheckIns()
     {
         return allCheckIns;
     }

@@ -8,6 +8,7 @@ package museumvolunteer.GUI.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleObjectProperty;
@@ -59,6 +60,8 @@ public class ManagerViewController implements Initializable {
     private DatePicker datePicker;
     @FXML
     private TextField txtFieldHours;
+    @FXML
+    private TableColumn<CheckIn, Timestamp> dateManagerColumn;
 
     /**
      * Initializes the controller class.
@@ -154,7 +157,8 @@ public class ManagerViewController implements Initializable {
             int nameId = nameManagerTable.getSelectionModel().getSelectedItem().getId();
             volunteerModel.setCheckInsByNameId(nameId);
             hoursManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
-            hoursManagerTable.setItems(volunteerModel.getAll());
+            dateManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
+            hoursManagerTable.setItems(volunteerModel.getAllCheckIns());
         }
     }
 
