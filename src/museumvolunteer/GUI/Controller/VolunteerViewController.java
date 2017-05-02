@@ -19,6 +19,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -60,7 +62,6 @@ public class VolunteerViewController implements Initializable {
     @FXML
     private DatePicker datePick;
 
-
     /**
      * Initializes the controller class.
      *
@@ -70,7 +71,7 @@ public class VolunteerViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         dataBind();
-          datePick.setValue(LocalDate.now());
+        datePick.setValue(LocalDate.now());
         datePick.setVisible(false);
     }
 
@@ -78,7 +79,6 @@ public class VolunteerViewController implements Initializable {
         volunteerModel = VolunteerModel.getInstance();
         guildsModel = GuildsModel.getInstance();
     }
-
 
     @FXML
     private void backVolunteer(ActionEvent event) throws IOException {
@@ -119,20 +119,30 @@ public class VolunteerViewController implements Initializable {
 
     @FXML
     private void insertHours(ActionEvent event) throws SQLException, IOException {
-          LocalDateTime timeStamp = datePick.getValue().atTime(LocalTime.now());
-          java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(timeStamp);
-          
-          
-    
-        
-        //datePicker timeStamp = datePick.getDayCellFactory().trim();
-        int nameId = nameTable.getSelectionModel().getSelectedItem().getId();
-        volunteerModel.setCheckInsByNameId(nameId);
-        //int nameId = Integer.parseInt(nameColumn.getText().trim());
-        int hours = Integer.parseInt(noteHoursField.getText().trim());
-        VolunteerModel.getInstance().addHours(new CheckIn(dateTime, nameId, hours));
-//    CheckIn CheckIn = checkInModel.calcAttendance(test, Volunteer);
-    }
 
-  
+        if (datePick.getValue() != null && guildTable.getSelectionModel().getSelectedItem() != null && nameTable.getSelectionModel().getSelectedItem() != null && !noteHoursField.getText().isEmpty()) {
+
+            LocalDateTime timeStamp = datePick.getValue().atTime(LocalTime.now());
+            java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(timeStamp);
+            //datePicker timeStamp = datePick.getDayCellFactory().trim();
+            int nameId = nameTable.getSelectionModel().getSelectedItem().getId();
+            volunteerModel.setCheckInsByNameId(nameId);
+            //int nameId = Integer.parseInt(nameColumn.getText().trim());
+            int hours = Integer.parseInt(noteHoursField.getText().trim());
+            VolunteerModel.getInstance().addHours(new CheckIn(dateTime, nameId, hours));
+
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Bidragede timer");
+            alert.setHeaderText(null);
+            alert.setContentText("Du har bidraget med " + noteHoursField.getText() + " timer");
+            alert.showAndWait();
+
+        } else if (datePick.getValue() == null || guildTable.getSelectionModel().getSelectedItem() == null || nameTable.getSelectionModel().getSelectedItem() == null || noteHoursField.getText().isEmpty()) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Du skal vælge både laug og navn, før du kan indtaste timer.");
+            alert.showAndWait();
+        }
+    }
 }
