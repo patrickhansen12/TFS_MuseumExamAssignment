@@ -159,9 +159,9 @@ public class ManagerViewController implements Initializable {
             //int nameId = Integer.parseInt(nameColumn.getText().trim());
             int hours = Integer.parseInt(txtFieldHours.getText().trim());
             VolunteerModel.getInstance().addHours(new CheckIn(dateTime, nameId, hours));
-            txtFieldHours.clear();
-            hoursManagerTable.getColumns().isEmpty();
-            hoursManagerTable.getColumns().set(hours, dateManagerColumn);
+            hoursManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
+            dateManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
+            hoursManagerTable.setItems(volunteerModel.getAllCheckIns());
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Bidragede timer");
