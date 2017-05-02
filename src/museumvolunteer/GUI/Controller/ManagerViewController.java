@@ -10,6 +10,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
@@ -18,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -144,7 +147,35 @@ public class ManagerViewController implements Initializable {
  
 
     @FXML
-    private void addHoursButton(ActionEvent event) {
+    private void addHoursButton(ActionEvent event) throws SQLException, IOException 
+    {
+        if (datePicker.getValue() != null && guildManagerTable.getSelectionModel().getSelectedItem() != null && nameManagerTable.getSelectionModel().getSelectedItem() != null && !txtFieldHours.getText().isEmpty()) {
+
+            LocalDateTime timeStamp = datePicker.getValue().atTime(LocalTime.now());
+            java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(timeStamp);
+            //datePicker timeStamp = datePick.getDayCellFactory().trim();
+            int nameId = nameManagerTable.getSelectionModel().getSelectedItem().getId();
+            volunteerModel.setCheckInsByNameId(nameId);
+            //int nameId = Integer.parseInt(nameColumn.getText().trim());
+            int hours = Integer.parseInt(txtFieldHours.getText().trim());
+            VolunteerModel.getInstance().addHours(new CheckIn(dateTime, nameId, hours));
+            txtFieldHours.clear();
+            hoursManagerTable.getColumns().isEmpty();
+            hoursManagerTable.getColumns().set(hours, dateManagerColumn);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Bidragede timer");
+            alert.setHeaderText(null);
+            alert.setContentText("Du har bidraget med " + txtFieldHours.getText() + " timer");
+            alert.showAndWait();
+
+        } else if (datePicker.getValue() == null || guildManagerTable.getSelectionModel().getSelectedItem() == null || nameManagerTable.getSelectionModel().getSelectedItem() == null || txtFieldHours.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Du skal vælge både laug og navn, før du kan indtaste timer.");
+            alert.showAndWait();
+        }
     }
 
     @FXML
