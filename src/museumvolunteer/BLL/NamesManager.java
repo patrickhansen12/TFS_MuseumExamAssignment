@@ -73,8 +73,8 @@ public class NamesManager {
         return namesDAO.getByGuildId(guildsId);
     }
     
-    public List<String> getAllVolunteerNames() throws SQLException {
-        List<Volunteer> allVolunteers = getAllVolunteersByGuildId(1);
+    public List<String> getAllVolunteerNames(int guildsId) throws SQLException {
+        List<Volunteer> allVolunteers = getAllVolunteersByGuildId(guildsId);
         List<String> allVolunteerNames = new ArrayList<>();
         for (Volunteer v : allVolunteers) {
             String nameString = v.getName();
@@ -83,9 +83,9 @@ public class NamesManager {
         return allVolunteerNames;
     }
     
-    public List<String> search(SearchPattern comparer) throws SQLException 
+    public List<String> search(SearchPattern comparer, int guildsId) throws SQLException 
     {
-        List<String> allVolunteers = getAllVolunteerNames();
+        List<String> allVolunteers = getAllVolunteerNames(guildsId);
         List<String> result = new ArrayList<>();
         for(String name : allVolunteers)
         {

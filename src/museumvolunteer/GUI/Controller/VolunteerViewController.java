@@ -90,8 +90,12 @@ public class VolunteerViewController implements Initializable {
         nameTable.setItems(volunteerModel.getNames());
         
         try {
-            List<String> allVolunteers = namesManager.getAllVolunteerNames();
-            volunteerModel.setFilteredNames(allVolunteers);
+            Guild g = guildTable.getSelectionModel().getSelectedItem();
+            if(g != null){
+                int guildId = g.getId();
+                List<String> allVolunteers = namesManager.getAllVolunteerNames(guildId);
+                volunteerModel.setFilteredNames(allVolunteers);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(VolunteerViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -178,7 +182,8 @@ public class VolunteerViewController implements Initializable {
         List<String> searchResult = null;
         SearchPattern searchStrategy;
         searchStrategy = new ContainsSearch(query);
-        searchResult = namesManager.search(searchStrategy);
+        int guildId = guildTable.getSelectionModel().getSelectedItem().getId();
+        searchResult = namesManager.search(searchStrategy, guildId);
         volunteerModel.setFilteredNames(searchResult);
         nameTable.setItems(volunteerModel.getNames());
     }
