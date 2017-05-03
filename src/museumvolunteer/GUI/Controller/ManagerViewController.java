@@ -54,6 +54,7 @@ public class ManagerViewController implements Initializable {
     private VolunteerModel volunteerModel;
     private GuildsModel guildsModel;
     private Volunteer volunteer;
+    private CheckIn checkIn;
 
     @FXML
     private TableView<CheckIn> hoursManagerTable;
@@ -172,7 +173,13 @@ public class ManagerViewController implements Initializable {
     }
 
     @FXML
-    private void deleteHoursButton(ActionEvent event) {
+    private void deleteHoursButton(ActionEvent event) throws SQLException 
+    {
+        CheckIn selectedItem = hoursManagerTable.getSelectionModel().getSelectedItem();
+        checkIn = selectedItem;
+        volunteerModel.deleteHours(checkIn);
+        hoursManagerTable.getItems().remove(selectedItem);
+        hoursManagerTable.getSelectionModel().clearSelection();
     }
 
     @FXML

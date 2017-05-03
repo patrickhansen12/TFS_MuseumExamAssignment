@@ -10,7 +10,6 @@ package museumvolunteer.DAL;
  * @author patrick
  */
 
-import museumvolunteer.BE.CheckIn;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,6 +19,7 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import museumvolunteer.BE.CheckIn;
 
 /**
  * @author Jens, Patrick, Casper, Kasper
@@ -73,7 +73,7 @@ public class CheckInDAO
 
     public void delete(CheckIn ts) throws SQLException
     {
-        String sql = "DELETE FROM CheckIn where id = ?";
+        String sql = "DELETE FROM Hours where id = ?";
         try (Connection con = cm.getConnection())
         {
             PreparedStatement ps = con.prepareStatement(sql);

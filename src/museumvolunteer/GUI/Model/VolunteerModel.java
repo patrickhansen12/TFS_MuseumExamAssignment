@@ -94,6 +94,12 @@ public class VolunteerModel {
         allCheckIns.add(ci);
     }
     
+    public void deleteHours(CheckIn ci) throws SQLException
+    {
+        checkInManager.delete(ci);
+        allCheckIns.remove(ci);
+    }
+    
     public void deleteVolunteer(Volunteer v) throws SQLException
     {
         namesManager.delete(v);
