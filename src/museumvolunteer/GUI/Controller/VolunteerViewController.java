@@ -147,6 +147,7 @@ public class VolunteerViewController implements Initializable {
                 nameTable.setItems(volunteerModel.getAllVolunteers());
             }
         }
+        searchnameField.clear();
     }
 
     @FXML
