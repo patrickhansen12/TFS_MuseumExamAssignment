@@ -17,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import museumvolunteer.BE.Guild;
@@ -99,10 +100,11 @@ public class AddVolunteerController implements Initializable {
     guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
       guildTable.setItems(guildsModel.getGuilds());
       guildToogle = 2;      
+   guildTable.getSelectionModel().clearSelection();
       break;
         
               case 2: 
-                  
+                guildTable.getSelectionModel().clearSelection();  
             guildTable.setVisible(false);
             guildToogle = 1;
                  
@@ -111,5 +113,13 @@ public class AddVolunteerController implements Initializable {
         }
     }
 
+    @FXML
+    private void guildClicked(MouseEvent event) {
+//int guildId = guildTable.getSelectionModel().getSelectedItem().getId();
+ int guildIdBox =  guildTable.getSelectionModel().getSelectedItem().getId();
+        guildBox.setText(""+guildIdBox);
     }
+
+  
+}
 
