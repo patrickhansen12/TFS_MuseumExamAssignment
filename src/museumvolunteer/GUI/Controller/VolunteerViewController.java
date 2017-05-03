@@ -8,8 +8,14 @@ package museumvolunteer.GUI.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
+=======
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+>>>>>>> origin/master
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +26,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -28,6 +37,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import museumvolunteer.BE.CheckIn;
 import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Volunteer;
 import museumvolunteer.BLL.ContainsSearch;
@@ -60,8 +70,13 @@ public class VolunteerViewController implements Initializable {
     private TextField searchnameField;
     @FXML
     private TextField noteHoursField;
+<<<<<<< HEAD
     private NamesManager namesManager;
 
+=======
+    @FXML
+    private DatePicker datePick;
+>>>>>>> origin/master
 
     /**
      * Initializes the controller class.
@@ -72,6 +87,7 @@ public class VolunteerViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         dataBind();
+<<<<<<< HEAD
         List<Guild> allGuilds = guildTable.getItems();
         List<String> allGuildNames = new ArrayList();
         for (Guild g : allGuilds) {
@@ -87,6 +103,10 @@ public class VolunteerViewController implements Initializable {
             Logger.getLogger(VolunteerViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+=======
+        datePick.setValue(LocalDate.now());
+        datePick.setVisible(false);
+>>>>>>> origin/master
     }
 
     public VolunteerViewController() throws IOException, SQLException {
@@ -94,7 +114,6 @@ public class VolunteerViewController implements Initializable {
         guildsModel = GuildsModel.getInstance();
         namesManager = new NamesManager();
     }
-
 
     @FXML
     private void backVolunteer(ActionEvent event) throws IOException {
@@ -134,8 +153,34 @@ public class VolunteerViewController implements Initializable {
     }
 
     @FXML
-    private void insertHours(ActionEvent event) {
+    private void insertHours(ActionEvent event) throws SQLException, IOException {
+
+        if (datePick.getValue() != null && guildTable.getSelectionModel().getSelectedItem() != null && nameTable.getSelectionModel().getSelectedItem() != null && !noteHoursField.getText().isEmpty()) {
+
+            LocalDateTime timeStamp = datePick.getValue().atTime(LocalTime.now());
+            java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(timeStamp);
+            //datePicker timeStamp = datePick.getDayCellFactory().trim();
+            int nameId = nameTable.getSelectionModel().getSelectedItem().getId();
+            volunteerModel.setCheckInsByNameId(nameId);
+            //int nameId = Integer.parseInt(nameColumn.getText().trim());
+            int hours = Integer.parseInt(noteHoursField.getText().trim());
+            VolunteerModel.getInstance().addHours(new CheckIn(dateTime, nameId, hours));
+
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Bidragede timer");
+            alert.setHeaderText(null);
+            alert.setContentText("Du har bidraget med " + noteHoursField.getText() + " timer");
+            alert.showAndWait();
+
+        } else if (datePick.getValue() == null || guildTable.getSelectionModel().getSelectedItem() == null || nameTable.getSelectionModel().getSelectedItem() == null || noteHoursField.getText().isEmpty()) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Du skal vælge både laug, navn og antal timers frivilligt arbjede, før du kan indtaste timer.");
+            alert.showAndWait();
+        }
     }
+<<<<<<< HEAD
 
     @FXML
     void searchNameList(KeyEvent event) throws SQLException{
@@ -147,4 +192,6 @@ public class VolunteerViewController implements Initializable {
         volunteerModel.setFilteredNames(searchResult);
         nameTable.setItems(volunteerModel.getNames());
     }
+=======
+>>>>>>> origin/master
 }

@@ -10,7 +10,9 @@ import java.sql.SQLException;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import museumvolunteer.BE.CheckIn;
 import museumvolunteer.BE.Volunteer;
+import museumvolunteer.BLL.CheckInManager;
 import museumvolunteer.BLL.NamesManager;
 
 /**
@@ -21,7 +23,11 @@ public class VolunteerModel {
     private static VolunteerModel INSTANCE;
 
     private final NamesManager namesManager;
+<<<<<<< HEAD
     private final ObservableList<String> items;
+=======
+    private final CheckInManager checkInManager;
+>>>>>>> origin/master
     
     /**
      * The list of all volunteers currently in view
@@ -29,6 +35,8 @@ public class VolunteerModel {
     private ObservableList<Volunteer> allVolunteers;
     private ObservableList<Volunteer> sortedVolunteers;
     
+    
+    private ObservableList<CheckIn> allCheckIns;
     
     /**
      * The method to get a reference to this Singleton:
@@ -51,11 +59,18 @@ public class VolunteerModel {
     private VolunteerModel() throws IOException, SQLException
     {
         namesManager = new NamesManager();
+        checkInManager = new CheckInManager();
         allVolunteers = FXCollections.observableArrayList();
+<<<<<<< HEAD
         sortedVolunteers = FXCollections.observableArrayList();
         items = FXCollections.observableArrayList();
         
+=======
+>>>>>>> origin/master
         allVolunteers.addAll(namesManager.getAllVolunteers());
+        allCheckIns = FXCollections.observableArrayList();
+        allCheckIns.addAll(checkInManager.getCheckIn());
+        
     }
     
     /**
@@ -68,10 +83,21 @@ public class VolunteerModel {
         return allVolunteers;
     }
     
+    public ObservableList<CheckIn> getAllCheckIns()
+    {
+        return allCheckIns;
+    }
+    
     public void addVolunteer(Volunteer v) throws SQLException
     {
         namesManager.add(v);
         allVolunteers.add(v);
+    }
+    
+    public void addHours(CheckIn ci) throws SQLException
+    {
+        checkInManager.add(ci);
+        allCheckIns.add(ci);
     }
     
     public void deleteVolunteer(Volunteer v) throws SQLException
@@ -86,6 +112,7 @@ public class VolunteerModel {
         allVolunteers.addAll(namesManager.getAllVolunteersByGuildId(guildsId));
     }
     
+<<<<<<< HEAD
     public ObservableList<Volunteer> getNames() {
         return sortedVolunteers;
     }
@@ -104,5 +131,11 @@ public class VolunteerModel {
                 }
             }
         }
+=======
+    public void setCheckInsByNameId(int nameId) throws SQLException
+    {
+        allCheckIns = FXCollections.observableArrayList();
+        allCheckIns.addAll(checkInManager.getAllCheckInsById(nameId));
+>>>>>>> origin/master
     }
 }

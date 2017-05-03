@@ -130,7 +130,7 @@ public class NamesDAO
     
     /**
      * Populates a new ArrayList of Volunteers with volunteers for a specific guild gathered from database table Guilds.
-     * @param id
+     * @param guildsId
      * @return
      * @throws SQLException 
      */
