@@ -7,6 +7,7 @@ package museumvolunteer.BLL;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import museumvolunteer.BE.Volunteer;
 import museumvolunteer.DAL.NamesDAO;
@@ -70,5 +71,29 @@ public class NamesManager {
      */
     public List<Volunteer> getAllVolunteersByGuildId(int guildsId) throws SQLException {
         return namesDAO.getByGuildId(guildsId);
+    }
+    
+    public List<String> getAllVolunteerNames() throws SQLException {
+        List<Volunteer> allVolunteers = getAllVolunteersByGuildId(1);
+        List<String> allVolunteerNames = new ArrayList<>();
+        for (Volunteer v : allVolunteers) {
+            String nameString = v.getName();
+            allVolunteerNames.add(nameString);
+        }
+        return allVolunteerNames;
+    }
+    
+    public List<String> search(SearchPattern comparer) throws SQLException 
+    {
+        List<String> allVolunteers = getAllVolunteerNames();
+        List<String> result = new ArrayList<>();
+        for(String name : allVolunteers)
+        {
+            if(comparer.compare(name))
+            {
+                result.add(name);
+            }
+        }
+        return result;
     }
 }

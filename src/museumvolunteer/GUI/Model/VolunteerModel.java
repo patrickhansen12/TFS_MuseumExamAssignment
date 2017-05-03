@@ -7,6 +7,7 @@ package museumvolunteer.GUI.Model;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import museumvolunteer.BE.Volunteer;
@@ -20,11 +21,14 @@ public class VolunteerModel {
     private static VolunteerModel INSTANCE;
 
     private final NamesManager namesManager;
+    private final ObservableList<String> items;
     
     /**
      * The list of all volunteers currently in view
      */
     private ObservableList<Volunteer> allVolunteers;
+    private ObservableList<Volunteer> sortedVolunteers;
+    
     
     /**
      * The method to get a reference to this Singleton:
@@ -48,6 +52,8 @@ public class VolunteerModel {
     {
         namesManager = new NamesManager();
         allVolunteers = FXCollections.observableArrayList();
+        sortedVolunteers = FXCollections.observableArrayList();
+        items = FXCollections.observableArrayList();
         
         allVolunteers.addAll(namesManager.getAllVolunteers());
     }
@@ -78,5 +84,25 @@ public class VolunteerModel {
 
         allVolunteers = FXCollections.observableArrayList();
         allVolunteers.addAll(namesManager.getAllVolunteersByGuildId(guildsId));
+    }
+    
+    public ObservableList<Volunteer> getNames() {
+        return sortedVolunteers;
+    }
+    
+    public void setFilteredNames(List<String> name){
+        sortedVolunteers.clear();
+        items.clear();
+        items.addAll(name);
+        for(Volunteer volunteer : allVolunteers)
+        {
+            for (String volunteerName : items)
+            {
+                if (volunteer.getName().equals(volunteerName))
+                {
+                    sortedVolunteers.add(volunteer);
+                }
+            }
+        }
     }
 }

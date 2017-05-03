@@ -8,7 +8,11 @@ package museumvolunteer.GUI.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,11 +24,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Volunteer;
+import museumvolunteer.BLL.ContainsSearch;
+import museumvolunteer.BLL.NamesManager;
+import museumvolunteer.BLL.SearchPattern;
 import museumvolunteer.GUI.Model.GuildsModel;
 import museumvolunteer.GUI.Model.VolunteerModel;
 
@@ -52,6 +60,7 @@ public class VolunteerViewController implements Initializable {
     private TextField searchnameField;
     @FXML
     private TextField noteHoursField;
+    private NamesManager namesManager;
 
 
     /**
@@ -63,11 +72,27 @@ public class VolunteerViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         dataBind();
+        List<Guild> allGuilds = guildTable.getItems();
+        List<String> allGuildNames = new ArrayList();
+        for (Guild g : allGuilds) {
+            String nameString = g.getName();
+            allGuildNames.add(nameString);
+        }
+        nameTable.setItems(volunteerModel.getNames());
+        
+        try {
+            List<String> allVolunteers = namesManager.getAllVolunteerNames();
+            volunteerModel.setFilteredNames(allVolunteers);
+        } catch (SQLException ex) {
+            Logger.getLogger(VolunteerViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     public VolunteerViewController() throws IOException, SQLException {
         volunteerModel = VolunteerModel.getInstance();
         guildsModel = GuildsModel.getInstance();
+        namesManager = new NamesManager();
     }
 
 
@@ -112,5 +137,14 @@ public class VolunteerViewController implements Initializable {
     private void insertHours(ActionEvent event) {
     }
 
-  
+    @FXML
+    void searchNameList(KeyEvent event) throws SQLException{
+        String query = searchnameField.getText().trim();
+        List<String> searchResult = null;
+        SearchPattern searchStrategy;
+        searchStrategy = new ContainsSearch(query);
+        searchResult = namesManager.search(searchStrategy);
+        volunteerModel.setFilteredNames(searchResult);
+        nameTable.setItems(volunteerModel.getNames());
+    }
 }
