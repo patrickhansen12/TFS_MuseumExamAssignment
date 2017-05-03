@@ -9,14 +9,19 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Volunteer;
+import museumvolunteer.GUI.Model.GuildsModel;
 import museumvolunteer.GUI.Model.VolunteerModel;
 
 /**
@@ -38,14 +43,29 @@ public class AddVolunteerController implements Initializable {
     private TextField guildBox;
     @FXML
     private TextArea noteBox;
+    @FXML
+    private TableView<Guild> guildTable;
+    @FXML
+    private TableColumn<Guild, Integer> guildIdColumn;
+    @FXML
+    private TableColumn<Guild, String> guildColumn;
 
+    private GuildsModel guildsModel;
+    int guildToogle = 1;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        guildTable.setVisible(false);
     }    
+
+    public AddVolunteerController() throws IOException, SQLException 
+    {
+        guildsModel = GuildsModel.getInstance();
+    }
+    
 
     @FXML
     private void performButton(ActionEvent event) throws SQLException, IOException
@@ -68,4 +88,28 @@ public class AddVolunteerController implements Initializable {
         Stage stage = (Stage) addScreen.getScene().getWindow();
         stage.close();
     }
-}
+    
+    @FXML
+    private void openGuildList(ActionEvent event) 
+    {         
+     switch(guildToogle){
+              case 1:
+                 guildTable.setVisible(true); 
+             guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+    guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
+      guildTable.setItems(guildsModel.getGuilds());
+      guildToogle = 2;      
+      break;
+        
+              case 2: 
+                  
+            guildTable.setVisible(false);
+            guildToogle = 1;
+                 
+            break;
+     
+        }
+    }
+
+    }
+

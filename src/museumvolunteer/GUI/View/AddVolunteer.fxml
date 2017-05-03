@@ -3,12 +3,14 @@
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="addScreen" prefHeight="450.0" prefWidth="285.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AddVolunteerController">
+<AnchorPane id="AnchorPane" fx:id="addScreen" prefHeight="450.0" prefWidth="285.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AddVolunteerController">
    <children>
       <TextField fx:id="nameBox" layoutX="82.0" layoutY="14.0" />
       <Label layoutX="15.0" layoutY="19.0" text="Navn" />
@@ -28,6 +30,17 @@
       <Button layoutX="176.0" layoutY="392.0" mnemonicParsing="false" onAction="#returnButton" text="Tilbage">
          <font>
             <Font size="20.0" />
+         </font>
+      </Button>
+      <TableView fx:id="guildTable" layoutX="82.0" layoutY="182.0" prefHeight="200.0" prefWidth="199.0">
+        <columns>
+          <TableColumn fx:id="guildIdColumn" prefWidth="54.0" text="id" />
+          <TableColumn fx:id="guildColumn" prefWidth="146.0" text="Laug" />
+        </columns>
+      </TableView>
+      <Button layoutX="54.0" layoutY="146.0" minHeight="15.0" minWidth="15.0" mnemonicParsing="false" onAction="#openGuildList" prefHeight="10.0" prefWidth="10.0" text="?">
+         <font>
+            <Font size="7.0" />
          </font>
       </Button>
    </children>
