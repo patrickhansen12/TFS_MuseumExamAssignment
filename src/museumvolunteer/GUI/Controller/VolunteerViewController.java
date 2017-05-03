@@ -8,14 +8,11 @@ package museumvolunteer.GUI.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
-=======
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
->>>>>>> origin/master
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -70,13 +67,10 @@ public class VolunteerViewController implements Initializable {
     private TextField searchnameField;
     @FXML
     private TextField noteHoursField;
-<<<<<<< HEAD
     private NamesManager namesManager;
 
-=======
     @FXML
     private DatePicker datePick;
->>>>>>> origin/master
 
     /**
      * Initializes the controller class.
@@ -87,7 +81,6 @@ public class VolunteerViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         dataBind();
-<<<<<<< HEAD
         List<Guild> allGuilds = guildTable.getItems();
         List<String> allGuildNames = new ArrayList();
         for (Guild g : allGuilds) {
@@ -103,10 +96,8 @@ public class VolunteerViewController implements Initializable {
             Logger.getLogger(VolunteerViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-=======
         datePick.setValue(LocalDate.now());
         datePick.setVisible(false);
->>>>>>> origin/master
     }
 
     public VolunteerViewController() throws IOException, SQLException {
@@ -180,7 +171,6 @@ public class VolunteerViewController implements Initializable {
             alert.showAndWait();
         }
     }
-<<<<<<< HEAD
 
     @FXML
     void searchNameList(KeyEvent event) throws SQLException{
@@ -192,6 +182,4 @@ public class VolunteerViewController implements Initializable {
         volunteerModel.setFilteredNames(searchResult);
         nameTable.setItems(volunteerModel.getNames());
     }
-=======
->>>>>>> origin/master
 }

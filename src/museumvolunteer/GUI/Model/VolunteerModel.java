@@ -23,11 +23,8 @@ public class VolunteerModel {
     private static VolunteerModel INSTANCE;
 
     private final NamesManager namesManager;
-<<<<<<< HEAD
     private final ObservableList<String> items;
-=======
     private final CheckInManager checkInManager;
->>>>>>> origin/master
     
     /**
      * The list of all volunteers currently in view
@@ -61,12 +58,9 @@ public class VolunteerModel {
         namesManager = new NamesManager();
         checkInManager = new CheckInManager();
         allVolunteers = FXCollections.observableArrayList();
-<<<<<<< HEAD
         sortedVolunteers = FXCollections.observableArrayList();
         items = FXCollections.observableArrayList();
         
-=======
->>>>>>> origin/master
         allVolunteers.addAll(namesManager.getAllVolunteers());
         allCheckIns = FXCollections.observableArrayList();
         allCheckIns.addAll(checkInManager.getCheckIn());
@@ -112,7 +106,6 @@ public class VolunteerModel {
         allVolunteers.addAll(namesManager.getAllVolunteersByGuildId(guildsId));
     }
     
-<<<<<<< HEAD
     public ObservableList<Volunteer> getNames() {
         return sortedVolunteers;
     }
@@ -131,11 +124,16 @@ public class VolunteerModel {
                 }
             }
         }
-=======
+    }
+    /**
+     *
+     * @param nameId
+     * @throws SQLException
+     */
     public void setCheckInsByNameId(int nameId) throws SQLException
     {
         allCheckIns = FXCollections.observableArrayList();
         allCheckIns.addAll(checkInManager.getAllCheckInsById(nameId));
->>>>>>> origin/master
     }
+
 }
