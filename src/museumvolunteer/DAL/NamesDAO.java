@@ -103,9 +103,8 @@ public class NamesDAO
         String name = rs.getString("name");
         String email = rs.getString("email");
         String phoneNumber = rs.getString("phoneNumber");
-        int guildsId = rs.getInt("guildsId");
         
-        return new Volunteer(id, name, email, phoneNumber, guildsId);
+        return new Volunteer(id, name, email, phoneNumber);
     }
     
     /**
@@ -137,7 +136,7 @@ public class NamesDAO
     public List<Volunteer> getByGuildId(int guildsId) throws SQLException{
         
       List<Volunteer> allVolunteers = new ArrayList<>();
-      String sql = "SELECT * FROM Names WHERE guildsId = ?";
+      String sql = "SELECT * FROM Works_For INNER JOIN Names ON Works_For.nameId = Names.id WHERE Works_For.guildsId =  ?";
       try (Connection con = cm.getConnection())
         {
             PreparedStatement ps = con.prepareStatement(sql);

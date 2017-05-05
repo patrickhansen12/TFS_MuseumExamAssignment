@@ -33,6 +33,10 @@ public class Volunteer {
        this(-1, name, email, phoneNumber, guildsId); 
     }
 
+    public Volunteer(int id, String name, String email, String phoneNumber) {
+        this(id, name, email, phoneNumber, -1);
+    }
+
     public int getId() {
         return id;
     }
