@@ -25,7 +25,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
  * @author Nicolai, Emil, Patrick, Kasper, Casper
  */
 public class LoginScreenController implements Initializable {

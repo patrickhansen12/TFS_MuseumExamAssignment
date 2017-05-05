@@ -5,8 +5,6 @@
  */
 package museumvolunteer.BE;
 
-import java.time.LocalDateTime;
-
 /**
  * @author Nicolai, Emil, Patrick, Kasper, Casper
  */

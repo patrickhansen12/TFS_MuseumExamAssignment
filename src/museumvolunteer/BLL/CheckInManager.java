@@ -6,8 +6,7 @@
 package museumvolunteer.BLL;
 
 /**
- *
- * @author patrick
+ * @author Nicolai, Emil, Patrick, Kasper, Casper
  */
 import museumvolunteer.BE.CheckIn;
 import museumvolunteer.DAL.CheckInDAO;

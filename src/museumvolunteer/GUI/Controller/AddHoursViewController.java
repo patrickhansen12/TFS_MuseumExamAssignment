@@ -10,9 +10,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 
 /**
- * FXML Controller class
- *
- * @author patrick
+ * @author Nicolai, Emil, Patrick, Kasper, Casper
  */
 public class AddHoursViewController implements Initializable {
 

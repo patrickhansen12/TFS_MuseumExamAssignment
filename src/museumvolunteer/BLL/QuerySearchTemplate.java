@@ -6,8 +6,7 @@
 package museumvolunteer.BLL;
 
 /**
- *
- * @author Fage
+ * @author Nicolai, Emil, Patrick, Kasper, Casper
  */
 public abstract class QuerySearchTemplate implements SearchPattern
 {

@@ -14,7 +14,7 @@ import museumvolunteer.BLL.GuildsManager;
 
 /**
  *
- * @author Casper
+ * @author Nicolai, Emil, Patrick, Kasper, Casper
  */
 public class GuildsModel {
     private static GuildsModel INSTANCE;

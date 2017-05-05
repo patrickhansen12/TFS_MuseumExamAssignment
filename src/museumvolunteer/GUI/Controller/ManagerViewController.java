@@ -37,7 +37,7 @@ import museumvolunteer.GUI.Model.VolunteerModel;
 /**
  * FXML Controller class
  *
- * @author Nicolai
+ * @author Nicolai, Emil, Patrick, Kasper, Casper
  */
 public class ManagerViewController implements Initializable {
 

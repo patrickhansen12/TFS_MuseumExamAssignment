@@ -6,8 +6,7 @@
 package museumvolunteer.BE;
 
 /**
- *
- * @author Casper
+ * @author Nicolai, Emil, Patrick, Kasper, Casper
  */
 public class Guild {
     private int id;

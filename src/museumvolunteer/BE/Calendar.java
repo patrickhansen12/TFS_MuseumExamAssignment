@@ -8,8 +8,7 @@ package museumvolunteer.BE;
 import java.sql.Timestamp;
 
 /**
- *
- * @author patrick
+ * @author Nicolai, Emil, Patrick, Kasper, Casper
  */
 public class Calendar {
     private int id;
