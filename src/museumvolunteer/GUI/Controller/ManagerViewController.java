@@ -160,7 +160,7 @@ public class ManagerViewController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Bidragede timer");
             alert.setHeaderText(null);
-            alert.setContentText("Du har bidraget med " + txtFieldHours.getText() + " timer");
+            alert.setContentText(nameManagerTable.getSelectionModel().getSelectedItem().getName() + " har bidraget med " + txtFieldHours.getText() + " timer");
             alert.showAndWait();
 
         } else if (datePicker.getValue() == null || guildManagerTable.getSelectionModel().getSelectedItem() == null || nameManagerTable.getSelectionModel().getSelectedItem() == null || txtFieldHours.getText().isEmpty()) {
