@@ -62,8 +62,8 @@ public class GuildsDAO {
         try (Connection con = cm.getConnection())
         {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(2, g.getId());
             ps.setString(1, g.getName());
+            ps.setInt(2, g.getId());
 
             ps.executeUpdate();
         }
@@ -185,4 +185,26 @@ public class GuildsDAO {
 //            ps.executeUpdate();
 //        }
 //    }
+    /**
+     * Populates a new ArrayList of Volunteers with volunteers for a specific guild gathered from database table Guilds.
+     * @param nameId
+     * @return
+     * @throws SQLException 
+     */
+    public List<Guild> getByGuildId(int nameId) throws SQLException{
+        
+      List<Guild> allGuilds = new ArrayList<>();
+      String sql = "SELECT * FROM Works_For INNER JOIN Guilds ON Works_For.guildsId = Guilds.id WHERE Works_For.nameId =  ?";
+      try (Connection con = cm.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, nameId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                allGuilds.add(getOneGuild(rs));
+            }
+            return allGuilds;
+        }
+    }
 }

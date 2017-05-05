@@ -57,20 +57,19 @@ public class NamesDAO
      */
     public Volunteer add(Volunteer v) throws SQLException
     {
-        String sql = "INSERT INTO Names(name, email, phoneNumber, guildsId) VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO Names(name, email, phoneNumber) VALUES(?, ?, ?)";
         try (Connection con = cm.getConnection())
         {
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, v.getName());
             ps.setString(2, v.getEmail());
             ps.setString(3, v.getPhoneNumber());
-            ps.setInt(4, v.getGuildsId());
 
             ps.executeUpdate();
             ResultSet generatedKey = ps.getGeneratedKeys();
             generatedKey.next();
             int id = generatedKey.getInt(1);
-            return new Volunteer(id, v.getName(), v.getEmail(), v.getPhoneNumber(), v.getGuildsId());
+            return new Volunteer(id, v.getName(), v.getEmail(), v.getPhoneNumber());
         }
     }
 

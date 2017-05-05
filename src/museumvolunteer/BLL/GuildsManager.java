@@ -69,4 +69,13 @@ public class GuildsManager {
 //    {
 //        guildsDAO.deleteByNameId(id);
 //    }
+    /**
+     * ArrayList of BE class Guild.
+     * @param nameId
+     * @return
+     * @throws SQLException 
+     */
+    public List<Guild> getAllVolunteersByGuildId(int nameId) throws SQLException {
+        return guildsDAO.getByGuildId(nameId);
+    }
 }
