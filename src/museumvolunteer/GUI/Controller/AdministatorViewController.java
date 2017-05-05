@@ -12,6 +12,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
@@ -21,6 +22,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -131,11 +135,38 @@ public class AdministatorViewController implements Initializable {
     @FXML
     private void removeVolunteersButton(ActionEvent event) throws SQLException 
     {
-       Volunteer selectedItem = nameAdminTable.getSelectionModel().getSelectedItem();
-       volunteer = selectedItem;
-       volunteerModel.deleteVolunteer(volunteer);
-       nameAdminTable.getItems().remove(selectedItem);
-       nameAdminTable.getSelectionModel().clearSelection();   
+       Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Er du sikker på du vil slette den frivillige");
+        alert.setHeaderText(null);
+        alert.setContentText("Vil du slette den frivillige fra dette laug eller alle laug?");
+
+        ButtonType buttonTypeThis = new ButtonType("Dette laug");
+        ButtonType buttonTypeAll = new ButtonType("Alle laug");
+        ButtonType buttonTypeCancel = new ButtonType("Fortryd", ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().setAll(buttonTypeThis, buttonTypeAll, buttonTypeCancel);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeThis)
+        {
+            Volunteer selectedItem = nameAdminTable.getSelectionModel().getSelectedItem();
+            volunteer = selectedItem;
+            volunteerModel.deleteVolunteer(volunteer);
+            nameAdminTable.getItems().remove(selectedItem);
+            nameAdminTable.getSelectionModel().clearSelection();  
+        } 
+        else if (result.get() == buttonTypeAll) 
+        {
+            Volunteer selectedItem = nameAdminTable.getSelectionModel().getSelectedItem();
+            volunteer = selectedItem;
+            volunteerModel.deleteVolunteer(volunteer);
+            nameAdminTable.getItems().remove(selectedItem);
+            nameAdminTable.getSelectionModel().clearSelection();  
+        } 
+        else 
+        {
+            // ... user chose CANCEL or closed the dialog
+        } 
     }
 
     @FXML
