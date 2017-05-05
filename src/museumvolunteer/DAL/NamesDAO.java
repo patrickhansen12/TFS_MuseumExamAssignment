@@ -114,13 +114,13 @@ public class NamesDAO
      */
     public void update(Volunteer v) throws SQLException
     {
-        String sql = "UPDATE Names"
-                + "SET name = ?, "
-                + "WHERE id = ?";
+        String sql = "UPDATE Names SET name = ?, email = ?, phoneNumber = ? WHERE id = ?";
         try (Connection con = cm.getConnection())
         {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, v.getName());
+            ps.setString(2, v.getEmail());
+            ps.setString(3, v.getPhoneNumber());
             ps.setInt(3, v.getId());
 
             ps.executeUpdate();
