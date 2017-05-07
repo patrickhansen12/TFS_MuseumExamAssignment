@@ -106,6 +106,11 @@ public class VolunteerModel {
         allVolunteers.remove(v);
     }
     
+    public void updateVolunteer(Volunteer v) throws SQLException
+    {
+        namesManager.update(v);
+    }
+    
     public void setNamesByGuildId(int guildsId) throws SQLException {
 
         allVolunteers = FXCollections.observableArrayList();

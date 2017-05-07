@@ -63,6 +63,11 @@ public class NamesManager {
         namesDAO.delete(v);
     }
     
+    public void update(Volunteer v) throws SQLException
+    {
+        namesDAO.update(v);
+    }
+    
     /**
      * ArrayList of BE class Volunteer.
      * @param guildsId

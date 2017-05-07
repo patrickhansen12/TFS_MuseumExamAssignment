@@ -120,7 +120,7 @@ public class NamesDAO
             ps.setString(1, v.getName());
             ps.setString(2, v.getEmail());
             ps.setString(3, v.getPhoneNumber());
-            ps.setInt(3, v.getId());
+            ps.setInt(4, v.getId());
 
             ps.executeUpdate();
         }
