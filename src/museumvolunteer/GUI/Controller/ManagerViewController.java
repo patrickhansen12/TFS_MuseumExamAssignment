@@ -105,6 +105,7 @@ public class ManagerViewController implements Initializable {
     @FXML
     private void deleteVolunteersButton(ActionEvent event) throws SQLException 
     {
+      if (nameManagerTable.getSelectionModel().getSelectedItem() != null){
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog with Custom Actions");
         alert.setHeaderText(null);
@@ -132,11 +133,10 @@ public class ManagerViewController implements Initializable {
             volunteerModel.deleteVolunteer(volunteer);
             nameManagerTable.getItems().remove(selectedItem);
             nameManagerTable.getSelectionModel().clearSelection();  
-        } 
-        else 
-        {
+
             // ... user chose CANCEL or closed the dialog
         } 
+      }
     }
 
     @FXML
@@ -167,14 +167,17 @@ public class ManagerViewController implements Initializable {
 
     @FXML
     private void handleGuildsVolunteers(MouseEvent event) throws SQLException {
-        if (event.isPrimaryButtonDown() == false) {
+                 if (nameManagerTable.getSelectionModel().getSelectedItem() != null){
+        if (guildManagerTable.getSelectionModel().getSelectedItem() != null){
+            if (event.isPrimaryButtonDown() == false) {
             int guildId = guildManagerTable.getSelectionModel().getSelectedItem().getId();
             volunteerModel.setNamesByGuildId(guildId);
             nameManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
             nameManagerTable.setItems(volunteerModel.getAllVolunteers());
         }
+        }
     }
-
+    }
     @FXML
     private void addHoursButton(ActionEvent event) throws SQLException, IOException {
         if (datePicker.getValue() != null && guildManagerTable.getSelectionModel().getSelectedItem() != null && nameManagerTable.getSelectionModel().getSelectedItem() != null && !txtFieldHours.getText().isEmpty()) {
@@ -209,15 +212,17 @@ public class ManagerViewController implements Initializable {
     @FXML
     private void deleteHoursButton(ActionEvent event) throws SQLException 
     {
+         if (hoursManagerTable.getSelectionModel().getSelectedItem() != null){
         CheckIn selectedItem = hoursManagerTable.getSelectionModel().getSelectedItem();
         checkIn = selectedItem;
         volunteerModel.deleteHours(checkIn);
         hoursManagerTable.getItems().remove(selectedItem);
         hoursManagerTable.getSelectionModel().clearSelection();
     }
-
+    }
     @FXML
     private void handleVolunteersHours(MouseEvent event) throws SQLException {
+        if (txtFieldHours != null){
         if (event.isPrimaryButtonDown() == false) {
             int nameId = nameManagerTable.getSelectionModel().getSelectedItem().getId();
             volunteerModel.setCheckInsByNameId(nameId);
@@ -225,12 +230,15 @@ public class ManagerViewController implements Initializable {
             dateManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
             hoursManagerTable.setItems(volunteerModel.getAllCheckIns());
         }
+        }
     }
     
     @FXML
     private void handleInfo(ActionEvent event) throws SQLException, IOException
     {
-        Stage stage = new Stage();
+         if (nameManagerTable.getSelectionModel().getSelectedItem() != null){
+
+             Stage stage = new Stage();
         Parent root;
         try {
             int id = nameManagerTable.getSelectionModel().getSelectedItem().getId();
@@ -240,7 +248,7 @@ public class ManagerViewController implements Initializable {
             
             int gId = guildManagerTable.getSelectionModel().getSelectedItem().getId();
             String gName = guildManagerTable.getSelectionModel().getSelectedItem().getName();
-            
+           
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/museumvolunteer/GUI/View/VolunteerInfoView.fxml"));
             root = loader.load();
             VolunteerInfoViewController controller = loader.getController();
@@ -253,8 +261,8 @@ public class ManagerViewController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
-            System.out.println("pik");
+            System.out.println("HandleInfo");
         }
     }
-
+    }
 }
