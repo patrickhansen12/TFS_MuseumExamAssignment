@@ -56,9 +56,7 @@ public class GuildsDAO {
      */
     public void update(Guild g) throws SQLException
     {
-        String sql = "UPDATE Guilds "
-                + "SET name = ?, "
-                + "WHERE id = ?";
+        String sql = "UPDATE Guilds SET name = ? WHERE id = ?";
         try (Connection con = cm.getConnection())
         {
             PreparedStatement ps = con.prepareStatement(sql);

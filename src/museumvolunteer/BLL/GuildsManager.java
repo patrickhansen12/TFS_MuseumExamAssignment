@@ -78,4 +78,11 @@ public class GuildsManager {
     public List<Guild> getAllVolunteersByGuildId(int nameId) throws SQLException {
         return guildsDAO.getByGuildId(nameId);
     }
+
+    public void update(Guild g) throws SQLException {
+
+
+        guildsDAO.update(g);
+    }
+
 }

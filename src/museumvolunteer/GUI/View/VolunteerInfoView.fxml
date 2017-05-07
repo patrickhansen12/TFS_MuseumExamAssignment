@@ -13,7 +13,8 @@
       <Label fx:id="nameLbl" layoutX="83.0" layoutY="104.0" text="Navn" />
       <Label fx:id="emailLbl" layoutX="83.0" layoutY="153.0" text="Email" />
       <Label fx:id="phoneNumberLbl" layoutX="83.0" layoutY="205.0" text="Telefon" />
-      <Button fx:id="confirmButton" layoutX="163.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleUpdate" text="Godkend ændringer" />
-      <TextField fx:id="id" layoutX="146.0" layoutY="34.0" />
+      <Button fx:id="confirmButton" layoutX="163.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleUpdate" text="Godkend ændringer" />
+      <Label fx:id="guildLbl" layoutX="91.0" layoutY="251.0" text="Laug" />
+      <TextField fx:id="guildBox" layoutX="147.0" layoutY="246.0" />
    </children>
 </AnchorPane>

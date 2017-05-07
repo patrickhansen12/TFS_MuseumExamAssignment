@@ -238,10 +238,14 @@ public class ManagerViewController implements Initializable {
             String email = nameManagerTable.getSelectionModel().getSelectedItem().getEmail();
             String phoneNumber = nameManagerTable.getSelectionModel().getSelectedItem().getPhoneNumber();
             
+            int gId = guildManagerTable.getSelectionModel().getSelectedItem().getId();
+            String gName = guildManagerTable.getSelectionModel().getSelectedItem().getName();
+            
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/museumvolunteer/GUI/View/VolunteerInfoView.fxml"));
             root = loader.load();
             VolunteerInfoViewController controller = loader.getController();
             controller.doMagicStuff(new Volunteer(id, name, email, phoneNumber));
+            controller.getGuild(new Guild(gId, gName));
             Scene scene = new Scene(root);
             stage.setTitle("Tilføj frivillig");
             stage.setResizable(false);

@@ -74,4 +74,9 @@ public class GuildsModel {
         guildsMgr.delete(g);
         guilds.remove(g);
     }
+
+    public void updateGuild(Guild g) throws SQLException
+    {
+        guildsMgr.update(g);
+    }
 }
