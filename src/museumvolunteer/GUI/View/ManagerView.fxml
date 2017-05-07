@@ -53,6 +53,7 @@
       </Button>
       <DatePicker fx:id="datePicker" layoutX="551.0" layoutY="14.0" prefHeight="31.0" prefWidth="204.0" />
       <TextField fx:id="txtFieldHours" layoutX="550.0" layoutY="58.0" prefHeight="31.0" prefWidth="204.0" />
+      <Button fx:id="volunteerInfo" layoutX="29.0" layoutY="43.0" mnemonicParsing="false" onAction="#handleInfo" text="Info om frivillig" />
    </children>
    <stylesheets>
        <URL value="@css/ColorSchemes.css" />

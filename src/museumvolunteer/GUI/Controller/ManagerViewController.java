@@ -23,6 +23,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
@@ -31,6 +32,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import museumvolunteer.BE.CheckIn;
 import museumvolunteer.BE.Guild;
@@ -70,6 +72,8 @@ public class ManagerViewController implements Initializable {
     private TextField txtFieldHours;
     @FXML
     private TableColumn<CheckIn, Timestamp> dateManagerColumn;
+    @FXML
+    private Button volunteerInfo;
 
     /**
      * Initializes the controller class.
@@ -221,6 +225,32 @@ public class ManagerViewController implements Initializable {
             hoursManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
             dateManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
             hoursManagerTable.setItems(volunteerModel.getAllCheckIns());
+        }
+    }
+    
+    @FXML
+    private void handleInfo(ActionEvent event) throws SQLException, IOException
+    {
+        Stage stage = new Stage();
+        Parent root;
+        try {
+            int id = nameManagerTable.getSelectionModel().getSelectedItem().getId();
+            String name = nameManagerTable.getSelectionModel().getSelectedItem().getName();
+            String email = nameManagerTable.getSelectionModel().getSelectedItem().getEmail();
+            String phoneNumber = nameManagerTable.getSelectionModel().getSelectedItem().getPhoneNumber();
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/museumvolunteer/GUI/View/VolunteerInfoView.fxml"));
+            root = loader.load();
+            VolunteerInfoViewController controller = loader.getController();
+            controller.doMagicStuff(new Volunteer(id, name, email, phoneNumber));
+            Scene scene = new Scene(root);
+            stage.setTitle("Tilføj frivillig");
+            stage.setResizable(false);
+
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println("pik");
         }
     }
 
