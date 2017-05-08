@@ -82,6 +82,11 @@ public class ManagerViewController implements Initializable {
         // TODO
         datePicker.setValue(LocalDate.now());
         dataBind();
+  
+               if (txtFieldHours != null){
+        
+        }
+        
     }
 
     public ManagerViewController() throws IOException, SQLException {
@@ -167,8 +172,8 @@ public class ManagerViewController implements Initializable {
 
     @FXML
     private void handleGuildsVolunteers(MouseEvent event) throws SQLException {
-                 if (nameManagerTable.getSelectionModel().getSelectedItem() != null){
         if (guildManagerTable.getSelectionModel().getSelectedItem() != null){
+        
             if (event.isPrimaryButtonDown() == false) {
             int guildId = guildManagerTable.getSelectionModel().getSelectedItem().getId();
             volunteerModel.setNamesByGuildId(guildId);
@@ -177,7 +182,7 @@ public class ManagerViewController implements Initializable {
         }
         }
     }
-    }
+
     @FXML
     private void addHoursButton(ActionEvent event) throws SQLException, IOException {
         if (datePicker.getValue() != null && guildManagerTable.getSelectionModel().getSelectedItem() != null && nameManagerTable.getSelectionModel().getSelectedItem() != null && !txtFieldHours.getText().isEmpty()) {
@@ -222,7 +227,8 @@ public class ManagerViewController implements Initializable {
     }
     @FXML
     private void handleVolunteersHours(MouseEvent event) throws SQLException {
-        if (txtFieldHours != null){
+             if (nameManagerTable.getSelectionModel().getSelectedItem() != null){
+            
         if (event.isPrimaryButtonDown() == false) {
             int nameId = nameManagerTable.getSelectionModel().getSelectedItem().getId();
             volunteerModel.setCheckInsByNameId(nameId);
