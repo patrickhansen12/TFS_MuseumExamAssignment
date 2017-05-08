@@ -110,6 +110,14 @@ public class ManagerViewController implements Initializable {
     @FXML
     private void deleteVolunteersButton(ActionEvent event) throws SQLException 
     {
+           if (nameManagerTable.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Du skal vælge en frivillig, før du kan slette dem .");
+            alert.showAndWait();
+           }
+           
       if (nameManagerTable.getSelectionModel().getSelectedItem() != null){
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog with Custom Actions");
@@ -217,6 +225,13 @@ public class ManagerViewController implements Initializable {
     @FXML
     private void deleteHoursButton(ActionEvent event) throws SQLException 
     {
+             if (hoursManagerTable.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Du skal vælge en frivillig, før du kan slette deres timer .");
+            alert.showAndWait();
+           }
          if (hoursManagerTable.getSelectionModel().getSelectedItem() != null){
         CheckIn selectedItem = hoursManagerTable.getSelectionModel().getSelectedItem();
         checkIn = selectedItem;
@@ -242,6 +257,13 @@ public class ManagerViewController implements Initializable {
     @FXML
     private void handleInfo(ActionEvent event) throws SQLException, IOException
     {
+         if (nameManagerTable.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Du skal vælge en frivillig før du kan se informationer om dem.");
+            alert.showAndWait();
+           }
          if (nameManagerTable.getSelectionModel().getSelectedItem() != null){
 
              Stage stage = new Stage();

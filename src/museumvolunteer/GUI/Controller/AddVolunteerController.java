@@ -13,6 +13,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -20,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javax.print.DocFlavor;
 import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Volunteer;
 import museumvolunteer.GUI.Model.GuildsModel;
@@ -68,7 +70,17 @@ public class AddVolunteerController implements Initializable {
 
     @FXML
     private void performButton(ActionEvent event) throws SQLException, IOException
-    {
+    { 
+     
+   
+         if (nameBox.getText().equals("") || (guildBox.getText().equals(""))){
+         Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Du skal skrive både navn og laug, før du kan tilføje en ny volunteer.");
+            alert.showAndWait();
+         }
+          else{
         String name = nameBox.getText().trim();
         String email = emailBox.getText().trim();
         String phoneNumber = phoneBox.getText().trim();
@@ -80,6 +92,11 @@ public class AddVolunteerController implements Initializable {
         Stage stage = (Stage) addScreen.getScene().getWindow();
         stage.close();
     }
+         
+         
+    }
+    
+    
 
     @FXML
     private void returnButton(ActionEvent event) 
