@@ -15,6 +15,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Volunteer;
 import museumvolunteer.GUI.Model.GuildsModel;
@@ -50,6 +52,8 @@ public class VolunteerInfoViewController implements Initializable {
     private Volunteer thisVolunteer;
     private Guild thisGuild;
     private GuildsModel guildsModel;
+    @FXML
+    private AnchorPane volunteerInfoScreen;
 
     /**
      * Initializes the controller class.
@@ -85,6 +89,13 @@ public class VolunteerInfoViewController implements Initializable {
     public void getGuild(Guild g) {
         thisGuild = g;
         guildBox.setText(g.getName());
+    }
+
+    @FXML
+    private void backVolunteerInfo(ActionEvent event) 
+    {
+        Stage stage = (Stage) volunteerInfoScreen.getScene().getWindow();
+        stage.close();
     }
     
 }
