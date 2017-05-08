@@ -115,7 +115,7 @@ public class ManagerViewController implements Initializable {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Fejl");
             alert.setHeaderText(null);
-            alert.setContentText("Du skal vælge en frivillig, før du kan slette dem .");
+            alert.setContentText("Du skal vælge en frivillig, før du kan slette dem.");
             alert.showAndWait();
            }
            

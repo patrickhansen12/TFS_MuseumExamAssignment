@@ -134,7 +134,13 @@ public class AdministatorViewController implements Initializable {
 
     @FXML
     private void removeVolunteersButton(ActionEvent event) throws SQLException 
-    {
+    { if (nameAdminTable.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Du skal vælge en frivillig, før du kan slette dem.");
+            alert.showAndWait();
+           }
        Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Er du sikker på du vil slette den frivillige");
         alert.setHeaderText(null);
@@ -182,13 +188,22 @@ public class AdministatorViewController implements Initializable {
     @FXML
     private void removeHoursButton(ActionEvent event) throws SQLException 
     {
+   
+                if (hoursAdminTable.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Du skal vælge en frivillig, før du kan slette deres timer .");
+            alert.showAndWait();
+           }
+                if (hoursAdminTable.getSelectionModel().getSelectedItem() != null){
         CheckIn selectedItem = hoursAdminTable.getSelectionModel().getSelectedItem();
         checkIn = selectedItem;
         volunteerModel.deleteHours(checkIn);
         hoursAdminTable.getItems().remove(selectedItem);
         hoursAdminTable.getSelectionModel().clearSelection();
     }
-
+    }
     @FXML
     private void addHoursButton(ActionEvent event) throws SQLException, IOException 
     {
@@ -235,17 +250,20 @@ public class AdministatorViewController implements Initializable {
     @FXML
     private void handleGuildsVolunteers(MouseEvent event) throws SQLException 
     {
+              if (guildAdminTable.getSelectionModel().getSelectedItem() != null){
         if (event.isPrimaryButtonDown() == false) {
             int guildId = guildAdminTable.getSelectionModel().getSelectedItem().getId();
             volunteerModel.setNamesByGuildId(guildId);
             nameAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
             nameAdminTable.setItems(volunteerModel.getAllVolunteers());
         }
+              }
     }
 
     @FXML
     private void handleVolunteersHours(MouseEvent event) throws SQLException 
     {
+          if (nameAdminTable.getSelectionModel().getSelectedItem() != null){
         if (event.isPrimaryButtonDown() == false) {
             int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getId();
             volunteerModel.setCheckInsByNameId(nameId);
@@ -254,4 +272,5 @@ public class AdministatorViewController implements Initializable {
             hoursAdminTable.setItems(volunteerModel.getAllCheckIns());
         }
     }
+}
 }

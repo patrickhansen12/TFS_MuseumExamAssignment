@@ -155,7 +155,22 @@ public class VolunteerViewController implements Initializable {
 
         if (datePick.getValue() != null && guildTable.getSelectionModel().getSelectedItem() != null && nameTable.getSelectionModel().getSelectedItem() != null && !noteHoursField.getText().isEmpty()) {
 
-            LocalDateTime timeStamp = datePick.getValue().atTime(LocalTime.now());
+//            LocalDateTime timeStamp = datePick.getValue().atTime(LocalTime.now());
+//            java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(timeStamp);
+//            //datePicker timeStamp = datePick.getDayCellFactory().trim();
+//            int nameId = nameTable.getSelectionModel().getSelectedItem().getId();
+//            volunteerModel.setCheckInsByNameId(nameId);
+//            //int nameId = Integer.parseInt(nameColumn.getText().trim());
+//            int hours = Integer.parseInt(noteHoursField.getText().trim());
+//            VolunteerModel.getInstance().addHours(new CheckIn(dateTime, nameId, hours));
+
+//            Alert alert = new Alert(AlertType.INFORMATION);
+//            alert.setTitle("Bidragede timer");
+//            alert.setHeaderText(null);
+//            alert.setContentText("Du har bidraget med " + noteHoursField.getText() + " timer");
+//            alert.showAndWait();
+            
+                LocalDateTime timeStamp = datePick.getValue().atTime(LocalTime.now());
             java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(timeStamp);
             //datePicker timeStamp = datePick.getDayCellFactory().trim();
             int nameId = nameTable.getSelectionModel().getSelectedItem().getId();
@@ -164,11 +179,6 @@ public class VolunteerViewController implements Initializable {
             int hours = Integer.parseInt(noteHoursField.getText().trim());
             VolunteerModel.getInstance().addHours(new CheckIn(dateTime, nameId, hours));
 
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Bidragede timer");
-            alert.setHeaderText(null);
-            alert.setContentText("Du har bidraget med " + noteHoursField.getText() + " timer");
-            alert.showAndWait();
 
         } else if (datePick.getValue() == null || guildTable.getSelectionModel().getSelectedItem() == null || nameTable.getSelectionModel().getSelectedItem() == null || noteHoursField.getText().isEmpty()) {
             Alert alert = new Alert(AlertType.ERROR);
