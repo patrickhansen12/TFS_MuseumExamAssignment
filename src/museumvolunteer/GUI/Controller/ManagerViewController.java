@@ -77,8 +77,8 @@ public class ManagerViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        backgroundColor();
+        
+//        backgroundColor();
         datePicker.setValue(LocalDate.now());
         dataBind();
         if (txtFieldHours != null) {
@@ -356,46 +356,46 @@ public class ManagerViewController implements Initializable {
         }
     }
 
-    private void backgroundColor() {
-        guildManagerColumn.setCellFactory((TableColumn<Guild, String> p) -> new TableCell<Guild, String>() {
-            @Override
-            public void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (!isEmpty()) {
-                    this.setStyle("-fx-background-color: green;");
-                    setText(item);
-                }
-            }
-        });
-        nameManagerColumn.setCellFactory((TableColumn<Volunteer, String> p) -> new TableCell<Volunteer, String>() {
-            @Override
-            public void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (!isEmpty()) {
-                    this.setStyle("-fx-background-color: green;");
-                    setText(item);
-                }
-            }
-        });
-        hoursManagerColumn.setCellFactory((TableColumn<CheckIn, Integer> p) -> new TableCell<CheckIn, Integer>() {
-            @Override
-            public void updateItem(Integer item, boolean empty) {
-                super.updateItem(item, empty);
-                if (!isEmpty()) {
-                    this.setStyle("-fx-background-color: green;");
-                    setText(String.valueOf(item));
-                }
-            }
-        });
-        dateManagerColumn.setCellFactory((TableColumn<CheckIn, Timestamp> p) -> new TableCell<CheckIn, Timestamp>() {
-            @Override
-            public void updateItem(Timestamp item, boolean empty) {
-                super.updateItem(item, empty);
-                if (!isEmpty()) {
-                    this.setStyle("-fx-background-color: green;");
-                    setText(String.valueOf(item));
-                }
-            }
-        });
-    }
+//    private void backgroundColor() {
+//        guildManagerColumn.setCellFactory((TableColumn<Guild, String> p) -> new TableCell<Guild, String>() {
+//            @Override
+//            public void updateItem(String item, boolean empty) {
+//                super.updateItem(item, empty);
+//                if (!isEmpty()) {
+//                    this.setStyle("-fx-background-color: green;");
+//                    setText(item);
+//                }
+//            }
+//        });
+//        nameManagerColumn.setCellFactory((TableColumn<Volunteer, String> p) -> new TableCell<Volunteer, String>() {
+//            @Override
+//            public void updateItem(String item, boolean empty) {
+//                super.updateItem(item, empty);
+//                if (!isEmpty()) {
+//                    this.setStyle("-fx-background-color: green;");
+//                    setText(item);
+//                }
+//            }
+//        });
+//        hoursManagerColumn.setCellFactory((TableColumn<CheckIn, Integer> p) -> new TableCell<CheckIn, Integer>() {
+//            @Override
+//            public void updateItem(Integer item, boolean empty) {
+//                super.updateItem(item, empty);
+//                if (!isEmpty()) {
+//                    this.setStyle("-fx-background-color: green;");
+//                    setText(String.valueOf(item));
+//                }
+//            }
+//        });
+//        dateManagerColumn.setCellFactory((TableColumn<CheckIn, Timestamp> p) -> new TableCell<CheckIn, Timestamp>() {
+//            @Override
+//            public void updateItem(Timestamp item, boolean empty) {
+//                super.updateItem(item, empty);
+//                if (!isEmpty()) {
+//                    this.setStyle("-fx-background-color: green;");
+//                    setText(String.valueOf(item));
+//                }
+//            }
+//        });
+//    }
 }
