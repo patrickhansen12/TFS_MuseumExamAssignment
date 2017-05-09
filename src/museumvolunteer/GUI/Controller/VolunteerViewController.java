@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumvolunteer.GUI.Controller;
 
 import java.io.IOException;
@@ -44,9 +39,7 @@ import museumvolunteer.GUI.Model.GuildsModel;
 import museumvolunteer.GUI.Model.VolunteerModel;
 
 /**
- * FXML Controller class
- *
- * @author Nicolai, Emil, Patrick, Kasper, Casper
+ * @author Nicolai, Patrick, Kasper, Casper
  */
 public class VolunteerViewController implements Initializable {
 
@@ -60,20 +53,20 @@ public class VolunteerViewController implements Initializable {
     private TableColumn<Volunteer, String> nameColumn;
     @FXML
     private AnchorPane VolunteerScreen;
-
-    private VolunteerModel volunteerModel;
-    private GuildsModel guildsModel;
     @FXML
     private TextField searchnameField;
     @FXML
     private TextField noteHoursField;
-    private NamesManager namesManager;
-
     @FXML
     private DatePicker datePick;
 
+    //private variables.
+    private NamesManager namesManager;
+    private VolunteerModel volunteerModel;
+    private GuildsModel guildsModel;
+
     /**
-     * Initializes the controller class.
+     * Initializes the VolunteerViewController class.
      *
      * @param url
      * @param rb
@@ -88,10 +81,10 @@ public class VolunteerViewController implements Initializable {
             allGuildNames.add(nameString);
         }
         nameTable.setItems(volunteerModel.getNames());
-        
+
         try {
             Guild g = guildTable.getSelectionModel().getSelectedItem();
-            if(g != null){
+            if (g != null) {
                 int guildId = g.getId();
                 List<String> allVolunteers = namesManager.getAllVolunteerNames(guildId);
                 volunteerModel.setFilteredNames(allVolunteers);
@@ -104,12 +97,22 @@ public class VolunteerViewController implements Initializable {
         datePick.setVisible(false);
     }
 
+    /**
+     * .getInstance for volunteerModel and guildsModel. Both are singleton. A new namesManager is created.
+     * @throws IOException
+     * @throws SQLException
+     */
     public VolunteerViewController() throws IOException, SQLException {
         volunteerModel = VolunteerModel.getInstance();
         guildsModel = GuildsModel.getInstance();
         namesManager = new NamesManager();
     }
 
+    /**
+     * Returns the volunteer to mainView.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void backVolunteer(ActionEvent event) throws IOException {
         Stage stage = new Stage();
@@ -126,6 +129,9 @@ public class VolunteerViewController implements Initializable {
         stage.close();
     }
 
+    /**
+     * Populates guildsTable and namesTable with guilds and names.
+     */
     private void dataBind() {
         guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
         guildTable.setItems(guildsModel.getGuilds());
@@ -133,13 +139,22 @@ public class VolunteerViewController implements Initializable {
         guildTable.setPlaceholder(new Label("Der er ikke \nnogen laug \nat vise"));
     }
 
-    public void setModel(VolunteerModel volunteerModel) {
-        this.volunteerModel = volunteerModel;
-    }
+//    /**
+//     * 
+//     * @param volunteerModel
+//     */
+//    public void setModel(VolunteerModel volunteerModel) {
+//        this.volunteerModel = volunteerModel;
+//    }
 
+    /**
+     * Method for populating nameTable with volunteers matching same guild id.
+     * @param event
+     * @throws SQLException 
+     */
     @FXML
     private void handleGuildsVolunteers(MouseEvent event) throws SQLException {
-        if (guildTable.getSelectionModel().getSelectedItem() != null){
+        if (guildTable.getSelectionModel().getSelectedItem() != null) {
             if (event.isPrimaryButtonDown() == false) {
                 int guildId = guildTable.getSelectionModel().getSelectedItem().getId();
                 volunteerModel.setNamesByGuildId(guildId);
@@ -150,6 +165,12 @@ public class VolunteerViewController implements Initializable {
         searchnameField.clear();
     }
 
+    /**
+     * Method for adding hours to a specific volunteer, when both guild and name is selected.
+     * @param event
+     * @throws SQLException
+     * @throws IOException 
+     */
     @FXML
     private void insertHours(ActionEvent event) throws SQLException, IOException {
 
@@ -163,22 +184,19 @@ public class VolunteerViewController implements Initializable {
 //            //int nameId = Integer.parseInt(nameColumn.getText().trim());
 //            int hours = Integer.parseInt(noteHoursField.getText().trim());
 //            VolunteerModel.getInstance().addHours(new CheckIn(dateTime, nameId, hours));
-
 //            Alert alert = new Alert(AlertType.INFORMATION);
 //            alert.setTitle("Bidragede timer");
 //            alert.setHeaderText(null);
 //            alert.setContentText("Du har bidraget med " + noteHoursField.getText() + " timer");
 //            alert.showAndWait();
-            
-                LocalDateTime timeStamp = datePick.getValue().atTime(LocalTime.now());
+            LocalDateTime timeStamp = datePick.getValue().atTime(LocalTime.now());
             java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(timeStamp);
             //datePicker timeStamp = datePick.getDayCellFactory().trim();
             int nameId = nameTable.getSelectionModel().getSelectedItem().getId();
             volunteerModel.setCheckInsByNameId(nameId);
             //int nameId = Integer.parseInt(nameColumn.getText().trim());
             int hours = Integer.parseInt(noteHoursField.getText().trim());
-            VolunteerModel.getInstance().addHours(new CheckIn(dateTime, nameId, hours));
-
+            volunteerModel.addHours(new CheckIn(dateTime, nameId, hours));
 
         } else if (datePick.getValue() == null || guildTable.getSelectionModel().getSelectedItem() == null || nameTable.getSelectionModel().getSelectedItem() == null || noteHoursField.getText().isEmpty()) {
             Alert alert = new Alert(AlertType.ERROR);
@@ -189,8 +207,13 @@ public class VolunteerViewController implements Initializable {
         }
     }
 
+    /**
+     * Method for searching through names in nameTable, when a guild is selected.
+     * @param event
+     * @throws SQLException 
+     */
     @FXML
-    void searchNameList(KeyEvent event) throws SQLException{
+    void searchNameList(KeyEvent event) throws SQLException {
         String query = searchnameField.getText().trim();
         List<String> searchResult = null;
         SearchPattern searchStrategy;

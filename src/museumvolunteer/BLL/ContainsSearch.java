@@ -1,22 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumvolunteer.BLL;
 
 /**
- * @author Nicolai, Emil, Patrick, Kasper, Casper
+ * @author Nicolai, Patrick, Kasper, Casper
  */
 public class ContainsSearch extends QuerySearchTemplate {
 
+    /**
+     * String query.
+     * @param query
+     */
     public ContainsSearch(String query) {
         super(query);
     }
 
+    /**
+     * Sets query to lowercase.
+     * @param word
+     * @return
+     */
     @Override
     public boolean compare(String word) {
         return word.toLowerCase().contains(query.toLowerCase());
     }
-
 }

@@ -1,17 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumvolunteer.BLL;
 
 /**
- * @author Nicolai, Emil, Patrick, Kasper, Casper
+ * @author Nicolai, Patrick, Kasper, Casper
  */
 public abstract class QuerySearchTemplate implements SearchPattern
 {
+    /**
+     * Variable for String query.
+     */
     protected final String query;
     
+    /**
+     * Sets current query equal to query.
+     * @param query
+     */
     public QuerySearchTemplate(String query) {
         this.query = query;
     }

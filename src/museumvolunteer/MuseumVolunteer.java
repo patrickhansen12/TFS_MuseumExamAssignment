@@ -1,12 +1,5 @@
 package museumvolunteer;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,16 +7,16 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * @author Nicolai, Emil, Patrick, Kasper, Casper
+ * @author Nicolai, Patrick, Kasper, Casper
  */
 public class MuseumVolunteer extends Application {
-    
+
     @Override
     public void start(Stage stage) throws Exception {
 //        Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/MainView.fxml"));
-            Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/ManagerView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/ManagerView.fxml"));
         Scene scene = new Scene(root);
-        
+
         stage.setScene(scene);
         stage.setTitle("Frivillig dokumentation");
         stage.show();
@@ -35,5 +28,4 @@ public class MuseumVolunteer extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
 }

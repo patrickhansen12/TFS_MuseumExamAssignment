@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumvolunteer.GUI.Model;
 
 import java.io.IOException;
@@ -13,17 +8,20 @@ import museumvolunteer.BE.Guild;
 import museumvolunteer.BLL.GuildsManager;
 
 /**
- *
- * @author Nicolai, Emil, Patrick, Kasper, Casper
+ * @author Nicolai, Patrick, Kasper, Casper
  */
 public class GuildsModel {
+
+    //private variables.
     private static GuildsModel INSTANCE;
-    private final ObservableList<Guild> guilds;
     private final GuildsManager guildsMgr;
 
+    //Observable list of BE Guild.
+    private final ObservableList<Guild> guilds;
+
     /**
-     * Constructs a new StudentManager and creates an observable arraylist out
-     * of the observable list Student.
+     * Constructs a new GuildsManager and creates an observable arraylist out of
+     * the observable list Guild.
      */
     private GuildsModel() throws IOException, SQLException {
         guildsMgr = new GuildsManager();
@@ -46,8 +44,9 @@ public class GuildsModel {
     }
 
     /**
-     * This method returns an observable list of BE class StudentCheckIn.
-     * @return 
+     * This method returns an observable list of BE class Guild.
+     *
+     * @return
      */
     public ObservableList<Guild> getGuilds() {
         return guilds;
@@ -63,20 +62,20 @@ public class GuildsModel {
 //        studentCheckIn = FXCollections.observableArrayList();
 //        studentCheckIn.addAll(checkInMgr.getAllCheckInsById(id));
 //    }
+//    /**
+//     * delete checkIn.
+//     */
+//    public void deleteCheckIn(Guild g) throws SQLException {
+//        guildsMgr.delete(g);
+//        guilds.remove(g);
+//    }
 
     /**
-
-    /*
-    * adds the check ins for students
-    */
-
-    public void deleteCheckIn(Guild g) throws SQLException {
-        guildsMgr.delete(g);
-        guilds.remove(g);
-    }
-
-    public void updateGuild(Guild g) throws SQLException
-    {
+     * update guild name.
+     * @param g
+     * @throws SQLException 
+     */
+    public void updateGuild(Guild g) throws SQLException {
         guildsMgr.update(g);
     }
 }

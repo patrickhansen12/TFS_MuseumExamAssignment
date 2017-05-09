@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumvolunteer.BLL;
 
 import java.io.IOException;
@@ -13,71 +8,91 @@ import museumvolunteer.BE.Volunteer;
 import museumvolunteer.DAL.NamesDAO;
 
 /**
- * @author Nicolai, Emil, Patrick, Kasper, Casper
+ * @author Nicolai, Patrick, Kasper, Casper
  */
 public class NamesManager {
 
+    //private variable for namesDAO.
     private NamesDAO namesDAO;
 
+    /**
+     * Creates a new NamesDAO.
+     *
+     * @throws IOException
+     */
     public NamesManager() throws IOException {
         namesDAO = new NamesDAO();
     }
-    
-    /**
-     * Creates annd returns a new Volunteer object.
-     * @param name
-     * @return The new Volunteer object.
-     */
-    public Volunteer createNewVolunteer(String name)
-    {
-        return new Volunteer(name);
-    }
-    
+
+//    /**
+//     * Creates and returns a new Volunteer object.
+//     * @param name
+//     * @return The new Volunteer object.
+//     */
+//    public Volunteer createNewVolunteer(String name)
+//    {
+//        return new Volunteer(name);
+//    }
     /**
      * Method for calling getAllVolunteers() in namesDAO.
+     *
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public List<Volunteer> getAllVolunteers() throws SQLException {
         return namesDAO.getAllVolunteers();
     }
-    
+
     /**
      * Method for calling add() in namesDAO.
+     *
      * @param v
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
-    public Volunteer add(Volunteer v) throws SQLException
-    {
+    public Volunteer add(Volunteer v) throws SQLException {
         return namesDAO.add(v);
     }
-    
+
     /**
      * Method for calling delete() in namesDAO.
+     *
      * @param v
-     * @throws SQLException 
+     * @throws SQLException
      */
-    public void delete(Volunteer v) throws SQLException
-    {
+    public void delete(Volunteer v) throws SQLException {
         namesDAO.delete(v);
     }
-    
-    public void update(Volunteer v) throws SQLException
-    {
+
+    /**
+     * Updates values for the specified volunteer.
+     *
+     * @param v
+     * @throws SQLException
+     */
+    public void update(Volunteer v) throws SQLException {
         namesDAO.update(v);
+        namesDAO.updateGuildByGuildsId(v);
     }
-    
+
     /**
      * ArrayList of BE class Volunteer.
+     *
      * @param guildsId
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public List<Volunteer> getAllVolunteersByGuildId(int guildsId) throws SQLException {
         return namesDAO.getByGuildId(guildsId);
     }
-    
+
+    /**
+     * Gets all volunteer names according to guildsId.
+     *
+     * @param guildsId
+     * @return
+     * @throws SQLException
+     */
     public List<String> getAllVolunteerNames(int guildsId) throws SQLException {
         List<Volunteer> allVolunteers = getAllVolunteersByGuildId(guildsId);
         List<String> allVolunteerNames = new ArrayList<>();
@@ -87,15 +102,20 @@ public class NamesManager {
         }
         return allVolunteerNames;
     }
-    
-    public List<String> search(SearchPattern comparer, int guildsId) throws SQLException 
-    {
+
+    /**
+     * Method for searching through the selected list of volunteers.
+     *
+     * @param comparer
+     * @param guildsId
+     * @return
+     * @throws SQLException
+     */
+    public List<String> search(SearchPattern comparer, int guildsId) throws SQLException {
         List<String> allVolunteers = getAllVolunteerNames(guildsId);
         List<String> result = new ArrayList<>();
-        for(String name : allVolunteers)
-        {
-            if(comparer.compare(name))
-            {
+        for (String name : allVolunteers) {
+            if (comparer.compare(name)) {
                 result.add(name);
             }
         }

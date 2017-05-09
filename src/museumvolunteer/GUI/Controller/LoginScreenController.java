@@ -1,12 +1,5 @@
 package museumvolunteer.GUI.Controller;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,7 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
- * @author Nicolai, Emil, Patrick, Kasper, Casper
+ * @author Nicolai, Patrick, Kasper, Casper
  */
 public class LoginScreenController implements Initializable {
 
@@ -38,15 +31,18 @@ public class LoginScreenController implements Initializable {
     @FXML
     private Label publicMessageLabel;
 
- 
-
+    /**
+     * 
+     */
     public LoginScreenController()
     {
         
     }
     
     /**
-     * Initializes the controller class.
+     * Initializes the LoginScreenController class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -54,12 +50,22 @@ public class LoginScreenController implements Initializable {
         // TODO
     }    
 
+    /**
+     * Executes the method signIn().
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void LogInButton(ActionEvent event) throws IOException 
     {
         signIn();
     }
     
+    /**
+     * Signs you in when pressing the ENTER key.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void handleEnterPressed(KeyEvent event) throws IOException
     {
@@ -69,6 +75,10 @@ public class LoginScreenController implements Initializable {
         }
     }
     
+    /**
+     * Temporary login details.
+     * @throws IOException 
+     */
     private void signIn()throws IOException
     {   
         if (usernameField.getText().equals("t") && (passwordField.getText().equals("t")))
@@ -99,6 +109,10 @@ public class LoginScreenController implements Initializable {
         }
     }
     
+    /**
+     * Opens ManagerView if the correct username/password is submitted.
+     * @throws IOException 
+     */
     private void logIn() throws IOException
     {
         Stage stage = new Stage();
@@ -113,6 +127,10 @@ public class LoginScreenController implements Initializable {
         stage.close();
     }
     
+    /**
+     * Succesfully logs you in as admin to view AdministratorView.
+     * @throws IOException 
+     */
     private void logInA() throws IOException
     {
         Stage stage = new Stage();
@@ -127,6 +145,11 @@ public class LoginScreenController implements Initializable {
         stage.close();
     }
 
+    /**
+     * Return to mainView.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void returnLogIn(ActionEvent event) throws IOException 
     {

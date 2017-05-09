@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumvolunteer.GUI.Controller;
 
 import java.io.IOException;
@@ -40,12 +35,9 @@ import museumvolunteer.GUI.Model.GuildsModel;
 import museumvolunteer.GUI.Model.VolunteerModel;
 
 /**
- * FXML Controller class
- *
- * @author Nicolai, Emil, Patrick, Kasper, Casper
+ * @author Nicolai, Patrick, Kasper, Casper
  */
 public class AdministatorViewController implements Initializable {
-
 
     @FXML
     private AnchorPane adminScreen;
@@ -65,11 +57,6 @@ public class AdministatorViewController implements Initializable {
     private TableView<Manager> managerAdminTable;
     @FXML
     private TableColumn<Manager, String> managerAdminColumn;
-    
-    private VolunteerModel volunteerModel;
-    private GuildsModel guildsModel;
-    private Volunteer volunteer;
-    private CheckIn checkIn;
     @FXML
     private TableColumn<CheckIn, Timestamp> dateAdminColumn;
     @FXML
@@ -77,49 +64,78 @@ public class AdministatorViewController implements Initializable {
     @FXML
     private DatePicker datePicker;
 
+    //private variables.
+    private VolunteerModel volunteerModel;
+    private GuildsModel guildsModel;
+    private Volunteer volunteer;
+    private CheckIn checkIn;
+
     /**
-     * Initializes the controller class.
+     * Initializes the AdministratorViewController class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         dataBind();
         datePicker.setValue(LocalDate.now());
-    }    
-    
-    public AdministatorViewController() throws IOException, SQLException 
-    {
+    }
+
+    /**
+     * gets instances of volunteerModel and guildsModel.
+     *
+     * @throws IOException
+     * @throws SQLException
+     */
+    public AdministatorViewController() throws IOException, SQLException {
         volunteerModel = VolunteerModel.getInstance();
         guildsModel = GuildsModel.getInstance();
     }
 
+    /**
+     * Returns the admin to MainView.
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    private void returnAdmin(ActionEvent event) throws IOException 
-    {
+    private void returnAdmin(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/MainView.fxml"));
-        
+
         Scene scene = new Scene(root);
         stage.setTitle("Frivillig dokumentation");
         stage.setResizable(false);
 
         stage.setScene(scene);
         stage.show();
-        
+
         stage = (Stage) adminScreen.getScene().getWindow();
         stage.close();
-    } 
+    }
 
+    /**
+     * Method for adding a new guild.
+     *
+     * @param event
+     */
     @FXML
     private void addGuildButton(ActionEvent event) {
     }
 
+    /**
+     * Opens the view AddVolunteer
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    private void addVolunteerButton(ActionEvent event) throws IOException 
-    {
+    private void addVolunteerButton(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AddVolunteer.fxml"));
-        
+
         Scene scene = new Scene(root);
         stage.setTitle("Tilføj frivillig");
         stage.setResizable(false);
@@ -128,20 +144,32 @@ public class AdministatorViewController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Removes the guild selected.
+     *
+     * @param event
+     */
     @FXML
     private void removeGuildButton(ActionEvent event) {
     }
 
+    /**
+     * Removes the selected volunteer from the observable list Volunteer and the
+     * database table Names.
+     *
+     * @param event
+     * @throws SQLException
+     */
     @FXML
-    private void removeVolunteersButton(ActionEvent event) throws SQLException 
-    { if (nameAdminTable.getSelectionModel().getSelectedItem() == null){
+    private void removeVolunteersButton(ActionEvent event) throws SQLException {
+        if (nameAdminTable.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Fejl");
             alert.setHeaderText(null);
             alert.setContentText("Du skal vælge en frivillig, før du kan slette dem.");
             alert.showAndWait();
-           }
-       Alert alert = new Alert(AlertType.CONFIRMATION);
+        }
+        Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Er du sikker på du vil slette den frivillige");
         alert.setHeaderText(null);
         alert.setContentText("Vil du slette den frivillige fra dette laug eller alle laug?");
@@ -153,60 +181,79 @@ public class AdministatorViewController implements Initializable {
         alert.getButtonTypes().setAll(buttonTypeThis, buttonTypeAll, buttonTypeCancel);
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == buttonTypeThis)
-        {
+        if (result.get() == buttonTypeThis) {
             Volunteer selectedItem = nameAdminTable.getSelectionModel().getSelectedItem();
             volunteer = selectedItem;
             volunteerModel.deleteVolunteer(volunteer);
             nameAdminTable.getItems().remove(selectedItem);
-            nameAdminTable.getSelectionModel().clearSelection();  
-        } 
-        else if (result.get() == buttonTypeAll) 
-        {
+            nameAdminTable.getSelectionModel().clearSelection();
+        } else if (result.get() == buttonTypeAll) {
             Volunteer selectedItem = nameAdminTable.getSelectionModel().getSelectedItem();
             volunteer = selectedItem;
             volunteerModel.deleteVolunteer(volunteer);
             nameAdminTable.getItems().remove(selectedItem);
-            nameAdminTable.getSelectionModel().clearSelection();  
-        } 
-        else 
-        {
+            nameAdminTable.getSelectionModel().clearSelection();
+        } else {
             // ... user chose CANCEL or closed the dialog
-        } 
+        }
     }
 
+    /**
+     * Adds a new manager to observable list Manager and to database table
+     * Managers.
+     *
+     * @param event
+     */
     @FXML
     private void addManagerButton(ActionEvent event) {
     }
 
+    /**
+     * Removes a selected manager from observable list Manager and database
+     * table Managers.
+     *
+     * @param event
+     */
     @FXML
-    private void removeManagerButton(ActionEvent event)
-    {
-        
+    private void removeManagerButton(ActionEvent event) {
+
     }
 
+    /**
+     * Removes selected hours for a specific volunteer.
+     *
+     * @param event
+     * @throws SQLException
+     */
     @FXML
-    private void removeHoursButton(ActionEvent event) throws SQLException 
-    {
-   
-                if (hoursAdminTable.getSelectionModel().getSelectedItem() == null){
+    private void removeHoursButton(ActionEvent event) throws SQLException {
+
+        if (hoursAdminTable.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Fejl");
             alert.setHeaderText(null);
             alert.setContentText("Du skal vælge en frivillig, før du kan slette deres timer .");
             alert.showAndWait();
-           }
-                if (hoursAdminTable.getSelectionModel().getSelectedItem() != null){
-        CheckIn selectedItem = hoursAdminTable.getSelectionModel().getSelectedItem();
-        checkIn = selectedItem;
-        volunteerModel.deleteHours(checkIn);
-        hoursAdminTable.getItems().remove(selectedItem);
-        hoursAdminTable.getSelectionModel().clearSelection();
+        }
+        if (hoursAdminTable.getSelectionModel().getSelectedItem() != null) {
+            CheckIn selectedItem = hoursAdminTable.getSelectionModel().getSelectedItem();
+            checkIn = selectedItem;
+            volunteerModel.deleteHours(checkIn);
+            hoursAdminTable.getItems().remove(selectedItem);
+            hoursAdminTable.getSelectionModel().clearSelection();
+        }
     }
-    }
+
+    /**
+     * Adds hours to the selected volunteer, into observable list CheckIn and
+     * database table Hours.
+     *
+     * @param event
+     * @throws SQLException
+     * @throws IOException
+     */
     @FXML
-    private void addHoursButton(ActionEvent event) throws SQLException, IOException 
-    {
+    private void addHoursButton(ActionEvent event) throws SQLException, IOException {
         if (datePicker.getValue() != null && guildAdminTable.getSelectionModel().getSelectedItem() != null && nameAdminTable.getSelectionModel().getSelectedItem() != null && !txtFieldHours.getText().isEmpty()) {
 
             LocalDateTime timeStamp = datePicker.getValue().atTime(LocalTime.now());
@@ -236,41 +283,52 @@ public class AdministatorViewController implements Initializable {
         }
     }
 
-    private void dataBind()
-    {  
-       guildAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-       guildAdminTable.setItems(guildsModel.getGuilds());
-    }
-    
-    public void setModel(VolunteerModel volunteerModel) 
-    {
-        this.volunteerModel = volunteerModel;
+    private void dataBind() {
+        guildAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+        guildAdminTable.setItems(guildsModel.getGuilds());
     }
 
+//    /**
+//     * 
+//     * @param volunteerModel
+//     */
+//    public void setModel(VolunteerModel volunteerModel) {
+//        this.volunteerModel = volunteerModel;
+//    }
+    /**
+     * Populates ameAdminTable with volunteers matching the clicked guild.
+     *
+     * @param event
+     * @throws SQLException
+     */
     @FXML
-    private void handleGuildsVolunteers(MouseEvent event) throws SQLException 
-    {
-              if (guildAdminTable.getSelectionModel().getSelectedItem() != null){
-        if (event.isPrimaryButtonDown() == false) {
-            int guildId = guildAdminTable.getSelectionModel().getSelectedItem().getId();
-            volunteerModel.setNamesByGuildId(guildId);
-            nameAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-            nameAdminTable.setItems(volunteerModel.getAllVolunteers());
+    private void handleGuildsVolunteers(MouseEvent event) throws SQLException {
+        if (guildAdminTable.getSelectionModel().getSelectedItem() != null) {
+            if (event.isPrimaryButtonDown() == false) {
+                int guildId = guildAdminTable.getSelectionModel().getSelectedItem().getId();
+                volunteerModel.setNamesByGuildId(guildId);
+                nameAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+                nameAdminTable.setItems(volunteerModel.getAllVolunteers());
+            }
         }
-              }
     }
 
+    /**
+     * Populates hoursAdminTable with hours for the clicked volunteer.
+     *
+     * @param event
+     * @throws SQLException
+     */
     @FXML
-    private void handleVolunteersHours(MouseEvent event) throws SQLException 
-    {
-          if (nameAdminTable.getSelectionModel().getSelectedItem() != null){
-        if (event.isPrimaryButtonDown() == false) {
-            int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getId();
-            volunteerModel.setCheckInsByNameId(nameId);
-            hoursAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
-            dateAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
-            hoursAdminTable.setItems(volunteerModel.getAllCheckIns());
+    private void handleVolunteersHours(MouseEvent event) throws SQLException {
+        if (nameAdminTable.getSelectionModel().getSelectedItem() != null) {
+            if (event.isPrimaryButtonDown() == false) {
+                int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getId();
+                volunteerModel.setCheckInsByNameId(nameId);
+                hoursAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
+                dateAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
+                hoursAdminTable.setItems(volunteerModel.getAllCheckIns());
+            }
         }
     }
-}
 }

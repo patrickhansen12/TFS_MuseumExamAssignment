@@ -1,12 +1,5 @@
 package museumvolunteer.GUI.Controller;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,13 +13,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
- * @author Nicolai, Emil, Patrick, Kasper, Casper
+ * @author Nicolai, Patrick, Kasper, Casper
  */
 public class MainViewController implements Initializable {
 
     @FXML
     private AnchorPane MainScreen;
-    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -34,6 +26,11 @@ public class MainViewController implements Initializable {
         // TODO
     }    
 
+    /**
+     * Sends the user into VolunteerView.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void volunteerButton(ActionEvent event) throws IOException 
     {
@@ -49,6 +46,11 @@ public class MainViewController implements Initializable {
         closeWindow();
     }
 
+    /**
+     * Button for ManagerView to open. You need username and password to get further than loginScreen.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void managerButton(ActionEvent event) throws IOException 
     {
@@ -64,10 +66,12 @@ public class MainViewController implements Initializable {
         closeWindow();
     }
     
+    /**
+     * Close the MainView.
+     */
     private void closeWindow()
     {
         Stage stage = (Stage) MainScreen.getScene().getWindow();
         stage.close();
     }
-
 }

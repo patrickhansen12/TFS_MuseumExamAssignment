@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumvolunteer.GUI.Controller;
 
 import java.io.IOException;
@@ -17,15 +12,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Volunteer;
 import museumvolunteer.GUI.Model.GuildsModel;
 import museumvolunteer.GUI.Model.VolunteerModel;
 
 /**
- * FXML Controller class
- *
- * @author Casper
+ * @author Nicolai, Patrick, Kasper, Casper
  */
 public class VolunteerInfoViewController implements Initializable {
 
@@ -47,55 +39,75 @@ public class VolunteerInfoViewController implements Initializable {
     private Label guildLbl;
     @FXML
     private TextField guildBox;
-    
-    private VolunteerModel volunteerModel;
-    private Volunteer thisVolunteer;
-    private Guild thisGuild;
-    private GuildsModel guildsModel;
     @FXML
     private AnchorPane volunteerInfoScreen;
 
+    //private variabler.
+    private VolunteerModel volunteerModel;
+    private Volunteer thisVolunteer;
+    private GuildsModel guildsModel;
+
     /**
-     * Initializes the controller class.
+     * Initializes the VolunteerInfoViewController class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
     }
 
-    public VolunteerInfoViewController() throws IOException, SQLException 
-    {
+    /**
+     * gets instances of volunteerModel and guildsModel through .getInstance()
+     * since the models are singleton.
+     *
+     * @throws IOException
+     * @throws SQLException
+     */
+    public VolunteerInfoViewController() throws IOException, SQLException {
         volunteerModel = VolunteerModel.getInstance();
         guildsModel = GuildsModel.getInstance();
     }
 
+    /**
+     * gets a clicked volunteer from ManagerViewController and sets name, email,
+     * phoneNumber and guildsId.
+     *
+     * @param v
+     */
     public void doMagicStuff(Volunteer v) {
         thisVolunteer = v;
         nameBox.setText(v.getName());
         emailBox.setText(v.getEmail());
         phoneNumberBox.setText(v.getPhoneNumber());
+        guildBox.setText(String.valueOf(v.getGuildsId()));
     }
 
+    /**
+     * Takes the values from the textboxes and updates the volunteer both in the
+     * observable list, but also in the database.
+     *
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     private void handleUpdate(ActionEvent event) throws SQLException {
         String name = nameBox.getText().trim();
         String email = emailBox.getText().trim();
         String phoneNumber = phoneNumberBox.getText().trim();
-        String guild = guildBox.getText().trim();
-        volunteerModel.updateVolunteer(new Volunteer(thisVolunteer.getId(), name, email, phoneNumber));
-        guildsModel.updateGuild(new Guild(thisGuild.getId(), guild));
+        int guildsId = Integer.parseInt(guildBox.getText());
+        volunteerModel.updateVolunteer(new Volunteer(thisVolunteer.getId(), name, email, phoneNumber, guildsId));
     }
 
-    public void getGuild(Guild g) {
-        thisGuild = g;
-        guildBox.setText(g.getName());
-    }
-
+    /**
+     * Return the manager to ManagerViewController.
+     *
+     * @param event
+     */
     @FXML
-    private void backVolunteerInfo(ActionEvent event) 
-    {
+    private void backVolunteerInfo(ActionEvent event) {
         Stage stage = (Stage) volunteerInfoScreen.getScene().getWindow();
         stage.close();
     }
-    
 }

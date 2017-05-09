@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumvolunteer.DAL;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
@@ -13,18 +8,23 @@ import java.sql.Connection;
 import java.util.Properties;
 
 /**
- * @author Nicolai, Emil, Patrick, Kasper, Casper
+ * @author Nicolai, Patrick, Kasper, Casper
  */
-public class ConnectionManager
-{
+public class ConnectionManager {
+
+    //private variables.
     private static final String CONFIG_FILE_NAME = "VikingeMuseum.cfg";
     private final SQLServerDataSource ds;
-    
-    public ConnectionManager() throws IOException
-    {
+
+    /**
+     * Establishes a connection to the database.
+     *
+     * @throws IOException
+     */
+    public ConnectionManager() throws IOException {
         Properties props = new Properties();
         props.load(new FileReader(CONFIG_FILE_NAME));
-        
+
         ds = new SQLServerDataSource();
         ds.setServerName(props.getProperty("SERVER"));
         ds.setDatabaseName(props.getProperty("DATABASE"));
@@ -32,10 +32,15 @@ public class ConnectionManager
         ds.setUser(props.getProperty("USER"));
         ds.setPassword(props.getProperty("PASSWORD"));
     }
-    
-    public Connection getConnection() throws SQLServerException
-    {
+
+    /**
+     * Method to get connection to the database.
+     *
+     * @return
+     * @throws SQLServerException
+     */
+    public Connection getConnection() throws SQLServerException {
         return ds.getConnection();
     }
-    
+
 }

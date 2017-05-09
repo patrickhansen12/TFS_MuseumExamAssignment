@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumvolunteer.DAL;
 
 import java.io.IOException;
@@ -16,13 +11,19 @@ import java.util.List;
 import museumvolunteer.BE.Guild;
 
 /**
- * @author Nicolai, Emil, Patrick, Kasper, Casper
+ * @author Nicolai, Patrick, Kasper, Casper
  */
 public class GuildsDAO {
+
+    //private variable for connectionManager.
     private final ConnectionManager cm;
 
-    public GuildsDAO() throws IOException
-    {
+    /**
+     * Creates a new connectionManager.
+     *
+     * @throws IOException
+     */
+    public GuildsDAO() throws IOException {
         cm = new ConnectionManager();
     }
 
@@ -48,17 +49,15 @@ public class GuildsDAO {
 //            return new Guild(id, g);   
 //        }
 //    }
-
     /**
-     * Updates database table Guilds.
+     * Updates name of the specified guild in database table Guilds.
+     *
      * @param g
-     * @throws SQLException 
+     * @throws SQLException
      */
-    public void update(Guild g) throws SQLException
-    {
+    public void update(Guild g) throws SQLException {
         String sql = "UPDATE Guilds SET name = ? WHERE id = ?";
-        try (Connection con = cm.getConnection())
-        {
+        try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, g.getName());
             ps.setInt(2, g.getId());
@@ -68,15 +67,14 @@ public class GuildsDAO {
     }
 
     /**
-     * Deletes a guild from Guilds.
+     * Deletes a guild from database table Guilds.
+     *
      * @param g
-     * @throws SQLException 
+     * @throws SQLException
      */
-    public void delete(Guild g) throws SQLException
-    {
+    public void delete(Guild g) throws SQLException {
         String sql = "DELETE FROM Guilds where id = ?";
-        try (Connection con = cm.getConnection())
-        {
+        try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, g.getId());
 
@@ -86,20 +84,18 @@ public class GuildsDAO {
 
     /**
      * Populates an ArrayList of BE class Guild with guilds.
+     *
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
-    public List<Guild> getAll() throws SQLException
-    {
+    public List<Guild> getAll() throws SQLException {
         List<Guild> allGuilds = new ArrayList<>();
 
         String sql = "SELECT * FROM Guilds";
-        try (Connection con = cm.getConnection())
-        {
+        try (Connection con = cm.getConnection()) {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            while (rs.next())
-            {
+            while (rs.next()) {
                 allGuilds.add(getOneGuild(rs));
             }
             return allGuilds;
@@ -107,60 +103,56 @@ public class GuildsDAO {
     }
 
     /**
-     * Method for selecting a specific guild by id. The data is gathered from database table Guilds.
+     * Method for selecting a specific guild by id. The data is gathered from
+     * database table Guilds.
+     *
      * @param id
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
-    public Guild getById(int id) throws SQLException
-    {
+    public Guild getById(int id) throws SQLException {
         String sql = "SELECT * FROM Guilds WHERE id = ?";
-        try (Connection con = cm.getConnection())
-        {
+        try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
-            if (rs.next())
-            {
+            if (rs.next()) {
                 return getOneGuild(rs);
-            }
-            else
-            {
+            } else {
                 return null;
             }
         }
     }
-    
+
     /**
      * Reflects the attributes for 1 guild in the database.
+     *
      * @param rs
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
-    public Guild getOneGuild(ResultSet rs) throws SQLException
-    {
+    public Guild getOneGuild(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
         String name = rs.getString("name");
-        
+
         return new Guild(id, name);
     }
 
     /**
      * Method for returning all guilds on a guild.
+     *
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public List<Guild> getAllGuilds() throws SQLException {
         List<Guild> allGuilds = new ArrayList<>();
 
         String sql = "SELECT name FROM Guilds";
-        try (Connection con = cm.getConnection())
-        {
+        try (Connection con = cm.getConnection()) {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            while (rs.next())
-            {
+            while (rs.next()) {
                 allGuilds.add(getOneGuild(rs));
             }
             return allGuilds;
@@ -184,22 +176,22 @@ public class GuildsDAO {
 //        }
 //    }
     /**
-     * Populates a new ArrayList of Volunteers with volunteers for a specific guild gathered from database table Guilds.
+     * Populates a new ArrayList of Volunteers with volunteers for a specific
+     * guild gathered from database table Guilds.
+     *
      * @param nameId
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
-    public List<Guild> getByGuildId(int nameId) throws SQLException{
-        
-      List<Guild> allGuilds = new ArrayList<>();
-      String sql = "SELECT * FROM Works_For INNER JOIN Guilds ON Works_For.guildsId = Guilds.id WHERE Works_For.nameId =  ?";
-      try (Connection con = cm.getConnection())
-        {
+    public List<Guild> getByGuildId(int nameId) throws SQLException {
+
+        List<Guild> allGuilds = new ArrayList<>();
+        String sql = "SELECT * FROM Works_For INNER JOIN Guilds ON Works_For.guildsId = Guilds.id WHERE Works_For.nameId =  ?";
+        try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, nameId);
             ResultSet rs = ps.executeQuery();
-            while (rs.next())
-            {
+            while (rs.next()) {
                 allGuilds.add(getOneGuild(rs));
             }
             return allGuilds;

@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" fx:id="volunteerInfoScreen" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.VolunteerInfoViewController">
+<AnchorPane id="AnchorPane" fx:id="volunteerInfoScreen" prefHeight="372.0" prefWidth="343.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.VolunteerInfoViewController">
    <children>
-      <TextField fx:id="nameBox" layoutX="146.0" layoutY="99.0" />
-      <TextField fx:id="emailBox" layoutX="146.0" layoutY="148.0" />
-      <TextField fx:id="phoneNumberBox" layoutX="146.0" layoutY="200.0" />
-      <Label fx:id="nameLbl" layoutX="83.0" layoutY="104.0" text="Navn" />
-      <Label fx:id="emailLbl" layoutX="83.0" layoutY="153.0" text="Email" />
-      <Label fx:id="phoneNumberLbl" layoutX="83.0" layoutY="205.0" text="Telefon" />
-      <Button fx:id="confirmButton" layoutX="163.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleUpdate" text="Godkend ændringer" />
-      <Label fx:id="guildLbl" layoutX="91.0" layoutY="251.0" text="Laug" />
-      <TextField fx:id="guildBox" layoutX="147.0" layoutY="246.0" />
-      <Button layoutX="345.0" layoutY="301.0" mnemonicParsing="false" onAction="#backVolunteerInfo" text="Tilbage" />
+      <TextField fx:id="nameBox" layoutX="120.0" layoutY="64.0" prefHeight="31.0" prefWidth="182.0" />
+      <TextField fx:id="emailBox" layoutX="120.0" layoutY="106.0" prefHeight="31.0" prefWidth="182.0" />
+      <TextField fx:id="phoneNumberBox" layoutX="119.0" layoutY="154.0" prefHeight="31.0" prefWidth="182.0" />
+      <Label fx:id="nameLbl" layoutX="55.0" layoutY="69.0" text="Navn" />
+      <Label fx:id="emailLbl" layoutX="55.0" layoutY="111.0" text="Email" />
+      <Label fx:id="phoneNumberLbl" layoutX="47.0" layoutY="159.0" text="Telefon" />
+      <Button fx:id="confirmButton" layoutX="119.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleUpdate" prefHeight="31.0" prefWidth="182.0" styleClass="buttonGreen" text="Godkend ændringer" />
+      <Label fx:id="guildLbl" layoutX="37.0" layoutY="205.0" text="Flyt frivillig" />
+      <TextField fx:id="guildBox" layoutX="119.0" layoutY="200.0" prefHeight="31.0" prefWidth="182.0" />
+      <Button layoutX="232.0" layoutY="300.0" mnemonicParsing="false" onAction="#backVolunteerInfo" styleClass="buttonGreen" text="Tilbage" />
    </children>
+   <stylesheets>
+       <URL value="@css/ColorSchemes.css" />
+   </stylesheets>
 </AnchorPane>
