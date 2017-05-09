@@ -22,12 +22,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import museumvolunteer.BE.CheckIn;
 import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Volunteer;
@@ -77,6 +79,7 @@ public class ManagerViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        backgroundColor();
         datePicker.setValue(LocalDate.now());
         dataBind();
         if (txtFieldHours != null) {
@@ -86,6 +89,7 @@ public class ManagerViewController implements Initializable {
 
     /**
      * Gets instances of singleton models volunteerModel and guildsModel.
+     *
      * @throws IOException
      * @throws SQLException
      */
@@ -96,8 +100,9 @@ public class ManagerViewController implements Initializable {
 
     /**
      * Opens the AddVolunteer view.
+     *
      * @param event
-     * @throws IOException 
+     * @throws IOException
      */
     @FXML
     private void addVolunteersButton(ActionEvent event) throws IOException {
@@ -113,9 +118,11 @@ public class ManagerViewController implements Initializable {
     }
 
     /**
-     * Method for deleting a selected volunteer both in the observable list Volunteer, but also in database table Names.
+     * Method for deleting a selected volunteer both in the observable list
+     * Volunteer, but also in database table Names.
+     *
      * @param event
-     * @throws SQLException 
+     * @throws SQLException
      */
     @FXML
     private void deleteVolunteersButton(ActionEvent event) throws SQLException {
@@ -160,8 +167,9 @@ public class ManagerViewController implements Initializable {
 
     /**
      * Returns the manager to MainView.
+     *
      * @param event
-     * @throws IOException 
+     * @throws IOException
      */
     @FXML
     private void returnManager(ActionEvent event) throws IOException {
@@ -192,11 +200,11 @@ public class ManagerViewController implements Initializable {
 //    public void setModel(VolunteerModel volunteerModel) {
 //        this.volunteerModel = volunteerModel;
 //    }
-
     /**
      * Method for selecting all volunteers matching the guild that was clicked.
+     *
      * @param event
-     * @throws SQLException 
+     * @throws SQLException
      */
     @FXML
     private void handleGuildsVolunteers(MouseEvent event) throws SQLException {
@@ -216,15 +224,16 @@ public class ManagerViewController implements Initializable {
     }
 
     /**
-     * Adds hours to the selected volunteer, both in the observable list CheckIn, but also in the database table Hours.
+     * Adds hours to the selected volunteer, both in the observable list
+     * CheckIn, but also in the database table Hours.
+     *
      * @param event
      * @throws SQLException
-     * @throws IOException 
+     * @throws IOException
      */
     @FXML
     private void addHoursButton(ActionEvent event) throws SQLException, IOException {
-        if (datePicker.getValue() != null && guildManagerTable.getSelectionModel().getSelectedItem() != null && nameManagerTable.getSelectionModel().getSelectedItem() != null && !txtFieldHours.getText().isEmpty()) 
-        {
+        if (datePicker.getValue() != null && guildManagerTable.getSelectionModel().getSelectedItem() != null && nameManagerTable.getSelectionModel().getSelectedItem() != null && !txtFieldHours.getText().isEmpty()) {
             LocalDateTime timeStamp = datePicker.getValue().atTime(LocalTime.now());
             java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(timeStamp);
             //datePicker timeStamp = datePick.getDayCellFactory().trim();
@@ -254,8 +263,9 @@ public class ManagerViewController implements Initializable {
 
     /**
      * Method for deleting the selected hours for a volunteer.
+     *
      * @param event
-     * @throws SQLException 
+     * @throws SQLException
      */
     @FXML
     private void deleteHoursButton(ActionEvent event) throws SQLException {
@@ -277,15 +287,14 @@ public class ManagerViewController implements Initializable {
 
     /**
      * Populates a list of hours/timeStamps for a clicked volunteer.
+     *
      * @param event
-     * @throws SQLException 
+     * @throws SQLException
      */
     @FXML
     private void handleVolunteersHours(MouseEvent event) throws SQLException {
-        if (nameManagerTable.getSelectionModel().getSelectedItem() != null) 
-        {
-            if (event.isPrimaryButtonDown() == false) 
-            {
+        if (nameManagerTable.getSelectionModel().getSelectedItem() != null) {
+            if (event.isPrimaryButtonDown() == false) {
                 int nameId = nameManagerTable.getSelectionModel().getSelectedItem().getId();
                 volunteerModel.setCheckInsByNameId(nameId);
                 hoursManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
@@ -296,24 +305,24 @@ public class ManagerViewController implements Initializable {
     }
 
     /**
-     * Opens the VolunteerInfo view and passes id, name, email, phoneNumber and guildsId on the clicked volunteer into VolunteerInfoController.
+     * Opens the VolunteerInfo view and passes id, name, email, phoneNumber and
+     * guildsId on the clicked volunteer into VolunteerInfoController.
+     *
      * @param event
      * @throws SQLException
-     * @throws IOException 
+     * @throws IOException
      */
     @FXML
     private void handleInfo(ActionEvent event) throws SQLException, IOException {
-        if (nameManagerTable.getSelectionModel().getSelectedItem() == null) 
-        {
+        if (nameManagerTable.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Fejl");
             alert.setHeaderText(null);
             alert.setContentText("Du skal vælge en frivillig før du kan se informationer om dem.");
             alert.showAndWait();
         }
-        
-        if (nameManagerTable.getSelectionModel().getSelectedItem() != null) 
-        {
+
+        if (nameManagerTable.getSelectionModel().getSelectedItem() != null) {
             Stage stage = new Stage();
             Parent root;
             try {
@@ -341,5 +350,48 @@ public class ManagerViewController implements Initializable {
                 System.out.println("HandleInfo");
             }
         }
+    }
+
+    private void backgroundColor() {
+        guildManagerColumn.setCellFactory((TableColumn<Guild, String> p) -> new TableCell<Guild, String>() {
+            @Override
+            public void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (!isEmpty()) {
+                    this.setStyle("-fx-background-color: green;");
+                    setText(item);
+                }
+            }
+        });
+        nameManagerColumn.setCellFactory((TableColumn<Volunteer, String> p) -> new TableCell<Volunteer, String>() {
+            @Override
+            public void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (!isEmpty()) {
+                    this.setStyle("-fx-background-color: green;");
+                    setText(item);
+                }
+            }
+        });
+        hoursManagerColumn.setCellFactory((TableColumn<CheckIn, Integer> p) -> new TableCell<CheckIn, Integer>() {
+            @Override
+            public void updateItem(Integer item, boolean empty) {
+                super.updateItem(item, empty);
+                if (!isEmpty()) {
+                    this.setStyle("-fx-background-color: green;");
+                    setText(String.valueOf(item));
+                }
+            }
+        });
+        dateManagerColumn.setCellFactory((TableColumn<CheckIn, Timestamp> p) -> new TableCell<CheckIn, Timestamp>() {
+            @Override
+            public void updateItem(Timestamp item, boolean empty) {
+                super.updateItem(item, empty);
+                if (!isEmpty()) {
+                    this.setStyle("-fx-background-color: green;");
+                    setText(String.valueOf(item));
+                }
+            }
+        });
     }
 }
