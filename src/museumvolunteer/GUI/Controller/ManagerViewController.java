@@ -29,7 +29,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import museumvolunteer.BE.CheckIn;
 import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Volunteer;
@@ -214,8 +213,9 @@ public class ManagerViewController implements Initializable {
 
                 int guildId = guildManagerTable.getSelectionModel().getSelectedItem().getId();
                 volunteerModel.setNamesByGuildId(guildId);
+                
                 nameManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-                nameManagerTable.setItems(volunteerModel.getAllVolunteers());
+                nameManagerTable.setItems(volunteerModel.getAllVolunteers().sorted());
 
                 hoursManagerTable.getItems().clear();
                 hoursManagerTable.getSelectionModel().clearSelection();
@@ -299,7 +299,7 @@ public class ManagerViewController implements Initializable {
                 volunteerModel.setCheckInsByNameId(nameId);
                 hoursManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
                 dateManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
-                hoursManagerTable.setItems(volunteerModel.getAllCheckIns());
+                hoursManagerTable.setItems(volunteerModel.getAllCheckIns().sorted());
             }
         }
     }
