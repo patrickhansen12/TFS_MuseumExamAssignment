@@ -216,9 +216,13 @@ public class ManagerViewController implements Initializable {
                 
                 nameManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
                 nameManagerTable.setItems(volunteerModel.getAllVolunteers().sorted());
-
-                hoursManagerTable.getItems().clear();
-                hoursManagerTable.getSelectionModel().clearSelection();
+                
+                int hourId = -1;
+                volunteerModel.setCheckInsByNameId(hourId);
+                hoursManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
+                dateManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
+                hoursManagerTable.setItems(volunteerModel.getAllCheckIns().sorted());
+                
             }
         }
     }
