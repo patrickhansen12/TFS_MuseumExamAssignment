@@ -189,10 +189,11 @@ public class VolunteerViewController implements Initializable {
             //int nameId = Integer.parseInt(nameColumn.getText().trim());
             int hours = Integer.parseInt(noteHoursField.getText().trim());
             volunteerModel.addHours(new CheckIn(dateTime, nameId, hours));
-     Alert alert = new Alert(AlertType.INFORMATION);
+            Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Bidragede timer");
             alert.setHeaderText(null);
             alert.setContentText("Du har bidraget med " + noteHoursField.getText() + " timer");
+            noteHoursField.clear();
             alert.showAndWait();
         } else if (datePick.getValue() == null || guildTable.getSelectionModel().getSelectedItem() == null || nameTable.getSelectionModel().getSelectedItem() == null || noteHoursField.getText().isEmpty()) {
             Alert alert = new Alert(AlertType.ERROR);
