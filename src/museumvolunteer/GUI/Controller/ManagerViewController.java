@@ -136,13 +136,13 @@ public class ManagerViewController implements Initializable {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Dialog with Custom Actions");
             alert.setHeaderText(null);
-            alert.setContentText("Vil du slette den frivillige fra dette laug eller alle laug?");
+            alert.setContentText("Er du sikker på du vil slette denne frivillige?");
 
             ButtonType buttonTypeThis = new ButtonType("Dette laug");
-            ButtonType buttonTypeAll = new ButtonType("Alle laug");
+//            ButtonType buttonTypeAll = new ButtonType("Alle laug");
             ButtonType buttonTypeCancel = new ButtonType("Fortryd", ButtonData.CANCEL_CLOSE);
 
-            alert.getButtonTypes().setAll(buttonTypeThis, buttonTypeAll, buttonTypeCancel);
+            alert.getButtonTypes().setAll(buttonTypeThis, buttonTypeCancel);
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == buttonTypeThis) {
@@ -151,12 +151,12 @@ public class ManagerViewController implements Initializable {
                 volunteerModel.deleteVolunteer(volunteer);
                 nameManagerTable.getItems().remove(selectedItem);
                 nameManagerTable.getSelectionModel().clearSelection();
-            } else if (result.get() == buttonTypeAll) {
-                Volunteer selectedItem = nameManagerTable.getSelectionModel().getSelectedItem();
-                volunteer = selectedItem;
-                volunteerModel.deleteVolunteer(volunteer);
-                nameManagerTable.getItems().remove(selectedItem);
-                nameManagerTable.getSelectionModel().clearSelection();
+//            } else if (result.get() == buttonTypeAll) {
+//                Volunteer selectedItem = nameManagerTable.getSelectionModel().getSelectedItem();
+//                volunteer = selectedItem;
+//                volunteerModel.deleteVolunteer(volunteer);
+//                nameManagerTable.getItems().remove(selectedItem);
+//                nameManagerTable.getSelectionModel().clearSelection();
 
                 // ... user chose CANCEL or closed the dialog
             }

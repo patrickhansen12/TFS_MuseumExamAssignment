@@ -117,6 +117,7 @@ public class NamesDAO {
      */
     public void update(Volunteer v) throws SQLException {
         String sql = "UPDATE Names SET name = ?, email = ?, phoneNumber = ? WHERE id = ?";
+        String sql2 = "UPDATE Works_For SET guildsId = ? FROM Works_For INNER JOIN Names on Works_For.nameId = Names.id WHERE id = ?";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, v.getName());
@@ -124,6 +125,11 @@ public class NamesDAO {
             ps.setString(3, v.getPhoneNumber());
             ps.setInt(4, v.getId());
             ps.executeUpdate();
+            
+            PreparedStatement ps2 = con.prepareStatement(sql2);
+            ps2.setInt(1, v.getGuildsId());
+            ps2.setInt(2, v.getId());
+            ps2.executeUpdate();
         }
     }
 
