@@ -159,10 +159,13 @@ public class VolunteerViewController implements Initializable {
     private void handleGuildsVolunteers(MouseEvent event) throws SQLException {
         if (guildTable.getSelectionModel().getSelectedItem() != null) {
             if (event.isPrimaryButtonDown() == false) {
+    
                 int guildId = guildTable.getSelectionModel().getSelectedItem().getId();
                 volunteerModel.setNamesByGuildId(guildId);
+   
                 nameColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-                nameTable.setItems(volunteerModel.getAllVolunteers());
+  
+                nameTable.setItems(volunteerModel.getAllVolunteers().sorted());
             }
         }
         searchnameField.clear();
