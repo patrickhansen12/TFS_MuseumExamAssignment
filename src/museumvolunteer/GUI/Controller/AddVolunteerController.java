@@ -58,7 +58,10 @@ public class AddVolunteerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        guildTable.setVisible(false);
+//        guildTable.setVisible(false);
+ guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+                guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
+                guildTable.setItems(guildsModel.getGuilds());
     }
 
     /**
