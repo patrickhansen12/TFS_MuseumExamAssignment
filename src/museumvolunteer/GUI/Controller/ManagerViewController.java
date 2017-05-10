@@ -27,7 +27,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import museumvolunteer.BE.CheckIn;
 import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Volunteer;
@@ -76,7 +78,7 @@ public class ManagerViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
 //        backgroundColor();
         datePicker.setValue(LocalDate.now());
         dataBind();
@@ -212,16 +214,16 @@ public class ManagerViewController implements Initializable {
 
                 int guildId = guildManagerTable.getSelectionModel().getSelectedItem().getId();
                 volunteerModel.setNamesByGuildId(guildId);
-                
+
                 nameManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
                 nameManagerTable.setItems(volunteerModel.getAllVolunteers().sorted());
-                
+
                 int hourId = -1;
                 volunteerModel.setCheckInsByNameId(hourId);
                 hoursManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
                 dateManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
                 hoursManagerTable.setItems(volunteerModel.getAllCheckIns().sorted());
-                
+
             }
         }
     }
@@ -344,11 +346,15 @@ public class ManagerViewController implements Initializable {
                 controller.doMagicStuff(new Volunteer(id, name, email, phoneNumber, guildsId));
                 //controller.getGuild(new Guild(gId, gName));
                 Scene scene = new Scene(root);
-                stage.setTitle("Tilføj frivillig");
+                stage.setTitle("Rediger frivillig");
                 stage.setResizable(false);
+                stage.initStyle(StageStyle.UNDECORATED);
 
                 stage.setScene(scene);
                 stage.show();
+
+                stage = (Stage) ManagerScreen.getScene().getWindow();
+                stage.close();
             } catch (IOException ex) {
                 System.out.println("HandleInfo");
             }
