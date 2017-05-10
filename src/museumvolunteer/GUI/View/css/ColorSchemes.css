@@ -16,3 +16,9 @@
 .table-view .column-header-background .filler {
     -fx-background-color: red;
 }
+.table-view .table-cell{
+    /*-fx-font-weight:bold;*/
+    -fx-font-size:14px;          
+     -fx-text-fill: black; 
+
+}

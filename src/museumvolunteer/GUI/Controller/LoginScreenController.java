@@ -48,6 +48,8 @@ public class LoginScreenController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) 
     {
         // TODO
+        usernameField.setText("LarsHansen95");
+        passwordField.setText("123456");
     }    
 
     /**
@@ -81,7 +83,7 @@ public class LoginScreenController implements Initializable {
      */
     private void signIn()throws IOException
     {   
-        if (usernameField.getText().equals("t") && (passwordField.getText().equals("t")))
+        if (usernameField.getText().equals("LarsHansen95") && (passwordField.getText().equals("123456")))
         {
             publicMessageLabel.setText("");
             logIn();
