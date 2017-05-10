@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="ManagerScreen" prefHeight="380.0" prefWidth="587.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.ManagerViewController">
+<AnchorPane id="AnchorPane" fx:id="ManagerScreen" prefHeight="380.0" prefWidth="587.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.ManagerViewController">
    <children>
       <TableView fx:id="guildManagerTable" layoutX="14.0" layoutY="115.0" onMouseClicked="#handleGuildsVolunteers" prefHeight="200.0" prefWidth="175.0">
         <columns>
@@ -24,8 +24,8 @@
       </TableView>
       <TableView fx:id="hoursManagerTable" layoutX="395.0" layoutY="115.0" prefHeight="200.0" prefWidth="175.0">
         <columns>
-            <TableColumn fx:id="dateManagerColumn" prefWidth="115.0" text="Dato" />
-          <TableColumn fx:id="hoursManagerColumn" prefWidth="58.0" text="Timer" />
+            <TableColumn fx:id="dateManagerColumn" prefWidth="125.0" text="Dato" />
+          <TableColumn fx:id="hoursManagerColumn" prefWidth="48.0" text="Timer" />
         </columns>
        
       </TableView>
