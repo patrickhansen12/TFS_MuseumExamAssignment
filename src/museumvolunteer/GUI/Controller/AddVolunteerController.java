@@ -51,6 +51,8 @@ public class AddVolunteerController implements Initializable {
     int guildToogle = 1;
     @FXML
     private Button guildBtn;
+    @FXML
+    private TextField guildNameBox;
 
     /**
      * Initializes the AddVolunteerController class.
@@ -66,6 +68,8 @@ public class AddVolunteerController implements Initializable {
                 guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
                 guildTable.setItems(guildsModel.getGuilds());
                 guildBtn.setVisible(false);
+                guildBox.setVisible(false);
+    guildNameBox.setEditable(false);
     }
 
     /**
@@ -151,7 +155,8 @@ public class AddVolunteerController implements Initializable {
      */
     @FXML
     private void guildClicked(MouseEvent event) {
-//int guildId = guildTable.getSelectionModel().getSelectedItem().getId();
+    String guildName = guildTable.getSelectionModel().getSelectedItem().getName();
+    guildNameBox.setText(""+guildName);
         int guildIdBox = guildTable.getSelectionModel().getSelectedItem().getId();
         guildBox.setText("" + guildIdBox);
     }

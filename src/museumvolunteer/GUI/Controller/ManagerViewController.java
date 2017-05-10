@@ -141,7 +141,7 @@ stage.initStyle(StageStyle.UNDECORATED);
             alert.setHeaderText(null);
             alert.setContentText("Er du sikker på du vil slette " + nameManagerTable.getSelectionModel().getSelectedItem() + "?" );
 
-            ButtonType buttonTypeThis = new ButtonType("Dette laug");
+            ButtonType buttonTypeThis = new ButtonType("Godkend");
 //            ButtonType buttonTypeAll = new ButtonType("Alle laug");
             ButtonType buttonTypeCancel = new ButtonType("Anuller", ButtonData.CANCEL_CLOSE);
 

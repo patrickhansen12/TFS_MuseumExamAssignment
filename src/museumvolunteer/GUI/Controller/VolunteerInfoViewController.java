@@ -78,6 +78,7 @@ int guildToogle = 2;
         guildTable.setItems(guildsModel.getGuilds());
 guildBox.setVisible(false);
 guildBtn.setVisible(false);
+    guildNameText.setEditable(false);
     }
 
     /**

@@ -42,6 +42,7 @@
             <Font size="7.0" />
          </font>
       </Button>
+      <TextField fx:id="guildNameBox" layoutX="82.0" layoutY="133.0" prefHeight="31.0" prefWidth="149.0" />
    </children>
    <stylesheets>
        <URL value="@css/ColorSchemes.css" />
