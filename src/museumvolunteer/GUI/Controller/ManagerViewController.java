@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -191,6 +192,9 @@ public class ManagerViewController implements Initializable {
 
         guildManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
         guildManagerTable.setItems(guildsModel.getGuilds());
+        guildManagerTable.setPlaceholder(new Label("Der er ikke \nnogen laug \nat vise"));
+        nameManagerTable.setPlaceholder(new Label("Der er ikke \nnogen navne \nat vise"));
+        hoursManagerTable.setPlaceholder(new Label("Der er ikke \nnogen timer \nat vise"));
     }
 
 //    /**
