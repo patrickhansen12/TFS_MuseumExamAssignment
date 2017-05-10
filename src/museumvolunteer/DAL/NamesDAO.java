@@ -61,12 +61,19 @@ public class NamesDAO {
             ps.setString(1, v.getName());
             ps.setString(2, v.getEmail());
             ps.setString(3, v.getPhoneNumber());
-
+            
             ps.executeUpdate();
             ResultSet generatedKey = ps.getGeneratedKeys();
             generatedKey.next();
             int id = generatedKey.getInt(1);
-            return new Volunteer(id, v.getName(), v.getEmail(), v.getPhoneNumber());
+            
+        String sql2 = "INSERT INTO Works_For(nameId, guildsId) VALUES(?, ?)";
+            PreparedStatement ps2 = con.prepareStatement(sql2);
+            ps2.setInt(1, id);
+            ps2.setInt(2, v.getGuildsId());
+
+            ps2.executeUpdate();
+            return new Volunteer(id, v.getName(), v.getEmail(), v.getPhoneNumber(), v.getGuildsId());    
         }
     }
 
