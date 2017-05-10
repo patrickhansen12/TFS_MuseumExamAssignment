@@ -72,7 +72,6 @@ public class NamesManager {
      */
     public void update(Volunteer v) throws SQLException {
         namesDAO.update(v);
-        namesDAO.updateGuildByGuildsId(v);
     }
 
     /**
