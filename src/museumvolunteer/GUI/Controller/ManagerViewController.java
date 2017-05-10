@@ -113,7 +113,7 @@ public class ManagerViewController implements Initializable {
         Scene scene = new Scene(root);
         stage.setTitle("Tilføj frivillig");
         stage.setResizable(false);
-
+stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
     }
@@ -139,11 +139,11 @@ public class ManagerViewController implements Initializable {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Dialog with Custom Actions");
             alert.setHeaderText(null);
-            alert.setContentText("Er du sikker på du vil slette denne frivillige?");
+            alert.setContentText("Er du sikker på du vil slette " + nameManagerTable.getSelectionModel().getSelectedItem() + "?" );
 
             ButtonType buttonTypeThis = new ButtonType("Dette laug");
 //            ButtonType buttonTypeAll = new ButtonType("Alle laug");
-            ButtonType buttonTypeCancel = new ButtonType("Fortryd", ButtonData.CANCEL_CLOSE);
+            ButtonType buttonTypeCancel = new ButtonType("Anuller", ButtonData.CANCEL_CLOSE);
 
             alert.getButtonTypes().setAll(buttonTypeThis, buttonTypeCancel);
 

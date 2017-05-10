@@ -22,7 +22,7 @@
       <TextField fx:id="guildBox" layoutX="119.0" layoutY="143.0" prefHeight="31.0" prefWidth="182.0" />
       <Button layoutX="257.0" layoutY="385.0" mnemonicParsing="false" onAction="#backVolunteerInfo" styleClass="buttonGreen" text="Tilbage" />
       <TextField fx:id="guildNameText" layoutX="119.0" layoutY="144.0" prefHeight="31.0" prefWidth="182.0" />
-      <Button layoutX="99.0" layoutY="151.0" minHeight="15.0" minWidth="15.0" mnemonicParsing="false" onAction="#openGuildList" prefHeight="10.0" prefWidth="10.0" text="?">
+      <Button fx:id="guildBtn" layoutX="99.0" layoutY="151.0" minHeight="15.0" minWidth="15.0" mnemonicParsing="false" onAction="#openGuildList" prefHeight="10.0" prefWidth="10.0" styleClass="buttonGreen" text="?">
          <font>
             <Font size="7.0" />
          </font>

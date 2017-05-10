@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -48,6 +49,8 @@ public class AddVolunteerController implements Initializable {
     //private variables.
     private GuildsModel guildsModel;
     int guildToogle = 1;
+    @FXML
+    private Button guildBtn;
 
     /**
      * Initializes the AddVolunteerController class.
@@ -62,6 +65,7 @@ public class AddVolunteerController implements Initializable {
  guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
                 guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
                 guildTable.setItems(guildsModel.getGuilds());
+                guildBtn.setVisible(false);
     }
 
     /**

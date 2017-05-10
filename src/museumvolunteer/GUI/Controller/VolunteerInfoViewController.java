@@ -62,6 +62,8 @@ int guildToogle = 2;
     private TableColumn<Guild, String> guildColumn;
     @FXML
     private TextField guildNameText;
+    @FXML
+    private Button guildBtn;
 
     /**
      * Initializes the VolunteerInfoViewController class.
@@ -75,6 +77,7 @@ int guildToogle = 2;
                 guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
         guildTable.setItems(guildsModel.getGuilds());
 guildBox.setVisible(false);
+guildBtn.setVisible(false);
     }
 
     /**
