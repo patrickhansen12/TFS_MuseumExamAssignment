@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * @author Nicolai, Patrick, Kasper, Casper
@@ -60,6 +61,7 @@ public class MainViewController implements Initializable {
         Scene scene = new Scene(root);
         stage.setTitle("Login");
         stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
         
         stage.setScene(scene);
         stage.show();
