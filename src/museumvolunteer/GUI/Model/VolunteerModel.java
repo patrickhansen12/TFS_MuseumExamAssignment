@@ -169,4 +169,8 @@ public class VolunteerModel {
         allCheckIns = FXCollections.observableArrayList();
         allCheckIns.addAll(checkInManager.getAllCheckInsById(nameId));
     }
+
+    public void addToNewGuild(int nameId, int guildsId) throws SQLException {
+        namesManager.addToNewGuild(nameId, guildsId);
+    }
 }

@@ -64,6 +64,10 @@ int guildToogle = 2;
     private TextField guildNameText;
     @FXML
     private Button guildBtn;
+    @FXML
+    private TextField newGuildBox;
+    @FXML
+    private Button newGuild;
 
     /**
      * Initializes the VolunteerInfoViewController class.
@@ -123,6 +127,14 @@ guildBtn.setVisible(false);
         volunteerModel.updateVolunteer(new Volunteer(thisVolunteer.getId(), name, email, phoneNumber, guildsId));
         
         backVolunteerInfo(event);
+    }
+    
+    @FXML
+    private void handleAddToNewGuild(ActionEvent event) throws SQLException
+    {
+        int nameId = thisVolunteer.getId();
+        int guildsId = Integer.parseInt(newGuildBox.getText());
+        volunteerModel.addToNewGuild(nameId, guildsId);
     }
 
     /**

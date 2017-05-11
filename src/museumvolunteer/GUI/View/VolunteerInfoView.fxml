@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="volunteerInfoScreen" prefHeight="427.0" prefWidth="343.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.VolunteerInfoViewController">
+<AnchorPane id="AnchorPane" fx:id="volunteerInfoScreen" prefHeight="427.0" prefWidth="343.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.VolunteerInfoViewController">
    <children>
       <TextField fx:id="nameBox" layoutX="120.0" layoutY="7.0" prefHeight="31.0" prefWidth="182.0" />
       <TextField fx:id="emailBox" layoutX="120.0" layoutY="49.0" prefHeight="31.0" prefWidth="182.0" />
@@ -33,6 +33,8 @@
             <TableColumn fx:id="guildColumn" prefWidth="284.0" text="Laug" />
          </columns>
       </TableView>
+      <TextField fx:id="newGuildBox" layoutX="72.0" layoutY="385.0" />
+      <Button fx:id="newGuild" layoutX="23.0" layoutY="367.0" mnemonicParsing="false" onAction="#handleAddToNewGuild" text="Button" />
    </children>
    <stylesheets>
        <URL value="@css/ColorSchemes.css" />

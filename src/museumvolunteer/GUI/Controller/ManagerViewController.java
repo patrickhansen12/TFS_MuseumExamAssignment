@@ -40,7 +40,7 @@ import museumvolunteer.GUI.Model.VolunteerModel;
 /**
  * @author Nicolai, Patrick, Kasper, Casper
  */
-public class ManagerViewController implements Initializable {
+public class ManagerViewController implements Initializable{
 
     @FXML
     private TableView<Guild> guildManagerTable;

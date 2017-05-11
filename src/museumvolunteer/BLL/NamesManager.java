@@ -120,4 +120,8 @@ public class NamesManager {
         }
         return result;
     }
+
+    public void addToNewGuild(int nameId, int guildsId) throws SQLException {
+        namesDAO.addToNewGuild(nameId, guildsId);
+    }
 }

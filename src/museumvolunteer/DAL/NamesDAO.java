@@ -171,4 +171,15 @@ public class NamesDAO {
             return allVolunteers;
         }
     }
+
+    public void addToNewGuild(int nameId, int guildsId) throws SQLException {
+        String sql = "INSERT INTO Works_For (nameId, guildsId) VALUES(?, ?)";
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, nameId);
+            ps.setInt(2, guildsId);
+
+            ps.executeUpdate();
+    }
+}
 }
