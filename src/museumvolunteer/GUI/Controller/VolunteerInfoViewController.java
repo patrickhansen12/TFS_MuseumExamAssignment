@@ -174,11 +174,9 @@ guildBtn.setVisible(false);
      */
     @FXML
     private void guildClicked(MouseEvent event) {
-         if (guildTable.getSelectionModel().getSelectedItem() != null) {
 int guildId = guildTable.getSelectionModel().getSelectedItem().getId();
 guildBox.setText(""+ guildId);
         String guildNameBox = guildTable.getSelectionModel().getSelectedItem().getName();
         guildNameText.setText("" + guildNameBox);
     }
-}
 }

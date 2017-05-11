@@ -155,11 +155,9 @@ public class AddVolunteerController implements Initializable {
      */
     @FXML
     private void guildClicked(MouseEvent event) {
-          if (guildTable.getSelectionModel().getSelectedItem() != null) {
     String guildName = guildTable.getSelectionModel().getSelectedItem().getName();
     guildNameBox.setText(""+guildName);
         int guildIdBox = guildTable.getSelectionModel().getSelectedItem().getId();
         guildBox.setText("" + guildIdBox);
-    }
     }
 }
