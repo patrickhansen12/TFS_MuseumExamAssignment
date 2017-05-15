@@ -37,7 +37,7 @@ import museumvolunteer.GUI.Model.VolunteerModel;
 /**
  * @author Nicolai, Patrick, Kasper, Casper
  */
-public class AdministatorViewController implements Initializable {
+public class AdministratorViewController implements Initializable {
 
     @FXML
     private AnchorPane adminScreen;
@@ -89,7 +89,7 @@ public class AdministatorViewController implements Initializable {
      * @throws IOException
      * @throws SQLException
      */
-    public AdministatorViewController() throws IOException, SQLException {
+    public AdministratorViewController() throws IOException, SQLException {
         volunteerModel = VolunteerModel.getInstance();
         guildsModel = GuildsModel.getInstance();
     }

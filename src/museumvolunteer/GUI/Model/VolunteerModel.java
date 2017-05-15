@@ -2,6 +2,7 @@ package museumvolunteer.GUI.Model;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Comparator;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

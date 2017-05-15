@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Comparator;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleObjectProperty;
@@ -139,7 +140,7 @@ stage.initStyle(StageStyle.UNDECORATED);
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Dialog with Custom Actions");
             alert.setHeaderText(null);
-            alert.setContentText("Er du sikker på du vil slette " + nameManagerTable.getSelectionModel().getSelectedItem() + "?" );
+            alert.setContentText("Er du sikker på du vil slette " + nameManagerTable.getSelectionModel().getSelectedItem().getName() + "?" );
 
             ButtonType buttonTypeThis = new ButtonType("Godkend");
 //            ButtonType buttonTypeAll = new ButtonType("Alle laug");
@@ -220,13 +221,13 @@ stage.initStyle(StageStyle.UNDECORATED);
                 volunteerModel.setNamesByGuildId(guildId);
 
                 nameManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-                nameManagerTable.setItems(volunteerModel.getAllVolunteers().sorted());
+                nameManagerTable.setItems(volunteerModel.getAllVolunteers());
 
                 int hourId = -1;
                 volunteerModel.setCheckInsByNameId(hourId);
                 hoursManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
                 dateManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
-                hoursManagerTable.setItems(volunteerModel.getAllCheckIns().sorted());
+                hoursManagerTable.setItems(volunteerModel.getAllCheckIns());
 
             }
         }
