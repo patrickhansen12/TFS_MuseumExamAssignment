@@ -166,6 +166,7 @@ public class VolunteerViewController implements Initializable {
             }
         }
         searchnameField.clear();
+  
     }
 
     /**
@@ -218,6 +219,7 @@ public class VolunteerViewController implements Initializable {
         int guildId = guildTable.getSelectionModel().getSelectedItem().getId();
         searchResult = namesManager.search(searchStrategy, guildId);
         volunteerModel.setFilteredNames(searchResult);
-        nameTable.setItems(volunteerModel.getNames());
+        nameTable.setItems(volunteerModel.getNames().sorted());
+
     }
 }
