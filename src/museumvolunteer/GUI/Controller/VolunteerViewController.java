@@ -162,7 +162,7 @@ public class VolunteerViewController implements Initializable {
                 int guildId = guildTable.getSelectionModel().getSelectedItem().getId();
                 volunteerModel.setNamesByGuildId(guildId);
                 nameColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-                nameTable.setItems(volunteerModel.getAllVolunteers());
+                nameTable.setItems(volunteerModel.getAllVolunteers().sorted());
             }
         }
         searchnameField.clear();

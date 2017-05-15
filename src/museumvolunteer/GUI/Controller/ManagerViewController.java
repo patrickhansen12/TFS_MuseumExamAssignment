@@ -221,7 +221,7 @@ stage.initStyle(StageStyle.UNDECORATED);
                 volunteerModel.setNamesByGuildId(guildId);
 
                 nameManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-                nameManagerTable.setItems(volunteerModel.getAllVolunteers());
+                nameManagerTable.setItems(volunteerModel.getAllVolunteers().sorted());
 
                 int hourId = -1;
                 volunteerModel.setCheckInsByNameId(hourId);
