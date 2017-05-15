@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="addScreen" prefHeight="450.0" prefWidth="285.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AddVolunteerController">
+<AnchorPane id="AnchorPane" fx:id="addScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AddVolunteerController">
    <children>
       <TextField fx:id="nameBox" layoutX="82.0" layoutY="14.0" />
       <Label layoutX="15.0" layoutY="19.0" text="Navn" />
