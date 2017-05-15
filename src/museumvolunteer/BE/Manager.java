@@ -16,4 +16,8 @@ public class Manager extends Person{
     public Manager(int id, String name, String email, String phoneNumber) {
         super(id, name, email, phoneNumber);
     }
+
+    public Manager(String name, String email, String phoneNumber) {
+        super(0, name, email, phoneNumber);
+    }
 }

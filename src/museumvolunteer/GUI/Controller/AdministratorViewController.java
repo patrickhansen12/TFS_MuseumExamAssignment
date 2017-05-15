@@ -27,10 +27,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import museumvolunteer.BE.CheckIn;
 import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Manager;
 import museumvolunteer.BE.Volunteer;
+import museumvolunteer.GUI.Model.AdminModel;
 import museumvolunteer.GUI.Model.GuildsModel;
 import museumvolunteer.GUI.Model.VolunteerModel;
 
@@ -69,6 +71,7 @@ public class AdministratorViewController implements Initializable {
     private GuildsModel guildsModel;
     private Volunteer volunteer;
     private CheckIn checkIn;
+    private AdminModel adminModel;
 
     /**
      * Initializes the AdministratorViewController class.
@@ -92,6 +95,7 @@ public class AdministratorViewController implements Initializable {
     public AdministratorViewController() throws IOException, SQLException {
         volunteerModel = VolunteerModel.getInstance();
         guildsModel = GuildsModel.getInstance();
+        adminModel = AdminModel.getInstance();
     }
 
     /**
@@ -205,7 +209,16 @@ public class AdministratorViewController implements Initializable {
      * @param event
      */
     @FXML
-    private void addManagerButton(ActionEvent event) {
+    private void addManagerButton(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AddManager.fxml"));
+
+        Scene scene = new Scene(root);
+        stage.setTitle("Tilføj manager");
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(scene);
+        stage.show();
     }
 
     /**
@@ -215,8 +228,35 @@ public class AdministratorViewController implements Initializable {
      * @param event
      */
     @FXML
-    private void removeManagerButton(ActionEvent event) {
+    private void removeManagerButton(ActionEvent event) throws SQLException {
+        if (managerAdminTable.getSelectionModel().getSelectedItem() == null) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Du skal vælge en manager, før du kan slette vedkommende.");
+            alert.showAndWait();
+        }
 
+        if (managerAdminTable.getSelectionModel().getSelectedItem() != null) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog with Custom Actions");
+            alert.setHeaderText(null);
+            alert.setContentText("Er du sikker på du vil slette " + managerAdminTable.getSelectionModel().getSelectedItem().getName() + "?" );
+
+            ButtonType buttonTypeThis = new ButtonType("Godkend");
+//            ButtonType buttonTypeAll = new ButtonType("Alle laug");
+            ButtonType buttonTypeCancel = new ButtonType("Anuller", ButtonData.CANCEL_CLOSE);
+
+            alert.getButtonTypes().setAll(buttonTypeThis, buttonTypeCancel);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == buttonTypeThis) {
+                Manager selectedItem = managerAdminTable.getSelectionModel().getSelectedItem();
+                adminModel.deleteManager(selectedItem);
+                managerAdminTable.getItems().remove(selectedItem);
+                managerAdminTable.getSelectionModel().clearSelection();
+            }
+        }
     }
 
     /**
@@ -286,6 +326,8 @@ public class AdministratorViewController implements Initializable {
     private void dataBind() {
         guildAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
         guildAdminTable.setItems(guildsModel.getGuilds());
+        managerAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+        managerAdminTable.setItems(adminModel.getAllManagers());
     }
 
 //    /**
