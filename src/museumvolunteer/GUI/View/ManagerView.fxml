@@ -29,11 +29,11 @@
         </columns>
        
       </TableView>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#addVolunteersButton" prefHeight="44.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilføj frivillige">
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#addVolunteersButton" prefHeight="44.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilføj frivillig">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button layoutX="14.0" layoutY="65.0" mnemonicParsing="false" onAction="#deleteVolunteersButton" prefHeight="44.0" prefWidth="175.0" styleClass="buttonGreen" text="Slet frivillige">
+      <Button layoutX="14.0" layoutY="65.0" mnemonicParsing="false" onAction="#deleteVolunteersButton" prefHeight="44.0" prefWidth="175.0" styleClass="buttonGreen" text="Slet frivillig fra laug">
          <font>
             <Font size="20.0" />
          </font></Button>
