@@ -70,6 +70,7 @@ public class AdministratorViewController implements Initializable {
     private VolunteerModel volunteerModel;
     private GuildsModel guildsModel;
     private Volunteer volunteer;
+    private Guild guild;
     private CheckIn checkIn;
     private AdminModel adminModel;
 
@@ -126,7 +127,17 @@ public class AdministratorViewController implements Initializable {
      * @param event
      */
     @FXML
-    private void addGuildButton(ActionEvent event) {
+    private void addGuildButton(ActionEvent event) throws IOException 
+    {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AddGuild.fxml"));
+
+        Scene scene = new Scene(root);
+        stage.setTitle("Tilføj laug");
+        stage.setResizable(false);
+
+        stage.setScene(scene);
+        stage.show();
     }
 
     /**
@@ -154,7 +165,35 @@ public class AdministratorViewController implements Initializable {
      * @param event
      */
     @FXML
-    private void removeGuildButton(ActionEvent event) {
+    private void removeGuildButton(ActionEvent event) throws SQLException
+    {
+        if (guildAdminTable.getSelectionModel().getSelectedItem() == null)
+        {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Du skal vælge et laug, før du kan slette det.");
+            alert.showAndWait();
+        }
+        
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Er du sikker?");
+        alert.setHeaderText(null);
+        alert.setContentText("Er du sikker på du vil slette dette laug?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK)
+        {
+            Guild selectedItem = guildAdminTable.getSelectionModel().getSelectedItem();
+            guild = selectedItem;
+            guildsModel.deleteGuild(guild);
+            guildAdminTable.getItems().remove(selectedItem);
+            guildAdminTable.getSelectionModel().clearSelection();
+        } 
+        else 
+        {
+            
+        }
     }
 
     /**

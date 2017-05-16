@@ -65,6 +65,20 @@ public class GuildsDAO {
             ps.executeUpdate();
         }
     }
+    
+     public Guild add(Guild g) throws SQLException {
+        String sql = "INSERT INTO Names(name) VALUES(?)";
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setString(1, g.getName());
+            
+            ps.executeUpdate();
+            ResultSet generatedKey = ps.getGeneratedKeys();
+            generatedKey.next();
+            int id = generatedKey.getInt(1);
+            return new Guild(id, g.getName());
+        }
+     }
 
     /**
      * Deletes a guild from database table Guilds.

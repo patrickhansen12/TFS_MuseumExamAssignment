@@ -18,6 +18,11 @@ public class Guild{
         this.id = id;
         this.name = name;
     }
+    
+    public Guild(String name)
+    {
+       this(-1, name); 
+    }
 
 //    public Guild(int id, Guild g) {
 //        this(id, g.getName(), g.getNameId());

@@ -78,4 +78,8 @@ public class GuildsManager {
     public void update(Guild g) throws SQLException {
         guildsDAO.update(g);
     }
+    
+    public Guild add(Guild g) throws SQLException {
+        return guildsDAO.add(g);
+    }
 }
