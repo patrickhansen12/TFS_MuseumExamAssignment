@@ -30,6 +30,8 @@ public class AddGuildController implements Initializable {
     private TextField guildNameBox;
     @FXML
     private AnchorPane addGuildScreen;
+    
+    private GuildsModel guildModel;
 
     /**
      * Initializes the controller class.
@@ -38,6 +40,10 @@ public class AddGuildController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    public AddGuildController() throws IOException, SQLException {
+        guildModel = GuildsModel.getInstance();
+    }
 
     @FXML
     private void returnButton(ActionEvent event) {
@@ -55,7 +61,7 @@ public class AddGuildController implements Initializable {
             alert.showAndWait();
         } else {
             String name = guildNameBox.getText().trim();
-            GuildsModel.getInstance().addGuild(new Guild(name));
+            guildModel.addGuild(new Guild(name));
             guildNameBox.clear();
             guildNameBox.requestFocus();
 

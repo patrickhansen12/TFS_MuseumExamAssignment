@@ -67,7 +67,7 @@ public class GuildsDAO {
     }
     
      public Guild add(Guild g) throws SQLException {
-        String sql = "INSERT INTO Names(name) VALUES(?)";
+        String sql = "INSERT INTO Guilds(name) VALUES(?)";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, g.getName());
@@ -76,7 +76,14 @@ public class GuildsDAO {
             ResultSet generatedKey = ps.getGeneratedKeys();
             generatedKey.next();
             int id = generatedKey.getInt(1);
-            return new Guild(id, g.getName());
+            
+        String sql2 = "INSERT INTO Works_For(nameId, guildsId) VALUES(?, ?)";
+            PreparedStatement ps2 = con.prepareStatement(sql2);
+            ps2.setInt(1, g.getNamesId());
+            ps2.setInt(2, id);
+
+            ps2.executeUpdate();
+            return new Guild(id, g.getName(), g.getNamesId());
         }
      }
 

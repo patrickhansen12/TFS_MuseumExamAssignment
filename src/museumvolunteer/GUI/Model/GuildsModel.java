@@ -18,7 +18,6 @@ public class GuildsModel {
 
     //Observable list of BE Guild.
     private final ObservableList<Guild> guilds;
-    private ObservableList<Guild> allGuilds;
 
     /**
      * Constructs a new GuildsManager and creates an observable arraylist out of
@@ -26,7 +25,6 @@ public class GuildsModel {
      */
     private GuildsModel() throws IOException, SQLException {
         guildsMgr = new GuildsManager();
-        allGuilds = FXCollections.observableArrayList();
         guilds = FXCollections.observableArrayList();
         guilds.addAll(guildsMgr.getAllGuilds());
     }
@@ -52,10 +50,6 @@ public class GuildsModel {
      */
     public ObservableList<Guild> getGuilds() {
         return guilds;
-    }
-    
-    public ObservableList<Guild> getAllGuilds() {
-        return allGuilds;
     }
 
 //    /**
@@ -88,11 +82,11 @@ public class GuildsModel {
     public void deleteGuild(Guild g) throws SQLException
     {
         guildsMgr.delete(g);
-        allGuilds.remove(g);
+        guilds.remove(g);
     }
     
     public void addGuild(Guild g) throws SQLException {
         guildsMgr.add(g);
-        allGuilds.add(g);
+        guilds.add(g);
     }
 }
