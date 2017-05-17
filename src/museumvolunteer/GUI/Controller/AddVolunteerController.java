@@ -50,8 +50,6 @@ public class AddVolunteerController implements Initializable {
     private GuildsModel guildsModel;
     int guildToogle = 1;
     @FXML
-    private Button guildBtn;
-    @FXML
     private TextField guildNameBox;
 
     /**
@@ -62,14 +60,13 @@ public class AddVolunteerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
 //        guildTable.setVisible(false);
- guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-                guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
-                guildTable.setItems(guildsModel.getGuilds());
-                guildBtn.setVisible(false);
-                guildBox.setVisible(false);
-    guildNameBox.setEditable(false);
+        guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+        guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
+        guildTable.setItems(guildsModel.getGuilds());
+        guildBox.setVisible(false);
+        guildNameBox.setEditable(false);
+        noteBox.setVisible(false);
     }
 
     /**
