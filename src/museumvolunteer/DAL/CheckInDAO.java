@@ -1,5 +1,7 @@
 package museumvolunteer.DAL;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +11,11 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.Alert;
 import museumvolunteer.BE.CheckIn;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  * @author Nicolai, Patrick, Kasper, Casper
@@ -199,4 +205,42 @@ public class CheckInDAO {
             ps.executeUpdate();
         }
     }
+
+    public List<CheckIn> getByNameIdToExcel(int nameId) throws SQLException, IOException {
+        String sql = "SELECT * FROM Hours WHERE nameId = ?";
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, nameId);
+            ResultSet rs = ps.executeQuery();
+            XSSFWorkbook wb = new XSSFWorkbook();
+            XSSFSheet sheet = wb.createSheet("Timer for frivillig");
+            XSSFRow header = sheet.createRow(0);
+            header.createCell(0).setCellValue("Tidsstempel");
+            header.createCell(1).setCellValue("Id på frivillig");
+            header.createCell(2).setCellValue("Antal timer");
+
+            int index = 1;
+            while (rs.next()) {
+                XSSFRow row = sheet.createRow(index);
+                row.createCell(0).setCellValue(rs.getString("timeStamp"));
+                row.createCell(1).setCellValue(rs.getString("nameId"));
+                row.createCell(2).setCellValue(rs.getString("hours"));
+                index++;
+            }
+            FileOutputStream fileOut = new FileOutputStream("UserDetails.xlsx");
+            wb.write(fileOut);
+            ps.close();
+            rs.close();
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Bidragede timer");
+            alert.setHeaderText(null);
+            alert.setContentText("Du har bidraget med timer");
+            alert.showAndWait();
+            
+            return (List<CheckIn>) alert;
+        }
+    }       
 }
+        
+

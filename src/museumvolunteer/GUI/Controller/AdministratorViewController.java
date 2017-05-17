@@ -401,7 +401,7 @@ public class AdministratorViewController implements Initializable {
      * @throws SQLException
      */
     @FXML
-    private void handleVolunteersHours(MouseEvent event) throws SQLException {
+    private void handleVolunteersHours(MouseEvent event) throws SQLException, IOException {
         if (nameAdminTable.getSelectionModel().getSelectedItem() != null) {
             if (event.isPrimaryButtonDown() == false) {
                 int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getId();

@@ -212,7 +212,7 @@ stage.initStyle(StageStyle.UNDECORATED);
      * @throws SQLException
      */
     @FXML
-    private void handleGuildsVolunteers(MouseEvent event) throws SQLException {
+    private void handleGuildsVolunteers(MouseEvent event) throws SQLException, IOException {
         if (guildManagerTable.getSelectionModel().getSelectedItem() != null) {
 
             if (event.isPrimaryButtonDown() == false) {
@@ -303,7 +303,7 @@ stage.initStyle(StageStyle.UNDECORATED);
      * @throws SQLException
      */
     @FXML
-    private void handleVolunteersHours(MouseEvent event) throws SQLException {
+    private void handleVolunteersHours(MouseEvent event) throws SQLException, IOException {
         if (nameManagerTable.getSelectionModel().getSelectedItem() != null) {
             if (event.isPrimaryButtonDown() == false) {
                 int nameId = nameManagerTable.getSelectionModel().getSelectedItem().getId();
@@ -365,6 +365,13 @@ stage.initStyle(StageStyle.UNDECORATED);
                 System.out.println("HandleInfo");
             }
         }
+    }
+    
+    @FXML
+    public void handleExportToExcel(ActionEvent event) throws SQLException, IOException
+    {
+        int nameId = nameManagerTable.getSelectionModel().getSelectedItem().getId();
+        volunteerModel.setCheckInsByNameIdToExcel(nameId);
     }
 
 //    private void backgroundColor() {
