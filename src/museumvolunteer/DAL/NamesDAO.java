@@ -125,11 +125,11 @@ public class NamesDAO {
             ps.setInt(4, v.getId());
             ps.executeUpdate();
             
-        String sql2 = "UPDATE Works_For SET guildsId = ? FROM Works_For INNER JOIN Names on Works_For.nameId = Names.id WHERE id = ?";
-            PreparedStatement ps2 = con.prepareStatement(sql2);
-            ps2.setInt(1, v.getGuildsId());
-            ps2.setInt(2, v.getId());
-            ps2.executeUpdate();
+//        String sql2 = "UPDATE Works_For SET guildsId = ? FROM Works_For INNER JOIN Names on Works_For.nameId = Names.id WHERE id = ?";
+//            PreparedStatement ps2 = con.prepareStatement(sql2);
+//            ps2.setInt(1, v.getGuildsId());
+//            ps2.setInt(2, v.getId());
+//            ps2.executeUpdate();
         }
     }
 

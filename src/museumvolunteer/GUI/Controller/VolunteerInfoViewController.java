@@ -129,7 +129,7 @@ Alert alert = new Alert(AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setContentText(nameBox.getText() + " er nu tilføjet i " + guildNameText.getText() );  
 //        backVolunteerInfo(event);
-//        volunteerModel.updateVolunteer(new Volunteer(thisVolunteer.getId(), name, email, phoneNumber, guildsId));
+        volunteerModel.updateVolunteer(new Volunteer(thisVolunteer.getId(), name, email, phoneNumber));
      alert.showAndWait();
         backVolunteerInfo(event);
     }
