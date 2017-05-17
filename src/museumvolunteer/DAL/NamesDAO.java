@@ -160,7 +160,7 @@ public class NamesDAO {
     public List<Volunteer> getByGuildId(int guildsId) throws SQLException {
 
         List<Volunteer> allVolunteers = new ArrayList<>();
-        String sql = "SELECT * FROM Works_For INNER JOIN Names ON Works_For.nameId = Names.id WHERE Works_For.guildsId =  ?";
+        String sql = "SELECT DISTINCT * FROM Works_For INNER JOIN Names ON Works_For.nameId = Names.id WHERE Works_For.guildsId =  ? ORDER BY name ASC";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, guildsId);
