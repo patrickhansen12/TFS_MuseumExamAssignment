@@ -28,7 +28,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="440.0" layoutY="361.0" mnemonicParsing="false" onAction="#LogInButton" onKeyPressed="#handleEnterPressed" prefHeight="45.0" prefWidth="110.0" styleClass="buttonGreen" text="Log in" AnchorPane.bottomAnchor="194.0" AnchorPane.rightAnchor="250.0">
+      <Button layoutX="440.0" layoutY="361.0" mnemonicParsing="false" onAction="#LogInButton" onKeyPressed="#handleEnterPressed" prefHeight="45.0" prefWidth="110.0" styleClass="buttonGreen" text="Log in" AnchorPane.leftAnchor="440.0" AnchorPane.topAnchor="360.0">
          <font>
             <Font size="24.0" />
          </font></Button>
