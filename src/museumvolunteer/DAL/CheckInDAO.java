@@ -207,6 +207,7 @@ public class CheckInDAO {
     }
 
     public List<CheckIn> getByNameIdToExcel(int nameId) throws SQLException, IOException {
+        List<CheckIn> allTimeStamps = new ArrayList<>();
         String sql = "SELECT * FROM Hours WHERE nameId = ?";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -226,19 +227,14 @@ public class CheckInDAO {
                 row.createCell(1).setCellValue(rs.getString("nameId"));
                 row.createCell(2).setCellValue(rs.getString("hours"));
                 index++;
+                allTimeStamps.add(getOneCheckIn(rs));
             }
             FileOutputStream fileOut = new FileOutputStream("UserDetails.xlsx");
             wb.write(fileOut);
             ps.close();
             rs.close();
-            
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Bidragede timer");
-            alert.setHeaderText(null);
-            alert.setContentText("Du har bidraget med timer");
-            alert.showAndWait();
-            
-            return (List<CheckIn>) alert;
+
+            return allTimeStamps;
         }
     }       
 }

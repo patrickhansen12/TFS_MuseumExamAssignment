@@ -71,6 +71,8 @@ public class ManagerViewController implements Initializable{
     private GuildsModel guildsModel;
     private Volunteer volunteer;
     private CheckIn checkIn;
+    @FXML
+    private Button exportToExcel;
 
     /**
      * Initializes the ManagerViewController class.
@@ -370,8 +372,14 @@ public class ManagerViewController implements Initializable{
     @FXML
     public void handleExportToExcel(ActionEvent event) throws SQLException, IOException
     {
+        String volunteerName = nameManagerTable.getSelectionModel().getSelectedItem().getName();
         int nameId = nameManagerTable.getSelectionModel().getSelectedItem().getId();
         volunteerModel.setCheckInsByNameIdToExcel(nameId);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Export til Excel");
+            alert.setHeaderText(null);
+            alert.setContentText("Du har eksporteret data om " + volunteerName + " til Excel");
+            alert.showAndWait();
     }
 
 //    private void backgroundColor() {
