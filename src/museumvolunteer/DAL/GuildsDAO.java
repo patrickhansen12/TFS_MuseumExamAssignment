@@ -76,14 +76,15 @@ public class GuildsDAO {
             ResultSet generatedKey = ps.getGeneratedKeys();
             generatedKey.next();
             int id = generatedKey.getInt(1);
+            return new Guild(id, g.getName());
             
-        String sql2 = "INSERT INTO Works_For(nameId, guildsId) VALUES(?, ?)";
-            PreparedStatement ps2 = con.prepareStatement(sql2);
-            ps2.setInt(1, g.getNamesId());
-            ps2.setInt(2, id);
-
-            ps2.executeUpdate();
-            return new Guild(id, g.getName(), g.getNamesId());
+//        String sql2 = "INSERT INTO Works_For(nameId, guildsId) VALUES(?, ?)";
+//            PreparedStatement ps2 = con.prepareStatement(sql2);
+//            ps2.setInt(1, g.getNamesId());
+//            ps2.setInt(2, id);
+//
+//            ps2.executeUpdate();
+//            return new Guild(id, g.getName(), g.getNamesId());
         }
      }
 
