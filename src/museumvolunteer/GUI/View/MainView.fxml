@@ -7,14 +7,19 @@
 
 <AnchorPane id="AnchorPane" fx:id="MainScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.MainViewController">
    <children>
-      <Button layoutX="100.0" layoutY="31.0" mnemonicParsing="false" onAction="#volunteerButton" styleClass="buttonGreen" text="Frivillig" AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+      <Button layoutX="100.0" layoutY="31.0" mnemonicParsing="false" onAction="#volunteerButton" prefHeight="125.0" styleClass="buttonGreen" text="Frivillig" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <font>
             <Font size="24.0" />
          </font></Button>
-      <Button layoutX="49.0" layoutY="109.0" mnemonicParsing="false" onAction="#managerButton" prefHeight="51.0" prefWidth="139.0" styleClass="buttonGreen" text="Manager" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="400.0">
+      <Button layoutX="49.0" layoutY="109.0" mnemonicParsing="false" onAction="#managerButton" prefHeight="125.0" styleClass="buttonGreen" text="Manager" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="225.0">
          <font>
             <Font size="24.0" />
          </font></Button>
+      <Button layoutX="77.0" layoutY="275.0" mnemonicParsing="false" onAction="#adminButton" prefHeight="125.0" styleClass="buttonGreen" text="Administrator" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="400.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
    </children>
    <stylesheets>
        <URL value="@css/ColorSchemes.css" />
