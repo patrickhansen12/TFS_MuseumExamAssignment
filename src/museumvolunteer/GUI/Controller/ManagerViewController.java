@@ -7,7 +7,6 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Comparator;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleObjectProperty;
@@ -29,7 +28,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import museumvolunteer.BE.CheckIn;
@@ -71,8 +69,6 @@ public class ManagerViewController implements Initializable{
     private GuildsModel guildsModel;
     private Volunteer volunteer;
     private CheckIn checkIn;
-    @FXML
-    private Button exportToExcel;
 
     /**
      * Initializes the ManagerViewController class.
@@ -368,20 +364,6 @@ public class ManagerViewController implements Initializable{
             }
         }
     }
-    
-    @FXML
-    public void handleExportToExcel(ActionEvent event) throws SQLException, IOException
-    {
-        String volunteerName = nameManagerTable.getSelectionModel().getSelectedItem().getName();
-        int nameId = nameManagerTable.getSelectionModel().getSelectedItem().getId();
-        volunteerModel.setCheckInsByNameIdToExcel(nameId);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Export til Excel");
-            alert.setHeaderText(null);
-            alert.setContentText("Du har eksporteret data om " + volunteerName + " til Excel");
-            alert.showAndWait();
-    }
-
 //    private void backgroundColor() {
 //        guildManagerColumn.setCellFactory((TableColumn<Guild, String> p) -> new TableCell<Guild, String>() {
 //            @Override
