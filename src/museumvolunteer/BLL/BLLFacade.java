@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumvolunteer.BLL;
 
 import java.io.IOException;
@@ -14,8 +9,8 @@ import museumvolunteer.BE.Manager;
 import museumvolunteer.BE.Volunteer;
 
 /**
- *
- * @author Casper
+ * Facade for decoupling bll from gui. Contains references to all methods in NamesManager, GuildsManager, CheckInManager and AdminManager.
+ * @author Nicolai, Patrick, Kasper, Casper
  */
 public class BLLFacade implements IBLLFacade{
 

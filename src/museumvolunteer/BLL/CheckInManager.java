@@ -1,8 +1,5 @@
 package museumvolunteer.BLL;
 
-/**
- * @author Nicolai, Patrick, Kasper, Casper
- */
 import museumvolunteer.BE.CheckIn;
 import museumvolunteer.DAL.CheckInDAO;
 import java.io.IOException;
@@ -10,7 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * @author Jens, Patrick, Casper, Kasper
+ * @author Nicolai, Patrick, Kasper, Casper
  */
 public class CheckInManager {
     

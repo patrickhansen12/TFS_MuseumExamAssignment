@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumvolunteer.DAL;
 
 import java.io.IOException;
@@ -16,8 +11,7 @@ import java.util.List;
 import museumvolunteer.BE.Manager;
 
 /**
- *
- * @author Casper
+ * @author Nicolai, Patrick, Kasper, Casper
  */
 public class AdminDAO {
     private final ConnectionManager cm;
