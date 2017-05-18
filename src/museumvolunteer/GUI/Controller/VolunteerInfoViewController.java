@@ -11,6 +11,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -49,7 +51,7 @@ public class VolunteerInfoViewController implements Initializable {
     private TextField guildBox;
     @FXML
     private AnchorPane volunteerInfoScreen;
-int guildToogle = 2;
+//int guildToogle = 2;
     //private variabler.
     private VolunteerModel volunteerModel;
     private Volunteer thisVolunteer;
@@ -62,12 +64,8 @@ int guildToogle = 2;
     private TableColumn<Guild, String> guildColumn;
     @FXML
     private TextField guildNameText;
-    @FXML
     private Button guildBtn;
-    @FXML
     private TextField newGuildBox;
-    @FXML
-    private Button newGuild;
 
     /**
      * Initializes the VolunteerInfoViewController class.
@@ -81,7 +79,7 @@ int guildToogle = 2;
                 guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
         guildTable.setItems(guildsModel.getGuilds());
 guildBox.setVisible(false);
-guildBtn.setVisible(false);
+
     guildNameText.setEditable(false);
     }
 
@@ -123,13 +121,19 @@ guildBtn.setVisible(false);
         String name = nameBox.getText().trim();
         String email = emailBox.getText().trim();
         String phoneNumber = phoneNumberBox.getText().trim();
+          int nameId = thisVolunteer.getId();
         int guildsId = Integer.parseInt(guildBox.getText());
-        volunteerModel.updateVolunteer(new Volunteer(thisVolunteer.getId(), name, email, phoneNumber, guildsId));
-        
+        volunteerModel.addToNewGuild(nameId, guildsId);
+Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle(null);
+            alert.setHeaderText(null);
+            alert.setContentText(nameBox.getText() + " er nu tilføjet i " + guildNameText.getText() );  
+//        backVolunteerInfo(event);
+        volunteerModel.updateVolunteer(new Volunteer(thisVolunteer.getId(), name, email, phoneNumber));
+     alert.showAndWait();
         backVolunteerInfo(event);
     }
     
-    @FXML
     private void handleAddToNewGuild(ActionEvent event) throws SQLException
     {
         int nameId = thisVolunteer.getId();
@@ -159,26 +163,24 @@ guildBtn.setVisible(false);
         stage = (Stage) volunteerInfoScreen.getScene().getWindow();
         stage.close();
     }
-    @FXML
-    private void openGuildList(ActionEvent event) {
-        switch (guildToogle) {
-            case 1:
-                guildTable.setVisible(true);
-                guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-                guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
-                guildTable.setItems(guildsModel.getGuilds());
-                guildToogle = 2;
-                guildTable.getSelectionModel().clearSelection();
-                break;
-
-            case 2:
-                guildTable.getSelectionModel().clearSelection();
-                guildTable.setVisible(false);
-                guildToogle = 1;
-
-                break;
-        }
-    }
+//        switch (guildToogle) {
+//            case 1:
+//                guildTable.setVisible(true);
+//                guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+//                guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
+//                guildTable.setItems(guildsModel.getGuilds());
+//                guildToogle = 2;
+//                guildTable.getSelectionModel().clearSelection();
+//                break;
+//
+//            case 2:
+//                guildTable.getSelectionModel().clearSelection();
+//                guildTable.setVisible(false);
+//                guildToogle = 1;
+//
+//                break;
+//        }
+//    }
 
     /**
      * if a guild is clicked inside the nameManagerTable, the guild name will be put into the guildBox textfield.

@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
@@ -73,6 +74,8 @@ public class AdministratorViewController implements Initializable {
     private Guild guild;
     private CheckIn checkIn;
     private AdminModel adminModel;
+    @FXML
+    private Button exportToExcel;
 
     /**
      * Initializes the AdministratorViewController class.
@@ -401,7 +404,7 @@ public class AdministratorViewController implements Initializable {
      * @throws SQLException
      */
     @FXML
-    private void handleVolunteersHours(MouseEvent event) throws SQLException {
+    private void handleVolunteersHours(MouseEvent event) throws SQLException, IOException {
         if (nameAdminTable.getSelectionModel().getSelectedItem() != null) {
             if (event.isPrimaryButtonDown() == false) {
                 int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getId();
@@ -411,5 +414,18 @@ public class AdministratorViewController implements Initializable {
                 hoursAdminTable.setItems(volunteerModel.getAllCheckIns());
             }
         }
+    }
+    
+    @FXML
+    public void handleExportToExcel(ActionEvent event) throws SQLException, IOException
+    {
+        String volunteerName = nameAdminTable.getSelectionModel().getSelectedItem().getName();
+        int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getId();
+        volunteerModel.setCheckInsByNameIdToExcel(nameId);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Export til Excel");
+            alert.setHeaderText(null);
+            alert.setContentText("Du har eksporteret data om " + volunteerName + " til Excel");
+            alert.showAndWait();
     }
 }

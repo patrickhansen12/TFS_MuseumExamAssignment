@@ -125,11 +125,11 @@ public class NamesDAO {
             ps.setInt(4, v.getId());
             ps.executeUpdate();
             
-        String sql2 = "UPDATE Works_For SET guildsId = ? FROM Works_For INNER JOIN Names on Works_For.nameId = Names.id WHERE id = ?";
-            PreparedStatement ps2 = con.prepareStatement(sql2);
-            ps2.setInt(1, v.getGuildsId());
-            ps2.setInt(2, v.getId());
-            ps2.executeUpdate();
+//        String sql2 = "UPDATE Works_For SET guildsId = ? FROM Works_For INNER JOIN Names on Works_For.nameId = Names.id WHERE id = ?";
+//            PreparedStatement ps2 = con.prepareStatement(sql2);
+//            ps2.setInt(1, v.getGuildsId());
+//            ps2.setInt(2, v.getId());
+//            ps2.executeUpdate();
         }
     }
 
@@ -160,7 +160,7 @@ public class NamesDAO {
     public List<Volunteer> getByGuildId(int guildsId) throws SQLException {
 
         List<Volunteer> allVolunteers = new ArrayList<>();
-        String sql = "SELECT * FROM Works_For INNER JOIN Names ON Works_For.nameId = Names.id WHERE Works_For.guildsId =  ?";
+        String sql = "SELECT DISTINCT * FROM Works_For INNER JOIN Names ON Works_For.nameId = Names.id WHERE Works_For.guildsId =  ? ORDER BY name ASC";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, guildsId);

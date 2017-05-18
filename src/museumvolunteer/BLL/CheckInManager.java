@@ -30,9 +30,21 @@ public class CheckInManager {
      * @param nameId
      * @return
      * @throws SQLException
+     * @throws java.io.IOException
      */
-    public List<CheckIn> getAllCheckInsById(int nameId) throws SQLException {
+    public List<CheckIn> getAllCheckInsById(int nameId) throws SQLException, IOException {
         return checkInDAO.getByNameId(nameId);
+    }
+    
+    /**
+     * Selects all checkIns for the chosen volunteer and prints to an excel file stored in the application folder.
+     * @param nameId
+     * @return
+     * @throws SQLException
+     * @throws IOException 
+     */
+    public List<CheckIn> exportCheckInsByIdToExcel(int nameId) throws SQLException, IOException {
+        return checkInDAO.getByNameIdToExcel(nameId);
     }
     
     /**

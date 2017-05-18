@@ -10,39 +10,58 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="addScreen" prefHeight="450.0" prefWidth="285.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AddVolunteerController">
+<AnchorPane id="AnchorPane" fx:id="addScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AddVolunteerController">
    <children>
-      <TextField fx:id="nameBox" layoutX="82.0" layoutY="14.0" />
-      <Label layoutX="15.0" layoutY="19.0" text="Navn" />
-      <Label layoutX="20.0" layoutY="141.0" text="Laug" />
-      <Label layoutX="14.0" layoutY="60.0" text="Email" />
-      <Label layoutX="15.0" layoutY="101.0" text="Telefon" />
-      <TextField fx:id="emailBox" layoutX="82.0" layoutY="55.0" />
-      <TextField fx:id="phoneBox" layoutX="82.0" layoutY="96.0" />
-      <TextField fx:id="guildBox" layoutX="82.0" layoutY="136.0" />
-      <TextArea fx:id="noteBox" layoutX="82.0" layoutY="182.0" prefHeight="200.0" prefWidth="187.0" />
-      <Button layoutX="14.0" layoutY="392.0" mnemonicParsing="false" onAction="#performButton" styleClass="buttonGreen" text="Udfør">
+      <TextField fx:id="nameBox" layoutX="130.0" layoutY="14.0" prefWidth="250.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="20.0" />
+         </font></TextField>
+      <Label layoutX="15.0" layoutY="19.0" prefWidth="100.0" text="Navn" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label layoutX="20.0" layoutY="141.0" prefWidth="100.0" text="Laug" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="170.0">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label layoutX="14.0" layoutY="60.0" prefWidth="100.0" text="Email" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="70.0">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label layoutX="15.0" layoutY="101.0" prefWidth="100.0" text="Telefon" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="120.0">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <TextField fx:id="emailBox" layoutX="82.0" layoutY="55.0" prefWidth="250.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="70.0">
+         <font>
+            <Font size="20.0" />
+         </font></TextField>
+      <TextField fx:id="phoneBox" layoutX="82.0" layoutY="96.0" prefWidth="250.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="120.0">
+         <font>
+            <Font size="20.0" />
+         </font></TextField>
+      <TextField fx:id="guildBox" layoutX="82.0" layoutY="136.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="170.0" />
+      <TextArea fx:id="noteBox" layoutX="577.0" layoutY="18.0" prefHeight="200.0" prefWidth="187.0" />
+      <Button layoutX="290.0" layoutY="255.0" mnemonicParsing="false" onAction="#performButton" prefHeight="45.0" prefWidth="110.0" styleClass="buttonGreen" text="Udfør">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="176.0" layoutY="392.0" mnemonicParsing="false" onAction="#returnButton" styleClass="buttonGreen" text="Tilbage">
+      <Button layoutX="176.0" layoutY="392.0" mnemonicParsing="false" onAction="#returnButton" prefHeight="45.0" prefWidth="110.0" styleClass="buttonGreen" text="Tilbage" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <TableView fx:id="guildTable" layoutX="8.0" layoutY="182.0" onMouseClicked="#guildClicked" prefHeight="200.0" prefWidth="265.0">
+      <TableView fx:id="guildTable" layoutX="427.0" layoutY="47.0" onMouseClicked="#guildClicked" prefHeight="400.0" prefWidth="300.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
         <columns>
           <TableColumn fx:id="guildIdColumn" maxWidth="0.0" minWidth="0.0" prefWidth="0.0" text="id" />
-          <TableColumn fx:id="guildColumn" prefWidth="284.0" text="Laug" />
+          <TableColumn fx:id="guildColumn" prefWidth="295.0" text="Laug" />
         </columns>
       </TableView>
-      <Button fx:id="guildBtn" layoutX="54.0" layoutY="144.0" minHeight="15.0" minWidth="15.0" mnemonicParsing="false" onAction="#openGuildList" prefHeight="10.0" prefWidth="10.0" styleClass="buttonGreen" text="?">
+      <TextField fx:id="guildNameBox" layoutX="82.0" layoutY="133.0" prefHeight="31.0" prefWidth="250.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="170.0">
          <font>
-            <Font size="7.0" />
-         </font>
-      </Button>
-      <TextField fx:id="guildNameBox" layoutX="82.0" layoutY="133.0" prefHeight="31.0" prefWidth="149.0" />
+            <Font size="20.0" />
+         </font></TextField>
    </children>
    <stylesheets>
        <URL value="@css/ColorSchemes.css" />

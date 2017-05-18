@@ -7,7 +7,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="volunteerInfoScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.VolunteerInfoViewController">
    <children>
@@ -18,23 +17,16 @@
       <Label fx:id="emailLbl" layoutX="55.0" layoutY="54.0" text="Email" />
       <Label fx:id="phoneNumberLbl" layoutX="47.0" layoutY="102.0" text="Telefon" />
       <Button fx:id="confirmButton" layoutX="61.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleUpdate" prefHeight="31.0" prefWidth="182.0" styleClass="buttonGreen" text="Godkend ændringer" />
-      <Label fx:id="guildLbl" layoutX="37.0" layoutY="148.0" text="Flyt frivillig" />
+      <Label fx:id="guildLbl" layoutX="37.0" layoutY="148.0" text="Laug" />
       <TextField fx:id="guildBox" layoutX="119.0" layoutY="143.0" prefHeight="31.0" prefWidth="182.0" />
       <Button layoutX="448.0" layoutY="561.0" mnemonicParsing="false" onAction="#backVolunteerInfo" styleClass="buttonGreen" text="Tilbage" />
       <TextField fx:id="guildNameText" layoutX="119.0" layoutY="144.0" prefHeight="31.0" prefWidth="182.0" />
-      <Button fx:id="guildBtn" layoutX="99.0" layoutY="151.0" minHeight="15.0" minWidth="15.0" mnemonicParsing="false" onAction="#openGuildList" prefHeight="10.0" prefWidth="10.0" styleClass="buttonGreen" text="?">
-         <font>
-            <Font size="7.0" />
-         </font>
-      </Button>
       <TableView fx:id="guildTable" layoutX="70.0" layoutY="242.0" onMouseClicked="#guildClicked" prefHeight="178.0" prefWidth="300.0">
          <columns>
             <TableColumn fx:id="guildIdColumn" maxWidth="36.0" minWidth="0.0" prefWidth="0.0" text="id" />
             <TableColumn fx:id="guildColumn" prefWidth="284.0" text="Laug" />
          </columns>
       </TableView>
-      <TextField fx:id="newGuildBox" layoutX="152.0" layoutY="435.0" />
-      <Button fx:id="newGuild" layoutX="69.0" layoutY="435.0" mnemonicParsing="false" onAction="#handleAddToNewGuild" text="Button" />
    </children>
    <stylesheets>
        <URL value="@css/ColorSchemes.css" />

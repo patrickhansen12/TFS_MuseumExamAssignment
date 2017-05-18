@@ -7,7 +7,6 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Comparator;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleObjectProperty;
@@ -29,7 +28,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import museumvolunteer.BE.CheckIn;
@@ -114,7 +112,7 @@ public class ManagerViewController implements Initializable{
         Scene scene = new Scene(root);
         stage.setTitle("Tilføj frivillig");
         stage.setResizable(false);
-stage.initStyle(StageStyle.UNDECORATED);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
     }
@@ -212,7 +210,7 @@ stage.initStyle(StageStyle.UNDECORATED);
      * @throws SQLException
      */
     @FXML
-    private void handleGuildsVolunteers(MouseEvent event) throws SQLException {
+    private void handleGuildsVolunteers(MouseEvent event) throws SQLException, IOException {
         if (guildManagerTable.getSelectionModel().getSelectedItem() != null) {
 
             if (event.isPrimaryButtonDown() == false) {
@@ -303,7 +301,7 @@ stage.initStyle(StageStyle.UNDECORATED);
      * @throws SQLException
      */
     @FXML
-    private void handleVolunteersHours(MouseEvent event) throws SQLException {
+    private void handleVolunteersHours(MouseEvent event) throws SQLException, IOException {
         if (nameManagerTable.getSelectionModel().getSelectedItem() != null) {
             if (event.isPrimaryButtonDown() == false) {
                 int nameId = nameManagerTable.getSelectionModel().getSelectedItem().getId();
@@ -366,7 +364,6 @@ stage.initStyle(StageStyle.UNDECORATED);
             }
         }
     }
-
 //    private void backgroundColor() {
 //        guildManagerColumn.setCellFactory((TableColumn<Guild, String> p) -> new TableCell<Guild, String>() {
 //            @Override

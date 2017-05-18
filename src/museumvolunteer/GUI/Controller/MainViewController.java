@@ -67,6 +67,21 @@ public class MainViewController implements Initializable {
         closeWindow();
     }
     
+    @FXML
+    private void adminButton(ActionEvent event) throws IOException
+    {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/LoginScreen.fxml"));
+        
+        Scene scene = new Scene(root);
+        stage.setTitle("Login");
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(scene);
+        stage.show();
+        closeWindow();
+    }
+    
     /**
      * Close the MainView.
      */
