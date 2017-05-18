@@ -32,7 +32,7 @@ public class CheckInManager {
      * @throws SQLException
      * @throws java.io.IOException
      */
-    public List<CheckIn> getAllCheckInsById(int nameId) throws SQLException, IOException {
+    public List<CheckIn> getAllCheckInsByNameId(int nameId) throws SQLException, IOException {
         return checkInDAO.getByNameId(nameId);
     }
     
@@ -49,12 +49,12 @@ public class CheckInManager {
     
     /**
      * Adds a checkIn to database table Hours.
-     * @param sCheckIn
+     * @param ci
      * @return
      * @throws SQLException
      */
-    public CheckIn add(CheckIn sCheckIn) throws SQLException {
-        return checkInDAO.add(sCheckIn);
+    public CheckIn addCheckIn(CheckIn ci) throws SQLException {
+        return checkInDAO.add(ci);
     }
     
     /**
@@ -62,7 +62,7 @@ public class CheckInManager {
      * @return
      * @throws SQLException
      */
-    public List<CheckIn> getCheckIn() throws SQLException
+    public List<CheckIn> getAllCheckIns() throws SQLException
     {
         return checkInDAO.getAll();
     }
@@ -72,7 +72,7 @@ public class CheckInManager {
      * @param ci
      * @throws SQLException
      */
-    public void delete(CheckIn ci) throws SQLException {
+    public void deleteCheckIn(CheckIn ci) throws SQLException {
         checkInDAO.delete(ci);
     }
     
@@ -81,7 +81,7 @@ public class CheckInManager {
      * @param id
      * @throws SQLException
      */
-    public void deleteById(int id) throws SQLException
+    public void deleteCheckInById(int id) throws SQLException
     {
         checkInDAO.deleteById(id);
     }

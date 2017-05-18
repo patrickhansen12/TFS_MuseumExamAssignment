@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import museumvolunteer.BE.Manager;
-import museumvolunteer.BLL.AdminManager;
+import museumvolunteer.BLL.BLLFacade;
 
 /**
  * @author Nicolai, Patrick, Kasper, Casper
@@ -13,7 +13,7 @@ import museumvolunteer.BLL.AdminManager;
 public class AdminModel {
     
     private static AdminModel INSTANCE;
-    private final AdminManager adminManager;
+    private BLLFacade bllFacade;
     
     private ObservableList<Manager> allManagers;
     
@@ -33,9 +33,9 @@ public class AdminModel {
     
     private AdminModel() throws SQLException, IOException
     {
-        adminManager = new AdminManager();
+        bllFacade = new BLLFacade();
         allManagers = FXCollections.observableArrayList();
-        allManagers.addAll(adminManager.getAllManagers());
+        allManagers.addAll(bllFacade.getAllManagers());
         
     }
     
@@ -45,7 +45,7 @@ public class AdminModel {
      * @throws SQLException
      */
     public void addManager(Manager m) throws SQLException {
-        adminManager.addManager(m);
+        bllFacade.addManager(m);
         allManagers.add(m);
     }
     
@@ -64,7 +64,7 @@ public class AdminModel {
      * @throws SQLException
      */
     public void deleteManager(Manager m) throws SQLException {
-        adminManager.deleteManager(m);
+        bllFacade.deleteManager(m);
         allManagers.remove(m);
     }
 }

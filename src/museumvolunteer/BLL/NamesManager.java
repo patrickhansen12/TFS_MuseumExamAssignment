@@ -50,7 +50,7 @@ public class NamesManager {
      * @return
      * @throws SQLException
      */
-    public Volunteer add(Volunteer v) throws SQLException {
+    public Volunteer addVolunteer(Volunteer v) throws SQLException {
         return namesDAO.add(v);
     }
 
@@ -60,7 +60,7 @@ public class NamesManager {
      * @param v
      * @throws SQLException
      */
-    public void delete(Volunteer v) throws SQLException {
+    public void deleteVolunteer(Volunteer v) throws SQLException {
         namesDAO.delete(v);
     }
 
@@ -70,7 +70,7 @@ public class NamesManager {
      * @param v
      * @throws SQLException
      */
-    public void update(Volunteer v) throws SQLException {
+    public void updateVolunteer(Volunteer v) throws SQLException {
         namesDAO.update(v);
     }
 

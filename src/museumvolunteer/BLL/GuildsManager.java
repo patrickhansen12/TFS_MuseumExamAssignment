@@ -57,7 +57,7 @@ public class GuildsManager {
      * @param g
      * @throws SQLException
      */
-    public void delete(Guild g) throws SQLException {
+    public void deleteGuild(Guild g) throws SQLException {
         guildsDAO.delete(g);
     }
 
@@ -75,11 +75,11 @@ public class GuildsManager {
      * @param g
      * @throws SQLException
      */
-    public void update(Guild g) throws SQLException {
+    public void updateGuild(Guild g) throws SQLException {
         guildsDAO.update(g);
     }
     
-    public Guild add(Guild g) throws SQLException {
+    public Guild addGuild(Guild g) throws SQLException {
         return guildsDAO.add(g);
     }
 }
