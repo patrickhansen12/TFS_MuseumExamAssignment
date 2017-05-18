@@ -1,10 +1,17 @@
+
+# Created by Adamino @ https://www.gitignore.io/api/java,android,netbeans,intellij,windows,csharp,wordpress,drupal,sass,linux,bluej,unity,unrealengine,grunt,yeoman,adobe,c++,bower,coffeescript,composer,eclipse,jetbrains,magento,joomla,laravel,lua,meteorjs,node,kobalt,python,objective-c,rails,swift,visualstudio,umbraco,visualstudiocode,webstorm,xamarinstudio,xcode,sublimetext
+
+### YOUR_PROJECT ###
+
 ### NetBeans ###
-nbproject/private/
+nbproject
 build/
 nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+*.xml
+*.mf
 
 ### Eclipse ###
 
@@ -831,7 +838,6 @@ LICENSE_EE*
 /mage
 media/
 /api.php
-nbproject/
 pear
 pear/
 php.ini.sample
@@ -1448,7 +1454,6 @@ luac.out
 
 # luarocks build files
 *.src.rock
-*.zip
 *.tar.gz
 
 # Object files
@@ -2004,5 +2009,3 @@ hs_err_pid*
 
 # ImageProcessor DiskCache
 **/App_Data/cache/
-*.properties
-*.properties
