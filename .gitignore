@@ -2006,3 +2006,5 @@ hs_err_pid*
 **/App_Data/cache/
 *.properties
 *.properties
+
+git rm --cached project.properties
