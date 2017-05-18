@@ -2012,6 +2012,10 @@ hs_err_pid*
 **/App_Data/cache/
 *.properties
 *.properties
+<<<<<<< HEAD
+/src/
+=======
 
 git rm --cached project.properties
 git rm --cached gen/
+>>>>>>> origin/master

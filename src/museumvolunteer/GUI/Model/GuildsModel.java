@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import museumvolunteer.BE.Guild;
-import museumvolunteer.BLL.GuildsManager;
+import museumvolunteer.BLL.BLLFacade;
 
 /**
  * @author Nicolai, Patrick, Kasper, Casper
@@ -14,7 +14,7 @@ public class GuildsModel {
 
     //private variables.
     private static GuildsModel INSTANCE;
-    private final GuildsManager guildsMgr;
+    private BLLFacade bllFacade;
 
     //Observable list of BE Guild.
     private final ObservableList<Guild> guilds;
@@ -24,9 +24,9 @@ public class GuildsModel {
      * the observable list Guild.
      */
     private GuildsModel() throws IOException, SQLException {
-        guildsMgr = new GuildsManager();
+        bllFacade = new BLLFacade();
         guilds = FXCollections.observableArrayList();
-        guilds.addAll(guildsMgr.getAllGuilds());
+        guilds.addAll(bllFacade.getAllGuilds());
     }
 
     /**
@@ -76,17 +76,17 @@ public class GuildsModel {
      * @throws SQLException 
      */
     public void updateGuild(Guild g) throws SQLException {
-        guildsMgr.update(g);
+        bllFacade.updateGuild(g);
     }
     
     public void deleteGuild(Guild g) throws SQLException
     {
-        guildsMgr.delete(g);
+        bllFacade.deleteGuild(g);
         guilds.remove(g);
     }
     
     public void addGuild(Guild g) throws SQLException {
-        guildsMgr.add(g);
+        bllFacade.addGuild(g);
         guilds.add(g);
     }
 }

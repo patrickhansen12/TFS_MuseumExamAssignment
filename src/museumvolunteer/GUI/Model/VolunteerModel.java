@@ -2,14 +2,12 @@ package museumvolunteer.GUI.Model;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Comparator;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import museumvolunteer.BE.CheckIn;
 import museumvolunteer.BE.Volunteer;
-import museumvolunteer.BLL.CheckInManager;
-import museumvolunteer.BLL.NamesManager;
+import museumvolunteer.BLL.BLLFacade;
 
 /**
  * @author Nicolai, Patrick, Kasper, Casper
@@ -18,8 +16,7 @@ public class VolunteerModel {
 
     //local variables.
     private static VolunteerModel INSTANCE;
-    private final NamesManager namesManager;
-    private final CheckInManager checkInManager;
+    private BLLFacade bllFacade;
 
     /**
      * Lists of all volunteers and checkIns currently in view.
@@ -48,15 +45,14 @@ public class VolunteerModel {
      * out of the observable lists Volunteer and CheckIn.
      */
     private VolunteerModel() throws IOException, SQLException {
-        namesManager = new NamesManager();
-        checkInManager = new CheckInManager();
+        bllFacade = new BLLFacade();
         allVolunteers = FXCollections.observableArrayList();
         sortedVolunteers = FXCollections.observableArrayList();
         items = FXCollections.observableArrayList();
 
-        allVolunteers.addAll(namesManager.getAllVolunteers());
+        allVolunteers.addAll(bllFacade.getAllVolunteers());
         allCheckIns = FXCollections.observableArrayList();
-        allCheckIns.addAll(checkInManager.getCheckIn());
+        allCheckIns.addAll(bllFacade.getAllCheckIns());
     }
 
     /**
@@ -81,7 +77,7 @@ public class VolunteerModel {
      * @throws SQLException
      */
     public void addVolunteer(Volunteer v) throws SQLException {
-        namesManager.add(v);
+        bllFacade.addVolunteer(v);
         allVolunteers.add(v);
     }
 
@@ -91,7 +87,7 @@ public class VolunteerModel {
      * @throws SQLException
      */
     public void addHours(CheckIn ci) throws SQLException {
-        checkInManager.add(ci);
+        bllFacade.addCheckIn(ci);
         allCheckIns.add(ci);
     }
 
@@ -101,7 +97,7 @@ public class VolunteerModel {
      * @throws SQLException
      */
     public void deleteHours(CheckIn ci) throws SQLException {
-        checkInManager.delete(ci);
+        bllFacade.deleteCheckIn(ci);
         allCheckIns.remove(ci);
     }
 
@@ -111,7 +107,7 @@ public class VolunteerModel {
      * @throws SQLException
      */
     public void deleteVolunteer(Volunteer v) throws SQLException {
-        namesManager.delete(v);
+        bllFacade.deleteVolunteer(v);
         allVolunteers.remove(v);
     }
 
@@ -121,7 +117,7 @@ public class VolunteerModel {
      * @throws SQLException
      */
     public void updateVolunteer(Volunteer v) throws SQLException {
-        namesManager.update(v);
+        bllFacade.updateVolunteer(v);
         allVolunteers.remove(v);
         allVolunteers.add(v);
     }
@@ -133,7 +129,7 @@ public class VolunteerModel {
      */
     public void setNamesByGuildId(int guildsId) throws SQLException {
         allVolunteers = FXCollections.observableArrayList();
-        allVolunteers.addAll(namesManager.getAllVolunteersByGuildId(guildsId));
+        allVolunteers.addAll(bllFacade.getAllVolunteersByGuildId(guildsId));
     }
 
     /**
@@ -169,15 +165,15 @@ public class VolunteerModel {
      */
     public void setCheckInsByNameId(int nameId) throws SQLException, IOException {
         allCheckIns = FXCollections.observableArrayList();
-        allCheckIns.addAll(checkInManager.getAllCheckInsById(nameId));
+        allCheckIns.addAll(bllFacade.getAllCheckInsByNameId(nameId));
     }
     
     public void setCheckInsByNameIdToExcel(int nameId) throws SQLException, IOException {
         allCheckIns = FXCollections.observableArrayList();
-        allCheckIns.addAll(checkInManager.exportCheckInsByIdToExcel(nameId));
+        allCheckIns.addAll(bllFacade.exportCheckInsByIdToExcel(nameId));
     }
 
     public void addToNewGuild(int nameId, int guildsId) throws SQLException {
-        namesManager.addToNewGuild(nameId, guildsId);
+        bllFacade.addToNewGuild(nameId, guildsId);
     }
 }
