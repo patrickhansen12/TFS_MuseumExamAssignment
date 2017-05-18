@@ -6,6 +6,12 @@ dist/
 nbdist/
 .nb-gradle/
 
+#netbeans specific
+core
+nbproject/*
+!nbproject/project.properties
+!nbproject/project.xml
+
 ### Eclipse ###
 
 .metadata
