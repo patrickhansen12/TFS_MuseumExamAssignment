@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="VolunteerScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.VolunteerViewController">
+<AnchorPane id="AnchorPane" fx:id="VolunteerScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.VolunteerViewController">
    <children>
       <TableView fx:id="guildTable" layoutX="8.0" layoutY="91.0" onMouseClicked="#handleGuildsVolunteers" prefHeight="450.0" prefWidth="250.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
         <columns>
@@ -22,7 +22,7 @@
           <TableColumn fx:id="nameColumn" prefWidth="240.0" text="Navne" />
         </columns>
       </TableView>
-      <TextField fx:id="searchnameField" layoutX="206.0" layoutY="42.0" onKeyReleased="#searchNameList" prefHeight="40.0" AnchorPane.leftAnchor="290.0" AnchorPane.rightAnchor="270.0" AnchorPane.topAnchor="60.0">
+      <TextField fx:id="searchNameField" layoutX="295.0" layoutY="55.0" onKeyReleased="#searchNameList" prefHeight="40.0" AnchorPane.leftAnchor="295.0" AnchorPane.rightAnchor="265.0" AnchorPane.topAnchor="55.0">
          <font>
             <Font size="24.0" />
          </font></TextField>

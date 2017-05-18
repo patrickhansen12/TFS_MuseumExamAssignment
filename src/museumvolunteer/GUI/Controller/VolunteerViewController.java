@@ -32,6 +32,7 @@ import javafx.stage.Stage;
 import museumvolunteer.BE.CheckIn;
 import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Volunteer;
+import museumvolunteer.BLL.BLLFacade;
 import museumvolunteer.BLL.ContainsSearch;
 import museumvolunteer.BLL.NamesManager;
 import museumvolunteer.BLL.SearchPattern;
@@ -53,8 +54,7 @@ public class VolunteerViewController implements Initializable {
     private TableColumn<Volunteer, String> nameColumn;
     @FXML
     private AnchorPane VolunteerScreen;
-    @FXML
-    private TextField searchnameField;
+
     @FXML
     private TextField noteHoursField;
     @FXML
@@ -64,6 +64,9 @@ public class VolunteerViewController implements Initializable {
     private NamesManager namesManager;
     private VolunteerModel volunteerModel;
     private GuildsModel guildsModel;
+    private BLLFacade bllFacade;
+    @FXML
+    private TextField searchNameField;
 
     /**
      * Initializes the VolunteerViewController class.
@@ -105,7 +108,7 @@ public class VolunteerViewController implements Initializable {
     public VolunteerViewController() throws IOException, SQLException {
         volunteerModel = VolunteerModel.getInstance();
         guildsModel = GuildsModel.getInstance();
-        namesManager = new NamesManager();
+        bllFacade = new BLLFacade();
     }
 
     /**
@@ -165,7 +168,7 @@ public class VolunteerViewController implements Initializable {
                 nameTable.setItems(volunteerModel.getAllVolunteers().sorted());
             }
         }
-        searchnameField.clear();
+        searchNameField.clear();
   
     }
 
@@ -212,12 +215,12 @@ public class VolunteerViewController implements Initializable {
      */
     @FXML
     void searchNameList(KeyEvent event) throws SQLException {
-        String query = searchnameField.getText().trim();
+        String query = searchNameField.getText().trim();
         List<String> searchResult = null;
         SearchPattern searchStrategy;
         searchStrategy = new ContainsSearch(query);
         int guildId = guildTable.getSelectionModel().getSelectedItem().getId();
-        searchResult = namesManager.search(searchStrategy, guildId);
+        searchResult = bllFacade.search(searchStrategy, guildId);
         volunteerModel.setFilteredNames(searchResult);
         nameTable.setItems(volunteerModel.getNames().sorted());
 

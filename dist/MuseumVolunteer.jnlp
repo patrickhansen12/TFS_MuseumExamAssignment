@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="MuseumVolunteer.jar" size="68720" download="eager" />
+    <jar href="MuseumVolunteer.jar" size="69490" download="eager" />
     <jar href="lib\InputReaders.jar" size="1834" download="eager" />
     <jar href="lib\poi-3.16.jar" size="2679259" download="eager" />
     <jar href="lib\poi-ooxml-3.16.jar" size="1433719" download="eager" />

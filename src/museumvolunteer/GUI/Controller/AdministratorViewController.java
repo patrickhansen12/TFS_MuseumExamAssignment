@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleObjectProperty;
@@ -25,6 +26,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -33,6 +35,9 @@ import museumvolunteer.BE.CheckIn;
 import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Manager;
 import museumvolunteer.BE.Volunteer;
+import museumvolunteer.BLL.BLLFacade;
+import museumvolunteer.BLL.ContainsSearch;
+import museumvolunteer.BLL.SearchPattern;
 import museumvolunteer.GUI.Model.AdminModel;
 import museumvolunteer.GUI.Model.GuildsModel;
 import museumvolunteer.GUI.Model.VolunteerModel;
@@ -76,6 +81,9 @@ public class AdministratorViewController implements Initializable {
     private AdminModel adminModel;
     @FXML
     private Button exportToExcel;
+    @FXML
+    private TextField searchNameField;
+    private BLLFacade bllFacade;
 
     /**
      * Initializes the AdministratorViewController class.
@@ -100,6 +108,7 @@ public class AdministratorViewController implements Initializable {
         volunteerModel = VolunteerModel.getInstance();
         guildsModel = GuildsModel.getInstance();
         adminModel = AdminModel.getInstance();
+        bllFacade = new BLLFacade();
     }
 
     /**
@@ -208,42 +217,37 @@ public class AdministratorViewController implements Initializable {
      */
     @FXML
     private void removeVolunteersButton(ActionEvent event) throws SQLException {
-        if (nameAdminTable.getSelectionModel().getSelectedItem() == null) {
+    if (nameAdminTable.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Fejl");
             alert.setHeaderText(null);
             alert.setContentText("Du skal vælge en frivillig, før du kan slette dem.");
             alert.showAndWait();
         }
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Er du sikker på du vil slette den frivillige");
-        alert.setHeaderText(null);
-        alert.setContentText("Vil du slette den frivillige fra dette laug eller alle laug?");
 
-        ButtonType buttonTypeThis = new ButtonType("Dette laug");
-        ButtonType buttonTypeAll = new ButtonType("Alle laug");
-        ButtonType buttonTypeCancel = new ButtonType("Fortryd", ButtonData.CANCEL_CLOSE);
+        if (nameAdminTable.getSelectionModel().getSelectedItem() != null) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog with Custom Actions");
+            alert.setHeaderText(null);
+            alert.setContentText("Er du sikker på du vil slette " + nameAdminTable.getSelectionModel().getSelectedItem().getName() + "?" );
 
-        alert.getButtonTypes().setAll(buttonTypeThis, buttonTypeAll, buttonTypeCancel);
+            ButtonType buttonTypeThis = new ButtonType("Godkend");
+//            ButtonType buttonTypeAll = new ButtonType("Alle laug");
+            ButtonType buttonTypeCancel = new ButtonType("Anuller", ButtonData.CANCEL_CLOSE);
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == buttonTypeThis) {
-            Volunteer selectedItem = nameAdminTable.getSelectionModel().getSelectedItem();
-            volunteer = selectedItem;
-            volunteerModel.deleteVolunteer(volunteer);
-            nameAdminTable.getItems().remove(selectedItem);
-            nameAdminTable.getSelectionModel().clearSelection();
-        } else if (result.get() == buttonTypeAll) {
-            Volunteer selectedItem = nameAdminTable.getSelectionModel().getSelectedItem();
-            volunteer = selectedItem;
-            volunteerModel.deleteVolunteer(volunteer);
-            nameAdminTable.getItems().remove(selectedItem);
-            nameAdminTable.getSelectionModel().clearSelection();
-        } else {
+            alert.getButtonTypes().setAll(buttonTypeThis, buttonTypeCancel);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == buttonTypeThis) {
+                Volunteer selectedItem = nameAdminTable.getSelectionModel().getSelectedItem();
+                volunteer = selectedItem;
+                volunteerModel.deleteVolunteer(volunteer);
+                nameAdminTable.getItems().remove(selectedItem);
+                nameAdminTable.getSelectionModel().clearSelection();
             // ... user chose CANCEL or closed the dialog
         }
     }
-
+    }
     /**
      * Adds a new manager to observable list Manager and to database table
      * Managers.
@@ -394,6 +398,7 @@ public class AdministratorViewController implements Initializable {
                 nameAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
                 nameAdminTable.setItems(volunteerModel.getAllVolunteers());
             }
+               searchNameField.clear();
         }
     }
 
@@ -427,5 +432,18 @@ public class AdministratorViewController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Du har eksporteret data om " + volunteerName + " til Excel");
             alert.showAndWait();
+    }
+
+    @FXML
+    private void searchNameList(KeyEvent event) throws SQLException {
+           String query = searchNameField.getText().trim();
+        List<String> searchResult = null;
+        SearchPattern searchStrategy;
+        searchStrategy = new ContainsSearch(query);
+        int guildId = guildAdminTable.getSelectionModel().getSelectedItem().getId();
+        searchResult = bllFacade.search(searchStrategy, guildId);
+        volunteerModel.setFilteredNames(searchResult);
+        nameAdminTable.setItems(volunteerModel.getNames().sorted());
+
     }
 }

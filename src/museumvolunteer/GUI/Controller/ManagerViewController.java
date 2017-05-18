@@ -7,8 +7,12 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,6 +30,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -33,6 +38,9 @@ import javafx.stage.StageStyle;
 import museumvolunteer.BE.CheckIn;
 import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Volunteer;
+import museumvolunteer.BLL.BLLFacade;
+import museumvolunteer.BLL.ContainsSearch;
+import museumvolunteer.BLL.SearchPattern;
 import museumvolunteer.GUI.Model.GuildsModel;
 import museumvolunteer.GUI.Model.VolunteerModel;
 
@@ -69,6 +77,9 @@ public class ManagerViewController implements Initializable{
     private GuildsModel guildsModel;
     private Volunteer volunteer;
     private CheckIn checkIn;
+    private BLLFacade bllFacade;
+    @FXML
+    private TextField searchNameField;
 
     /**
      * Initializes the ManagerViewController class.
@@ -82,6 +93,29 @@ public class ManagerViewController implements Initializable{
 //        backgroundColor();
         datePicker.setValue(LocalDate.now());
         dataBind();
+//       List<Guild> allGuilds = guildManagerTable.getItems();
+//        List<String> allGuildNames = new ArrayList();
+//        for (Guild g : allGuilds) {
+//            String nameString = g.getName();
+//            allGuildNames.add(nameString);
+//        }
+//        nameManagerTable.setItems(volunteerModel.getNames());
+//
+//        try {
+//            Guild g = guildManagerTable.getSelectionModel().getSelectedItem();
+//            if (g != null) {
+//                int guildId = g.getId();
+//                List<String> allVolunteers = bllFacade.getAllVolunteerNames(guildId);
+//                volunteerModel.setFilteredNames(allVolunteers);
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(VolunteerViewController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+
+
+if(nameManagerTable != null) {
+    
+}
         if (txtFieldHours != null) {
 
         }
@@ -96,6 +130,7 @@ public class ManagerViewController implements Initializable{
     public ManagerViewController() throws IOException, SQLException {
         volunteerModel = VolunteerModel.getInstance();
         guildsModel = GuildsModel.getInstance();
+        bllFacade = new BLLFacade();
     }
 
     /**
@@ -228,6 +263,8 @@ public class ManagerViewController implements Initializable{
                 hoursManagerTable.setItems(volunteerModel.getAllCheckIns());
 
             }
+                searchNameField.clear();
+  
         }
     }
 
@@ -406,4 +443,17 @@ public class ManagerViewController implements Initializable{
 //            }
 //        });
 //    }
+
+    @FXML
+    private void searchNameList(KeyEvent event) throws SQLException {
+              String query = searchNameField.getText().trim();
+        List<String> searchResult = null;
+        SearchPattern searchStrategy;
+        searchStrategy = new ContainsSearch(query);
+        int guildId = guildManagerTable.getSelectionModel().getSelectedItem().getId();
+        searchResult = bllFacade.search(searchStrategy, guildId);
+        volunteerModel.setFilteredNames(searchResult);
+        nameManagerTable.setItems(volunteerModel.getNames().sorted());
+        }
+    
 }
