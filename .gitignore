@@ -6,6 +6,12 @@ dist/
 nbdist/
 .nb-gradle/
 
+#netbeans specific
+core
+nbproject/*
+!nbproject/project.properties
+!nbproject/project.xml
+
 ### Eclipse ###
 
 .metadata
@@ -2006,4 +2012,10 @@ hs_err_pid*
 **/App_Data/cache/
 *.properties
 *.properties
+<<<<<<< HEAD
 /src/
+=======
+
+git rm --cached project.properties
+git rm --cached gen/
+>>>>>>> origin/master

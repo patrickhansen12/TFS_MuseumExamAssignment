@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="addManagerScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AddManagerController">
+<AnchorPane id="AnchorPane" fx:id="addManagerScreen" prefHeight="304.0" prefWidth="285.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AddManagerController">
    <children>
       <TextField fx:id="nameBox" layoutX="82.0" layoutY="14.0" />
       <Label fx:id="nameManager" layoutX="15.0" layoutY="19.0" text="Navn" />
@@ -15,16 +15,20 @@
       <Label fx:id="phoneNumberManager" layoutX="15.0" layoutY="101.0" text="Telefon" />
       <TextField fx:id="emailBox" layoutX="82.0" layoutY="55.0" />
       <TextField fx:id="phoneBox" layoutX="82.0" layoutY="96.0" />
-      <Button layoutX="11.0" layoutY="148.0" mnemonicParsing="false" onAction="#performButton" styleClass="buttonGreen" text="Udfør">
+      <Button layoutX="15.0" layoutY="246.0" mnemonicParsing="false" onAction="#performButton" styleClass="buttonGreen" text="Udfør">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="176.0" layoutY="148.0" mnemonicParsing="false" onAction="#returnButton" styleClass="buttonGreen" text="Tilbage">
+      <Button layoutX="178.0" layoutY="246.0" mnemonicParsing="false" onAction="#returnButton" styleClass="buttonGreen" text="Tilbage">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
+      <TextField fx:id="usernameBox" layoutX="82.0" layoutY="137.0" />
+      <TextField fx:id="passwordBox" layoutX="82.0" layoutY="176.0" />
+      <Label layoutX="18.0" layoutY="142.0" text="Bruger" />
+      <Label layoutX="21.0" layoutY="181.0" text="Kodeord" />
    </children>
    <stylesheets>
        <URL value="@css/ColorSchemes.css" />
