@@ -141,6 +141,7 @@ public class AdministratorViewController implements Initializable {
     @FXML
     private void addGuildButton(ActionEvent event) throws IOException 
     {
+       cleanTableViews();
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AddGuild.fxml"));
 
@@ -160,6 +161,7 @@ public class AdministratorViewController implements Initializable {
      */
     @FXML
     private void addVolunteerButton(ActionEvent event) throws IOException {
+cleanTableViews();
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AddVolunteer.fxml"));
 
@@ -256,6 +258,7 @@ public class AdministratorViewController implements Initializable {
      */
     @FXML
     private void addManagerButton(ActionEvent event) throws IOException {
+        cleanTableViews();
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AddManager.fxml"));
 
@@ -393,6 +396,7 @@ public class AdministratorViewController implements Initializable {
     private void handleGuildsVolunteers(MouseEvent event) throws SQLException {
         if (guildAdminTable.getSelectionModel().getSelectedItem() != null) {
             if (event.isPrimaryButtonDown() == false) {
+          nameAdminTable.getColumns().get(0).setVisible(true);
                 int guildId = guildAdminTable.getSelectionModel().getSelectedItem().getId();
                 volunteerModel.setNamesByGuildId(guildId);
                 nameAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
@@ -412,6 +416,8 @@ public class AdministratorViewController implements Initializable {
     private void handleVolunteersHours(MouseEvent event) throws SQLException, IOException {
         if (nameAdminTable.getSelectionModel().getSelectedItem() != null) {
             if (event.isPrimaryButtonDown() == false) {
+                 hoursAdminTable.getColumns().get(0).setVisible(true);
+        hoursAdminTable.getColumns().get(1).setVisible(true);
                 int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getId();
                 volunteerModel.setCheckInsByNameId(nameId);
                 hoursAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
@@ -446,4 +452,11 @@ public class AdministratorViewController implements Initializable {
         nameAdminTable.setItems(volunteerModel.getNames().sorted());
 
     }
+    public void cleanTableViews(){
+     nameAdminTable.getColumns().get(0).setVisible(false);        
+        hoursAdminTable.getColumns().get(0).setVisible(false);
+        hoursAdminTable.getColumns().get(1).setVisible(false);
+      hoursAdminTable.getSelectionModel().clearSelection();
+          nameAdminTable.getSelectionModel().clearSelection();
+}
 }
