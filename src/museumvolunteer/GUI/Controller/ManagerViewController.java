@@ -141,6 +141,11 @@ if(nameManagerTable != null) {
      */
     @FXML
     private void addVolunteersButton(ActionEvent event) throws IOException {
+        nameManagerTable.getColumns().get(0).setVisible(false);
+        hoursManagerTable.getColumns().get(0).setVisible(false);
+        hoursManagerTable.getColumns().get(1).setVisible(false);
+        hoursManagerTable.getSelectionModel().clearSelection();
+          nameManagerTable.getSelectionModel().clearSelection();
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AddVolunteer.fxml"));
 
@@ -249,7 +254,7 @@ if(nameManagerTable != null) {
         if (guildManagerTable.getSelectionModel().getSelectedItem() != null) {
 
             if (event.isPrimaryButtonDown() == false) {
-
+nameManagerTable.getColumns().get(0).setVisible(true);
                 int guildId = guildManagerTable.getSelectionModel().getSelectedItem().getId();
                 volunteerModel.setNamesByGuildId(guildId);
 
@@ -340,7 +345,10 @@ if(nameManagerTable != null) {
     @FXML
     private void handleVolunteersHours(MouseEvent event) throws SQLException, IOException {
         if (nameManagerTable.getSelectionModel().getSelectedItem() != null) {
+
             if (event.isPrimaryButtonDown() == false) {
+                             hoursManagerTable.getColumns().get(0).setVisible(true);
+        hoursManagerTable.getColumns().get(1).setVisible(true);
                 int nameId = nameManagerTable.getSelectionModel().getSelectedItem().getId();
                 volunteerModel.setCheckInsByNameId(nameId);
                 hoursManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
