@@ -27,12 +27,12 @@ public interface IBLLFacade {
     public void updateGuild(Guild g) throws SQLException;
     public Guild addGuild(Guild g) throws SQLException;
     
-    public List<CheckIn> getAllCheckInsByNameId(int nameId) throws SQLException, IOException;
-    public List<CheckIn> exportCheckInsByIdToExcel(int nameId) throws SQLException, IOException;
+    public List<CheckIn> getAllCheckInsByNameIdGuildsId(int guildsId, int nameId) throws SQLException, IOException;
+    public List<CheckIn> exportCheckInsByNameIdGuildsIdToExcel(int guildsId, int nameId) throws SQLException, IOException;
     public CheckIn addCheckIn(CheckIn ci) throws SQLException;
     public List<CheckIn> getAllCheckIns() throws SQLException;
     public void deleteCheckIn(CheckIn ci) throws SQLException;
-    public void deleteCheckInById(int id) throws SQLException;
+    public void deleteCheckInByGuildsIdNameId(int guildsId, int nameId) throws SQLException;
     
     public Manager addManager(Manager m) throws SQLException;
     public List<Manager> getAllManagers() throws SQLException;

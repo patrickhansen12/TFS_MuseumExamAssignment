@@ -159,18 +159,19 @@ public class VolunteerModel {
 
     /**
      * Method for selecting a specific volunteer, so you can add hours to him/her.
+     * @param guildsId
      * @param nameId
      * @throws SQLException
      * @throws java.io.IOException
      */
-    public void setCheckInsByNameId(int nameId) throws SQLException, IOException {
+    public void setCheckInsByNameIdGuildsId(int guildsId, int nameId) throws SQLException, IOException {
         allCheckIns = FXCollections.observableArrayList();
-        allCheckIns.addAll(bllFacade.getAllCheckInsByNameId(nameId));
+        allCheckIns.addAll(bllFacade.getAllCheckInsByNameIdGuildsId(guildsId, nameId));
     }
     
-    public void setCheckInsByNameIdToExcel(int nameId) throws SQLException, IOException {
+    public void setCheckInsByNameIdGuildsIdToExcel(int guildsId, int nameId) throws SQLException, IOException {
         allCheckIns = FXCollections.observableArrayList();
-        allCheckIns.addAll(bllFacade.exportCheckInsByIdToExcel(nameId));
+        allCheckIns.addAll(bllFacade.exportCheckInsByNameIdGuildsIdToExcel(guildsId, nameId));
     }
 
     public void addToNewGuild(int nameId, int guildsId) throws SQLException {

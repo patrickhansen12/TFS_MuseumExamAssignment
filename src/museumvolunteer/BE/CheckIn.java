@@ -10,6 +10,7 @@ public class CheckIn {
     //Instance variables.
     private int id;
     private Timestamp dateTime;
+    private int guildsId;
     private int nameId;
     private int hours;
 
@@ -18,12 +19,14 @@ public class CheckIn {
      *
      * @param id
      * @param dateTime
+     * @param guildsId
      * @param nameId
      * @param hours
      */
-    public CheckIn(int id, Timestamp dateTime, int nameId, int hours) {
+    public CheckIn(int id, Timestamp dateTime, int guildsId, int nameId, int hours) {
         this.id = id;
         this.dateTime = dateTime;
+        this.guildsId = guildsId;
         this.nameId = nameId;
         this.hours = hours;
     }
@@ -32,11 +35,12 @@ public class CheckIn {
      * Everyting except id.
      *
      * @param dateTime
+     * @param guildsId
      * @param nameId
      * @param hours
      */
-    public CheckIn(Timestamp dateTime, int nameId, int hours) {
-        this(-1, dateTime, nameId, hours);
+    public CheckIn(Timestamp dateTime, int guildsId, int nameId, int hours) {
+        this(-1, dateTime, guildsId, nameId, hours);
     }
 
 //    public void setHours(int hours) {
@@ -48,7 +52,7 @@ public class CheckIn {
      * @param ci
      */
     public CheckIn(int id, CheckIn ci) {
-        this(id, ci.getDateTime(), ci.getNameId(), ci.getHours());
+        this(id, ci.getDateTime(), ci.getGuildsId(), ci.getNameId(), ci.getHours());
     }
 
 //    public CheckIn(Timestamp dateTime, int hours)
@@ -110,5 +114,11 @@ public class CheckIn {
     public int getHours() {
         return hours;
     }
+
+    public int getGuildsId() {
+        return guildsId;
+    }
+    
+    
 
 }

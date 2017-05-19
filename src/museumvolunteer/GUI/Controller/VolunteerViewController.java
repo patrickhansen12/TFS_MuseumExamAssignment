@@ -188,11 +188,12 @@ public class VolunteerViewController implements Initializable {
             LocalDateTime timeStamp = datePick.getValue().atTime(LocalTime.now());
             java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(timeStamp);
             //datePicker timeStamp = datePick.getDayCellFactory().trim();
+            int guildsId = guildTable.getSelectionModel().getSelectedItem().getId();
             int nameId = nameTable.getSelectionModel().getSelectedItem().getId();
-            volunteerModel.setCheckInsByNameId(nameId);
+            volunteerModel.setCheckInsByNameIdGuildsId(guildsId, nameId);
             //int nameId = Integer.parseInt(nameColumn.getText().trim());
             int hours = Integer.parseInt(noteHoursField.getText().trim());
-            volunteerModel.addHours(new CheckIn(dateTime, nameId, hours));
+            volunteerModel.addHours(new CheckIn(dateTime, guildsId, nameId, hours));
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Bidragede timer");
             alert.setHeaderText(null);

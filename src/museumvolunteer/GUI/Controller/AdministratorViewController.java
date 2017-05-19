@@ -139,9 +139,8 @@ public class AdministratorViewController implements Initializable {
      * @param event
      */
     @FXML
-    private void addGuildButton(ActionEvent event) throws IOException 
-    {
-       cleanTableViews();
+    private void addGuildButton(ActionEvent event) throws IOException {
+        cleanTableViews();
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AddGuild.fxml"));
 
@@ -161,7 +160,7 @@ public class AdministratorViewController implements Initializable {
      */
     @FXML
     private void addVolunteerButton(ActionEvent event) throws IOException {
-cleanTableViews();
+        cleanTableViews();
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AddVolunteer.fxml"));
 
@@ -179,34 +178,29 @@ cleanTableViews();
      * @param event
      */
     @FXML
-    private void removeGuildButton(ActionEvent event) throws SQLException
-    {
-        if (guildAdminTable.getSelectionModel().getSelectedItem() == null)
-        {
+    private void removeGuildButton(ActionEvent event) throws SQLException {
+        if (guildAdminTable.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Fejl");
             alert.setHeaderText(null);
             alert.setContentText("Du skal vælge et laug, før du kan slette det.");
             alert.showAndWait();
         }
-        
+
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Er du sikker?");
         alert.setHeaderText(null);
         alert.setContentText("Er du sikker på du vil slette dette laug?");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK)
-        {
+        if (result.get() == ButtonType.OK) {
             Guild selectedItem = guildAdminTable.getSelectionModel().getSelectedItem();
             guild = selectedItem;
             guildsModel.deleteGuild(guild);
             guildAdminTable.getItems().remove(selectedItem);
             guildAdminTable.getSelectionModel().clearSelection();
-        } 
-        else 
-        {
-            
+        } else {
+
         }
     }
 
@@ -219,7 +213,7 @@ cleanTableViews();
      */
     @FXML
     private void removeVolunteersButton(ActionEvent event) throws SQLException {
-    if (nameAdminTable.getSelectionModel().getSelectedItem() == null) {
+        if (nameAdminTable.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Fejl");
             alert.setHeaderText(null);
@@ -231,7 +225,7 @@ cleanTableViews();
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Dialog with Custom Actions");
             alert.setHeaderText(null);
-            alert.setContentText("Er du sikker på du vil slette " + nameAdminTable.getSelectionModel().getSelectedItem().getName() + "?" );
+            alert.setContentText("Er du sikker på du vil slette " + nameAdminTable.getSelectionModel().getSelectedItem().getName() + "?");
 
             ButtonType buttonTypeThis = new ButtonType("Godkend");
 //            ButtonType buttonTypeAll = new ButtonType("Alle laug");
@@ -246,10 +240,11 @@ cleanTableViews();
                 volunteerModel.deleteVolunteer(volunteer);
                 nameAdminTable.getItems().remove(selectedItem);
                 nameAdminTable.getSelectionModel().clearSelection();
-            // ... user chose CANCEL or closed the dialog
+                // ... user chose CANCEL or closed the dialog
+            }
         }
     }
-    }
+
     /**
      * Adds a new manager to observable list Manager and to database table
      * Managers.
@@ -290,7 +285,7 @@ cleanTableViews();
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Dialog with Custom Actions");
             alert.setHeaderText(null);
-            alert.setContentText("Er du sikker på du vil slette " + managerAdminTable.getSelectionModel().getSelectedItem().getName() + "?" );
+            alert.setContentText("Er du sikker på du vil slette " + managerAdminTable.getSelectionModel().getSelectedItem().getName() + "?");
 
             ButtonType buttonTypeThis = new ButtonType("Godkend");
 //            ButtonType buttonTypeAll = new ButtonType("Alle laug");
@@ -348,11 +343,12 @@ cleanTableViews();
             LocalDateTime timeStamp = datePicker.getValue().atTime(LocalTime.now());
             java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(timeStamp);
             //datePicker timeStamp = datePick.getDayCellFactory().trim();
+            int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getId();
             int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getId();
-            volunteerModel.setCheckInsByNameId(nameId);
+            volunteerModel.setCheckInsByNameIdGuildsId(guildsId, nameId);
             //int nameId = Integer.parseInt(nameColumn.getText().trim());
             int hours = Integer.parseInt(txtFieldHours.getText().trim());
-            VolunteerModel.getInstance().addHours(new CheckIn(dateTime, nameId, hours));
+            VolunteerModel.getInstance().addHours(new CheckIn(dateTime, guildsId, nameId, hours));
             hoursAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
             dateAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
             hoursAdminTable.setItems(volunteerModel.getAllCheckIns());
@@ -396,13 +392,13 @@ cleanTableViews();
     private void handleGuildsVolunteers(MouseEvent event) throws SQLException {
         if (guildAdminTable.getSelectionModel().getSelectedItem() != null) {
             if (event.isPrimaryButtonDown() == false) {
-          nameAdminTable.getColumns().get(0).setVisible(true);
+                nameAdminTable.getColumns().get(0).setVisible(true);
                 int guildId = guildAdminTable.getSelectionModel().getSelectedItem().getId();
                 volunteerModel.setNamesByGuildId(guildId);
                 nameAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
                 nameAdminTable.setItems(volunteerModel.getAllVolunteers());
             }
-               searchNameField.clear();
+            searchNameField.clear();
         }
     }
 
@@ -416,33 +412,35 @@ cleanTableViews();
     private void handleVolunteersHours(MouseEvent event) throws SQLException, IOException {
         if (nameAdminTable.getSelectionModel().getSelectedItem() != null) {
             if (event.isPrimaryButtonDown() == false) {
-                 hoursAdminTable.getColumns().get(0).setVisible(true);
-        hoursAdminTable.getColumns().get(1).setVisible(true);
+                hoursAdminTable.getColumns().get(0).setVisible(true);
+                hoursAdminTable.getColumns().get(1).setVisible(true);
+                
+                int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getId();
                 int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getId();
-                volunteerModel.setCheckInsByNameId(nameId);
+                volunteerModel.setCheckInsByNameIdGuildsId(guildsId, nameId);
                 hoursAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
                 dateAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
                 hoursAdminTable.setItems(volunteerModel.getAllCheckIns());
             }
         }
     }
-    
+
     @FXML
-    public void handleExportToExcel(ActionEvent event) throws SQLException, IOException
-    {
+    public void handleExportToExcel(ActionEvent event) throws SQLException, IOException {
         String volunteerName = nameAdminTable.getSelectionModel().getSelectedItem().getName();
+        int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getId();
         int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getId();
-        volunteerModel.setCheckInsByNameIdToExcel(nameId);
+        volunteerModel.setCheckInsByNameIdGuildsIdToExcel(guildsId, nameId);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Export til Excel");
-            alert.setHeaderText(null);
-            alert.setContentText("Du har eksporteret data om " + volunteerName + " til Excel");
-            alert.showAndWait();
+        alert.setTitle("Export til Excel");
+        alert.setHeaderText(null);
+        alert.setContentText("Du har eksporteret data om " + volunteerName + " til Excel");
+        alert.showAndWait();
     }
 
     @FXML
     private void searchNameList(KeyEvent event) throws SQLException {
-           String query = searchNameField.getText().trim();
+        String query = searchNameField.getText().trim();
         List<String> searchResult = null;
         SearchPattern searchStrategy;
         searchStrategy = new ContainsSearch(query);
@@ -452,11 +450,12 @@ cleanTableViews();
         nameAdminTable.setItems(volunteerModel.getNames().sorted());
 
     }
-    public void cleanTableViews(){
-     nameAdminTable.getColumns().get(0).setVisible(false);        
+
+    public void cleanTableViews() {
+        nameAdminTable.getColumns().get(0).setVisible(false);
         hoursAdminTable.getColumns().get(0).setVisible(false);
         hoursAdminTable.getColumns().get(1).setVisible(false);
-      hoursAdminTable.getSelectionModel().clearSelection();
-          nameAdminTable.getSelectionModel().clearSelection();
-}
+        hoursAdminTable.getSelectionModel().clearSelection();
+        nameAdminTable.getSelectionModel().clearSelection();
+    }
 }

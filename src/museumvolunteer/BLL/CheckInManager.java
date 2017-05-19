@@ -24,24 +24,26 @@ public class CheckInManager {
     
     /**
      * Gets all checkIns according to nameId.
+     * @param guildsId
      * @param nameId
      * @return
      * @throws SQLException
      * @throws java.io.IOException
      */
-    public List<CheckIn> getAllCheckInsByNameId(int nameId) throws SQLException, IOException {
-        return checkInDAO.getByNameId(nameId);
+    public List<CheckIn> getAllCheckInsByNameIdGuildsId(int guildsId, int nameId) throws SQLException, IOException {
+        return checkInDAO.getByNameIdGuildsId(guildsId, nameId);
     }
     
     /**
      * Selects all checkIns for the chosen volunteer and prints to an excel file stored in the application folder.
+     * @param guildsId
      * @param nameId
      * @return
      * @throws SQLException
      * @throws IOException 
      */
-    public List<CheckIn> exportCheckInsByIdToExcel(int nameId) throws SQLException, IOException {
-        return checkInDAO.getByNameIdToExcel(nameId);
+    public List<CheckIn> exportCheckInsByNameIdGuildsIdToExcel(int guildsId, int nameId) throws SQLException, IOException {
+        return checkInDAO.getByNameIdGuildsIdToExcel(guildsId, nameId);
     }
     
     /**
@@ -51,7 +53,7 @@ public class CheckInManager {
      * @throws SQLException
      */
     public CheckIn addCheckIn(CheckIn ci) throws SQLException {
-        return checkInDAO.add(ci);
+        return checkInDAO.addCheckIn(ci);
     }
     
     /**
@@ -75,12 +77,14 @@ public class CheckInManager {
     
     /**
      * Deletes a selected checkIn from database table Hours according to id.
+     * @param guildsId
+     * @param nameId
      * @param id
      * @throws SQLException
      */
-    public void deleteCheckInById(int id) throws SQLException
+    public void deleteCheckInByGuildsIdNameId(int guildsId, int nameId) throws SQLException
     {
-        checkInDAO.deleteById(id);
+        checkInDAO.deleteByGuildsIdNameId(guildsId, nameId);
     }
 }
 

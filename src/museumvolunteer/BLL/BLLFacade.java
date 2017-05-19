@@ -87,13 +87,13 @@ public class BLLFacade implements IBLLFacade{
     }
 
     @Override
-    public List<CheckIn> getAllCheckInsByNameId(int nameId) throws SQLException, IOException {
-        return checkInManager.getAllCheckInsByNameId(nameId);
+    public List<CheckIn> getAllCheckInsByNameIdGuildsId(int guildsId, int nameId) throws SQLException, IOException {
+        return checkInManager.getAllCheckInsByNameIdGuildsId(guildsId, nameId);
     }
 
     @Override
-    public List<CheckIn> exportCheckInsByIdToExcel(int nameId) throws SQLException, IOException {
-        return checkInManager.exportCheckInsByIdToExcel(nameId);
+    public List<CheckIn> exportCheckInsByNameIdGuildsIdToExcel(int guildsId, int nameId) throws SQLException, IOException {
+        return checkInManager.exportCheckInsByNameIdGuildsIdToExcel(guildsId, nameId);
     }
 
     @Override
@@ -112,8 +112,8 @@ public class BLLFacade implements IBLLFacade{
     }
 
     @Override
-    public void deleteCheckInById(int id) throws SQLException {
-        checkInManager.deleteCheckInById(id);
+    public void deleteCheckInByGuildsIdNameId(int guildsId, int nameId) throws SQLException {
+        checkInManager.deleteCheckInByGuildsIdNameId(guildsId, nameId);
     }
 
     @Override

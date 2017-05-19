@@ -39,13 +39,14 @@ public class CheckInDAO {
      * @return
      * @throws SQLException
      */
-    public CheckIn add(CheckIn ts) throws SQLException {
-        String sql = "INSERT INTO Hours(timeStamp, nameId, hours) VALUES(?, ?, ?)";
+    public CheckIn addCheckIn(CheckIn ts) throws SQLException {
+        String sql = "INSERT INTO Hours(timeStamp, guildsId, nameId, hours) VALUES(?, ?, ?, ?)";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setTimestamp(1, ts.getDateTime());
-            ps.setInt(2, ts.getNameId());
-            ps.setInt(3, ts.getHours());
+            ps.setInt(2, ts.getGuildsId());
+            ps.setInt(3, ts.getNameId());
+            ps.setInt(4, ts.getHours());
             ps.executeUpdate();
             
             ResultSet generatedKey = ps.getGeneratedKeys();
@@ -137,17 +138,19 @@ public class CheckInDAO {
     /**
      * Gets hours matching nameId on the volunteer selected.
      *
+     * @param guildsId
      * @param nameId
      * @return
      * @throws SQLException
      */
-    public List<CheckIn> getByNameId(int nameId) throws SQLException {
+    public List<CheckIn> getByNameIdGuildsId(int guildsId, int nameId) throws SQLException {
 
         List<CheckIn> allTimeStamps = new ArrayList<>();
-        String sql = "SELECT * FROM Hours WHERE nameId = ?";
+        String sql = "SELECT * FROM Hours WHERE guildsId = ? AND nameId = ?";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, nameId);
+            ps.setInt(1, guildsId);
+            ps.setInt(2, nameId);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 allTimeStamps.add(getOneCheckIn(rs));
@@ -166,10 +169,11 @@ public class CheckInDAO {
     public CheckIn getOneCheckIn(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
         Timestamp dateTime = rs.getTimestamp("timeStamp");
+        int guildsId = rs.getInt("guildsId");
         int nameId = rs.getInt("nameId");
         int hours = rs.getInt("hours");
 
-        return new CheckIn(id, dateTime, nameId, hours);
+        return new CheckIn(id, dateTime, guildsId, nameId, hours);
     }
 
     /**
@@ -194,39 +198,44 @@ public class CheckInDAO {
     /**
      * Deletes hours according to id specified.
      *
+     * @param guildsId
      * @param id
      * @throws SQLException
      */
-    public void deleteById(int id) throws SQLException {
-        String sql = "DELETE FROM Hours WHERE nameId = ?";
+    public void deleteByGuildsIdNameId(int guildsId, int nameId) throws SQLException {
+        String sql = "DELETE FROM Hours WHERE guildsId = ? AND nameId = ?";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setInt(1, guildsId);
+            ps.setInt(2, nameId);
 
             ps.executeUpdate();
         }
     }
 
-    public List<CheckIn> getByNameIdToExcel(int nameId) throws SQLException, IOException {
+    public List<CheckIn> getByNameIdGuildsIdToExcel(int guildsId, int nameId) throws SQLException, IOException {
         List<CheckIn> allTimeStamps = new ArrayList<>();
-        String sql = "SELECT * FROM Hours WHERE nameId = ?";
+        String sql = "SELECT * FROM Hours WHERE guildsId = ? AND nameId = ?";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, nameId);
+            ps.setInt(1, guildsId);
+            ps.setInt(2, nameId);
             ResultSet rs = ps.executeQuery();
             XSSFWorkbook wb = new XSSFWorkbook();
             XSSFSheet sheet = wb.createSheet("Timer for frivillig");
             XSSFRow header = sheet.createRow(0);
             header.createCell(0).setCellValue("Tidsstempel");
-            header.createCell(1).setCellValue("Id på frivillig");
-            header.createCell(2).setCellValue("Antal timer");
+            header.createCell(1).setCellValue("Laug id på frivillig");
+            header.createCell(2).setCellValue("Id på frivillig");
+            header.createCell(3).setCellValue("Antal timer");
 
             int index = 1;
             while (rs.next()) {
                 XSSFRow row = sheet.createRow(index);
                 row.createCell(0).setCellValue(rs.getString("timeStamp"));
-                row.createCell(1).setCellValue(rs.getString("nameId"));
-                row.createCell(2).setCellValue(rs.getString("hours"));
+                row.createCell(0).setCellValue(rs.getString("guildsId"));
+                row.createCell(2).setCellValue(rs.getString("nameId"));
+                row.createCell(3).setCellValue(rs.getString("hours"));
                 index++;
                 allTimeStamps.add(getOneCheckIn(rs));
             }
