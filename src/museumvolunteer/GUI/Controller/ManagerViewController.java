@@ -93,24 +93,24 @@ public class ManagerViewController implements Initializable{
 //        backgroundColor();
         datePicker.setValue(LocalDate.now());
         dataBind();
-//       List<Guild> allGuilds = guildManagerTable.getItems();
-//        List<String> allGuildNames = new ArrayList();
-//        for (Guild g : allGuilds) {
-//            String nameString = g.getName();
-//            allGuildNames.add(nameString);
-//        }
-//        nameManagerTable.setItems(volunteerModel.getNames());
-//
-//        try {
-//            Guild g = guildManagerTable.getSelectionModel().getSelectedItem();
-//            if (g != null) {
-//                int guildId = g.getId();
-//                List<String> allVolunteers = bllFacade.getAllVolunteerNames(guildId);
-//                volunteerModel.setFilteredNames(allVolunteers);
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(VolunteerViewController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+       List<Guild> allGuilds = guildManagerTable.getItems();
+        List<String> allGuildNames = new ArrayList();
+        for (Guild g : allGuilds) {
+            String nameString = g.getName();
+            allGuildNames.add(nameString);
+        }
+        nameManagerTable.setItems(volunteerModel.getNames());
+
+        try {
+            Guild g = guildManagerTable.getSelectionModel().getSelectedItem();
+            if (g != null) {
+                int guildId = g.getId();
+                List<String> allVolunteers = bllFacade.getAllVolunteerNames(guildId);
+                volunteerModel.setFilteredNames(allVolunteers);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VolunteerViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
 if(nameManagerTable != null) {
@@ -453,8 +453,8 @@ nameManagerTable.getColumns().get(0).setVisible(true);
 //    }
 
     @FXML
-    private void searchNameList(KeyEvent event) throws SQLException {
-              String query = searchNameField.getText().trim();
+    void searchNameList(KeyEvent event) throws SQLException {
+        String query = searchNameField.getText().trim();
         List<String> searchResult = null;
         SearchPattern searchStrategy;
         searchStrategy = new ContainsSearch(query);

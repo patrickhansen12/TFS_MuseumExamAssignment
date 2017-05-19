@@ -34,7 +34,6 @@ import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Volunteer;
 import museumvolunteer.BLL.BLLFacade;
 import museumvolunteer.BLL.ContainsSearch;
-import museumvolunteer.BLL.NamesManager;
 import museumvolunteer.BLL.SearchPattern;
 import museumvolunteer.GUI.Model.GuildsModel;
 import museumvolunteer.GUI.Model.VolunteerModel;
@@ -61,7 +60,6 @@ public class VolunteerViewController implements Initializable {
     private DatePicker datePick;
 
     //private variables.
-    private NamesManager namesManager;
     private VolunteerModel volunteerModel;
     private GuildsModel guildsModel;
     private BLLFacade bllFacade;
@@ -89,7 +87,7 @@ public class VolunteerViewController implements Initializable {
             Guild g = guildTable.getSelectionModel().getSelectedItem();
             if (g != null) {
                 int guildId = g.getId();
-                List<String> allVolunteers = namesManager.getAllVolunteerNames(guildId);
+                List<String> allVolunteers = bllFacade.getAllVolunteerNames(guildId);
                 volunteerModel.setFilteredNames(allVolunteers);
             }
         } catch (SQLException ex) {
