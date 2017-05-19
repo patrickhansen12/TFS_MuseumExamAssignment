@@ -7,9 +7,12 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -90,24 +93,24 @@ public class ManagerViewController implements Initializable {
 //        backgroundColor();
         datePicker.setValue(LocalDate.now());
         dataBind();
-//       List<Guild> allGuilds = guildManagerTable.getItems();
-//        List<String> allGuildNames = new ArrayList();
-//        for (Guild g : allGuilds) {
-//            String nameString = g.getName();
-//            allGuildNames.add(nameString);
-//        }
-//        nameManagerTable.setItems(volunteerModel.getNames());
-//
-//        try {
-//            Guild g = guildManagerTable.getSelectionModel().getSelectedItem();
-//            if (g != null) {
-//                int guildId = g.getId();
-//                List<String> allVolunteers = bllFacade.getAllVolunteerNames(guildId);
-//                volunteerModel.setFilteredNames(allVolunteers);
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(VolunteerViewController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+       List<Guild> allGuilds = guildManagerTable.getItems();
+        List<String> allGuildNames = new ArrayList<String>();
+        for (Guild g : allGuilds) {
+            String nameString = g.getName();
+            allGuildNames.add(nameString);
+        }
+        nameManagerTable.setItems(volunteerModel.getNames());
+
+        try {
+            Guild g = guildManagerTable.getSelectionModel().getSelectedItem();
+            if (g != null) {
+                int guildId = g.getId();
+                List<String> allVolunteers = bllFacade.getAllVolunteerNames(guildId);
+                volunteerModel.setFilteredNames(allVolunteers);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VolunteerViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         if (nameManagerTable != null) {
 
@@ -454,7 +457,9 @@ public class ManagerViewController implements Initializable {
 //    }
 
     @FXML
+
     private void searchNameList(KeyEvent event) throws SQLException {
+
         String query = searchNameField.getText().trim();
         List<String> searchResult = null;
         SearchPattern searchStrategy;
