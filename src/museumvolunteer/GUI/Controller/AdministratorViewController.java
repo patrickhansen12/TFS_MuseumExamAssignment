@@ -352,13 +352,18 @@ public class AdministratorViewController implements Initializable {
             dateAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
             hoursAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
             hoursAdminTable.setItems(volunteerModel.getAllCheckIns());
-
+//hoursAdminTable.getColumns().get(0).setVisible(false);
+//        hoursAdminTable.getColumns().get(1).setVisible(false);
+//      hoursAdminTable.getSelectionModel().clearSelection();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Bidragede timer");
             alert.setHeaderText(null);
-            alert.setContentText("Du har bidraget med " + txtFieldHours.getText() + " timer");
-            alert.showAndWait();
+            alert.setContentText(nameAdminTable.getSelectionModel().getSelectedItem().getName() + " har bidraget med " + txtFieldHours.getText() + " timer");
+txtFieldHours.setText("");
+hoursAdminTable.refresh();
 
+            alert.showAndWait();
+   
         } else if (datePicker.getValue() == null || guildAdminTable.getSelectionModel().getSelectedItem() == null || nameAdminTable.getSelectionModel().getSelectedItem() == null || txtFieldHours.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fejl");
@@ -421,6 +426,7 @@ public class AdministratorViewController implements Initializable {
                 hoursAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
                 dateAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
                 hoursAdminTable.setItems(volunteerModel.getAllCheckIns());
+                
             }
         }
     }
