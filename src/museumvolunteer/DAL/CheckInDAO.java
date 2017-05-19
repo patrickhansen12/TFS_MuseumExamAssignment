@@ -46,11 +46,14 @@ public class CheckInDAO {
             ps.setTimestamp(1, ts.getDateTime());
             ps.setInt(2, ts.getNameId());
             ps.setInt(3, ts.getHours());
-
             ps.executeUpdate();
+            
             ResultSet generatedKey = ps.getGeneratedKeys();
             generatedKey.next();
             int id = generatedKey.getInt(1);
+
+            ps.executeUpdate();
+            
             return new CheckIn(id, ts);
         }
     }
