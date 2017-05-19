@@ -138,7 +138,6 @@ public class VolunteerViewController implements Initializable {
         guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
         
         guildTable.setItems(guildsModel.getGuilds());
-        guildTable.getStyleClass().add("Times New Roman ,40");
         nameTable.setPlaceholder(new Label("Der er ikke \nnogen navne \nat vise"));
         guildTable.setPlaceholder(new Label("Der er ikke \nnogen laug \nat vise"));
     }
