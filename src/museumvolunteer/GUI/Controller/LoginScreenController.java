@@ -136,7 +136,7 @@ public class LoginScreenController implements Initializable {
     private void logInA() throws IOException
     {
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AdministatorView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AdministratorView.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Logged in as " + usernameField.getText());
         stage.setScene(scene);
