@@ -348,9 +348,9 @@ public class AdministratorViewController implements Initializable {
             volunteerModel.setCheckInsByNameIdGuildsId(guildsId, nameId);
             //int nameId = Integer.parseInt(nameColumn.getText().trim());
             int hours = Integer.parseInt(txtFieldHours.getText().trim());
-            VolunteerModel.getInstance().addHours(new CheckIn(dateTime, guildsId, nameId, hours));
-            hoursAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
+            volunteerModel.addHours(new CheckIn(dateTime, guildsId, nameId, hours));
             dateAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
+            hoursAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
             hoursAdminTable.setItems(volunteerModel.getAllCheckIns());
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -412,8 +412,8 @@ public class AdministratorViewController implements Initializable {
     private void handleVolunteersHours(MouseEvent event) throws SQLException, IOException {
         if (nameAdminTable.getSelectionModel().getSelectedItem() != null) {
             if (event.isPrimaryButtonDown() == false) {
-                hoursAdminTable.getColumns().get(0).setVisible(true);
-                hoursAdminTable.getColumns().get(1).setVisible(true);
+//                hoursAdminTable.getColumns().get(0).setVisible(true);
+//                hoursAdminTable.getColumns().get(1).setVisible(true);
                 
                 int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getId();
                 int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getId();

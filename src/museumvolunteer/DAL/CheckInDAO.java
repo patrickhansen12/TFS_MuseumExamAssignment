@@ -35,27 +35,26 @@ public class CheckInDAO {
     /**
      * Adds hours to a specific volunteer in database table Hours.
      *
-     * @param ts
+     * @param ci
      * @return
      * @throws SQLException
      */
-    public CheckIn addCheckIn(CheckIn ts) throws SQLException {
+    public CheckIn addCheckIn(CheckIn ci) throws SQLException {
         String sql = "INSERT INTO Hours(timeStamp, guildsId, nameId, hours) VALUES(?, ?, ?, ?)";
         try (Connection con = cm.getConnection()) {
-            PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setTimestamp(1, ts.getDateTime());
-            ps.setInt(2, ts.getGuildsId());
-            ps.setInt(3, ts.getNameId());
-            ps.setInt(4, ts.getHours());
-            ps.executeUpdate();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setTimestamp(1, ci.getDateTime());
+            ps.setInt(2, ci.getGuildsId());
+            ps.setInt(3, ci.getNameId());
+            ps.setInt(4, ci.getHours());
             
-            ResultSet generatedKey = ps.getGeneratedKeys();
-            generatedKey.next();
-            int id = generatedKey.getInt(1);
+//            ResultSet generatedKey = ps.getGeneratedKeys();
+//            generatedKey.next();
+//            int id = generatedKey.getInt(1);
 
             ps.executeUpdate();
             
-            return new CheckIn(id, ts);
+            return new CheckIn(ci);
         }
     }
 
@@ -199,7 +198,7 @@ public class CheckInDAO {
      * Deletes hours according to id specified.
      *
      * @param guildsId
-     * @param id
+     * @param nameId
      * @throws SQLException
      */
     public void deleteByGuildsIdNameId(int guildsId, int nameId) throws SQLException {

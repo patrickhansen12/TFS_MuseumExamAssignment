@@ -55,6 +55,10 @@ public class CheckIn {
         this(id, ci.getDateTime(), ci.getGuildsId(), ci.getNameId(), ci.getHours());
     }
 
+    public CheckIn(CheckIn ci) {
+        this(-1, ci.getDateTime(), ci.getGuildsId(), ci.getNameId(), ci.getHours());
+    }
+
 //    public CheckIn(Timestamp dateTime, int hours)
 //    {
 //        this(-1, dateTime, -1, hours);
