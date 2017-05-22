@@ -69,9 +69,9 @@ public class AdminDAO {
         String sql = "INSERT INTO Managers(name, email, phoneNumber, username, password) VALUES(?, ?, ?, ?, ?)";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setString(1, m.getName());
-            ps.setString(2, m.getEmail());
-            ps.setString(3, m.getPhoneNumber());
+            ps.setString(1, m.getNameAsString());
+            ps.setString(2, m.getEmailAsString());
+            ps.setString(3, m.getPhoneNumberAsString());
             ps.setString(4, m.getUsername());
             ps.setString(5, m.getPassword());
             
@@ -79,7 +79,7 @@ public class AdminDAO {
             ResultSet generatedKey = ps.getGeneratedKeys();
             generatedKey.next();
             int id = generatedKey.getInt(1);
-            return new Manager(id, m.getName(), m.getEmail(), m.getPhoneNumber(), m.getUsername(), m.getPassword());    
+            return new Manager(id, m.getNameAsString(), m.getEmailAsString(), m.getPhoneNumberAsString(), m.getUsername(), m.getPassword());    
         }
     
     }

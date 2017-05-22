@@ -10,19 +10,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="ManagerScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.ManagerViewController">
+<AnchorPane id="AnchorPane" fx:id="ManagerScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.ManagerViewController">
    <children>
-      <TableView fx:id="guildManagerTable" layoutX="20.0" layoutY="100.0" onMouseClicked="#handleGuildsVolunteers" prefHeight="400.0" prefWidth="175.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="120.0">
+      <TableView fx:id="guildManagerTable" layoutX="20.0" layoutY="100.0" onMouseClicked="#handleGuildsVolunteers" prefHeight="400.0" prefWidth="175.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="100.0">
         <columns>
           <TableColumn fx:id="guildManagerColumn" prefWidth="170.0" text="Laug" />
         </columns>
       </TableView>
-      <TableView fx:id="nameManagerTable" layoutX="215.0" layoutY="100.0" onMouseClicked="#handleVolunteersHours" prefHeight="400.0" prefWidth="175.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="120.0">
+      <TableView fx:id="nameManagerTable" layoutX="215.0" layoutY="100.0" onMouseClicked="#handleVolunteersHours" prefHeight="400.0" prefWidth="175.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="100.0">
         <columns>
           <TableColumn fx:id="nameManagerColumn" prefWidth="170.0" text="Navne" />
         </columns>
       </TableView>
-      <TableView fx:id="hoursManagerTable" layoutX="383.0" layoutY="93.0" prefHeight="400.0" prefWidth="175.0" AnchorPane.leftAnchor="415.0" AnchorPane.topAnchor="120.0">
+      <TableView fx:id="hoursManagerTable" layoutX="383.0" layoutY="93.0" prefHeight="400.0" prefWidth="175.0" AnchorPane.leftAnchor="415.0" AnchorPane.topAnchor="100.0">
         <columns>
             <TableColumn fx:id="dateManagerColumn" prefWidth="130.0" text="Dato" />
           <TableColumn fx:id="hoursManagerColumn" prefWidth="42.0" text="Timer" />
@@ -50,26 +50,26 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <DatePicker fx:id="datePicker" layoutX="650.0" layoutY="49.0" prefHeight="31.0" prefWidth="175.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0" />
-      <TextField fx:id="txtFieldHours" layoutX="715.0" layoutY="120.0" prefHeight="31.0" prefWidth="175.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="120.0">
+      <DatePicker fx:id="datePicker" layoutX="650.0" layoutY="49.0" prefHeight="31.0" prefWidth="130.0" AnchorPane.rightAnchor="20.0" />
+      <TextField fx:id="txtFieldHours" layoutX="715.0" layoutY="120.0" prefHeight="31.0" prefWidth="130.0" AnchorPane.rightAnchor="20.0">
          <font>
             <Font size="16.0" />
          </font></TextField>
-      <Button fx:id="volunteerInfo" layoutX="215.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleInfo" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Info om frivillig" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="215.0">
+      <Button fx:id="volunteerInfo" layoutX="20.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleInfo" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Info om frivillig" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Label layoutX="649.0" layoutY="14.0" prefWidth="175.0" text="Dato" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <Label layoutX="649.0" layoutY="14.0" prefWidth="130.0" text="Dato" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <font>
             <Font size="20.0" />
          </font></Label>
-      <Label layoutX="650.0" layoutY="90.0" prefHeight="30.0" prefWidth="175.0" text="Timer bidraget" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0">
+      <Label layoutX="650.0" layoutY="90.0" prefHeight="30.0" prefWidth="130.0" text="Timer bidraget" AnchorPane.rightAnchor="20.0">
          <font>
             <Font size="20.0" />
          </font></Label>
-      <TextField fx:id="searchNameField" layoutX="166.0" layoutY="68.0" onKeyReleased="#searchNameList" prefHeight="30.0" prefWidth="175.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="75.0">
+      <TextField fx:id="searchNameField" layoutX="251.0" layoutY="532.0" onKeyReleased="#searchNameList" prefHeight="40.0">
          <font>
-            <Font size="16.0" />
+            <Font size="24.0" />
          </font>
       </TextField>
    </children>

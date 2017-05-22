@@ -7,72 +7,27 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="volunteerInfoScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.VolunteerInfoViewController">
    <children>
-      <TextField fx:id="nameBox" layoutX="120.0" layoutY="7.0" prefHeight="31.0" prefWidth="250.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="20.0">
-         <font>
-            <Font size="20.0" />
-         </font></TextField>
-      <TextField fx:id="emailBox" layoutX="120.0" layoutY="49.0" prefHeight="31.0" prefWidth="250.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="80.0">
-         <font>
-            <Font size="20.0" />
-         </font></TextField>
-      <TextField fx:id="phoneNumberBox" layoutX="119.0" layoutY="97.0" prefHeight="31.0" prefWidth="250.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="140.0">
-         <font>
-            <Font size="20.0" />
-         </font></TextField>
-      <Label fx:id="nameLbl" layoutX="55.0" layoutY="12.0" text="Navn" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
-         <font>
-            <Font size="20.0" />
-         </font></Label>
-      <Label fx:id="emailLbl" layoutX="55.0" layoutY="54.0" text="Email" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="80.0">
-         <font>
-            <Font size="20.0" />
-         </font></Label>
-      <Label fx:id="phoneNumberLbl" layoutX="47.0" layoutY="102.0" text="Telefon" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0">
-         <font>
-            <Font size="20.0" />
-         </font></Label>
-      <Button fx:id="confirmButton" layoutX="20.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleUpdate" prefHeight="45.0" prefWidth="220.0" styleClass="buttonGreen" text="Godkend ændringer" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="430.0">
-         <font>
-            <Font size="20.0" />
-         </font></Button>
-      <Label fx:id="guildLbl" layoutX="37.0" layoutY="148.0" text="Laug" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="200.0">
-         <font>
-            <Font size="20.0" />
-         </font></Label>
-      <TextField fx:id="guildBox" layoutX="119.0" layoutY="143.0" prefHeight="31.0" prefWidth="182.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="200.0" />
-      <Button layoutX="448.0" layoutY="561.0" mnemonicParsing="false" onAction="#backVolunteerInfo" prefHeight="45.0" prefWidth="110.0" styleClass="buttonGreen" text="Tilbage" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
-         <font>
-            <Font size="20.0" />
-         </font></Button>
-      <TextField fx:id="guildNameText" layoutX="119.0" layoutY="144.0" prefHeight="31.0" prefWidth="250.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="200.0">
-         <font>
-            <Font size="20.0" />
-         </font></TextField>
-      <TableView fx:id="guildTable" layoutX="100.0" layoutY="275.0" onMouseClicked="#guildClicked" prefHeight="250.0" prefWidth="250.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="260.0">
+      <TextField fx:id="nameBox" layoutX="120.0" layoutY="7.0" prefHeight="31.0" prefWidth="182.0" />
+      <TextField fx:id="emailBox" layoutX="120.0" layoutY="49.0" prefHeight="31.0" prefWidth="182.0" />
+      <TextField fx:id="phoneNumberBox" layoutX="119.0" layoutY="97.0" prefHeight="31.0" prefWidth="182.0" />
+      <Label fx:id="nameLbl" layoutX="55.0" layoutY="12.0" text="Navn" />
+      <Label fx:id="emailLbl" layoutX="55.0" layoutY="54.0" text="Email" />
+      <Label fx:id="phoneNumberLbl" layoutX="47.0" layoutY="102.0" text="Telefon" />
+      <Button fx:id="confirmButton" layoutX="61.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleUpdate" prefHeight="31.0" prefWidth="182.0" styleClass="buttonGreen" text="Godkend ændringer" />
+      <Label fx:id="guildLbl" layoutX="37.0" layoutY="148.0" text="Laug" />
+      <TextField fx:id="guildBox" layoutX="119.0" layoutY="143.0" prefHeight="31.0" prefWidth="182.0" />
+      <Button layoutX="448.0" layoutY="561.0" mnemonicParsing="false" onAction="#backVolunteerInfo" styleClass="buttonGreen" text="Tilbage" />
+      <TextField fx:id="guildNameText" layoutX="119.0" layoutY="144.0" prefHeight="31.0" prefWidth="182.0" />
+      <TableView fx:id="guildTable" layoutX="70.0" layoutY="242.0" onMouseClicked="#guildClicked" prefHeight="178.0" prefWidth="300.0">
          <columns>
             <TableColumn fx:id="guildIdColumn" maxWidth="36.0" minWidth="0.0" prefWidth="0.0" text="id" />
-            <TableColumn fx:id="guildColumn" prefWidth="248.0" text="Laug" />
+            <TableColumn fx:id="guildColumn" prefWidth="284.0" text="Laug" />
          </columns>
       </TableView>
-      <Button layoutX="250.0" layoutY="535.0" mnemonicParsing="false" onAction="#addToGuild" prefHeight="45.0" prefWidth="150.0" styleClass="buttonGreen" text="Tilføj til laug" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="535.0">
-         <font>
-            <Font size="20.0" />
-         </font></Button>
-      <TableView fx:id="currentGuildId" layoutX="483.0" layoutY="55.0" prefHeight="250.0" prefWidth="250.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
-        <columns>
-          <TableColumn fx:id="currentGuildColumn" prefWidth="248.0" text="Laug" />
-          <TableColumn fx:id="currentGuildIdColumn" prefWidth="75.0" text="id" />
-        </columns>
-      </TableView>
-      <Label layoutX="530.0" layoutY="35.0" prefHeight="30.0" text="Nuværende Laug" AnchorPane.leftAnchor="530.0" AnchorPane.topAnchor="20.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
+      <Button layoutX="510.0" layoutY="262.0" mnemonicParsing="false" onAction="#addToGuild" styleClass="buttonGreen" text="Tilføj til laug" />
    </children>
    <stylesheets>
        <URL value="@css/ColorSchemes.css" />

@@ -58,9 +58,9 @@ public class NamesDAO {
         String sql = "INSERT INTO Names(name, email, phoneNumber) VALUES(?, ?, ?)";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setString(1, v.getName());
-            ps.setString(2, v.getEmail());
-            ps.setString(3, v.getPhoneNumber());
+            ps.setString(1, v.getNameAsString());
+            ps.setString(2, v.getEmailAsString());
+            ps.setString(3, v.getPhoneNumberAsString());
             
             ps.executeUpdate();
             ResultSet generatedKey = ps.getGeneratedKeys();
@@ -73,7 +73,7 @@ public class NamesDAO {
             ps2.setInt(2, v.getGuildsId());
 
             ps2.executeUpdate();
-            return new Volunteer(id, v.getName(), v.getEmail(), v.getPhoneNumber(), v.getGuildsId());    
+            return new Volunteer(id, v.getNameAsString(), v.getEmailAsString(), v.getPhoneNumberAsString(), v.getGuildsId());    
         }
     }
 
@@ -119,9 +119,9 @@ public class NamesDAO {
         String sql = "UPDATE Names SET name = ?, email = ?, phoneNumber = ? WHERE id = ?";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, v.getName());
-            ps.setString(2, v.getEmail());
-            ps.setString(3, v.getPhoneNumber());
+            ps.setString(1, v.getNameAsString());
+            ps.setString(2, v.getEmailAsString());
+            ps.setString(3, v.getPhoneNumberAsString());
             ps.setInt(4, v.getId());
             ps.executeUpdate();
             
