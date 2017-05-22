@@ -58,11 +58,11 @@ public class AddManagerController implements Initializable {
 
     @FXML
     private void performButton(ActionEvent event) throws SQLException {
-        if (nameBox.getText().equals("")) {
+        if (nameBox.getText().equals("") || usernameBox.getText().equals("") || passwordBox.getText().equals("")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fejl");
             alert.setHeaderText(null);
-            alert.setContentText("Du skal give den nye manager et navn.");
+            alert.setContentText("Du skal give den nye manager et navn, brugernavn, og adgangskode.");
             alert.showAndWait();
         } else {
             String name = nameBox.getText().trim();

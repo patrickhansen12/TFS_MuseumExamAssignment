@@ -186,7 +186,7 @@ public class AdministratorViewController implements Initializable {
             alert.setContentText("Du skal vælge et laug, før du kan slette det.");
             alert.showAndWait();
         }
-
+        else {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Er du sikker?");
         alert.setHeaderText(null);
@@ -201,6 +201,7 @@ public class AdministratorViewController implements Initializable {
             guildAdminTable.getSelectionModel().clearSelection();
         } else {
 
+        }
         }
     }
 
