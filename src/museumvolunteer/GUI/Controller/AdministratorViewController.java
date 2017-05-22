@@ -477,5 +477,45 @@ public class AdministratorViewController implements Initializable {
 
     @FXML
     private void handleInfo(ActionEvent event) {
+     if (nameAdminTable.getSelectionModel().getSelectedItem() == null) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Du skal vælge en frivillig før du kan se informationer om dem.");
+            alert.showAndWait();
+        }
+
+        if (nameAdminTable.getSelectionModel().getSelectedItem() != null) {
+            Stage stage = new Stage();
+            Parent root;
+            try {
+                int id = nameAdminTable.getSelectionModel().getSelectedItem().getId();
+                String name = nameAdminTable.getSelectionModel().getSelectedItem().getNameAsString();
+                String email = nameAdminTable.getSelectionModel().getSelectedItem().getEmailAsString();
+                String phoneNumber = nameAdminTable.getSelectionModel().getSelectedItem().getPhoneNumberAsString();
+                int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getId();
+                //int guildsId = nameManagerTable.getSelectionModel().getSelectedItem().getGuildsId();
+
+                //int gId = guildManagerTable.getSelectionModel().getSelectedItem().getId();
+                //String gName = guildManagerTable.getSelectionModel().getSelectedItem().getName();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/museumvolunteer/GUI/View/VolunteerInfoView.fxml"));
+                root = loader.load();
+                VolunteerInfoViewController controller = loader.getController();
+                controller.doMagicStuff(new Volunteer(id, name, email, phoneNumber, guildsId));
+                //controller.getGuild(new Guild(gId, gName));
+                Scene scene = new Scene(root);
+                stage.setTitle("Rediger frivillig");
+                stage.setResizable(false);
+                stage.initStyle(StageStyle.UNDECORATED);
+
+                stage.setScene(scene);
+                stage.show();
+
+                stage = (Stage) adminScreen.getScene().getWindow();
+                stage.close();
+            } catch (IOException ex) {
+                System.out.println("HandleInfo");
+            }
+        }
     }
 }
