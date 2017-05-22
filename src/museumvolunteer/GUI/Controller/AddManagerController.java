@@ -37,6 +37,10 @@ public class AddManagerController implements Initializable {
     
     private AdminModel adminModel;
     private Manager manager;
+    @FXML
+    private TextField usernameBox;
+    @FXML
+    private TextField passwordBox;
 
     /**
      * Initializes the controller class.
