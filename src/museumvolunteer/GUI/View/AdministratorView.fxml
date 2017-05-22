@@ -9,82 +9,90 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="adminScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AdministratorViewController">
+<AnchorPane id="AnchorPane" fx:id="adminScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AdministratorViewController">
     <children>
-        <TableView fx:id="guildAdminTable" layoutX="16.0" layoutY="130.0" onMouseClicked="#handleGuildsVolunteers" prefHeight="200.0" prefWidth="150.0">
+        <TableView fx:id="guildAdminTable" layoutX="16.0" layoutY="130.0" onMouseClicked="#handleGuildsVolunteers" prefHeight="300.0" prefWidth="175.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="140.0">
             <columns>
-                <TableColumn fx:id="guildAdminColumn" prefWidth="150.0" text="Laug" />
+                <TableColumn fx:id="guildAdminColumn" prefWidth="173.0" text="Laug" />
             </columns>
         </TableView>
-        <TableView fx:id="nameAdminTable" layoutX="194.0" layoutY="130.0" onMouseClicked="#handleVolunteersHours" prefHeight="200.0" prefWidth="150.0">
+        <TableView fx:id="nameAdminTable" layoutX="194.0" layoutY="130.0" onMouseClicked="#handleVolunteersHours" prefHeight="300.0" prefWidth="175.0" AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="140.0">
             <columns>
-                <TableColumn fx:id="nameAdminColumn" prefWidth="150.0" text="Navne" />
+                <TableColumn fx:id="nameAdminColumn" prefWidth="173.0" text="Navne" />
             </columns>
         </TableView>
-        <TableView fx:id="hoursAdminTable" layoutX="554.0" layoutY="130.0" prefHeight="200.0">
+        <TableView fx:id="hoursAdminTable" layoutX="554.0" layoutY="130.0" prefHeight="300.0" prefWidth="175.0" AnchorPane.leftAnchor="605.0" AnchorPane.topAnchor="140.0">
             <columns>
-            <TableColumn fx:id="dateAdminColumn" prefWidth="150.0" text="Dato" />
-                <TableColumn fx:id="hoursAdminColumn" prefWidth="150.0" text="Timer" />
+            <TableColumn fx:id="dateAdminColumn" prefWidth="130.0" text="Dato" />
+                <TableColumn fx:id="hoursAdminColumn" prefWidth="42.0" text="Timer" />
             </columns>
         </TableView>
-        <Button layoutX="32.0" layoutY="23.0" mnemonicParsing="false" onAction="#addGuildButton" styleClass="buttonGreen" text="Tilføj Laug">
+        <Button layoutX="32.0" layoutY="23.0" mnemonicParsing="false" onAction="#addGuildButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilføj Laug" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="20.0">
             <font>
                 <Font size="20.0" />
             </font>
         </Button>
-        <Button layoutX="199.0" layoutY="23.0" mnemonicParsing="false" onAction="#addVolunteerButton" styleClass="buttonGreen" text="Tilføj Frivillig">
+        <Button layoutX="199.0" layoutY="23.0" mnemonicParsing="false" onAction="#addVolunteerButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilføj Frivillig" AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="20.0">
             <font>
                 <Font size="20.0" />
             </font>
         </Button>
-        <Button layoutX="37.0" layoutY="77.0" mnemonicParsing="false" onAction="#removeGuildButton" styleClass="buttonGreen" text="Slet Laug">
+        <Button layoutX="37.0" layoutY="77.0" mnemonicParsing="false" onAction="#removeGuildButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Slet Laug" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="80.0">
             <font>
                 <Font size="20.0" />
             </font>
         </Button>
-        <Button layoutX="204.0" layoutY="77.0" mnemonicParsing="false" onAction="#removeVolunteersButton" styleClass="buttonGreen" text="Slet Frivillig">
+        <Button layoutX="204.0" layoutY="77.0" mnemonicParsing="false" onAction="#removeVolunteersButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Slet Frivillig" AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="80.0">
             <font>
                 <Font size="20.0" />
             </font>
         </Button>
-        <Button layoutX="370.0" layoutY="23.0" mnemonicParsing="false" onAction="#addManagerButton" styleClass="buttonGreen" text="Tilføj Manager">
+        <Button layoutX="370.0" layoutY="23.0" mnemonicParsing="false" onAction="#addManagerButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilføj Manager" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
             <font>
                 <Font size="20.0" />
             </font>
         </Button>
-        <Button layoutX="375.0" layoutY="77.0" mnemonicParsing="false" onAction="#removeManagerButton" styleClass="buttonGreen" text="Slet Manager">
+        <Button layoutX="375.0" layoutY="77.0" mnemonicParsing="false" onAction="#removeManagerButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Slet Manager" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="80.0">
             <font>
                 <Font size="20.0" />
             </font>
         </Button>
-        <TableView fx:id="managerAdminTable" layoutX="373.0" layoutY="130.0" prefHeight="200.0" prefWidth="150.0">
+        <TableView fx:id="managerAdminTable" layoutX="405.0" layoutY="130.0" prefHeight="300.0" prefWidth="175.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0">
             <columns>
-                <TableColumn fx:id="managerAdminColumn" prefWidth="150.0" text="Manager" />
+                <TableColumn fx:id="managerAdminColumn" prefWidth="173.0" text="Manager" />
             </columns>
         </TableView>
-        <Button layoutX="571.0" layoutY="77.0" mnemonicParsing="false" onAction="#removeHoursButton" styleClass="buttonGreen" text="Slet Timer">
+        <Button layoutX="571.0" layoutY="77.0" mnemonicParsing="false" onAction="#removeHoursButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Slet Timer" AnchorPane.leftAnchor="605.0" AnchorPane.topAnchor="80.0">
             <font>
                 <Font size="20.0" />
             </font>
         </Button>
-        <Button layoutX="566.0" layoutY="23.0" mnemonicParsing="false" onAction="#addHoursButton" styleClass="buttonGreen" text="Tilføj Timer">
+        <Button layoutX="605.0" layoutY="27.0" mnemonicParsing="false" onAction="#addHoursButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilføj Timer" AnchorPane.leftAnchor="605.0" AnchorPane.topAnchor="20.0">
             <font>
                 <Font size="20.0" />
             </font>
         </Button>
-        <Button layoutX="611.0" layoutY="350.0" mnemonicParsing="false" onAction="#returnAdmin" styleClass="buttonGreen" text="Tilbage">
+        <Button layoutX="611.0" layoutY="350.0" mnemonicParsing="false" onAction="#returnAdmin" prefHeight="45.0" styleClass="buttonGreen" text="Tilbage" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
             <font>
                 <Font size="20.0" />
             </font>
         </Button>
-      <TextField fx:id="txtFieldHours" layoutX="693.0" layoutY="77.0" prefHeight="31.0" prefWidth="146.0" />
-      <DatePicker fx:id="datePicker" layoutX="712.0" layoutY="18.0" prefHeight="31.0" prefWidth="163.0" />
-      <Button fx:id="exportToExcel" layoutX="734.0" layoutY="357.0" mnemonicParsing="false" onAction="#handleExportToExcel" styleClass="buttonGreen" text="Button" />
-      <TextField fx:id="searchNameField" layoutX="32.0" layoutY="382.0" onKeyReleased="#searchNameList" prefHeight="40.0">
+      <TextField fx:id="txtFieldHours" layoutX="605.0" layoutY="504.0" prefHeight="31.0" prefWidth="175.0" AnchorPane.leftAnchor="605.0" AnchorPane.topAnchor="490.0" />
+      <DatePicker fx:id="datePicker" layoutX="605.0" layoutY="463.0" prefHeight="31.0" prefWidth="175.0" AnchorPane.leftAnchor="605.0" AnchorPane.topAnchor="450.0" />
+      <Button fx:id="exportToExcel" layoutX="558.0" layoutY="536.0" mnemonicParsing="false" onAction="#handleExportToExcel" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Send til Excel" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
          <font>
-            <Font size="24.0" />
+            <Font size="20.0" />
+         </font></Button>
+      <TextField fx:id="searchNameField" layoutX="43.0" layoutY="504.0" onKeyReleased="#searchNameList" prefWidth="175.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="450.0">
+         <font>
+            <Font size="20.0" />
          </font>
       </TextField>
+      <Button layoutX="367.0" layoutY="536.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Info om frivillig" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="410.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
     </children>
     <stylesheets>
         <URL value="@css/ColorSchemes.css" />

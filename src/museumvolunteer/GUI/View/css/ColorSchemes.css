@@ -8,13 +8,13 @@
 }
 
 .buttonGreen {
-    -fx-background-color: rgb(108,249,108);
+    -fx-background-color: rgb(88,249,108);
 }
 
 .table-view .column-header,
 .table-view .column-header .filler,
 .table-view .column-header-background .filler {
-    -fx-background-color: red;
+    -fx-background-color: rgb(32,126,230);
 }
 .table-view .table-cell{
     /*-fx-font-weight:bold;*/
