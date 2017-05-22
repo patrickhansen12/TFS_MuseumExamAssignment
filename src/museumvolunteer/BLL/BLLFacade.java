@@ -3,6 +3,7 @@ package museumvolunteer.BLL;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import museumvolunteer.BE.Admin;
 import museumvolunteer.BE.CheckIn;
 import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Manager;
@@ -129,5 +130,9 @@ public class BLLFacade implements IBLLFacade{
     @Override
     public void deleteManager(Manager m) throws SQLException {
         adminManager.deleteManager(m);
+    }
+    @Override
+    public List<Admin> getAllAdmins() throws SQLException {
+        return adminManager.getAllAdmins();
     }
 }

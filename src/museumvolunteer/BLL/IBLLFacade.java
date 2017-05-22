@@ -3,6 +3,7 @@ package museumvolunteer.BLL;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import museumvolunteer.BE.Admin;
 import museumvolunteer.BE.CheckIn;
 import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Manager;
@@ -37,4 +38,7 @@ public interface IBLLFacade {
     public Manager addManager(Manager m) throws SQLException;
     public List<Manager> getAllManagers() throws SQLException;
     public void deleteManager(Manager m) throws SQLException;
+
+    public List<Admin> getAllAdmins() throws SQLException;
+
 }

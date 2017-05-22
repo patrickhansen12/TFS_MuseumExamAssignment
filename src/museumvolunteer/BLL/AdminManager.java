@@ -3,6 +3,7 @@ package museumvolunteer.BLL;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import museumvolunteer.BE.Admin;
 import museumvolunteer.BE.Manager;
 import museumvolunteer.DAL.AdminDAO;
 
@@ -12,6 +13,7 @@ import museumvolunteer.DAL.AdminDAO;
 public class AdminManager {
 
     private Manager manager;
+    private Admin admin;
     private AdminDAO managerDAO;
     
     public AdminManager() throws IOException {
@@ -47,5 +49,8 @@ public class AdminManager {
      */
     public void deleteManager(Manager m) throws SQLException {
         managerDAO.deleteManager(m);
+    }
+    public List<Admin> getAllAdmins() throws SQLException {
+        return managerDAO.getAllAdmins();
     }
 }

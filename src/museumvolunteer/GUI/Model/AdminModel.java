@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import museumvolunteer.BE.Admin;
 import museumvolunteer.BE.Manager;
 import museumvolunteer.BLL.BLLFacade;
 
@@ -16,6 +17,7 @@ public class AdminModel {
     private BLLFacade bllFacade;
     
     private ObservableList<Manager> allManagers;
+    private ObservableList<Admin> allAdmins;
     
     /**
      * The method to get a reference to this Singleton:
@@ -36,7 +38,8 @@ public class AdminModel {
         bllFacade = new BLLFacade();
         allManagers = FXCollections.observableArrayList();
         allManagers.addAll(bllFacade.getAllManagers());
-        
+        allAdmins = FXCollections.observableArrayList();
+        allAdmins.addAll(bllFacade.getAllAdmins());
     }
     
     /**
@@ -58,6 +61,9 @@ public class AdminModel {
         return allManagers;
     }
     
+        public ObservableList<Admin> getAllAdmins() {
+        return allAdmins;
+    }
     /**
      * Deletes a selected manager from observable list allManagers and the database.
      * @param m

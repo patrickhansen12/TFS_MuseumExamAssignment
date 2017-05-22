@@ -1,7 +1,9 @@
+
 package museumvolunteer.GUI.Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +18,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import museumvolunteer.BLL.BLLFacade;
+import museumvolunteer.GUI.Model.AdminModel;
 
 /**
  * @author Nicolai, Patrick, Kasper, Casper
@@ -30,13 +34,22 @@ public class LoginScreenController implements Initializable {
     private PasswordField passwordField;
     @FXML
     private Label publicMessageLabel;
+    
+    private int currentUser;
+    
+    private AdminModel adminModel;
+    
+    private BLLFacade bllFacade;
 
     /**
      * 
+     * @throws java.io.IOException
+     * @throws java.sql.SQLException
      */
-    public LoginScreenController()
+    public LoginScreenController() throws IOException, SQLException
     {
-        
+        adminModel = AdminModel.getInstance();
+        bllFacade = new BLLFacade();
     }
     
     /**
@@ -48,6 +61,7 @@ public class LoginScreenController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) 
     {
         // TODO
+     
         usernameField.setText("LarsHansen95");
         passwordField.setText("123456");
     }    
@@ -82,33 +96,37 @@ public class LoginScreenController implements Initializable {
      * @throws IOException 
      */
     private void signIn()throws IOException
-    {   
-        if (usernameField.getText().equals("LarsHansen95") && (passwordField.getText().equals("123456")))
+    {
+        for (int i = 0; i <= adminModel.getAllManagers().size() - 1; i++)
         {
-            publicMessageLabel.setText("");
-            logIn();
-            usernameField.clear();
-            passwordField.clear();
+            currentUser = i;
+            
+            if (usernameField.getText().trim().equals(adminModel.getAllManagers().get(currentUser).getUsername()) && passwordField.getText().trim().equals(adminModel.getAllManagers().get(currentUser).getPassword()))
+            {
+                logIn();
+            }
         }
-        else if (usernameField.getText().equals("a") && (passwordField.getText().equals("a")))
+        for(int i = 0; i <= adminModel.getAllAdmins().size() - 1; i++)
         {
-            publicMessageLabel.setText("");
-            logInA();
-            usernameField.clear();
-            passwordField.clear();
+            currentUser = i;
+            
+            if (usernameField.getText().trim().equals(adminModel.getAllAdmins().get(currentUser).getUsername()) && passwordField.getText().trim().equals(adminModel.getAllAdmins().get(currentUser).getPassword()))
+            {
+                logInA();
+            }
         }
-        else if (usernameField.getText().isEmpty()) 
-        {
-            publicMessageLabel.setText("Venlist indtast brugernavn");
-        }
-        else if (passwordField.getText().isEmpty()) 
-        {
-            publicMessageLabel.setText("Venlist indtast kodeord");
-        }
-        else if (!usernameField.getText().equals("t") || !usernameField.getText().equals("t"))
-        {
-            publicMessageLabel.setText("Forkert brugernavn eller kodeord");
-        }
+            if (usernameField.getText().isEmpty()) 
+            {
+                publicMessageLabel.setText("Venlist indtast brugernavn");
+            }
+            else if (passwordField.getText().isEmpty()) 
+            {
+                publicMessageLabel.setText("Venlist indtast kodeord");
+            }
+            else
+            {
+                publicMessageLabel.setText("Forkert brugernavn eller kodeord");
+            }
     }
     
     /**
@@ -168,6 +186,4 @@ public class LoginScreenController implements Initializable {
         stage = (Stage) logInScreen.getScene().getWindow();
         stage.close();
     }
-
-
 }

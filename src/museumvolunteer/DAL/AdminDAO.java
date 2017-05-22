@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import museumvolunteer.BE.Admin;
 import museumvolunteer.BE.Manager;
 
 /**
@@ -52,8 +53,9 @@ public class AdminDAO {
         String name = rs.getString("name");
         String email = rs.getString("email");
         String phoneNumber = rs.getString("phoneNumber");
-
-        return new Manager(id, name, email, phoneNumber);
+        String username = rs.getString("username");
+        String password = rs.getString("password");
+        return new Manager(id, name, email, phoneNumber, username, password);
     }
     
     /**
@@ -64,19 +66,22 @@ public class AdminDAO {
      * @throws SQLException
      */
     public Manager addManager(Manager m) throws SQLException {
-        String sql = "INSERT INTO Managers(name, email, phoneNumber) VALUES(?, ?, ?)";
+        String sql = "INSERT INTO Managers(name, email, phoneNumber, username, password) VALUES(?, ?, ?, ?, ?)";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, m.getName());
             ps.setString(2, m.getEmail());
             ps.setString(3, m.getPhoneNumber());
+            ps.setString(4, m.getUsername());
+            ps.setString(5, m.getPassword());
             
             ps.executeUpdate();
             ResultSet generatedKey = ps.getGeneratedKeys();
             generatedKey.next();
             int id = generatedKey.getInt(1);
-            return new Manager(id, m.getName(), m.getEmail(), m.getPhoneNumber());    
+            return new Manager(id, m.getName(), m.getEmail(), m.getPhoneNumber(), m.getUsername(), m.getPassword());    
         }
+    
     }
     
     /**
@@ -95,6 +100,29 @@ public class AdminDAO {
         }
     }
     
-    
+    public List<Admin> getAllAdmins() throws SQLException {
+        List<Admin> allAdmins = new ArrayList<>();
+
+        String sql = "SELECT * FROM Admin";
+        try (Connection con = cm.getConnection()) {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                allAdmins.add(getOneAdmin(rs));
+            }
+            return allAdmins;
+        }
+    }
+        
+    private Admin getOneAdmin(ResultSet rs) throws SQLException {
+        int id = rs.getInt("id");
+        String name = rs.getString("name");
+        String email = rs.getString("email");
+        String phoneNumber = rs.getString("phoneNumber");
+        String username = rs.getString("username");
+        String password = rs.getString("password");
+
+        return new Admin(id, name, email, phoneNumber, username, password);
+    }
     
 }
