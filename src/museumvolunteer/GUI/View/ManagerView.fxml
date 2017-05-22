@@ -67,7 +67,7 @@
          <font>
             <Font size="20.0" />
          </font></Label>
-      <TextField fx:id="searchNameField" layoutX="166.0" layoutY="68.0" onKeyReleased="#searchNameList" prefHeight="30.0" prefWidth="175.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="75.0">
+      <TextField fx:id="searchNameField" layoutX="166.0" layoutY="68.0" onKeyReleased="#searchNameList" prefHeight="30.0" prefWidth="175.0" promptText="Søg efter frivillig" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="75.0">
          <font>
             <Font size="16.0" />
          </font>
