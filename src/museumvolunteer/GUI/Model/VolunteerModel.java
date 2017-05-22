@@ -150,7 +150,7 @@ public class VolunteerModel {
         items.addAll(name);
         for (Volunteer volunteer : allVolunteers) {
             for (String volunteerName : items) {
-                if (volunteer.getName().equals(volunteerName)) {
+                if (volunteer.getNameAsString().equals(volunteerName)) {
                     sortedVolunteers.add(volunteer);
                 }
             }
