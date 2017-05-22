@@ -10,11 +10,11 @@
 
 <AnchorPane id="AnchorPane" fx:id="logInScreen" onKeyPressed="#handleEnterPressed" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.LoginScreenController">
    <children>
-      <TextField fx:id="usernameField" layoutX="150.0" layoutY="49.0" onKeyPressed="#handleEnterPressed" prefHeight="40.0" prefWidth="250.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="240.0">
+      <TextField fx:id="usernameField" layoutX="150.0" layoutY="49.0" onKeyReleased="#handleEnterPressed" prefHeight="40.0" prefWidth="250.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="240.0">
          <font>
             <Font size="24.0" />
          </font></TextField>
-      <PasswordField fx:id="passwordField" layoutX="150.0" layoutY="96.0" onKeyPressed="#handleEnterPressed" prefHeight="40.0" prefWidth="250.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="300.0">
+      <PasswordField fx:id="passwordField" layoutX="150.0" layoutY="96.0" onKeyReleased="#handleEnterPressed" prefHeight="40.0" prefWidth="250.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="300.0">
          <font>
             <Font size="24.0" />
          </font></PasswordField>
@@ -28,7 +28,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="440.0" layoutY="361.0" mnemonicParsing="false" onAction="#LogInButton" onKeyPressed="#handleEnterPressed" prefHeight="45.0" prefWidth="110.0" styleClass="buttonGreen" text="Log in" AnchorPane.leftAnchor="440.0" AnchorPane.topAnchor="360.0">
+      <Button layoutX="440.0" layoutY="361.0" mnemonicParsing="false" onKeyReleased="#handleEnterPressed" onMouseClicked="#LogInButton" prefHeight="45.0" prefWidth="110.0" styleClass="buttonGreen" text="Log in" AnchorPane.leftAnchor="440.0" AnchorPane.topAnchor="360.0">
          <font>
             <Font size="24.0" />
          </font></Button>
@@ -36,7 +36,7 @@
          <font>
             <Font size="24.0" />
          </font></Label>
-      <Button layoutX="268.0" layoutY="143.0" mnemonicParsing="false" onAction="#returnLogIn" onKeyPressed="#handleEnterPressed" prefHeight="45.0" prefWidth="110.0" styleClass="buttonGreen" text="Tilbage" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+      <Button layoutX="268.0" layoutY="143.0" mnemonicParsing="false" onAction="#returnLogIn" onKeyReleased="#handleEnterPressed" prefHeight="45.0" prefWidth="110.0" styleClass="buttonGreen" text="Tilbage" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
          <font>
             <Font size="24.0" />
          </font></Button>
