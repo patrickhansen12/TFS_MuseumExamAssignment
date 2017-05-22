@@ -68,9 +68,9 @@ public class AddManagerController implements Initializable {
             String name = nameBox.getText().trim();
             String email = emailBox.getText().trim();
             String phoneNumber = phoneBox.getText().trim();
-            adminModel.addManager(new Manager(name, email, phoneNumber));
-            nameBox.clear();
-            nameBox.requestFocus();
+            String username = usernameBox.getText().trim();
+            String password = passwordBox.getText().trim();
+            adminModel.addManager(new Manager(name, email, phoneNumber, username, password));
 
             Stage stage = (Stage) addManagerScreen.getScene().getWindow();
             stage.close();
@@ -79,7 +79,10 @@ public class AddManagerController implements Initializable {
     
 
     @FXML
-    private void returnButton(ActionEvent event) {
+    private void returnButton(ActionEvent event) 
+    {
+        Stage stage = (Stage) addManagerScreen.getScene().getWindow();
+        stage.close();
     }
 
     
