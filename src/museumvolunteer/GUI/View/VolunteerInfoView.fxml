@@ -27,6 +27,7 @@
             <TableColumn fx:id="guildColumn" prefWidth="284.0" text="Laug" />
          </columns>
       </TableView>
+      <Button layoutX="510.0" layoutY="262.0" mnemonicParsing="false" onAction="#addToGuild" styleClass="buttonGreen" text="Tilføj til laug" />
    </children>
    <stylesheets>
        <URL value="@css/ColorSchemes.css" />

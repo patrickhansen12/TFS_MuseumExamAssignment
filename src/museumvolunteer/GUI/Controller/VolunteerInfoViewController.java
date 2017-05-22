@@ -121,16 +121,7 @@ guildBox.setVisible(false);
         String name = nameBox.getText().trim();
         String email = emailBox.getText().trim();
         String phoneNumber = phoneNumberBox.getText().trim();
-          int nameId = thisVolunteer.getId();
-        int guildsId = Integer.parseInt(guildBox.getText());
-        volunteerModel.addToNewGuild(nameId, guildsId);
-Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle(null);
-            alert.setHeaderText(null);
-            alert.setContentText(nameBox.getText() + " er nu tilføjet i " + guildNameText.getText() );  
-//        backVolunteerInfo(event);
         volunteerModel.updateVolunteer(new Volunteer(thisVolunteer.getId(), name, email, phoneNumber));
-     alert.showAndWait();
         backVolunteerInfo(event);
     }
     
@@ -192,5 +183,17 @@ int guildId = guildTable.getSelectionModel().getSelectedItem().getId();
 guildBox.setText(""+ guildId);
         String guildNameBox = guildTable.getSelectionModel().getSelectedItem().getName();
         guildNameText.setText("" + guildNameBox);
+    }
+
+    @FXML
+    private void addToGuild(ActionEvent event) throws SQLException {
+        int nameId = thisVolunteer.getId();
+        int guildsId = Integer.parseInt(guildBox.getText());
+        volunteerModel.addToNewGuild(nameId, guildsId);
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(null);
+        alert.setHeaderText(null);
+        alert.setContentText(nameBox.getText() + " er nu tilføjet i " + guildNameText.getText());
+        alert.showAndWait();
     }
 }
