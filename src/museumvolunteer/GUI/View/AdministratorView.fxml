@@ -88,7 +88,7 @@
             <Font size="16.0" />
          </font>
       </TextField>
-      <Button layoutX="367.0" layoutY="536.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Info om frivillig" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="410.0">
+      <Button layoutX="367.0" layoutY="536.0" mnemonicParsing="false" onAction="#handleInfo" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Info om frivillig" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="410.0">
          <font>
             <Font size="20.0" />
          </font>

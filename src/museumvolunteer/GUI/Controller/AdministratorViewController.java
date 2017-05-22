@@ -465,4 +465,8 @@ hoursAdminTable.refresh();
         hoursAdminTable.getSelectionModel().clearSelection();
         nameAdminTable.getSelectionModel().clearSelection();
     }
+
+    @FXML
+    private void handleInfo(ActionEvent event) {
+    }
 }

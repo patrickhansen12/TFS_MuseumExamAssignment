@@ -66,6 +66,12 @@ public class VolunteerInfoViewController implements Initializable {
     private TextField guildNameText;
     private Button guildBtn;
     private TextField newGuildBox;
+    @FXML
+    private TableView<?> currentGuildId;
+    @FXML
+    private TableColumn<?, ?> currentGuildColumn;
+    @FXML
+    private TableColumn<?, ?> currentGuildIdColumn;
 
     /**
      * Initializes the VolunteerInfoViewController class.
