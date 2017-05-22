@@ -1,5 +1,8 @@
 package museumvolunteer.BE;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  * @author Nicolai, Patrick, Kasper, Casper
  */
@@ -7,9 +10,9 @@ public class Volunteer {
     
     //Instance variables.
     private int id;
-    private String name;
-    private String email;
-    private String phoneNumber;
+    private StringProperty name;
+    private StringProperty email;
+    private StringProperty phoneNumber;
     private int guildsId;
 
     /**
@@ -22,9 +25,9 @@ public class Volunteer {
      */
     public Volunteer(int id, String name, String email, String phoneNumber, int guildsId) {
         this.id = id;
-        this.name = name;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
+        this.name = new SimpleStringProperty(name);
+        this.email = new SimpleStringProperty(email);
+        this.phoneNumber = new SimpleStringProperty(phoneNumber);
         this.guildsId = guildsId;
     }
 
@@ -69,67 +72,26 @@ public class Volunteer {
 
     /**
      *
-     * @param id
+     * @return
      */
-    public void setId(int id) {
-        this.id = id;
+    public String getNameAsString() {
+        return name.get();
     }
 
     /**
      *
      * @return
      */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     *
-     * @param name
-     */
-    public void setName(String name) {
-        this.name = name;
+    public String getEmailAsString() {
+        return email.get();
     }
 
     /**
      *
      * @return
      */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     *
-     * @param email
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    /**
-     *
-     * @param phoneNumber
-     */
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-  
-        /**
-     * returns name, currentClass and attendance as strings
-     * @return 
-     */
-    @Override
-    public String toString() {
-        return name;
+    public String getPhoneNumberAsString() {
+        return phoneNumber.get();
     }
 
     /**
@@ -147,8 +109,16 @@ public class Volunteer {
     public void setGuildsId(int guildsId) {
         this.guildsId = guildsId;
     }
-    
-    
 
-    
+    public StringProperty getName() {
+        return name;
+    }
+
+    public StringProperty getEmail() {
+        return email;
+    }
+
+    public StringProperty getPhoneNumber() {
+        return phoneNumber;
+    }
 }

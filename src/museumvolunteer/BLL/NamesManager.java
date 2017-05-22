@@ -96,7 +96,7 @@ public class NamesManager {
         List<Volunteer> allVolunteers = getAllVolunteersByGuildId(guildsId);
         List<String> allVolunteerNames = new ArrayList<>();
         for (Volunteer v : allVolunteers) {
-            String nameString = v.getName();
+            String nameString = v.getNameAsString();
             allVolunteerNames.add(nameString);
         }
         return allVolunteerNames;

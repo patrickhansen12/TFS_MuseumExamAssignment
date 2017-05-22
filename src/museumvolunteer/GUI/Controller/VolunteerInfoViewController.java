@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -81,12 +83,16 @@ public class VolunteerInfoViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-                guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-                guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
-        guildTable.setItems(guildsModel.getGuilds());
-guildBox.setVisible(false);
+        try {
+            guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
+            guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
+            guildTable.setItems(guildsModel.getGuilds());
+            guildBox.setVisible(false);
 
-    guildNameText.setEditable(false);
+            guildNameText.setEditable(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(VolunteerInfoViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -109,9 +115,9 @@ guildBox.setVisible(false);
      */
     public void doMagicStuff(Volunteer v) {
         thisVolunteer = v;
-        nameBox.setText(v.getName());
-        emailBox.setText(v.getEmail());
-        phoneNumberBox.setText(v.getPhoneNumber());
+        nameBox.setText(v.getNameAsString());
+        emailBox.setText(v.getEmailAsString());
+        phoneNumberBox.setText(v.getPhoneNumberAsString());
         guildBox.setText(String.valueOf(v.getGuildsId()));
     }
 
@@ -130,9 +136,8 @@ guildBox.setVisible(false);
         volunteerModel.updateVolunteer(new Volunteer(thisVolunteer.getId(), name, email, phoneNumber));
         backVolunteerInfo(event);
     }
-    
-    private void handleAddToNewGuild(ActionEvent event) throws SQLException
-    {
+
+    private void handleAddToNewGuild(ActionEvent event) throws SQLException {
         int nameId = thisVolunteer.getId();
         int guildsId = Integer.parseInt(newGuildBox.getText());
         volunteerModel.addToNewGuild(nameId, guildsId);
@@ -180,14 +185,16 @@ guildBox.setVisible(false);
 //    }
 
     /**
-     * if a guild is clicked inside the nameManagerTable, the guild name will be put into the guildBox textfield.
-     * @param event 
+     * if a guild is clicked inside the nameManagerTable, the guild name will be
+     * put into the guildBox textfield.
+     *
+     * @param event
      */
     @FXML
     private void guildClicked(MouseEvent event) {
-int guildId = guildTable.getSelectionModel().getSelectedItem().getId();
-guildBox.setText(""+ guildId);
-        String guildNameBox = guildTable.getSelectionModel().getSelectedItem().getName();
+        int guildId = guildTable.getSelectionModel().getSelectedItem().getId();
+        guildBox.setText("" + guildId);
+        String guildNameBox = guildTable.getSelectionModel().getSelectedItem().getNameAsString();
         guildNameText.setText("" + guildNameBox);
     }
 

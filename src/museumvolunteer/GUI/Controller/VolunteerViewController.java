@@ -74,28 +74,32 @@ public class VolunteerViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        dataBind();
-        List<Guild> allGuilds = guildTable.getItems();
-        List<String> allGuildNames = new ArrayList();
-        for (Guild g : allGuilds) {
-            String nameString = g.getName();
-            allGuildNames.add(nameString);
-        }
-        nameTable.setItems(volunteerModel.getNames());
-
         try {
-            Guild g = guildTable.getSelectionModel().getSelectedItem();
-            if (g != null) {
-                int guildId = g.getId();
-                List<String> allVolunteers = bllFacade.getAllVolunteerNames(guildId);
-                volunteerModel.setFilteredNames(allVolunteers);
+            dataBind();
+            List<Guild> allGuilds = guildTable.getItems();
+            List<String> allGuildNames = new ArrayList();
+            for (Guild g : allGuilds) {
+                String nameString = g.getNameAsString();
+                allGuildNames.add(nameString);
             }
+            nameTable.setItems(volunteerModel.getNames());
+            
+            try {
+                Guild g = guildTable.getSelectionModel().getSelectedItem();
+                if (g != null) {
+                    int guildId = g.getId();
+                    List<String> allVolunteers = bllFacade.getAllVolunteerNames(guildId);
+                    volunteerModel.setFilteredNames(allVolunteers);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(VolunteerViewController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            datePick.setValue(LocalDate.now());
+            datePick.setVisible(false);
         } catch (SQLException ex) {
             Logger.getLogger(VolunteerViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        datePick.setValue(LocalDate.now());
-        datePick.setVisible(false);
     }
 
     /**
@@ -133,10 +137,10 @@ public class VolunteerViewController implements Initializable {
     /**
      * Populates guildsTable and namesTable with guilds and names.
      */
-    private void dataBind() {
-        
-        guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-        
+    private void dataBind() throws SQLException {
+
+        guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
+
         guildTable.setItems(guildsModel.getGuilds());
         nameTable.setPlaceholder(new Label("Der er ikke \nnogen navne \nat vise"));
         guildTable.setPlaceholder(new Label("Der er ikke \nnogen laug \nat vise"));
@@ -161,7 +165,7 @@ public class VolunteerViewController implements Initializable {
             if (event.isPrimaryButtonDown() == false) {
                 int guildId = guildTable.getSelectionModel().getSelectedItem().getId();
                 volunteerModel.setNamesByGuildId(guildId);
-                nameColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+                nameColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
                 nameTable.setItems(volunteerModel.getAllVolunteers().sorted());
             }
         }

@@ -59,7 +59,7 @@ public class GuildsDAO {
         String sql = "UPDATE Guilds SET name = ? WHERE id = ?";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, g.getName());
+            ps.setString(1, g.getNameAsString());
             ps.setInt(2, g.getId());
 
             ps.executeUpdate();
@@ -70,13 +70,13 @@ public class GuildsDAO {
         String sql = "INSERT INTO Guilds(name) VALUES(?)";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setString(1, g.getName());
+            ps.setString(1, g.getNameAsString());
             
             ps.executeUpdate();
             ResultSet generatedKey = ps.getGeneratedKeys();
             generatedKey.next();
             int id = generatedKey.getInt(1);
-            return new Guild(id, g.getName());
+            return new Guild(id, g.getNameAsString());
             
 //        String sql2 = "INSERT INTO Works_For(nameId, guildsId) VALUES(?, ?)";
 //            PreparedStatement ps2 = con.prepareStatement(sql2);

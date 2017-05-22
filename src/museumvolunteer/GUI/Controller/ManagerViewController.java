@@ -90,33 +90,38 @@ public class ManagerViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-//        backgroundColor();
-        datePicker.setValue(LocalDate.now());
-        dataBind();
-       List<Guild> allGuilds = guildManagerTable.getItems();
-        List<String> allGuildNames = new ArrayList<String>();
-        for (Guild g : allGuilds) {
-            String nameString = g.getName();
-            allGuildNames.add(nameString);
-        }
-        nameManagerTable.setItems(volunteerModel.getNames());
-
         try {
-            Guild g = guildManagerTable.getSelectionModel().getSelectedItem();
-            if (g != null) {
-                int guildId = g.getId();
-                List<String> allVolunteers = bllFacade.getAllVolunteerNames(guildId);
-                volunteerModel.setFilteredNames(allVolunteers);
+
+//        backgroundColor();
+            datePicker.setValue(LocalDate.now());
+            dataBind();
+            List<Guild> allGuilds = guildManagerTable.getItems();
+            List<String> allGuildNames = new ArrayList<String>();
+            for (Guild g : allGuilds) {
+                String nameString = g.getNameAsString();
+                allGuildNames.add(nameString);
+            }
+            nameManagerTable.setItems(volunteerModel.getNames());
+
+            try {
+                Guild g = guildManagerTable.getSelectionModel().getSelectedItem();
+                if (g != null) {
+                    int guildId = g.getId();
+                    List<String> allVolunteers = bllFacade.getAllVolunteerNames(guildId);
+                    volunteerModel.setFilteredNames(allVolunteers);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(VolunteerViewController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            if (nameManagerTable != null) {
+
+            }
+            if (txtFieldHours != null) {
+
             }
         } catch (SQLException ex) {
-            Logger.getLogger(VolunteerViewController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        if (nameManagerTable != null) {
-
-        }
-        if (txtFieldHours != null) {
-
+            Logger.getLogger(ManagerViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -226,9 +231,9 @@ public class ManagerViewController implements Initializable {
         stage.close();
     }
 
-    private void dataBind() {
+    private void dataBind() throws SQLException {
 
-        guildManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+        guildManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
         guildManagerTable.setItems(guildsModel.getGuilds());
         guildManagerTable.setPlaceholder(new Label("Der er ikke \nnogen laug \nat vise"));
         nameManagerTable.setPlaceholder(new Label("Der er ikke \nnogen navne \nat vise"));
@@ -252,23 +257,22 @@ public class ManagerViewController implements Initializable {
     private void handleGuildsVolunteers(MouseEvent event) throws SQLException, IOException {
         if (guildManagerTable.getSelectionModel().getSelectedItem() != null) {
 
-            if (event.isPrimaryButtonDown() == false) {
-                nameManagerTable.getColumns().get(0).setVisible(true);
-                int guildId = guildManagerTable.getSelectionModel().getSelectedItem().getId();
-                volunteerModel.setNamesByGuildId(guildId);
+            //if (event.isPrimaryButtonDown() == false) {
+            nameManagerTable.getColumns().get(0).setVisible(true);
+            int guildId = guildManagerTable.getSelectionModel().getSelectedItem().getId();
+            volunteerModel.setNamesByGuildId(guildId);
 
-                nameManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-                nameManagerTable.setItems(volunteerModel.getAllVolunteers().sorted());
+            nameManagerColumn.setCellValueFactory(managerManagerCol -> managerManagerCol.getValue().getName());
+            nameManagerTable.setItems(volunteerModel.getAllVolunteers());
 
-                int guildsId = -1;
-                int hourId = -1;
-
-                volunteerModel.setCheckInsByNameIdGuildsId(guildsId, hourId);
-                hoursManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
-                dateManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
-                hoursManagerTable.setItems(volunteerModel.getAllCheckIns());
-
-            }
+//                int guildsId = -1;
+//                int hourId = -1;
+//                volunteerModel.setCheckInsByNameIdGuildsId(guildsId, hourId);
+//            hoursManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
+//            dateManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
+//            hoursManagerTable.setItems(volunteerModel.getAllCheckIns());
+//
+//        }
             searchNameField.clear();
 
         }
@@ -351,7 +355,7 @@ public class ManagerViewController implements Initializable {
             if (event.isPrimaryButtonDown() == false) {
                 hoursManagerTable.getColumns().get(0).setVisible(true);
                 hoursManagerTable.getColumns().get(1).setVisible(true);
-                
+
                 int guildsId = guildManagerTable.getSelectionModel().getSelectedItem().getId();
                 int nameId = nameManagerTable.getSelectionModel().getSelectedItem().getId();
                 volunteerModel.setCheckInsByNameIdGuildsId(guildsId, nameId);
@@ -385,9 +389,9 @@ public class ManagerViewController implements Initializable {
             Parent root;
             try {
                 int id = nameManagerTable.getSelectionModel().getSelectedItem().getId();
-                String name = nameManagerTable.getSelectionModel().getSelectedItem().getName();
-                String email = nameManagerTable.getSelectionModel().getSelectedItem().getEmail();
-                String phoneNumber = nameManagerTable.getSelectionModel().getSelectedItem().getPhoneNumber();
+                String name = nameManagerTable.getSelectionModel().getSelectedItem().getNameAsString();
+                String email = nameManagerTable.getSelectionModel().getSelectedItem().getEmailAsString();
+                String phoneNumber = nameManagerTable.getSelectionModel().getSelectedItem().getPhoneNumberAsString();
                 int guildsId = guildManagerTable.getSelectionModel().getSelectedItem().getId();
                 //int guildsId = nameManagerTable.getSelectionModel().getSelectedItem().getGuildsId();
 

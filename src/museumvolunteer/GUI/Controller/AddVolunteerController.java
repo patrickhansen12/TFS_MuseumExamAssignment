@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -59,13 +61,17 @@ public class AddVolunteerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        guildTable.setVisible(false);
-        guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-        guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
-        guildTable.setItems(guildsModel.getGuilds());
-        guildBox.setVisible(false);
-        guildNameBox.setEditable(false);
-        noteBox.setVisible(false);
+        try {
+            //        guildTable.setVisible(false);
+            guildColumn.setCellValueFactory(guildCol -> guildCol.getValue().getName());
+            guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
+            guildTable.setItems(guildsModel.getGuilds());
+            guildBox.setVisible(false);
+            guildNameBox.setEditable(false);
+            noteBox.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddVolunteerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -119,31 +125,31 @@ public class AddVolunteerController implements Initializable {
         stage.close();
     }
 
-    /**
-     * Method for showing guildManagerTable inside the "notes" windoow.
-     *
-     * @param event
-     */
-    @FXML
-    private void openGuildList(ActionEvent event) {
-        switch (guildToogle) {
-            case 1:
-                guildTable.setVisible(true);
-                guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-                guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
-                guildTable.setItems(guildsModel.getGuilds());
-                guildToogle = 2;
-                guildTable.getSelectionModel().clearSelection();
-                break;
-
-            case 2:
-                guildTable.getSelectionModel().clearSelection();
-                guildTable.setVisible(false);
-                guildToogle = 1;
-
-                break;
-        }
-    }
+//    /**
+//     * Method for showing guildManagerTable inside the "notes" windoow.
+//     *
+//     * @param event
+//     */
+//    @FXML
+//    private void openGuildList(ActionEvent event) {
+//        switch (guildToogle) {
+//            case 1:
+//                guildTable.setVisible(true);
+//                guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+//                guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
+//                guildTable.setItems(guildsModel.getGuilds());
+//                guildToogle = 2;
+//                guildTable.getSelectionModel().clearSelection();
+//                break;
+//
+//            case 2:
+//                guildTable.getSelectionModel().clearSelection();
+//                guildTable.setVisible(false);
+//                guildToogle = 1;
+//
+//                break;
+//        }
+//    }
 
     /**
      * if a guild is clicked inside the nameManagerTable, the guild name will be put into the guildBox textfield.
@@ -151,7 +157,7 @@ public class AddVolunteerController implements Initializable {
      */
     @FXML
     private void guildClicked(MouseEvent event) {
-    String guildName = guildTable.getSelectionModel().getSelectedItem().getName();
+    String guildName = guildTable.getSelectionModel().getSelectedItem().getName().getValue();
     guildNameBox.setText(""+guildName);
         int guildIdBox = guildTable.getSelectionModel().getSelectedItem().getId();
         guildBox.setText("" + guildIdBox);

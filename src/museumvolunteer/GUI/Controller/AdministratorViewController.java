@@ -10,6 +10,8 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -93,9 +95,13 @@ public class AdministratorViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        dataBind();
-        datePicker.setValue(LocalDate.now());
+        try {
+            // TODO
+            dataBind();
+            datePicker.setValue(LocalDate.now());
+        } catch (SQLException ex) {
+            Logger.getLogger(AdministratorViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -186,7 +192,7 @@ public class AdministratorViewController implements Initializable {
             alert.setContentText("Du skal vælge et laug, før du kan slette det.");
             alert.showAndWait();
         }
-        else {
+
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Er du sikker?");
         alert.setHeaderText(null);
@@ -201,7 +207,6 @@ public class AdministratorViewController implements Initializable {
             guildAdminTable.getSelectionModel().clearSelection();
         } else {
 
-        }
         }
     }
 
@@ -360,11 +365,11 @@ public class AdministratorViewController implements Initializable {
             alert.setTitle("Bidragede timer");
             alert.setHeaderText(null);
             alert.setContentText(nameAdminTable.getSelectionModel().getSelectedItem().getName() + " har bidraget med " + txtFieldHours.getText() + " timer");
-txtFieldHours.setText("");
-hoursAdminTable.refresh();
+            txtFieldHours.setText("");
+            hoursAdminTable.refresh();
 
             alert.showAndWait();
-   
+
         } else if (datePicker.getValue() == null || guildAdminTable.getSelectionModel().getSelectedItem() == null || nameAdminTable.getSelectionModel().getSelectedItem() == null || txtFieldHours.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fejl");
@@ -374,10 +379,14 @@ hoursAdminTable.refresh();
         }
     }
 
-    private void dataBind() {
-        guildAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+    private void dataBind() throws SQLException {
+        guildAdminColumn.setCellValueFactory(guildAdminCol -> guildAdminCol.getValue().getName());
         guildAdminTable.setItems(guildsModel.getGuilds());
-        managerAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+
+        nameAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
+        nameAdminTable.setItems(volunteerModel.getAllVolunteers());
+
+        managerAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
         managerAdminTable.setItems(adminModel.getAllManagers());
     }
 
@@ -401,7 +410,7 @@ hoursAdminTable.refresh();
                 nameAdminTable.getColumns().get(0).setVisible(true);
                 int guildId = guildAdminTable.getSelectionModel().getSelectedItem().getId();
                 volunteerModel.setNamesByGuildId(guildId);
-                nameAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+                nameAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
                 nameAdminTable.setItems(volunteerModel.getAllVolunteers());
             }
             searchNameField.clear();
@@ -420,21 +429,21 @@ hoursAdminTable.refresh();
             if (event.isPrimaryButtonDown() == false) {
 //                hoursAdminTable.getColumns().get(0).setVisible(true);
 //                hoursAdminTable.getColumns().get(1).setVisible(true);
-                
+
                 int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getId();
                 int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getId();
                 volunteerModel.setCheckInsByNameIdGuildsId(guildsId, nameId);
                 hoursAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
                 dateAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
                 hoursAdminTable.setItems(volunteerModel.getAllCheckIns());
-                
+
             }
         }
     }
 
     @FXML
     public void handleExportToExcel(ActionEvent event) throws SQLException, IOException {
-        String volunteerName = nameAdminTable.getSelectionModel().getSelectedItem().getName();
+        String volunteerName = nameAdminTable.getSelectionModel().getSelectedItem().getNameAsString();
         int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getId();
         int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getId();
         volunteerModel.setCheckInsByNameIdGuildsIdToExcel(guildsId, nameId);

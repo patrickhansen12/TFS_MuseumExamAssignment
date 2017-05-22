@@ -16,7 +16,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import museumvolunteer.BLL.BLLFacade;
@@ -65,13 +64,18 @@ public class LoginScreenController implements Initializable {
      
         usernameField.setText("Svend123");
         passwordField.setText("123Svend");
-    }
+    }    
 
+    /**
+     * Executes the method signIn().
+     * @param event
+     * @throws IOException 
+     */
     @FXML
-    private void LogInButton(MouseEvent event) throws IOException 
+    private void LogInButton(ActionEvent event) throws IOException 
     {
         signIn();
-    }    
+    }
     
     /**
      * Signs you in when pressing the ENTER key.

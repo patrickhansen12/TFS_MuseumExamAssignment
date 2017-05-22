@@ -48,7 +48,8 @@ public class GuildsModel {
      *
      * @return
      */
-    public ObservableList<Guild> getGuilds() {
+    public ObservableList<Guild> getGuilds() throws SQLException {
+        guilds.addAll(bllFacade.getAllGuilds());
         return guilds;
     }
 
