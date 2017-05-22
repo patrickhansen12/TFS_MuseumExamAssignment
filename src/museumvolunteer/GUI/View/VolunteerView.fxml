@@ -22,9 +22,9 @@
           <TableColumn fx:id="nameColumn" prefWidth="240.0" text="Navne" />
         </columns>
       </TableView>
-      <TextField fx:id="searchNameField" layoutX="295.0" layoutY="55.0" onKeyReleased="#searchNameList" prefHeight="40.0" AnchorPane.leftAnchor="295.0" AnchorPane.rightAnchor="265.0" AnchorPane.topAnchor="55.0">
+      <TextField fx:id="searchNameField" layoutX="295.0" layoutY="55.0" onKeyReleased="#searchNameList" prefHeight="40.0" prefWidth="250.0" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="55.0">
          <font>
-            <Font size="24.0" />
+            <Font size="20.0" />
          </font></TextField>
       <TextField fx:id="noteHoursField" layoutX="393.0" layoutY="144.0" prefHeight="40.0" prefWidth="190.0" AnchorPane.bottomAnchor="200.0" AnchorPane.rightAnchor="40.0">
          <font>
