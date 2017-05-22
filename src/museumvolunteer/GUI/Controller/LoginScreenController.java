@@ -62,8 +62,8 @@ public class LoginScreenController implements Initializable {
     {
         // TODO
      
-        usernameField.setText("LarsHansen95");
-        passwordField.setText("123456");
+        usernameField.setText("Svend123");
+        passwordField.setText("123Svend");
     }    
 
     /**
