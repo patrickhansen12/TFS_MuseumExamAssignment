@@ -15,6 +15,8 @@
       <Label fx:id="phoneNumberManager" layoutX="15.0" layoutY="101.0" text="Telefon" />
       <TextField fx:id="emailBox" layoutX="82.0" layoutY="55.0" />
       <TextField fx:id="phoneBox" layoutX="82.0" layoutY="96.0" />
+      <TextField fx:id="usernameBox" layoutX="82.0" layoutY="137.0" />
+      <TextField fx:id="passwordBox" layoutX="82.0" layoutY="176.0" />
       <Button layoutX="15.0" layoutY="246.0" mnemonicParsing="false" onAction="#performButton" styleClass="buttonGreen" text="Udfør">
          <font>
             <Font size="20.0" />
@@ -25,8 +27,6 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <TextField fx:id="usernameBox" layoutX="82.0" layoutY="137.0" />
-      <TextField fx:id="passwordBox" layoutX="82.0" layoutY="176.0" />
       <Label layoutX="18.0" layoutY="142.0" text="Bruger" />
       <Label layoutX="21.0" layoutY="181.0" text="Kodeord" />
    </children>
