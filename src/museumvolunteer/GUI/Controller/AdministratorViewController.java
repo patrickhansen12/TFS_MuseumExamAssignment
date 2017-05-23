@@ -420,6 +420,19 @@ public class AdministratorViewController implements Initializable {
         alert.setContentText("Du har eksporteret data om " + volunteerName + " til Excel");
         alert.showAndWait();
     }
+    
+    @FXML
+    public void handleExportGuildDataToExcel(ActionEvent event) throws SQLException, IOException {
+        int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
+        String guildName = guildAdminTable.getSelectionModel().getSelectedItem().getNameAsString();
+        volunteerModel.setCheckInsByGuildsIdToExcel(guildsId);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Export til Excel");
+        alert.setHeaderText(null);
+        alert.setContentText("Du har eksporteret data om " + guildName + " til Excel");
+        alert.showAndWait();
+    }
 
     @FXML
     private void searchNameList(KeyEvent event) throws SQLException {

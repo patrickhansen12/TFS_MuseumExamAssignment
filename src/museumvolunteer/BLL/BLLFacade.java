@@ -101,6 +101,11 @@ public class BLLFacade implements IBLLFacade{
     public List<CheckIn> exportCheckInsByNameIdGuildsIdToExcel(int guildsId, int nameId) throws SQLException, IOException {
         return checkInManager.exportCheckInsByNameIdGuildsIdToExcel(guildsId, nameId);
     }
+    
+    @Override
+    public List<CheckIn> exportCheckInsByGuildsIdToExcel(int guildsId) throws SQLException, IOException {
+        return checkInManager.exportCheckInsByGuildsIdToExcel(guildsId);
+    }
 
     @Override
     public CheckIn addCheckIn(CheckIn ci) throws SQLException {

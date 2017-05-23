@@ -32,6 +32,7 @@ public interface IBLLFacade {
     
     public List<CheckIn> getAllCheckInsByNameIdGuildsId(int guildsId, int nameId) throws SQLException, IOException;
     public List<CheckIn> exportCheckInsByNameIdGuildsIdToExcel(int guildsId, int nameId) throws SQLException, IOException;
+    public List<CheckIn> exportCheckInsByGuildsIdToExcel(int guildsId) throws SQLException, IOException;
     public CheckIn addCheckIn(CheckIn ci) throws SQLException;
     public List<CheckIn> getAllCheckIns() throws SQLException;
     public void deleteCheckIn(CheckIn ci) throws SQLException;

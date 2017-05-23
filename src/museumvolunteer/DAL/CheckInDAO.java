@@ -241,4 +241,36 @@ public class CheckInDAO {
             return allTimeStamps;
         }
     }
+    
+    public List<CheckIn> getByGuildsIdToExcel(int guildsId) throws SQLException, IOException {
+        List<CheckIn> allTimeStamps = new ArrayList<>();
+        String sql = "SELECT * FROM Hours WHERE guildsId = ?";
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, guildsId);
+            ResultSet rs = ps.executeQuery();
+            XSSFWorkbook wb = new XSSFWorkbook();
+            XSSFSheet sheet = wb.createSheet("Timer for laug");
+            XSSFRow header = sheet.createRow(0);
+            header.createCell(0).setCellValue("Tidsstempel");
+            header.createCell(1).setCellValue("Laug id på frivillig");
+            header.createCell(2).setCellValue("Antal timer");
+
+            int index = 1;
+            while (rs.next()) {
+                XSSFRow row = sheet.createRow(index);
+                row.createCell(0).setCellValue(rs.getString("timeStamp"));
+                row.createCell(1).setCellValue(rs.getString("guildsId"));
+                row.createCell(2).setCellValue(rs.getString("hours"));
+                index++;
+                allTimeStamps.add(getOneCheckIn(rs));
+            }
+            FileOutputStream fileOut = new FileOutputStream("UserDetails.xlsx");
+            wb.write(fileOut);
+            ps.close();
+            rs.close();
+
+            return allTimeStamps;
+        }
+    }
 }

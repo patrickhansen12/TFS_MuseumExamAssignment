@@ -179,6 +179,11 @@ public class VolunteerModel {
         allCheckIns = FXCollections.observableArrayList();
         allCheckIns.addAll(bllFacade.exportCheckInsByNameIdGuildsIdToExcel(guildsId, nameId));
     }
+    
+    public void setCheckInsByGuildsIdToExcel(int guildsId) throws SQLException, IOException {
+        allCheckIns = FXCollections.observableArrayList();
+        allCheckIns.addAll(bllFacade.exportCheckInsByGuildsIdToExcel(guildsId));
+    }
 
     public void addToNewGuild(int nameId, int guildsId) throws SQLException {
         bllFacade.addToNewGuild(nameId, guildsId);

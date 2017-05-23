@@ -46,6 +46,10 @@ public class CheckInManager {
         return checkInDAO.getByNameIdGuildsIdToExcel(guildsId, nameId);
     }
     
+    public List<CheckIn> exportCheckInsByGuildsIdToExcel(int guildsId) throws SQLException, IOException {
+        return checkInDAO.getByGuildsIdToExcel(guildsId);
+    }
+    
     /**
      * Adds a checkIn to database table Hours.
      * @param ci
