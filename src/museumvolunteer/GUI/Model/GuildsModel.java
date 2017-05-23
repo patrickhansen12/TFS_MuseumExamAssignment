@@ -27,6 +27,7 @@ public class GuildsModel {
     private GuildsModel() throws IOException, SQLException {
         bllFacade = new BLLFacade();
         guilds = FXCollections.observableArrayList();
+        guilds.addAll(bllFacade.getAllGuilds());
     }
 
     /**
@@ -50,7 +51,6 @@ public class GuildsModel {
      * @throws java.sql.SQLException
      */
     public ObservableList<Guild> getGuilds() throws SQLException {
-        guilds.addAll(bllFacade.getAllGuilds());
         return guilds;
     }
     
