@@ -7,28 +7,58 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="addManagerScreen" prefHeight="304.0" prefWidth="285.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AddManagerController">
+<AnchorPane id="AnchorPane" fx:id="addManagerScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AddManagerController">
    <children>
-      <TextField fx:id="nameBox" layoutX="82.0" layoutY="14.0" />
-      <Label fx:id="nameManager" layoutX="15.0" layoutY="19.0" text="Navn" />
-      <Label fx:id="emailManager" layoutX="14.0" layoutY="60.0" text="Email" />
-      <Label fx:id="phoneNumberManager" layoutX="15.0" layoutY="101.0" text="Telefon" />
-      <TextField fx:id="emailBox" layoutX="82.0" layoutY="55.0" />
-      <TextField fx:id="phoneBox" layoutX="82.0" layoutY="96.0" />
-      <Button layoutX="15.0" layoutY="246.0" mnemonicParsing="false" onAction="#performButton" styleClass="buttonGreen" text="Udfør">
+      <TextField fx:id="nameBox" layoutX="82.0" layoutY="14.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="20.0" />
+         </font></TextField>
+      <Label fx:id="nameManager" layoutX="25.0" layoutY="27.0" text="Navn" AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label fx:id="emailManager" layoutX="24.0" layoutY="86.0" text="Email" AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label fx:id="phoneNumberManager" layoutX="16.0" layoutY="147.0" text="Telefon" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="147.0">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <TextField fx:id="emailBox" layoutX="82.0" layoutY="55.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="80.0">
+         <font>
+            <Font size="20.0" />
+         </font></TextField>
+      <TextField fx:id="phoneBox" layoutX="82.0" layoutY="96.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="140.0">
+         <font>
+            <Font size="20.0" />
+         </font></TextField>
+      <Button layoutX="289.0" layoutY="319.0" mnemonicParsing="false" onAction="#performButton" prefHeight="45.0" prefWidth="110.0" styleClass="buttonGreen" text="Udfør" AnchorPane.leftAnchor="289.0" AnchorPane.topAnchor="320.0">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="178.0" layoutY="246.0" mnemonicParsing="false" onAction="#returnButton" styleClass="buttonGreen" text="Tilbage">
+      <Button layoutX="178.0" layoutY="246.0" mnemonicParsing="false" onAction="#returnButton" prefHeight="45.0" prefWidth="110.0" styleClass="buttonGreen" text="Tilbage" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <TextField fx:id="usernameBox" layoutX="82.0" layoutY="137.0" />
-      <TextField fx:id="passwordBox" layoutX="82.0" layoutY="176.0" />
-      <Label layoutX="18.0" layoutY="142.0" text="Bruger" />
-      <Label layoutX="21.0" layoutY="181.0" text="Kodeord" />
+      <TextField fx:id="usernameBox" layoutX="82.0" layoutY="137.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="200.0">
+         <font>
+            <Font size="20.0" />
+         </font></TextField>
+      <TextField fx:id="passwordBox" layoutX="82.0" layoutY="176.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="260.0">
+         <font>
+            <Font size="20.0" />
+         </font></TextField>
+      <Label layoutX="19.0" layoutY="207.0" text="Brugernavn" AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label layoutX="10.0" layoutY="267.0" text="Adgangskode" AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
    </children>
    <stylesheets>
        <URL value="@css/ColorSchemes.css" />

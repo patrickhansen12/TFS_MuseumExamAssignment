@@ -9,11 +9,11 @@
 
 <AnchorPane id="AnchorPane" fx:id="addGuildScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AddGuildController">
    <children>
-      <TextField fx:id="guildNameBox" layoutX="258.0" layoutY="207.0">
+      <TextField fx:id="guildNameBox" layoutX="283.0" layoutY="252.0" prefHeight="45.0" prefWidth="300.0" AnchorPane.leftAnchor="283.0" AnchorPane.topAnchor="252.0">
          <font>
             <Font size="20.0" />
          </font></TextField>
-      <Label layoutX="121.0" layoutY="214.0" text="Navn på laug">
+      <Label layoutX="150.0" layoutY="260.0" text="Navn på laug" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="260.0">
          <font>
             <Font size="20.0" />
          </font></Label>
@@ -21,7 +21,7 @@
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button layoutX="335.0" layoutY="284.0" mnemonicParsing="false" onAction="#performButton" styleClass="buttonGreen" text="Udfør">
+      <Button layoutX="335.0" layoutY="284.0" mnemonicParsing="false" onAction="#performButton" prefHeight="45.0" prefWidth="110.0" styleClass="buttonGreen" text="Udfør" AnchorPane.leftAnchor="378.0" AnchorPane.topAnchor="305.0">
          <font>
             <Font size="20.0" />
          </font></Button>
