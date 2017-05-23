@@ -27,7 +27,6 @@ public class GuildsModel {
     private GuildsModel() throws IOException, SQLException {
         bllFacade = new BLLFacade();
         guilds = FXCollections.observableArrayList();
-        guilds.addAll(bllFacade.getAllGuilds());
     }
 
     /**

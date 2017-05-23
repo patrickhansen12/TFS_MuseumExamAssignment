@@ -12,13 +12,13 @@ import museumvolunteer.BLL.BLLFacade;
  * @author Nicolai, Patrick, Kasper, Casper
  */
 public class AdminModel {
-    
+
     private static AdminModel INSTANCE;
     private BLLFacade bllFacade;
-    
+
     private ObservableList<Manager> allManagers;
     private ObservableList<Admin> allAdmins;
-    
+
     /**
      * The method to get a reference to this Singleton:
      *
@@ -32,18 +32,17 @@ public class AdminModel {
         }
         return INSTANCE;
     }
-    
-    private AdminModel() throws SQLException, IOException
-    {
+
+    private AdminModel() throws SQLException, IOException {
         bllFacade = new BLLFacade();
         allManagers = FXCollections.observableArrayList();
-        allManagers.addAll(bllFacade.getAllManagers());
         allAdmins = FXCollections.observableArrayList();
-        allAdmins.addAll(bllFacade.getAllAdmins());
+
     }
-    
+
     /**
      * Adds a manager to observable list Managers and the database.
+     *
      * @param m
      * @throws SQLException
      */
@@ -51,21 +50,26 @@ public class AdminModel {
         bllFacade.addManager(m);
         allManagers.add(m);
     }
-    
+
     /**
      * This method returns an observable list of BE class Guild.
      *
      * @return
      */
-    public ObservableList<Manager> getAllManagers() {
+    public ObservableList<Manager> getAllManagers() throws SQLException {
+        allManagers.addAll(bllFacade.getAllManagers());
         return allManagers;
     }
-    
-        public ObservableList<Admin> getAllAdmins() {
+
+    public ObservableList<Admin> getAllAdmins() throws SQLException {
+        allAdmins.addAll(bllFacade.getAllAdmins());
         return allAdmins;
     }
+
     /**
-     * Deletes a selected manager from observable list allManagers and the database.
+     * Deletes a selected manager from observable list allManagers and the
+     * database.
+     *
      * @param m
      * @throws SQLException
      */

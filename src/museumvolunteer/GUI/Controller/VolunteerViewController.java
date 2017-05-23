@@ -164,7 +164,7 @@ public class VolunteerViewController implements Initializable {
         if (guildTable.getSelectionModel().getSelectedItem() != null) {
             if (event.isPrimaryButtonDown() == false) {
                 int guildId = guildTable.getSelectionModel().getSelectedItem().getIdValue();
-                volunteerModel.setNamesByGuildId(guildId);
+                volunteerModel.getNamesByGuildId(guildId);
                 nameColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
                 nameTable.setItems(volunteerModel.getAllVolunteers().sorted());
             }

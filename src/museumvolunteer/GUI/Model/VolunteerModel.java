@@ -47,7 +47,7 @@ public class VolunteerModel {
     private VolunteerModel() throws IOException, SQLException {
         bllFacade = new BLLFacade();
         allVolunteers = FXCollections.observableArrayList();
-        allVolunteers.addAll(bllFacade.getAllVolunteers());
+        
         sortedVolunteers = FXCollections.observableArrayList();
         items = FXCollections.observableArrayList();
 
@@ -60,7 +60,8 @@ public class VolunteerModel {
      * Gets the list of all volunteers added to the system.
      * @return
      */
-    public ObservableList<Volunteer> getAllVolunteers() {
+    public ObservableList<Volunteer> getAllVolunteers() throws SQLException {
+        allVolunteers.addAll(bllFacade.getAllVolunteers());
         return allVolunteers;
     }
 
@@ -132,7 +133,7 @@ public class VolunteerModel {
      * @param guildsId
      * @throws SQLException
      */
-    public void setNamesByGuildId(int guildsId) throws SQLException {
+    public void getNamesByGuildId(int guildsId) throws SQLException {
         allVolunteers = FXCollections.observableArrayList();
         allVolunteers.addAll(bllFacade.getAllVolunteersByGuildId(guildsId));
     }

@@ -223,7 +223,7 @@ public class ManagerViewController implements Initializable {
         if (guildManagerTable.getSelectionModel().getSelectedItem().getIdValue() != -1) {
 
             int guildId = guildManagerTable.getSelectionModel().getSelectedItem().getIdValue();
-            volunteerModel.setNamesByGuildId(guildId);
+            volunteerModel.getNamesByGuildId(guildId);
 
             nameManagerColumn.setCellValueFactory(managerManagerCol -> managerManagerCol.getValue().getName());
             nameManagerTable.setItems(volunteerModel.getAllVolunteers());

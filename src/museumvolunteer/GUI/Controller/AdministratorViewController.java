@@ -376,12 +376,12 @@ public class AdministratorViewController implements Initializable {
     @FXML
     public void handleGuildsVolunteers(MouseEvent event) throws SQLException {
         if (guildAdminTable.getSelectionModel().getSelectedItem() != null) {
-            cleanTableViews();
             int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
-            volunteerModel.setNamesByGuildId(guildsId);
+            volunteerModel.getNamesByGuildId(guildsId);
 
             nameAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
             nameAdminTable.setItems(volunteerModel.getAllVolunteers());
+            hoursAdminTable.getItems().clear();
         }
         searchNameField.clear();
     }
@@ -433,13 +433,13 @@ public class AdministratorViewController implements Initializable {
         nameAdminTable.setItems(volunteerModel.getNames().sorted());
     }
 
-    public void cleanTableViews() {
+//    public void cleanTableViews() {
 //        nameAdminTable.getColumns().get(0).setVisible(false);
 //        hoursAdminTable.getColumns().get(0).setVisible(false);
 //        hoursAdminTable.getColumns().get(1).setVisible(false);
-        hoursAdminTable.getSelectionModel().clearSelection();
+//        hoursAdminTable.getSelectionModel().clearSelection();
 //        nameAdminTable.getSelectionModel().clearSelection();
-    }
+//    }
 
     @FXML
     private void handleInfo(ActionEvent event) throws SQLException {
