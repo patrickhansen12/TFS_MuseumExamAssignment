@@ -361,9 +361,8 @@ public class AdministratorViewController implements Initializable {
         guildAdminColumn.setCellValueFactory(guildAdminCol -> guildAdminCol.getValue().getName());
         guildAdminTable.setItems(guildsModel.getGuilds());
 
-        nameAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
-        nameAdminTable.setItems(volunteerModel.getAllVolunteers());
-
+//        nameAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
+//        nameAdminTable.setItems(volunteerModel.getAllVolunteers());
         managerAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
         managerAdminTable.setItems(adminModel.getAllManagers());
     }
@@ -377,15 +376,12 @@ public class AdministratorViewController implements Initializable {
     @FXML
     public void handleGuildsVolunteers(MouseEvent event) throws SQLException {
         if (guildAdminTable.getSelectionModel().getSelectedItem() != null) {
+            cleanTableViews();
             int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
             volunteerModel.setNamesByGuildId(guildsId);
 
             nameAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
             nameAdminTable.setItems(volunteerModel.getAllVolunteers());
-            hoursAdminTable.getColumns().clear();
-            hoursAdminColumn.setCellValueFactory(hoursAdminCol -> hoursAdminCol.getValue().getHours().asObject());
-            dateAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
-            hoursAdminTable.setItems(volunteerModel.getAllCheckIns());
         }
         searchNameField.clear();
     }
@@ -399,6 +395,9 @@ public class AdministratorViewController implements Initializable {
     @FXML
     private void handleVolunteersHours(MouseEvent event) throws SQLException, IOException {
         if (nameAdminTable.getSelectionModel().getSelectedItem() != null) {
+            hoursAdminTable.getColumns().get(0).setVisible(true);
+            hoursAdminTable.getColumns().get(1).setVisible(true);
+            hoursAdminTable.getSelectionModel().clearSelection();
             int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
             int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getIdValue();
             volunteerModel.setCheckInsByNameIdGuildsId(guildsId, nameId);
@@ -434,13 +433,14 @@ public class AdministratorViewController implements Initializable {
         nameAdminTable.setItems(volunteerModel.getNames().sorted());
     }
 
-//    public void cleanTableViews() {
+    public void cleanTableViews() {
 //        nameAdminTable.getColumns().get(0).setVisible(false);
 //        hoursAdminTable.getColumns().get(0).setVisible(false);
 //        hoursAdminTable.getColumns().get(1).setVisible(false);
-//        hoursAdminTable.getSelectionModel().clearSelection();
+        hoursAdminTable.getSelectionModel().clearSelection();
 //        nameAdminTable.getSelectionModel().clearSelection();
-//    }
+    }
+
     @FXML
     private void handleInfo(ActionEvent event) throws SQLException {
         if (nameAdminTable.getSelectionModel().getSelectedItem() == null) {
