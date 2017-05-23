@@ -27,47 +27,47 @@
                 <TableColumn fx:id="hoursAdminColumn" prefWidth="42.0" text="Timer" />
             </columns>
         </TableView>
-        <Button layoutX="32.0" layoutY="23.0" mnemonicParsing="false" onAction="#addGuildButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilføj Laug" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="20.0">
+        <Button layoutX="32.0" layoutY="23.0" mnemonicParsing="false" onAction="#addGuildButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilføj laug" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="20.0">
             <font>
                 <Font size="20.0" />
             </font>
         </Button>
-        <Button layoutX="199.0" layoutY="23.0" mnemonicParsing="false" onAction="#addVolunteerButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilføj Frivillig" AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="20.0">
+        <Button layoutX="199.0" layoutY="23.0" mnemonicParsing="false" onAction="#addVolunteerButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilføj frivillig" AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="20.0">
             <font>
                 <Font size="20.0" />
             </font>
         </Button>
-        <Button layoutX="37.0" layoutY="77.0" mnemonicParsing="false" onAction="#removeGuildButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Slet Laug" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="80.0">
+        <Button layoutX="37.0" layoutY="77.0" mnemonicParsing="false" onAction="#removeGuildButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Slet laug" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="80.0">
             <font>
                 <Font size="20.0" />
             </font>
         </Button>
-        <Button layoutX="204.0" layoutY="77.0" mnemonicParsing="false" onAction="#removeVolunteersButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Slet Frivillig" AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="80.0">
+        <Button layoutX="204.0" layoutY="77.0" mnemonicParsing="false" onAction="#removeVolunteersButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Slet frivillig" AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="80.0">
             <font>
                 <Font size="20.0" />
             </font>
         </Button>
-        <Button layoutX="370.0" layoutY="23.0" mnemonicParsing="false" onAction="#addManagerButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilføj Manager" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+        <Button layoutX="370.0" layoutY="23.0" mnemonicParsing="false" onAction="#addManagerButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilføj tovholder" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
             <font>
                 <Font size="20.0" />
             </font>
         </Button>
-        <Button layoutX="375.0" layoutY="77.0" mnemonicParsing="false" onAction="#removeManagerButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Slet Manager" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="80.0">
+        <Button layoutX="375.0" layoutY="77.0" mnemonicParsing="false" onAction="#removeManagerButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Slet tovholder" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="80.0">
             <font>
                 <Font size="20.0" />
             </font>
         </Button>
         <TableView fx:id="managerAdminTable" layoutX="405.0" layoutY="130.0" prefHeight="300.0" prefWidth="175.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0">
             <columns>
-                <TableColumn fx:id="managerAdminColumn" prefWidth="173.0" text="Manager" />
+                <TableColumn fx:id="managerAdminColumn" prefWidth="173.0" text="Tovholder" />
             </columns>
         </TableView>
-        <Button layoutX="571.0" layoutY="77.0" mnemonicParsing="false" onAction="#removeHoursButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Slet Timer" AnchorPane.leftAnchor="605.0" AnchorPane.topAnchor="80.0">
+        <Button layoutX="571.0" layoutY="77.0" mnemonicParsing="false" onAction="#removeHoursButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Slet timer" AnchorPane.leftAnchor="605.0" AnchorPane.topAnchor="80.0">
             <font>
                 <Font size="20.0" />
             </font>
         </Button>
-        <Button layoutX="605.0" layoutY="27.0" mnemonicParsing="false" onAction="#addHoursButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilføj Timer" AnchorPane.leftAnchor="605.0" AnchorPane.topAnchor="20.0">
+        <Button layoutX="605.0" layoutY="27.0" mnemonicParsing="false" onAction="#addHoursButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilføj timer" AnchorPane.leftAnchor="605.0" AnchorPane.topAnchor="20.0">
             <font>
                 <Font size="20.0" />
             </font>

@@ -37,11 +37,11 @@
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button layoutX="605.0" layoutY="199.0" mnemonicParsing="false" onAction="#addHoursButton" prefHeight="44.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilføj Timer" AnchorPane.rightAnchor="20.0">
+      <Button layoutX="605.0" layoutY="199.0" mnemonicParsing="false" onAction="#addHoursButton" prefHeight="44.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilføj timer" AnchorPane.rightAnchor="20.0">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button layoutX="605.0" layoutY="256.0" mnemonicParsing="false" onAction="#deleteHoursButton" prefHeight="44.0" prefWidth="175.0" styleClass="buttonGreen" text="Slet Timer" AnchorPane.rightAnchor="20.0">
+      <Button layoutX="605.0" layoutY="256.0" mnemonicParsing="false" onAction="#deleteHoursButton" prefHeight="44.0" prefWidth="175.0" styleClass="buttonGreen" text="Slet timer" AnchorPane.rightAnchor="20.0">
          <font>
             <Font size="20.0" />
          </font></Button>

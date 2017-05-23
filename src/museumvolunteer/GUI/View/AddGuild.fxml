@@ -21,7 +21,7 @@
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button layoutX="335.0" layoutY="284.0" mnemonicParsing="false" onAction="#performButton" prefHeight="45.0" prefWidth="110.0" styleClass="buttonGreen" text="Udfør" AnchorPane.leftAnchor="378.0" AnchorPane.topAnchor="305.0">
+      <Button layoutX="473.0" layoutY="307.0" mnemonicParsing="false" onAction="#performButton" prefHeight="45.0" prefWidth="110.0" styleClass="buttonGreen" text="Udfør" AnchorPane.leftAnchor="473.0" AnchorPane.topAnchor="305.0">
          <font>
             <Font size="20.0" />
          </font></Button>

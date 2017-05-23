@@ -11,7 +11,7 @@
          <font>
             <Font size="55.0" />
          </font></Button>
-      <Button layoutX="49.0" layoutY="109.0" mnemonicParsing="false" onAction="#managerButton" prefHeight="200.0" styleClass="buttonGreen" text="Manager/Administrator" textAlignment="CENTER" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="330.0">
+      <Button layoutX="49.0" layoutY="109.0" mnemonicParsing="false" onAction="#managerButton" prefHeight="200.0" styleClass="buttonGreen" text="Tovholder/Administrator" textAlignment="CENTER" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="330.0">
          <font>
             <Font size="55.0" />
          </font></Button>
