@@ -65,19 +65,19 @@ public class GuildsDAO {
             ps.executeUpdate();
         }
     }
-    
-     public Guild add(Guild g) throws SQLException {
+
+    public Guild add(Guild g) throws SQLException {
         String sql = "INSERT INTO Guilds(name) VALUES(?)";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, g.getNameAsString());
-            
+
             ps.executeUpdate();
             ResultSet generatedKey = ps.getGeneratedKeys();
             generatedKey.next();
             int id = generatedKey.getInt(1);
             return new Guild(id, g.getNameAsString());
-            
+
 //        String sql2 = "INSERT INTO Works_For(nameId, guildsId) VALUES(?, ?)";
 //            PreparedStatement ps2 = con.prepareStatement(sql2);
 //            ps2.setInt(1, g.getNamesId());
@@ -86,7 +86,7 @@ public class GuildsDAO {
 //            ps2.executeUpdate();
 //            return new Guild(id, g.getName(), g.getNamesId());
         }
-     }
+    }
 
     /**
      * Deletes a guild from database table Guilds.
@@ -205,18 +205,17 @@ public class GuildsDAO {
      * @return
      * @throws SQLException
      */
-    public List<Guild> getByGuildId(int nameId) throws SQLException {
-
-        List<Guild> allGuilds = new ArrayList<>();
-        String sql = "SELECT * FROM Works_For INNER JOIN Guilds ON Works_For.guildsId = Guilds.id WHERE Works_For.nameId =  ?";
+    public List<Guild> getGuildsByNameId(int nameId) throws SQLException {
         try (Connection con = cm.getConnection()) {
+            List<Guild> allGuildsByNameId = new ArrayList<>();
+            String sql = "SELECT * FROM Works_For INNER JOIN Guilds ON Works_For.guildsId = Guilds.id WHERE Works_For.nameId = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, nameId);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                allGuilds.add(getOneGuild(rs));
+                allGuildsByNameId.add(getOneGuild(rs));
             }
-            return allGuilds;
+            return allGuildsByNameId;
         }
     }
 }

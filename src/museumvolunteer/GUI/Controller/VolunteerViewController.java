@@ -182,7 +182,7 @@ public class VolunteerViewController implements Initializable {
     @FXML
     private void insertHours(ActionEvent event) throws SQLException, IOException {
 
-        if (datePick.getValue() != null && guildTable.getSelectionModel().getSelectedItem() != null && nameTable.getSelectionModel().getSelectedItem() != null && !noteHoursField.getText().isEmpty()) {
+        if (datePick.getValue() != null && guildTable.getSelectionModel().getSelectedItem().getId() != -1 && nameTable.getSelectionModel().getSelectedItem().getId() != -1 && !noteHoursField.getText().isEmpty()) {
 
 //        
 //              
@@ -201,7 +201,7 @@ public class VolunteerViewController implements Initializable {
             alert.setContentText("Du har bidraget med " + noteHoursField.getText() + " timer");
             noteHoursField.clear();
             alert.showAndWait();
-        } else if (datePick.getValue() == null || guildTable.getSelectionModel().getSelectedItem() == null || nameTable.getSelectionModel().getSelectedItem() == null || noteHoursField.getText().isEmpty()) {
+        } else if (datePick.getValue() == null || guildTable.getSelectionModel().getSelectedItem().getId() == -1 || nameTable.getSelectionModel().getSelectedItem().getId() == -1 || noteHoursField.getText().isEmpty()) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Fejl");
             alert.setHeaderText(null);

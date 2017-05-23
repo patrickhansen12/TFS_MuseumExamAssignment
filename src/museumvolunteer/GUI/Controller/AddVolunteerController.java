@@ -13,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -39,19 +38,19 @@ public class AddVolunteerController implements Initializable {
     @FXML
     private TextField guildBox;
     @FXML
-    private TextArea noteBox;
-    @FXML
     private TableView<Guild> guildTable;
     @FXML
     private TableColumn<Guild, Integer> guildIdColumn;
     @FXML
     private TableColumn<Guild, String> guildColumn;
+    @FXML
+    private TextField guildNameBox;
 
     //private variables.
     private GuildsModel guildsModel;
     int guildToogle = 1;
-    @FXML
-    private TextField guildNameBox;
+    private VolunteerModel volunteerModel;
+    
 
     /**
      * Initializes the AddVolunteerController class.
@@ -62,13 +61,11 @@ public class AddVolunteerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            //        guildTable.setVisible(false);
             guildColumn.setCellValueFactory(guildCol -> guildCol.getValue().getName());
             guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
             guildTable.setItems(guildsModel.getGuilds());
             guildBox.setVisible(false);
             guildNameBox.setEditable(false);
-            noteBox.setVisible(false);
         } catch (SQLException ex) {
             Logger.getLogger(AddVolunteerController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -82,6 +79,7 @@ public class AddVolunteerController implements Initializable {
      */
     public AddVolunteerController() throws IOException, SQLException {
         guildsModel = GuildsModel.getInstance();
+        volunteerModel = VolunteerModel.getInstance();
     }
 
     /**
@@ -94,7 +92,7 @@ public class AddVolunteerController implements Initializable {
      */
     @FXML
     private void performButton(ActionEvent event) throws SQLException, IOException {
-        if (nameBox.getText().equals("") || (guildBox.getText().equals(""))) {
+        if (nameBox.getText().isEmpty() || (guildBox.getText().isEmpty())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fejl");
             alert.setHeaderText(null);
@@ -105,7 +103,7 @@ public class AddVolunteerController implements Initializable {
             String email = emailBox.getText().trim();
             String phoneNumber = phoneBox.getText().trim();
             int guildsId = Integer.parseInt(guildBox.getText().trim());
-            VolunteerModel.getInstance().addVolunteer(new Volunteer(name, email, phoneNumber, guildsId));
+            volunteerModel.addVolunteer(new Volunteer(name, email, phoneNumber, guildsId));
             nameBox.clear();
             nameBox.requestFocus();
 
@@ -158,7 +156,7 @@ public class AddVolunteerController implements Initializable {
     @FXML
     private void guildClicked(MouseEvent event) {
     String guildName = guildTable.getSelectionModel().getSelectedItem().getName().getValue();
-    guildNameBox.setText(""+guildName);
+    guildNameBox.setText("" + guildName);
         int guildIdBox = guildTable.getSelectionModel().getSelectedItem().getId();
         guildBox.setText("" + guildIdBox);
     }

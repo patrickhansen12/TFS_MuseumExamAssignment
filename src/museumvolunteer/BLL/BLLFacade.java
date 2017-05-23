@@ -135,4 +135,9 @@ public class BLLFacade implements IBLLFacade{
     public List<Admin> getAllAdmins() throws SQLException {
         return adminManager.getAllAdmins();
     }
+
+    @Override
+    public List<Guild> getGuildsByNameId(int nameId) throws SQLException {
+        return guildsManager.getGuildsByNameId(nameId);
+    }
 }

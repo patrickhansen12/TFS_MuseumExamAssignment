@@ -17,7 +17,8 @@ public class GuildsModel {
     private BLLFacade bllFacade;
 
     //Observable list of BE Guild.
-    private final ObservableList<Guild> guilds;
+    private ObservableList<Guild> guilds;
+    private ObservableList<Guild> guildsByNameId;
 
     /**
      * Constructs a new GuildsManager and creates an observable arraylist out of
@@ -47,10 +48,18 @@ public class GuildsModel {
      * This method returns an observable list of BE class Guild.
      *
      * @return
+     * @throws java.sql.SQLException
      */
     public ObservableList<Guild> getGuilds() throws SQLException {
         guilds.addAll(bllFacade.getAllGuilds());
         return guilds;
+    }
+    
+    public ObservableList<Guild> getGuildsByNameId(int nameId) throws SQLException 
+    {
+        guildsByNameId = FXCollections.observableArrayList();
+        guildsByNameId.addAll(bllFacade.getGuildsByNameId(nameId));
+        return guildsByNameId;
     }
 
 //    /**

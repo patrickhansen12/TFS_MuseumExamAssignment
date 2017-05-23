@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="volunteerInfoScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.VolunteerInfoViewController">
+<AnchorPane id="AnchorPane" fx:id="volunteerInfoScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.VolunteerInfoViewController">
    <children>
       <TextField fx:id="nameBox" layoutX="120.0" layoutY="7.0" prefHeight="31.0" prefWidth="250.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="20.0">
          <font>
@@ -62,7 +62,7 @@
          <font>
             <Font size="20.0" />
          </font></Button>
-      <TableView fx:id="currentGuildId" layoutX="483.0" layoutY="55.0" prefHeight="250.0" prefWidth="250.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
+      <TableView fx:id="currentGuildId" layoutX="483.0" layoutY="55.0" prefHeight="250.0" prefWidth="333.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
         <columns>
           <TableColumn fx:id="currentGuildColumn" prefWidth="248.0" text="Laug" />
           <TableColumn fx:id="currentGuildIdColumn" prefWidth="75.0" text="id" />

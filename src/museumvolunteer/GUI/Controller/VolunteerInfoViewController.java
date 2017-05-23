@@ -69,11 +69,11 @@ public class VolunteerInfoViewController implements Initializable {
     private Button guildBtn;
     private TextField newGuildBox;
     @FXML
-    private TableView<?> currentGuildId;
+    private TableView<Guild> currentGuildId;
     @FXML
-    private TableColumn<?, ?> currentGuildColumn;
+    private TableColumn<Guild, String> currentGuildColumn;
     @FXML
-    private TableColumn<?, ?> currentGuildIdColumn;
+    private TableColumn<Guild, Integer> currentGuildIdColumn;
 
     /**
      * Initializes the VolunteerInfoViewController class.
@@ -112,9 +112,13 @@ public class VolunteerInfoViewController implements Initializable {
      * phoneNumber and guildsId.
      *
      * @param v
+     * @throws java.sql.SQLException
      */
-    public void doMagicStuff(Volunteer v) {
+    public void doMagicStuff(Volunteer v) throws SQLException {
         thisVolunteer = v;
+        currentGuildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
+        currentGuildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
+        currentGuildId.setItems(guildsModel.getGuildsByNameId(v.getId()));
         nameBox.setText(v.getNameAsString());
         emailBox.setText(v.getEmailAsString());
         phoneNumberBox.setText(v.getPhoneNumberAsString());
@@ -138,9 +142,15 @@ public class VolunteerInfoViewController implements Initializable {
     }
 
     private void handleAddToNewGuild(ActionEvent event) throws SQLException {
+        
         int nameId = thisVolunteer.getId();
         int guildsId = Integer.parseInt(newGuildBox.getText());
         volunteerModel.addToNewGuild(nameId, guildsId);
+        currentGuildId.refresh();
+//        currentGuildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
+//        currentGuildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
+//        currentGuildId.setItems(guildsModel.getGuildsByNameId(nameId));
+        
     }
 
     /**
@@ -203,6 +213,9 @@ public class VolunteerInfoViewController implements Initializable {
         int nameId = thisVolunteer.getId();
         int guildsId = Integer.parseInt(guildBox.getText());
         volunteerModel.addToNewGuild(nameId, guildsId);
+        currentGuildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
+        currentGuildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
+        currentGuildId.setItems(guildsModel.getGuildsByNameId(nameId));
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle(null);
         alert.setHeaderText(null);

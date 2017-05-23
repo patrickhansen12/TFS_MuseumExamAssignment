@@ -34,10 +34,9 @@ public class NamesDAO {
      * @throws SQLException
      */
     public List<Volunteer> getAllVolunteers() throws SQLException {
-        List<Volunteer> allVolunteers = new ArrayList<>();
-
-        String sql = "SELECT * FROM Names";
+        List<Volunteer> allVolunteers = new ArrayList<>(); 
         try (Connection con = cm.getConnection()) {
+            String sql = "SELECT * FROM Names";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
@@ -55,25 +54,26 @@ public class NamesDAO {
      * @throws SQLException
      */
     public Volunteer add(Volunteer v) throws SQLException {
-        String sql = "INSERT INTO Names(name, email, phoneNumber) VALUES(?, ?, ?)";
+        
         try (Connection con = cm.getConnection()) {
+            String sql = "INSERT INTO Names(name, email, phoneNumber) VALUES(?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, v.getNameAsString());
             ps.setString(2, v.getEmailAsString());
             ps.setString(3, v.getPhoneNumberAsString());
-            
+
             ps.executeUpdate();
             ResultSet generatedKey = ps.getGeneratedKeys();
             generatedKey.next();
             int id = generatedKey.getInt(1);
-            
-        String sql2 = "INSERT INTO Works_For(nameId, guildsId) VALUES(?, ?)";
+
+            String sql2 = "INSERT INTO Works_For(nameId, guildsId) VALUES(?, ?)";
             PreparedStatement ps2 = con.prepareStatement(sql2);
             ps2.setInt(1, id);
             ps2.setInt(2, v.getGuildsId());
 
             ps2.executeUpdate();
-            return new Volunteer(id, v.getNameAsString(), v.getEmailAsString(), v.getPhoneNumberAsString(), v.getGuildsId());    
+            return new Volunteer(id, v.getNameAsString(), v.getEmailAsString(), v.getPhoneNumberAsString(), v.getGuildsId());
         }
     }
 
@@ -83,13 +83,14 @@ public class NamesDAO {
      * @param v
      * @throws SQLException
      */
-    public void delete(Volunteer v) throws SQLException {
-        String sql = "DELETE FROM Names where id = ?";
+    public void delete(Volunteer v) throws SQLException {       
         try (Connection con = cm.getConnection()) {
+            String sql = "DELETE FROM Names where id = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, v.getId());
-
             ps.executeUpdate();
+        } catch (SQLException sqlEx) {
+            System.out.println("Du har ikke valgt en frivillig at slette. " + sqlEx);
         }
     }
 
@@ -116,15 +117,16 @@ public class NamesDAO {
      * @throws SQLException
      */
     public void update(Volunteer v) throws SQLException {
-        String sql = "UPDATE Names SET name = ?, email = ?, phoneNumber = ? WHERE id = ?";
+        
         try (Connection con = cm.getConnection()) {
+            String sql = "UPDATE Names SET name = ?, email = ?, phoneNumber = ? WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, v.getNameAsString());
             ps.setString(2, v.getEmailAsString());
             ps.setString(3, v.getPhoneNumberAsString());
             ps.setInt(4, v.getId());
             ps.executeUpdate();
-            
+
 //        String sql2 = "UPDATE Works_For SET guildsId = ? FROM Works_For INNER JOIN Names on Works_For.nameId = Names.id WHERE id = ?";
 //            PreparedStatement ps2 = con.prepareStatement(sql2);
 //            ps2.setInt(1, v.getGuildsId());
@@ -140,8 +142,9 @@ public class NamesDAO {
      * @throws SQLException
      */
     public void updateGuildByGuildsId(Volunteer v) throws SQLException {
-        String sql = "UPDATE Works_For SET guildsId = ? FROM Works_For INNER JOIN Names on Works_For.nameId = Names.id WHERE id = ?";
+        
         try (Connection con = cm.getConnection()) {
+            String sql = "UPDATE Works_For SET guildsId = ? FROM Works_For INNER JOIN Names on Works_For.nameId = Names.id WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, v.getGuildsId());
             ps.setInt(2, v.getId());
@@ -173,13 +176,14 @@ public class NamesDAO {
     }
 
     public void addToNewGuild(int nameId, int guildsId) throws SQLException {
-        String sql = "INSERT INTO Works_For (nameId, guildsId) VALUES(?, ?)";
+
         try (Connection con = cm.getConnection()) {
+            String sql = "INSERT INTO Works_For (nameId, guildsId) VALUES(?, ?)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, nameId);
             ps.setInt(2, guildsId);
 
             ps.executeUpdate();
+        }
     }
-}
 }

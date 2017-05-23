@@ -5,12 +5,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="addScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AddVolunteerController">
+<AnchorPane id="AnchorPane" fx:id="addScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AddVolunteerController">
    <children>
       <TextField fx:id="nameBox" layoutX="130.0" layoutY="14.0" prefWidth="250.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="20.0">
          <font>
@@ -41,7 +40,6 @@
             <Font size="20.0" />
          </font></TextField>
       <TextField fx:id="guildBox" layoutX="82.0" layoutY="136.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="170.0" />
-      <TextArea fx:id="noteBox" layoutX="577.0" layoutY="18.0" prefHeight="200.0" prefWidth="187.0" />
       <Button layoutX="290.0" layoutY="255.0" mnemonicParsing="false" onAction="#performButton" prefHeight="45.0" prefWidth="110.0" styleClass="buttonGreen" text="Udfør">
          <font>
             <Font size="20.0" />
@@ -52,7 +50,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <TableView fx:id="guildTable" layoutX="427.0" layoutY="47.0" onMouseClicked="#guildClicked" prefHeight="400.0" prefWidth="300.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <TableView fx:id="guildTable" layoutX="427.0" layoutY="47.0" onMouseClicked="#guildClicked" onMousePressed="#guildClicked" prefHeight="400.0" prefWidth="300.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
         <columns>
           <TableColumn fx:id="guildIdColumn" maxWidth="0.0" minWidth="0.0" prefWidth="0.0" text="id" />
           <TableColumn fx:id="guildColumn" prefWidth="295.0" text="Laug" />

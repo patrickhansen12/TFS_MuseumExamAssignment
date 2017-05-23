@@ -40,22 +40,18 @@ public class CheckInDAO {
      * @throws SQLException
      */
     public CheckIn addCheckIn(CheckIn ci) throws SQLException {
-        String sql = "INSERT INTO Hours(timeStamp, guildsId, nameId, hours) VALUES(?, ?, ?, ?)";
         try (Connection con = cm.getConnection()) {
+            String sql = "INSERT INTO Hours(timeStamp, guildsId, nameId, hours) VALUES(?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setTimestamp(1, ci.getDateTime());
             ps.setInt(2, ci.getGuildsId());
             ps.setInt(3, ci.getNameId());
             ps.setInt(4, ci.getHours());
-            
-//            ResultSet generatedKey = ps.getGeneratedKeys();
-//            generatedKey.next();
-//            int id = generatedKey.getInt(1);
-
             ps.executeUpdate();
-            
-            return new CheckIn(ci);
+        } catch (SQLException sqlEx) {
+            System.out.println("Du har ikke valgt et laug, før du valgte en frivillig " + sqlEx);
         }
+        return new CheckIn(ci);
     }
 
 //    /**
@@ -84,12 +80,13 @@ public class CheckInDAO {
      * @throws SQLException
      */
     public void delete(CheckIn ts) throws SQLException {
-        String sql = "DELETE FROM Hours where id = ?";
         try (Connection con = cm.getConnection()) {
+            String sql = "DELETE FROM Hours where id = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, ts.getId());
-
             ps.executeUpdate();
+        } catch (SQLException sqlEx) {
+            System.out.println("Du har ikke valgt et tidsstempel. " + sqlEx);
         }
     }
 
@@ -99,10 +96,9 @@ public class CheckInDAO {
      * @return @throws SQLException
      */
     public List<CheckIn> getAll() throws SQLException {
-        List<CheckIn> allTimeStamps = new ArrayList<>();
-
-        String sql = "SELECT * FROM Hours";
         try (Connection con = cm.getConnection()) {
+            List<CheckIn> allTimeStamps = new ArrayList<>();
+            String sql = "SELECT * FROM Hours";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
@@ -120,8 +116,8 @@ public class CheckInDAO {
      * @throws SQLException
      */
     public CheckIn getById(int id) throws SQLException {
-        String sql = "SELECT * FROM CheckIn WHERE id = ?";
         try (Connection con = cm.getConnection()) {
+            String sql = "SELECT * FROM CheckIn WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 
@@ -143,10 +139,9 @@ public class CheckInDAO {
      * @throws SQLException
      */
     public List<CheckIn> getByNameIdGuildsId(int guildsId, int nameId) throws SQLException {
-
-        List<CheckIn> allTimeStamps = new ArrayList<>();
-        String sql = "SELECT * FROM Hours WHERE guildsId = ? AND nameId = ?";
         try (Connection con = cm.getConnection()) {
+            List<CheckIn> allTimeStamps = new ArrayList<>();
+            String sql = "SELECT * FROM Hours WHERE guildsId = ? AND nameId = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, guildsId);
             ps.setInt(2, nameId);
@@ -181,10 +176,9 @@ public class CheckInDAO {
      * @return @throws SQLException
      */
     public List<CheckIn> getAllCheckIns() throws SQLException {
-        List<CheckIn> allCheckIns = new ArrayList<>();
-
-        String sql = "SELECT timeStamp FROM Hours";
         try (Connection con = cm.getConnection()) {
+            List<CheckIn> allCheckIns = new ArrayList<>();
+            String sql = "SELECT timeStamp FROM Hours";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
@@ -202,13 +196,14 @@ public class CheckInDAO {
      * @throws SQLException
      */
     public void deleteByGuildsIdNameId(int guildsId, int nameId) throws SQLException {
-        String sql = "DELETE FROM Hours WHERE guildsId = ? AND nameId = ?";
         try (Connection con = cm.getConnection()) {
+            String sql = "DELETE FROM Hours WHERE guildsId = ? AND nameId = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, guildsId);
             ps.setInt(2, nameId);
-
             ps.executeUpdate();
+        } catch (SQLException sqlEx) {
+            System.out.println("Du har ikke valgt et laug og en frivillig. " + sqlEx);
         }
     }
 
@@ -232,7 +227,7 @@ public class CheckInDAO {
             while (rs.next()) {
                 XSSFRow row = sheet.createRow(index);
                 row.createCell(0).setCellValue(rs.getString("timeStamp"));
-                row.createCell(0).setCellValue(rs.getString("guildsId"));
+                row.createCell(1).setCellValue(rs.getString("guildsId"));
                 row.createCell(2).setCellValue(rs.getString("nameId"));
                 row.createCell(3).setCellValue(rs.getString("hours"));
                 index++;
@@ -245,7 +240,5 @@ public class CheckInDAO {
 
             return allTimeStamps;
         }
-    }       
+    }
 }
-        
-

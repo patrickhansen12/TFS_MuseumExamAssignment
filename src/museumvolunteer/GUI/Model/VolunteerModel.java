@@ -47,12 +47,13 @@ public class VolunteerModel {
     private VolunteerModel() throws IOException, SQLException {
         bllFacade = new BLLFacade();
         allVolunteers = FXCollections.observableArrayList();
+        allVolunteers.addAll(bllFacade.getAllVolunteers());
         sortedVolunteers = FXCollections.observableArrayList();
         items = FXCollections.observableArrayList();
 
-        allVolunteers.addAll(bllFacade.getAllVolunteers());
-        allCheckIns = FXCollections.observableArrayList();
-        allCheckIns.addAll(bllFacade.getAllCheckIns());
+        
+//        allCheckIns = FXCollections.observableArrayList();
+//        allCheckIns.addAll(bllFacade.getAllCheckIns());
     }
 
     /**

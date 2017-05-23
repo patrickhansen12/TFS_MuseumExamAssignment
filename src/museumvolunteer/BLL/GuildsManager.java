@@ -82,4 +82,8 @@ public class GuildsManager {
     public Guild addGuild(Guild g) throws SQLException {
         return guildsDAO.add(g);
     }
+
+    public List<Guild> getGuildsByNameId(int nameId) throws SQLException {
+        return guildsDAO.getGuildsByNameId(nameId);
+    }
 }
