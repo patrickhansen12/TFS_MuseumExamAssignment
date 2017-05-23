@@ -382,6 +382,10 @@ public class AdministratorViewController implements Initializable {
 
             nameAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
             nameAdminTable.setItems(volunteerModel.getAllVolunteers());
+            hoursAdminTable.getColumns().clear();
+            hoursAdminColumn.setCellValueFactory(hoursAdminCol -> hoursAdminCol.getValue().getHours().asObject());
+            dateAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
+            hoursAdminTable.setItems(volunteerModel.getAllCheckIns());
         }
         searchNameField.clear();
     }
@@ -398,7 +402,7 @@ public class AdministratorViewController implements Initializable {
             int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
             int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getIdValue();
             volunteerModel.setCheckInsByNameIdGuildsId(guildsId, nameId);
-            hoursAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHoursValue()));
+            hoursAdminColumn.setCellValueFactory(hoursAdminCol -> hoursAdminCol.getValue().getHours().asObject());
             dateAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
             hoursAdminTable.setItems(volunteerModel.getAllCheckIns());
         }
