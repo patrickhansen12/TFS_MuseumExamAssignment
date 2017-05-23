@@ -36,7 +36,9 @@ public class AdminModel {
     private AdminModel() throws SQLException, IOException {
         bllFacade = new BLLFacade();
         allManagers = FXCollections.observableArrayList();
+        allManagers.addAll(bllFacade.getAllManagers());
         allAdmins = FXCollections.observableArrayList();
+        allAdmins.addAll(bllFacade.getAllAdmins());
 
     }
 
@@ -57,12 +59,10 @@ public class AdminModel {
      * @return
      */
     public ObservableList<Manager> getAllManagers() throws SQLException {
-        allManagers.addAll(bllFacade.getAllManagers());
         return allManagers;
     }
 
     public ObservableList<Admin> getAllAdmins() throws SQLException {
-        allAdmins.addAll(bllFacade.getAllAdmins());
         return allAdmins;
     }
 

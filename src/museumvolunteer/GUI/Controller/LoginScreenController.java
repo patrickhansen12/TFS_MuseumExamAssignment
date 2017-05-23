@@ -74,7 +74,7 @@ public class LoginScreenController implements Initializable {
      */
 
     @FXML
-    private void LogInButton(MouseEvent event) throws IOException 
+    private void LogInButton(MouseEvent event) throws IOException, SQLException 
     {
         signIn();
     }
@@ -83,9 +83,10 @@ public class LoginScreenController implements Initializable {
      * Signs you in when pressing the ENTER key.
      * @param event
      * @throws IOException
+     * @throws java.sql.SQLException
      */
     @FXML
-    public void handleEnterPressed(KeyEvent event) throws IOException
+    public void handleEnterPressed(KeyEvent event) throws IOException, SQLException
     {
         if (event.getCode() == KeyCode.ENTER) 
         {
@@ -97,7 +98,7 @@ public class LoginScreenController implements Initializable {
      * Temporary login details.
      * @throws IOException 
      */
-    private void signIn()throws IOException
+    private void signIn()throws IOException, SQLException
     {
         for (int i = 0; i <= adminModel.getAllManagers().size() - 1; i++)
         {
