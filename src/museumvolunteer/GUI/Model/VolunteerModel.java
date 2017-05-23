@@ -108,8 +108,12 @@ public class VolunteerModel {
      * @throws SQLException
      */
     public void deleteVolunteer(Volunteer v) throws SQLException {
-        bllFacade.deleteVolunteer(v);
+        //bllFacade.deleteVolunteer(v);
         allVolunteers.remove(v);
+    }
+    
+    public void deleteVolunteerByNameIdGuildsId(int nameId, int guildsId) throws SQLException {
+        bllFacade.deleteVolunteerByNameIdGuildsId(nameId, guildsId);
     }
 
     /**

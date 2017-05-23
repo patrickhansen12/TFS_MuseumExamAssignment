@@ -62,7 +62,7 @@ public class AddVolunteerController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             guildColumn.setCellValueFactory(guildCol -> guildCol.getValue().getName());
-            guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
+            guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIdValue()));
             guildTable.setItems(guildsModel.getGuilds());
             guildBox.setVisible(false);
             guildNameBox.setEditable(false);
@@ -157,7 +157,7 @@ public class AddVolunteerController implements Initializable {
     private void guildClicked(MouseEvent event) {
     String guildName = guildTable.getSelectionModel().getSelectedItem().getName().getValue();
     guildNameBox.setText("" + guildName);
-        int guildIdBox = guildTable.getSelectionModel().getSelectedItem().getId();
+        int guildIdBox = guildTable.getSelectionModel().getSelectedItem().getIdValue();
         guildBox.setText("" + guildIdBox);
     }
 }

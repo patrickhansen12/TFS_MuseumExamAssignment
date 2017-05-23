@@ -94,7 +94,7 @@ public class AdminDAO {
         String sql = "DELETE FROM Managers where id = ?";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, m.getId());
+            ps.setInt(1, m.getIdValue());
 
             ps.executeUpdate();
         }

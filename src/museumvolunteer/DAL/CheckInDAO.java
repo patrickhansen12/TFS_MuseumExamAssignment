@@ -44,9 +44,9 @@ public class CheckInDAO {
             String sql = "INSERT INTO Hours(timeStamp, guildsId, nameId, hours) VALUES(?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setTimestamp(1, ci.getDateTime());
-            ps.setInt(2, ci.getGuildsId());
-            ps.setInt(3, ci.getNameId());
-            ps.setInt(4, ci.getHours());
+            ps.setInt(2, ci.getGuildsIdValue());
+            ps.setInt(3, ci.getNameIdValue());
+            ps.setInt(4, ci.getHoursValue());
             ps.executeUpdate();
         } catch (SQLException sqlEx) {
             System.out.println("Du har ikke valgt et laug, før du valgte en frivillig " + sqlEx);
@@ -83,7 +83,7 @@ public class CheckInDAO {
         try (Connection con = cm.getConnection()) {
             String sql = "DELETE FROM Hours where id = ?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, ts.getId());
+            ps.setInt(1, ts.getIdValue());
             ps.executeUpdate();
         } catch (SQLException sqlEx) {
             System.out.println("Du har ikke valgt et tidsstempel. " + sqlEx);

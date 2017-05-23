@@ -87,7 +87,7 @@ public class VolunteerViewController implements Initializable {
             try {
                 Guild g = guildTable.getSelectionModel().getSelectedItem();
                 if (g != null) {
-                    int guildId = g.getId();
+                    int guildId = g.getIdValue();
                     List<String> allVolunteers = bllFacade.getAllVolunteerNames(guildId);
                     volunteerModel.setFilteredNames(allVolunteers);
                 }
@@ -163,7 +163,7 @@ public class VolunteerViewController implements Initializable {
     private void handleGuildsVolunteers(MouseEvent event) throws SQLException {
         if (guildTable.getSelectionModel().getSelectedItem() != null) {
             if (event.isPrimaryButtonDown() == false) {
-                int guildId = guildTable.getSelectionModel().getSelectedItem().getId();
+                int guildId = guildTable.getSelectionModel().getSelectedItem().getIdValue();
                 volunteerModel.setNamesByGuildId(guildId);
                 nameColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
                 nameTable.setItems(volunteerModel.getAllVolunteers().sorted());
@@ -182,15 +182,15 @@ public class VolunteerViewController implements Initializable {
     @FXML
     private void insertHours(ActionEvent event) throws SQLException, IOException {
 
-        if (datePick.getValue() != null && guildTable.getSelectionModel().getSelectedItem().getId() != -1 && nameTable.getSelectionModel().getSelectedItem().getId() != -1 && !noteHoursField.getText().isEmpty()) {
+        if (datePick.getValue() != null && guildTable.getSelectionModel().getSelectedItem().getIdValue() != -1 && nameTable.getSelectionModel().getSelectedItem().getIdValue() != -1 && !noteHoursField.getText().isEmpty()) {
 
 //        
 //              
             LocalDateTime timeStamp = datePick.getValue().atTime(LocalTime.now());
             java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(timeStamp);
             //datePicker timeStamp = datePick.getDayCellFactory().trim();
-            int guildsId = guildTable.getSelectionModel().getSelectedItem().getId();
-            int nameId = nameTable.getSelectionModel().getSelectedItem().getId();
+            int guildsId = guildTable.getSelectionModel().getSelectedItem().getIdValue();
+            int nameId = nameTable.getSelectionModel().getSelectedItem().getIdValue();
             volunteerModel.setCheckInsByNameIdGuildsId(guildsId, nameId);
             //int nameId = Integer.parseInt(nameColumn.getText().trim());
             int hours = Integer.parseInt(noteHoursField.getText().trim());
@@ -201,7 +201,7 @@ public class VolunteerViewController implements Initializable {
             alert.setContentText("Du har bidraget med " + noteHoursField.getText() + " timer");
             noteHoursField.clear();
             alert.showAndWait();
-        } else if (datePick.getValue() == null || guildTable.getSelectionModel().getSelectedItem().getId() == -1 || nameTable.getSelectionModel().getSelectedItem().getId() == -1 || noteHoursField.getText().isEmpty()) {
+        } else if (datePick.getValue() == null || guildTable.getSelectionModel().getSelectedItem().getIdValue() == -1 || nameTable.getSelectionModel().getSelectedItem().getIdValue() == -1 || noteHoursField.getText().isEmpty()) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Fejl");
             alert.setHeaderText(null);
@@ -221,7 +221,7 @@ public class VolunteerViewController implements Initializable {
         List<String> searchResult = null;
         SearchPattern searchStrategy;
         searchStrategy = new ContainsSearch(query);
-        int guildId = guildTable.getSelectionModel().getSelectedItem().getId();
+        int guildId = guildTable.getSelectionModel().getSelectedItem().getIdValue();
         searchResult = bllFacade.search(searchStrategy, guildId);
         volunteerModel.setFilteredNames(searchResult);
         nameTable.setItems(volunteerModel.getNames().sorted());

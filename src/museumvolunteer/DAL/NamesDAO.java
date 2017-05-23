@@ -70,29 +70,29 @@ public class NamesDAO {
             String sql2 = "INSERT INTO Works_For(nameId, guildsId) VALUES(?, ?)";
             PreparedStatement ps2 = con.prepareStatement(sql2);
             ps2.setInt(1, id);
-            ps2.setInt(2, v.getGuildsId());
+            ps2.setInt(2, v.getGuildsIdValue());
 
             ps2.executeUpdate();
-            return new Volunteer(id, v.getNameAsString(), v.getEmailAsString(), v.getPhoneNumberAsString(), v.getGuildsId());
+            return new Volunteer(id, v.getNameAsString(), v.getEmailAsString(), v.getPhoneNumberAsString(), v.getGuildsIdValue());
         }
     }
 
-    /**
-     * Deletes a selected volunteer from database table Volunteer.
-     *
-     * @param v
-     * @throws SQLException
-     */
-    public void delete(Volunteer v) throws SQLException {       
-        try (Connection con = cm.getConnection()) {
-            String sql = "DELETE FROM Names where id = ?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, v.getId());
-            ps.executeUpdate();
-        } catch (SQLException sqlEx) {
-            System.out.println("Du har ikke valgt en frivillig at slette. " + sqlEx);
-        }
-    }
+//    /**
+//     * Deletes a selected volunteer from database table Volunteer.
+//     *
+//     * @param v
+//     * @throws SQLException
+//     */
+//    public void deleteVolunteer(Volunteer v) throws SQLException {       
+//        try (Connection con = cm.getConnection()) {
+//            String sql = "DELETE FROM Names WHERE id = ?";
+//            PreparedStatement ps = con.prepareStatement(sql);
+//            ps.setInt(1, v.getIdValue());
+//            ps.executeUpdate();
+//        } catch (SQLException sqlEx) {
+//            System.out.println("Du har ikke valgt en frivillig at slette. " + sqlEx);
+//        }
+//    }
 
     /**
      * Reflects attributes for a volunteer in database table Volunteer.
@@ -124,7 +124,7 @@ public class NamesDAO {
             ps.setString(1, v.getNameAsString());
             ps.setString(2, v.getEmailAsString());
             ps.setString(3, v.getPhoneNumberAsString());
-            ps.setInt(4, v.getId());
+            ps.setInt(4, v.getIdValue());
             ps.executeUpdate();
 
 //        String sql2 = "UPDATE Works_For SET guildsId = ? FROM Works_For INNER JOIN Names on Works_For.nameId = Names.id WHERE id = ?";
@@ -146,8 +146,8 @@ public class NamesDAO {
         try (Connection con = cm.getConnection()) {
             String sql = "UPDATE Works_For SET guildsId = ? FROM Works_For INNER JOIN Names on Works_For.nameId = Names.id WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, v.getGuildsId());
-            ps.setInt(2, v.getId());
+            ps.setInt(1, v.getGuildsIdValue());
+            ps.setInt(2, v.getIdValue());
             ps.executeUpdate();
         }
     }
@@ -179,6 +179,18 @@ public class NamesDAO {
 
         try (Connection con = cm.getConnection()) {
             String sql = "INSERT INTO Works_For (nameId, guildsId) VALUES(?, ?)";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, nameId);
+            ps.setInt(2, guildsId);
+
+            ps.executeUpdate();
+        }
+    }
+    
+    public void deleteVolunteerByNameIdGuildsId(int nameId, int guildsId) throws SQLException {
+
+        try (Connection con = cm.getConnection()) {
+            String sql = "DELETE FROM Works_For WHERE nameId = ? AND guildsId = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, nameId);
             ps.setInt(2, guildsId);

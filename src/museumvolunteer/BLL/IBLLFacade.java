@@ -16,10 +16,11 @@ import museumvolunteer.BE.Volunteer;
 public interface IBLLFacade {
     public List<Volunteer> getAllVolunteers() throws SQLException;
     public Volunteer addVolunteer(Volunteer v) throws SQLException;
-    public void deleteVolunteer(Volunteer v) throws SQLException;
+//    public void deleteVolunteer(Volunteer v) throws SQLException;
     public void updateVolunteer(Volunteer v) throws SQLException;
     public List<Volunteer> getAllVolunteersByGuildId(int guildsId) throws SQLException;
     public List<String> getAllVolunteerNames(int guildsId) throws SQLException;
+    public void deleteVolunteerByNameIdGuildsId(int nameId, int guildsId) throws SQLException;
     public List<String> search(SearchPattern comparer, int guildsId) throws SQLException;
     public void addToNewGuild(int nameId, int guildsId) throws SQLException;
     

@@ -1,5 +1,7 @@
 package museumvolunteer.BE;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -9,9 +11,9 @@ import javafx.beans.property.StringProperty;
 public class Guild{
 
     //instance variables
-    private int id;
+    private IntegerProperty id;
     private StringProperty name;
-    private int namesId;
+    private IntegerProperty namesId;
     /**
      * Default constructor.
      *
@@ -26,28 +28,22 @@ public class Guild{
      * @param namesId
      */
     public Guild(int id, String name, int namesId) {
-        this.id = id;
+        this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
-        this.namesId = namesId;
+        this.namesId = new SimpleIntegerProperty(namesId);
     }
     
     public Guild(int id, String name) {
-        this.id = id;
-        this.name = new SimpleStringProperty(name);
+        this(id, name, -1);
     }
     
     public Guild(String name)
     {
-       this.id = -1;
-       this.name = new SimpleStringProperty(name);
+       this(-1, name, -1);
     }
 
-//    public Guild(int id, Guild g) {
-//        this(id, g.getName(), g.getNameId());
-//    }
-
-    public int getId() {
-        return id;
+    public int getIdValue() {
+        return id.get();
     }
 
     public StringProperty getName() {
@@ -64,8 +60,16 @@ public class Guild{
     return getNameAsString();
     }
     
-    public int getNamesId()
+    public int getNamesIdValue()
     {
+        return namesId.get();
+    }
+
+    public IntegerProperty getId() {
+        return id;
+    }
+
+    public IntegerProperty getNamesId() {
         return namesId;
     }
 }

@@ -54,14 +54,19 @@ public class NamesManager {
         return namesDAO.add(v);
     }
 
-    /**
-     * Method for calling delete() in namesDAO.
-     *
-     * @param v
-     * @throws SQLException
-     */
-    public void deleteVolunteer(Volunteer v) throws SQLException {
-        namesDAO.delete(v);
+//    /**
+//     * Method for calling deleteVolunteer() in namesDAO.
+//     *
+//     * @param v
+//     * @throws SQLException
+//     */
+//    public void deleteVolunteer(Volunteer v) throws SQLException {
+//        namesDAO.deleteVolunteer(v);
+//    }
+    
+    public void deleteVolunteerByNameIdGuildsId(int nameId, int guildsId) throws SQLException
+    {
+        namesDAO.deleteVolunteerByNameIdGuildsId(nameId, guildsId);
     }
 
     /**

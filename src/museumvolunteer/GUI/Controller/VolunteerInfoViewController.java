@@ -84,7 +84,7 @@ public class VolunteerInfoViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
-            guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
+            guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIdValue()));
             guildTable.setItems(guildsModel.getGuilds());
             guildBox.setVisible(false);
 
@@ -116,12 +116,12 @@ public class VolunteerInfoViewController implements Initializable {
     public void doMagicStuff(Volunteer v) throws SQLException {
         thisVolunteer = v;
         currentGuildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
-        currentGuildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
-        currentGuildId.setItems(guildsModel.getGuildsByNameId(v.getId()));
+        currentGuildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIdValue()));
+        currentGuildId.setItems(guildsModel.getGuildsByNameId(v.getIdValue()));
         nameBox.setText(v.getNameAsString());
         emailBox.setText(v.getEmailAsString());
         phoneNumberBox.setText(v.getPhoneNumberAsString());
-        guildBox.setText(String.valueOf(v.getGuildsId()));
+        guildBox.setText(String.valueOf(v.getGuildsIdValue()));
     }
 
     /**
@@ -136,7 +136,7 @@ public class VolunteerInfoViewController implements Initializable {
         String name = nameBox.getText().trim();
         String email = emailBox.getText().trim();
         String phoneNumber = phoneNumberBox.getText().trim();
-        volunteerModel.updateVolunteer(new Volunteer(thisVolunteer.getId(), name, email, phoneNumber));
+        volunteerModel.updateVolunteer(new Volunteer(thisVolunteer.getIdValue(), name, email, phoneNumber));
         backVolunteerInfo(event);
     }
 
@@ -147,18 +147,18 @@ public class VolunteerInfoViewController implements Initializable {
      */
     @FXML
     private void backVolunteerInfo(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        Parent root;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/museumvolunteer/GUI/View/ManagerView.fxml"));
-        root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setTitle("Frivillig dokumentation");
-        stage.setResizable(false);
+//        Stage stage = new Stage();
+//        Parent root;
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/museumvolunteer/GUI/View/ManagerView.fxml"));
+//        root = loader.load();
+//        Scene scene = new Scene(root);
+//        stage.setTitle("Frivillig dokumentation");
+//        stage.setResizable(false);
+//
+//        stage.setScene(scene);
+//        stage.show();
 
-        stage.setScene(scene);
-        stage.show();
-
-        stage = (Stage) volunteerInfoScreen.getScene().getWindow();
+        Stage stage = (Stage) volunteerInfoScreen.getScene().getWindow();
         stage.close();
     }
 
@@ -170,7 +170,7 @@ public class VolunteerInfoViewController implements Initializable {
      */
     @FXML
     private void guildClicked(MouseEvent event) {
-        int guildId = guildTable.getSelectionModel().getSelectedItem().getId();
+        int guildId = guildTable.getSelectionModel().getSelectedItem().getIdValue();
         guildBox.setText("" + guildId);
         String guildNameBox = guildTable.getSelectionModel().getSelectedItem().getNameAsString();
         guildNameText.setText("" + guildNameBox);
@@ -178,11 +178,11 @@ public class VolunteerInfoViewController implements Initializable {
 
     @FXML
     private void addToGuild(ActionEvent event) throws SQLException {
-        int nameId = thisVolunteer.getId();
+        int nameId = thisVolunteer.getIdValue();
         int guildsId = Integer.parseInt(guildBox.getText());
         volunteerModel.addToNewGuild(nameId, guildsId);
         currentGuildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
-        currentGuildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
+        currentGuildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIdValue()));
         currentGuildId.setItems(guildsModel.getGuildsByNameId(nameId));
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle(null);

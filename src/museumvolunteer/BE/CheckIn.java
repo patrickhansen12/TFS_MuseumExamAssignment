@@ -1,6 +1,8 @@
 package museumvolunteer.BE;
 
 import java.sql.Timestamp;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 /**
  * @author Nicolai, Patrick, Kasper, Casper
@@ -8,11 +10,11 @@ import java.sql.Timestamp;
 public class CheckIn {
 
     //Instance variables.
-    private int id;
+    private IntegerProperty id;
     private Timestamp dateTime;
-    private int guildsId;
-    private int nameId;
-    private int hours;
+    private IntegerProperty guildsId;
+    private IntegerProperty nameId;
+    private IntegerProperty hours;
 
     /**
      * Default constructor.
@@ -24,11 +26,11 @@ public class CheckIn {
      * @param hours
      */
     public CheckIn(int id, Timestamp dateTime, int guildsId, int nameId, int hours) {
-        this.id = id;
+        this.id = new SimpleIntegerProperty(id);
         this.dateTime = dateTime;
-        this.guildsId = guildsId;
-        this.nameId = nameId;
-        this.hours = hours;
+        this.guildsId = new SimpleIntegerProperty(guildsId);
+        this.nameId = new SimpleIntegerProperty(nameId);
+        this.hours = new SimpleIntegerProperty(hours);
     }
 
     /**
@@ -52,11 +54,11 @@ public class CheckIn {
      * @param ci
      */
     public CheckIn(int id, CheckIn ci) {
-        this(id, ci.getDateTime(), ci.getGuildsId(), ci.getNameId(), ci.getHours());
+        this(id, ci.getDateTime(), ci.getGuildsIdValue(), ci.getNameIdValue(), ci.getHoursValue());
     }
 
     public CheckIn(CheckIn ci) {
-        this(-1, ci.getDateTime(), ci.getGuildsId(), ci.getNameId(), ci.getHours());
+        this(-1, ci.getDateTime(), ci.getGuildsIdValue(), ci.getNameIdValue(), ci.getHoursValue());
     }
 
 //    public CheckIn(Timestamp dateTime, int hours)
@@ -67,16 +69,8 @@ public class CheckIn {
      *
      * @return
      */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     *
-     * @param id
-     */
-    public void setId(int id) {
-        this.id = id;
+    public int getIdValue() {
+        return id.get();
     }
 
     /**
@@ -89,40 +83,37 @@ public class CheckIn {
 
     /**
      *
-     * @param dateTime
+     * @return
      */
-    public void setDateTime(Timestamp dateTime) {
-        this.dateTime = dateTime;
+    public int getNameIdValue() {
+        return nameId.get();
     }
 
     /**
      *
      * @return
      */
-    public int getNameId() {
+    public int getHoursValue() {
+        return hours.get();
+    }
+
+    public int getGuildsIdValue() {
+        return guildsId.get();
+    }
+
+    public IntegerProperty getId() {
+        return id;
+    }
+
+    public IntegerProperty getGuildsId() {
+        return guildsId;
+    }
+
+    public IntegerProperty getNameId() {
         return nameId;
     }
 
-    /**
-     *
-     * @param nameId
-     */
-    public void setNameId(int nameId) {
-        this.id = nameId;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getHours() {
+    public IntegerProperty getHours() {
         return hours;
     }
-
-    public int getGuildsId() {
-        return guildsId;
-    }
-    
-    
-
 }

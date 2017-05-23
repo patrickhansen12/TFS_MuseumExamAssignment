@@ -60,7 +60,7 @@ public class GuildsDAO {
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, g.getNameAsString());
-            ps.setInt(2, g.getId());
+            ps.setInt(2, g.getIdValue());
 
             ps.executeUpdate();
         }
@@ -98,7 +98,7 @@ public class GuildsDAO {
         String sql = "DELETE FROM Guilds where id = ?";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, g.getId());
+            ps.setInt(1, g.getIdValue());
 
             ps.executeUpdate();
         }
