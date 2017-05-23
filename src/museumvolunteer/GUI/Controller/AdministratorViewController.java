@@ -446,6 +446,13 @@ public class AdministratorViewController implements Initializable {
         searchResult = bllFacade.search(searchStrategy, guildId);
         volunteerModel.setFilteredNames(searchResult);
         nameAdminTable.setItems(volunteerModel.getNames().sorted());
+        if(query.isEmpty())
+        {
+            int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
+            volunteerModel.getNamesByGuildId(guildsId);
+            nameAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
+            nameAdminTable.setItems(volunteerModel.getAllVolunteers());
+        }
     }
 
 //    public void cleanTableViews() {

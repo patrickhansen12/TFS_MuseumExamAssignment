@@ -377,5 +377,12 @@ public class ManagerViewController implements Initializable {
         searchResult = bllFacade.search(searchStrategy, guildId);
         volunteerModel.setFilteredNames(searchResult);
         nameManagerTable.setItems(volunteerModel.getNames().sorted());
+        if(query.isEmpty())
+        {
+            int guildsId = guildManagerTable.getSelectionModel().getSelectedItem().getIdValue();
+            volunteerModel.getNamesByGuildId(guildsId);
+            nameManagerColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
+            nameManagerTable.setItems(volunteerModel.getAllVolunteers());
+        }
     }
 }

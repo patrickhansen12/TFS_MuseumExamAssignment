@@ -224,6 +224,13 @@ public class VolunteerViewController implements Initializable {
         searchResult = bllFacade.search(searchStrategy, guildId);
         volunteerModel.setFilteredNames(searchResult);
         nameTable.setItems(volunteerModel.getNames());
+        if(query.isEmpty())
+        {
+            int guildsId = guildTable.getSelectionModel().getSelectedItem().getIdValue();
+            volunteerModel.getNamesByGuildId(guildsId);
+            nameColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
+            nameTable.setItems(volunteerModel.getAllVolunteers());
+        }
 
     }
 }
