@@ -359,7 +359,7 @@ public class ManagerViewController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
                 stage = (Stage) ManagerScreen.getScene().getWindow();
-                stage.close();
+              
             } catch (IOException ex) {
                 System.out.println("HandleInfo " + ex);
             }
