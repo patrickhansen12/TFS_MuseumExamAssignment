@@ -79,9 +79,9 @@
         </Button>
       <TextField fx:id="txtFieldHours" layoutX="605.0" layoutY="504.0" prefHeight="30.0" prefWidth="175.0" AnchorPane.leftAnchor="605.0" AnchorPane.topAnchor="180.0" />
       <DatePicker fx:id="datePicker" layoutX="605.0" layoutY="463.0" prefHeight="30.0" prefWidth="175.0" AnchorPane.leftAnchor="605.0" AnchorPane.topAnchor="140.0" />
-      <Button fx:id="exportToExcel" layoutX="558.0" layoutY="536.0" mnemonicParsing="false" onAction="#handleExportToExcel" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Send til Excel" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
+      <Button fx:id="exportVolunteerToExcel" layoutX="558.0" layoutY="536.0" mnemonicParsing="false" onAction="#handleExportToExcel" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Export frivillig data" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
          <font>
-            <Font size="20.0" />
+            <Font size="16.0" />
          </font></Button>
       <TextField fx:id="searchNameField" layoutX="43.0" layoutY="504.0" onKeyReleased="#searchNameList" prefWidth="175.0" promptText="Søg efter frivillig" AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="450.0">
          <font>
@@ -91,6 +91,11 @@
       <Button layoutX="367.0" layoutY="536.0" mnemonicParsing="false" onAction="#handleInfo" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Info om frivillig" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="410.0">
          <font>
             <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="exportGuildToExcel" layoutX="56.0" layoutY="487.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Export laug data" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font size="16.0" />
          </font>
       </Button>
     </children>

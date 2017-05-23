@@ -82,10 +82,12 @@ public class AdministratorViewController implements Initializable {
     private CheckIn checkIn;
     private AdminModel adminModel;
     @FXML
-    private Button exportToExcel;
-    @FXML
     private TextField searchNameField;
     private BLLFacade bllFacade;
+    @FXML
+    private Button exportVolunteerToExcel;
+    @FXML
+    private Button exportGuildToExcel;
 
     /**
      * Initializes the AdministratorViewController class.
