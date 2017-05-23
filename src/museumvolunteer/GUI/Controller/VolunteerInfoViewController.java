@@ -53,11 +53,6 @@ public class VolunteerInfoViewController implements Initializable {
     private TextField guildBox;
     @FXML
     private AnchorPane volunteerInfoScreen;
-//int guildToogle = 2;
-    //private variabler.
-    private VolunteerModel volunteerModel;
-    private Volunteer thisVolunteer;
-    private GuildsModel guildsModel;
     @FXML
     private TableView<Guild> guildTable;
     @FXML
@@ -66,7 +61,6 @@ public class VolunteerInfoViewController implements Initializable {
     private TableColumn<Guild, String> guildColumn;
     @FXML
     private TextField guildNameText;
-    private Button guildBtn;
     private TextField newGuildBox;
     @FXML
     private TableView<Guild> currentGuildId;
@@ -74,6 +68,11 @@ public class VolunteerInfoViewController implements Initializable {
     private TableColumn<Guild, String> currentGuildColumn;
     @FXML
     private TableColumn<Guild, Integer> currentGuildIdColumn;
+    
+    //private variabler.
+    private VolunteerModel volunteerModel;
+    private Volunteer thisVolunteer;
+    private GuildsModel guildsModel;
 
     /**
      * Initializes the VolunteerInfoViewController class.
@@ -141,18 +140,6 @@ public class VolunteerInfoViewController implements Initializable {
         backVolunteerInfo(event);
     }
 
-    private void handleAddToNewGuild(ActionEvent event) throws SQLException {
-        
-        int nameId = thisVolunteer.getId();
-        int guildsId = Integer.parseInt(newGuildBox.getText());
-        volunteerModel.addToNewGuild(nameId, guildsId);
-        currentGuildId.refresh();
-//        currentGuildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
-//        currentGuildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
-//        currentGuildId.setItems(guildsModel.getGuildsByNameId(nameId));
-        
-    }
-
     /**
      * Return the manager to ManagerViewController.
      *
@@ -164,7 +151,6 @@ public class VolunteerInfoViewController implements Initializable {
         Parent root;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/museumvolunteer/GUI/View/ManagerView.fxml"));
         root = loader.load();
-        //controller.getGuild(new Guild(gId, gName));
         Scene scene = new Scene(root);
         stage.setTitle("Frivillig dokumentation");
         stage.setResizable(false);
@@ -175,24 +161,6 @@ public class VolunteerInfoViewController implements Initializable {
         stage = (Stage) volunteerInfoScreen.getScene().getWindow();
         stage.close();
     }
-//        switch (guildToogle) {
-//            case 1:
-//                guildTable.setVisible(true);
-//                guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-//                guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
-//                guildTable.setItems(guildsModel.getGuilds());
-//                guildToogle = 2;
-//                guildTable.getSelectionModel().clearSelection();
-//                break;
-//
-//            case 2:
-//                guildTable.getSelectionModel().clearSelection();
-//                guildTable.setVisible(false);
-//                guildToogle = 1;
-//
-//                break;
-//        }
-//    }
 
     /**
      * if a guild is clicked inside the nameManagerTable, the guild name will be

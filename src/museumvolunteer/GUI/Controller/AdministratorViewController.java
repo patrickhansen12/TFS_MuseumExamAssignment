@@ -439,7 +439,7 @@ public class AdministratorViewController implements Initializable {
 //        nameAdminTable.getSelectionModel().clearSelection();
 //    }
     @FXML
-    private void handleInfo(ActionEvent event) {
+    private void handleInfo(ActionEvent event) throws SQLException {
         if (nameAdminTable.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Fejl");
