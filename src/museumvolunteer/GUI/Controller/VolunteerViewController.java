@@ -3,11 +3,10 @@ package museumvolunteer.GUI.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -76,24 +75,24 @@ public class VolunteerViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             dataBind();
-            List<Guild> allGuilds = guildTable.getItems();
-            List<String> allGuildNames = new ArrayList();
-            for (Guild g : allGuilds) {
-                String nameString = g.getNameAsString();
-                allGuildNames.add(nameString);
-            }
-            nameTable.setItems(volunteerModel.getNames());
-            
-            try {
-                Guild g = guildTable.getSelectionModel().getSelectedItem();
-                if (g != null) {
-                    int guildId = g.getIdValue();
-                    List<String> allVolunteers = bllFacade.getAllVolunteerNames(guildId);
-                    volunteerModel.setFilteredNames(allVolunteers);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(VolunteerViewController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//            List<Guild> allGuilds = guildTable.getItems();
+//            List<String> allGuildNames = new ArrayList();
+//            for (Guild g : allGuilds) {
+//                String nameString = g.getNameAsString();
+//                allGuildNames.add(nameString);
+//            }
+//            nameTable.setItems(volunteerModel.getNames());
+//            
+//            try {
+//                Guild g = guildTable.getSelectionModel().getSelectedItem();
+//                if (g != null) {
+//                    int guildId = g.getIdValue();
+//                    List<String> allVolunteers = bllFacade.getAllVolunteerNames(guildId);
+//                    volunteerModel.setFilteredNames(allVolunteers);
+//                }
+//            } catch (SQLException ex) {
+//                Logger.getLogger(VolunteerViewController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
             
             datePick.setValue(LocalDate.now());
             datePick.setVisible(false);
@@ -166,7 +165,7 @@ public class VolunteerViewController implements Initializable {
                 int guildId = guildTable.getSelectionModel().getSelectedItem().getIdValue();
                 volunteerModel.getNamesByGuildId(guildId);
                 nameColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
-                nameTable.setItems(volunteerModel.getAllVolunteers().sorted());
+                nameTable.setItems(volunteerModel.getAllVolunteers());
             }
         }
         searchNameField.clear();
@@ -224,7 +223,7 @@ public class VolunteerViewController implements Initializable {
         int guildId = guildTable.getSelectionModel().getSelectedItem().getIdValue();
         searchResult = bllFacade.search(searchStrategy, guildId);
         volunteerModel.setFilteredNames(searchResult);
-        nameTable.setItems(volunteerModel.getNames().sorted());
+        nameTable.setItems(volunteerModel.getNames());
 
     }
 }

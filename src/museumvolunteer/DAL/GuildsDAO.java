@@ -170,7 +170,7 @@ public class GuildsDAO {
     public List<Guild> getAllGuilds() throws SQLException {
         List<Guild> allGuilds = new ArrayList<>();
 
-        String sql = "SELECT name FROM Guilds";
+        String sql = "SELECT name FROM Guilds ORDER BY name ASC";
         try (Connection con = cm.getConnection()) {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
