@@ -233,7 +233,7 @@ public class CheckInDAO {
                 index++;
                 allTimeStamps.add(getOneCheckIn(rs));
             }
-            FileOutputStream fileOut = new FileOutputStream("UserDetails.xlsx");
+            FileOutputStream fileOut = new FileOutputStream("DataOmFrivillig.xlsx");
             wb.write(fileOut);
             ps.close();
             rs.close();
@@ -253,7 +253,7 @@ public class CheckInDAO {
             XSSFSheet sheet = wb.createSheet("Timer for laug");
             XSSFRow header = sheet.createRow(0);
             header.createCell(0).setCellValue("Tidsstempel");
-            header.createCell(1).setCellValue("Laug id på frivillig");
+            header.createCell(1).setCellValue("Laug id");
             header.createCell(2).setCellValue("Antal timer");
 
             int index = 1;
@@ -265,7 +265,7 @@ public class CheckInDAO {
                 index++;
                 allTimeStamps.add(getOneCheckIn(rs));
             }
-            FileOutputStream fileOut = new FileOutputStream("UserDetails.xlsx");
+            FileOutputStream fileOut = new FileOutputStream("DataOmLaug.xlsx");
             wb.write(fileOut);
             ps.close();
             rs.close();
