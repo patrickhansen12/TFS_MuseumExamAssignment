@@ -35,7 +35,7 @@
          <font>
             <Font size="20.0" />
          </font></Label>
-      <Button fx:id="confirmButton" layoutX="20.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleUpdate" prefHeight="45.0" prefWidth="220.0" styleClass="buttonGreen" text="Godkend ændringer" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="430.0">
+      <Button fx:id="confirmButton" layoutX="20.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleUpdate" prefHeight="45.0" prefWidth="220.0" styleClass="buttonGreen" text="Godkend ændringer" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="440.0">
          <font>
             <Font size="20.0" />
          </font></Button>
@@ -58,7 +58,7 @@
             <TableColumn fx:id="guildColumn" prefWidth="248.0" text="Laug" />
          </columns>
       </TableView>
-      <Button layoutX="250.0" layoutY="535.0" mnemonicParsing="false" onAction="#addToGuild" prefHeight="45.0" prefWidth="150.0" styleClass="buttonGreen" text="Tilføj til laug" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="535.0">
+      <Button layoutX="250.0" layoutY="535.0" mnemonicParsing="false" onAction="#addToGuild" prefHeight="45.0" prefWidth="150.0" styleClass="buttonGreen" text="Tilføj til laug" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="520.0">
          <font>
             <Font size="20.0" />
          </font></Button>
