@@ -207,9 +207,9 @@ public class ManagerViewController implements Initializable {
 
         guildManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
         guildManagerTable.setItems(guildsModel.getGuilds());
-        guildManagerTable.setPlaceholder(new Label("Der er ikke \nnogen laug \nat vise"));
-        nameManagerTable.setPlaceholder(new Label("Der er ikke \nnogen navne \nat vise"));
-        hoursManagerTable.setPlaceholder(new Label("Der er ikke \nnogen timer \nat vise"));
+        guildManagerTable.setPlaceholder(new Label("Der er ikke nogen \nlaug at vise"));
+        nameManagerTable.setPlaceholder(new Label("Der er ikke nogen \nnavne at vise"));
+        hoursManagerTable.setPlaceholder(new Label("Der er ikke nogen \ntimer at vise"));
     }
 
     /**

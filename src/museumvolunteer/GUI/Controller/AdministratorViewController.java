@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -362,6 +363,10 @@ public class AdministratorViewController implements Initializable {
     private void dataBind() throws SQLException {
         guildAdminColumn.setCellValueFactory(guildAdminCol -> guildAdminCol.getValue().getName());
         guildAdminTable.setItems(guildsModel.getGuilds());
+        guildAdminTable.setPlaceholder(new Label("Der er ikke nogen \nlaug at vise"));
+        hoursAdminTable.setPlaceholder(new Label("Der er ikke nogen \ntimer at vise"));
+        nameAdminTable.setPlaceholder(new Label("Der er ikke nogen \nnavne at vise"));
+        managerAdminTable.setPlaceholder(new Label("Der er ikke nogen \nlaug at vise"));
 
 //        nameAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
 //        nameAdminTable.setItems(volunteerModel.getAllVolunteers());

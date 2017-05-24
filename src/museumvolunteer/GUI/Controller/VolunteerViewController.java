@@ -141,8 +141,8 @@ public class VolunteerViewController implements Initializable {
         guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
 
         guildTable.setItems(guildsModel.getGuilds());
-        nameTable.setPlaceholder(new Label("Der er ikke \nnogen navne \nat vise"));
-        guildTable.setPlaceholder(new Label("Der er ikke \nnogen laug \nat vise"));
+        nameTable.setPlaceholder(new Label("Der er ikke nogen \nnavne at vise"));
+        guildTable.setPlaceholder(new Label("Der er ikke nogen \nlaug at vise"));
     }
 
 //    /**
