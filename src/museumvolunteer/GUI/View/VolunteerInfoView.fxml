@@ -62,13 +62,13 @@
          <font>
             <Font size="20.0" />
          </font></Button>
-      <TableView fx:id="currentGuildId" layoutX="483.0" layoutY="55.0" prefHeight="250.0" prefWidth="333.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
+      <TableView fx:id="currentGuildId" layoutX="483.0" layoutY="55.0" prefHeight="250.0" prefWidth="250.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
         <columns>
           <TableColumn fx:id="currentGuildColumn" prefWidth="248.0" text="Laug" />
           <TableColumn fx:id="currentGuildIdColumn" prefWidth="75.0" text="id" />
         </columns>
       </TableView>
-      <Label layoutX="504.0" layoutY="20.0" prefHeight="30.0" text="Frivilligs nuværende laug" AnchorPane.leftAnchor="504.0" AnchorPane.topAnchor="20.0">
+      <Label layoutX="530.0" layoutY="20.0" prefHeight="30.0" text="Frivilligs nuværende laug" AnchorPane.leftAnchor="530.0" AnchorPane.topAnchor="20.0">
          <font>
             <Font size="20.0" />
          </font>
