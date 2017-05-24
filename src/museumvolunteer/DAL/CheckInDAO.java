@@ -219,7 +219,7 @@ public class CheckInDAO {
             XSSFSheet sheet = wb.createSheet("Timer for frivillig");
             XSSFRow header = sheet.createRow(0);
             header.createCell(0).setCellValue("Tidsstempel");
-            header.createCell(1).setCellValue("Laug id på frivillig");
+            header.createCell(1).setCellValue("Laug id");
             header.createCell(2).setCellValue("Id på frivillig");
             header.createCell(3).setCellValue("Antal timer");
 
