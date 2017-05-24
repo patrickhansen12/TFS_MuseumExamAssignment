@@ -96,6 +96,11 @@ public class AdministratorViewController implements Initializable {
      * @param url
      * @param rb
      */
+    public void clearTables(){
+    nameAdminTable.getItems().clear();
+    hoursAdminTable.getItems().clear();
+}
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
@@ -145,6 +150,7 @@ public class AdministratorViewController implements Initializable {
      */
     @FXML
     private void addGuildButton(ActionEvent event) throws IOException {
+        clearTables();
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AddGuild.fxml"));
         Scene scene = new Scene(root);
@@ -162,6 +168,7 @@ public class AdministratorViewController implements Initializable {
      */
     @FXML
     private void addVolunteerButton(ActionEvent event) throws IOException {
+        clearTables();
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AddVolunteer.fxml"));
         Scene scene = new Scene(root);
@@ -246,6 +253,7 @@ public class AdministratorViewController implements Initializable {
      */
     @FXML
     private void addManagerButton(ActionEvent event) throws IOException {
+        clearTables();
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AddManager.fxml"));
         Scene scene = new Scene(root);
@@ -494,6 +502,7 @@ public class AdministratorViewController implements Initializable {
                 Scene scene = new Scene(root);
                 stage.setTitle("Rediger frivillig");
                 stage.setResizable(false);
+                clearTables();
 //                stage.initStyle(StageStyle.UNDECORATED);
 
                 stage.setScene(scene);

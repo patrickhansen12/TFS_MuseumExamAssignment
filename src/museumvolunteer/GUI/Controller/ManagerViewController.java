@@ -80,7 +80,10 @@ public class ManagerViewController implements Initializable {
     private BLLFacade bllFacade;
     @FXML
     private TextField searchNameField;
-
+public void clearTables(){
+    nameManagerTable.getItems().clear();
+    hoursManagerTable.getItems().clear();
+}
     /**
      * Initializes the ManagerViewController class.
      *
@@ -136,7 +139,8 @@ public class ManagerViewController implements Initializable {
         Scene scene = new Scene(root);
         stage.setTitle("Tilføj frivillig");
         stage.setResizable(false);
-//        stage.initStyle(StageStyle.UNDECORATED);
+//        stage.initStyle(StageStyle.UNDECORATED);  
+        clearTables();
         stage.setScene(scene);
         stage.show();
     }
@@ -234,6 +238,7 @@ public class ManagerViewController implements Initializable {
 //            hoursManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
 //            dateManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
 //            hoursManagerTable.setItems(volunteerModel.getAllCheckIns());
+              hoursManagerTable.getItems().clear();
 //
 //        }
             searchNameField.clear();
@@ -356,6 +361,7 @@ public class ManagerViewController implements Initializable {
                 stage.setTitle("Rediger frivillig");
                 stage.setResizable(false);
 //                stage.initStyle(StageStyle.UNDECORATED);
+                 clearTables();
                 stage.setScene(scene);
                 stage.show();
                 stage = (Stage) ManagerScreen.getScene().getWindow();
