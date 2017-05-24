@@ -136,12 +136,12 @@ public class LoginScreenController implements Initializable {
      * Opens ManagerView if the correct username/password is submitted.
      * @throws IOException 
      */
-    private void logIn() throws IOException
+    private void logIn() throws IOException, SQLException
     {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/ManagerView.fxml"));
         Scene scene = new Scene(root);
-        stage.setTitle("Logged in as " + usernameField.getText());
+        stage.setTitle("Logged in as " + adminModel.getAllManagers().get(currentUser).getNameAsString());
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show(); 
@@ -154,12 +154,12 @@ public class LoginScreenController implements Initializable {
      * Succesfully logs you in as admin to view AdministratorView.
      * @throws IOException 
      */
-    private void logInA() throws IOException
+    private void logInA() throws IOException, SQLException
     {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AdministratorView.fxml"));
         Scene scene = new Scene(root);
-        stage.setTitle("Logged in as " + usernameField.getText());
+        stage.setTitle("Logged in as " + adminModel.getAllAdmins().get(currentUser).getNameAsString());
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show(); 

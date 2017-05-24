@@ -33,6 +33,14 @@
          <font>
             <Font size="20.0" />
          </font></TextField>
+      <TextField fx:id="usernameBox" layoutX="82.0" layoutY="137.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="200.0">
+         <font>
+            <Font size="20.0" />
+         </font></TextField>
+      <TextField fx:id="passwordBox" layoutX="82.0" layoutY="176.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="260.0">
+         <font>
+            <Font size="20.0" />
+         </font></TextField>
       <Button layoutX="289.0" layoutY="319.0" mnemonicParsing="false" onAction="#performButton" prefHeight="45.0" prefWidth="110.0" styleClass="buttonGreen" text="Udfør" AnchorPane.leftAnchor="289.0" AnchorPane.topAnchor="320.0">
          <font>
             <Font size="20.0" />
@@ -43,14 +51,6 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <TextField fx:id="usernameBox" layoutX="82.0" layoutY="137.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="200.0">
-         <font>
-            <Font size="20.0" />
-         </font></TextField>
-      <TextField fx:id="passwordBox" layoutX="82.0" layoutY="176.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="260.0">
-         <font>
-            <Font size="20.0" />
-         </font></TextField>
       <Label layoutX="19.0" layoutY="207.0" text="Brugernavn" AnchorPane.leftAnchor="20.0">
          <font>
             <Font size="20.0" />
