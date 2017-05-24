@@ -10,6 +10,10 @@
 
 <AnchorPane id="AnchorPane" fx:id="logInScreen" onKeyPressed="#handleEnterPressed" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.LoginScreenController">
    <children>
+      <Button layoutX="268.0" layoutY="143.0" mnemonicParsing="false" onAction="#returnLogIn" onKeyReleased="#handleEnterPressed" prefHeight="45.0" prefWidth="110.0" styleClass="buttonGreen" text="Tilbage" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <font>
+            <Font size="24.0" />
+         </font></Button>
       <TextField fx:id="usernameField" layoutX="290.0" layoutY="242.0" onKeyReleased="#handleEnterPressed" prefHeight="45.0" prefWidth="300.0" promptText="Brugernavn" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="240.0">
          <font>
             <Font size="24.0" />
@@ -26,10 +30,6 @@
          <font>
             <Font size="24.0" />
          </font></Label>
-      <Button layoutX="268.0" layoutY="143.0" mnemonicParsing="false" onAction="#returnLogIn" onKeyReleased="#handleEnterPressed" prefHeight="45.0" prefWidth="110.0" styleClass="buttonGreen" text="Tilbage" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
-         <font>
-            <Font size="24.0" />
-         </font></Button>
    </children>
    <stylesheets>
        <URL value="@css/ColorSchemes.css" />
