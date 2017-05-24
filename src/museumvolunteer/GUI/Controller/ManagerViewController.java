@@ -95,20 +95,20 @@ public void clearTables(){
         try {
             datePicker.setValue(LocalDate.now());
             dataBind();
-            List<Guild> allGuilds = guildManagerTable.getItems();
-            List<String> allGuildNames = new ArrayList<String>();
-            for (Guild g : allGuilds) {
-                String nameString = g.getNameAsString();
-                allGuildNames.add(nameString);
-            }
-            nameManagerTable.setItems(volunteerModel.getNames());
-
-            Guild g = guildManagerTable.getSelectionModel().getSelectedItem();
-            if (g != null) {
-                int guildId = g.getIdValue();
-                List<String> allVolunteers = bllFacade.getAllVolunteerNames(guildId);
-                volunteerModel.setFilteredNames(allVolunteers);
-            }
+//            List<Guild> allGuilds = guildManagerTable.getItems();
+//            List<String> allGuildNames = new ArrayList<String>();
+//            for (Guild g : allGuilds) {
+//                String nameString = g.getNameAsString();
+//                allGuildNames.add(nameString);
+//            }
+//            nameManagerTable.setItems(volunteerModel.getNames());
+//
+//            Guild g = guildManagerTable.getSelectionModel().getSelectedItem();
+//            if (g != null) {
+//                int guildId = g.getIdValue();
+//                List<String> allVolunteers = bllFacade.getAllVolunteerNames(guildId);
+//                volunteerModel.setFilteredNames(allVolunteers);
+//            }
         } catch (SQLException ex) {
             Logger.getLogger(VolunteerViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -271,7 +271,7 @@ public void clearTables(){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Bidragede timer");
             alert.setHeaderText(null);
-            alert.setContentText(nameManagerTable.getSelectionModel().getSelectedItem().getNameAsString() + " har bidraget med " + txtFieldHours.getText() + " timer");
+            alert.setContentText(nameManagerTable.getSelectionModel().getSelectedItem().getNameAsString() + " har bidraget med " + txtFieldHours.getText() + " time(r)" + " til " + guildManagerTable.getSelectionModel().getSelectedItem().getNameAsString());
             txtFieldHours.clear();
             alert.showAndWait();
 

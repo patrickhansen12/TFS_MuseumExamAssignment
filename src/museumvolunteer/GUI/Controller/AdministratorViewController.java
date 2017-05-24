@@ -353,7 +353,7 @@ public class AdministratorViewController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Bidragede timer");
             alert.setHeaderText(null);
-            alert.setContentText(nameAdminTable.getSelectionModel().getSelectedItem().getNameAsString() + " har bidraget med " + txtFieldHours.getText() + " timer");
+            alert.setContentText(nameAdminTable.getSelectionModel().getSelectedItem().getNameAsString() + " har bidraget med " + txtFieldHours.getText() + " time(r)"  + " til " + guildAdminTable.getSelectionModel().getSelectedItem().getNameAsString());
             txtFieldHours.setText("");
             hoursAdminTable.refresh();
 
