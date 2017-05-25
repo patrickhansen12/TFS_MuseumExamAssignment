@@ -26,11 +26,11 @@ public class Manager extends Person{
     }
 
     public Manager(String name, String email, String phoneNumber) {
-        super(0, name, email, phoneNumber);
+        super(-1, name, email, phoneNumber);
     }
     
     public Manager(String name, String email, String phoneNumber, String username, String password) {
-        super(0, name, email, phoneNumber);
+        super(-1, name, email, phoneNumber);
         this.username = username;
         this.password = password;
     }

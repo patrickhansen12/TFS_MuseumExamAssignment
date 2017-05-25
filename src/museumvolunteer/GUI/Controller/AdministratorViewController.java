@@ -33,7 +33,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import museumvolunteer.BE.CheckIn;
 import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Manager;
@@ -93,7 +92,6 @@ public class AdministratorViewController implements Initializable {
     /**
      * Initializes the AdministratorViewController class.
      *
-     * @param url
      * @param rb
      */
     public void clearTables(){
@@ -393,7 +391,7 @@ public class AdministratorViewController implements Initializable {
         if (guildAdminTable.getSelectionModel().getSelectedItem() != null) {
             int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
             volunteerModel.getNamesByGuildId(guildsId);
-
+            
             nameAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
             nameAdminTable.setItems(volunteerModel.getAllVolunteers());
             hoursAdminTable.getItems().clear();

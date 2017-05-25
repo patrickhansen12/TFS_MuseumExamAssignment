@@ -2,19 +2,17 @@ package museumvolunteer.BE;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 /**
  * @author Nicolai, Patrick, Kasper, Casper
  */
-public class Volunteer {
+public class Volunteer extends Person{
     
     //Instance variables.
-    private IntegerProperty id;
-    private StringProperty name;
-    private StringProperty email;
-    private StringProperty phoneNumber;
+//    private IntegerProperty id;
+//    private StringProperty name;
+//    private StringProperty email;
+//    private StringProperty phoneNumber;
     private IntegerProperty guildsId;
 
     /**
@@ -26,10 +24,11 @@ public class Volunteer {
      * @param guildsId
      */
     public Volunteer(int id, String name, String email, String phoneNumber, int guildsId) {
-        this.id = new SimpleIntegerProperty(id);
-        this.name = new SimpleStringProperty(name);
-        this.email = new SimpleStringProperty(email);
-        this.phoneNumber = new SimpleStringProperty(phoneNumber);
+//        this.id = new SimpleIntegerProperty(id);
+//        this.name = new SimpleStringProperty(name);
+//        this.email = new SimpleStringProperty(email);
+//        this.phoneNumber = new SimpleStringProperty(phoneNumber);
+        super(id, name, email, phoneNumber);
         this.guildsId = new SimpleIntegerProperty(guildsId);
     }
 
@@ -38,7 +37,7 @@ public class Volunteer {
      * @param name
      */
     public Volunteer(String name) {
-        this(-1, name, null, null, -1);
+        super(-1, name, null, null);
     }
 
     /**
@@ -50,7 +49,8 @@ public class Volunteer {
      */
     public Volunteer(String name, String email, String phoneNumber, int guildsId)
     {
-       this(-1, name, email, phoneNumber, guildsId); 
+       super(-1, name, email, phoneNumber);
+       this.guildsId = new SimpleIntegerProperty(guildsId);
     }
 
     /**
@@ -61,39 +61,7 @@ public class Volunteer {
      * @param phoneNumber
      */
     public Volunteer(int id, String name, String email, String phoneNumber) {
-        this(id, name, email, phoneNumber, -1);
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getIdValue() {
-        return id.get();
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getNameAsString() {
-        return name.get();
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getEmailAsString() {
-        return email.get();
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getPhoneNumberAsString() {
-        return phoneNumber.get();
+        super(id, name, email, phoneNumber);
     }
 
     /**
@@ -102,22 +70,6 @@ public class Volunteer {
      */
     public int getGuildsIdValue() {
         return guildsId.get();
-    }
-
-    public StringProperty getName() {
-        return name;
-    }
-
-    public StringProperty getEmail() {
-        return email;
-    }
-
-    public StringProperty getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public IntegerProperty getId() {
-        return id;
     }
 
     public IntegerProperty getGuildsId() {

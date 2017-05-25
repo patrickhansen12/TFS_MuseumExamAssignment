@@ -2,17 +2,15 @@ package museumvolunteer.BE;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 /**
  * @author Nicolai, Patrick, Kasper, Casper
  */
-public class Guild{
+public class Guild extends Person{
 
     //instance variables
-    private IntegerProperty id;
-    private StringProperty name;
+//    private IntegerProperty id;
+//    private StringProperty name;
     private IntegerProperty namesId;
     /**
      * Default constructor.
@@ -28,30 +26,17 @@ public class Guild{
      * @param namesId
      */
     public Guild(int id, String name, int namesId) {
-        this.id = new SimpleIntegerProperty(id);
-        this.name = new SimpleStringProperty(name);
+        super(id, name, null, null);
         this.namesId = new SimpleIntegerProperty(namesId);
     }
     
     public Guild(int id, String name) {
-        this(id, name, -1);
+        super(id, name, null, null);
     }
     
     public Guild(String name)
     {
-       this(-1, name, -1);
-    }
-
-    public int getIdValue() {
-        return id.get();
-    }
-
-    public StringProperty getName() {
-        return name;
-    }
-    
-    public String getNameAsString() {
-        return name.get();
+       super(-1, name, null, null);
     }
     
     @Override
@@ -63,10 +48,6 @@ public class Guild{
     public int getNamesIdValue()
     {
         return namesId.get();
-    }
-
-    public IntegerProperty getId() {
-        return id;
     }
 
     public IntegerProperty getNamesId() {
