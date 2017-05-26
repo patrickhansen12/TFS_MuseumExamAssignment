@@ -166,9 +166,6 @@ public class CheckInDAO {
         int guildsId = rs.getInt("guildsId");
         int nameId = rs.getInt("nameId");
         int hours = rs.getInt("hours");
-        CheckIn ci = new CheckIn(id, dateTime, guildsId, nameId, hours);
-        
-        getHoursValue(ci);
         
         return new CheckIn(id, dateTime, guildsId, nameId, hours);
     }
@@ -259,7 +256,6 @@ public class CheckInDAO {
                   sum += ci.getHoursValue();
                 //allTimeStampsByGuildsId.add(ci);
             }
-            System.out.println(sum);
             return sum;
         }
     }
@@ -296,14 +292,11 @@ public class CheckInDAO {
         }
     }
     
-    private void getHoursValue(CheckIn ci)
-    {
-        List<Integer> hoursPerGuild = new ArrayList<>();
-        hoursPerGuild.add(ci.getHoursValue());
-        System.out.println(hoursPerGuild);
-       // ci.getHoursValue()
-        //int sum = 0;
-        
-        
-    }
+//    private void getHoursValue(CheckIn ci)
+//    {
+//        List<Integer> hoursPerGuild = new ArrayList<>();
+//        hoursPerGuild.add(ci.getHoursValue());
+//       // ci.getHoursValue()
+//        //int sum = 0;
+//    }
 }

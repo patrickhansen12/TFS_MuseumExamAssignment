@@ -186,10 +186,10 @@ public class VolunteerModel {
         allCheckIns.addAll(bllFacade.exportCheckInsByGuildsIdToExcel(guildsId));
     }
     
-    public void getByGuildsIdSumOfHours(int guildsId) throws SQLException, IOException {
-        //allCheckIns = FXCollections.observableArrayList();
-        bllFacade.getByGuildsIdSumOfHours(guildsId);
-    }
+//    public void getByGuildsIdSumOfHours(int guildsId) throws SQLException, IOException {
+//        //allCheckIns = FXCollections.observableArrayList();
+//        bllFacade.getByGuildsIdSumOfHours(guildsId);
+//    }
 
     public void addToNewGuild(int nameId, int guildsId) throws SQLException {
         bllFacade.addToNewGuild(nameId, guildsId);
