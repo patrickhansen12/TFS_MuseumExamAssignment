@@ -29,6 +29,7 @@ public interface IBLLFacade {
     public void updateGuild(Guild g) throws SQLException;
     public Guild addGuild(Guild g) throws SQLException;
     public List<Guild> getGuildsByNameId(int nameId) throws SQLException;
+    public int getByGuildsIdSumOfHours(int guildsId) throws SQLException, IOException;
     
     public List<CheckIn> getAllCheckInsByNameIdGuildsId(int guildsId, int nameId) throws SQLException, IOException;
     public List<CheckIn> exportCheckInsByNameIdGuildsIdToExcel(int guildsId, int nameId) throws SQLException, IOException;

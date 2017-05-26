@@ -2,6 +2,7 @@ package museumvolunteer.GUI.Model;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -184,8 +185,21 @@ public class VolunteerModel {
         allCheckIns = FXCollections.observableArrayList();
         allCheckIns.addAll(bllFacade.exportCheckInsByGuildsIdToExcel(guildsId));
     }
+    
+    public void getByGuildsIdSumOfHours(int guildsId) throws SQLException, IOException {
+        //allCheckIns = FXCollections.observableArrayList();
+        bllFacade.getByGuildsIdSumOfHours(guildsId);
+    }
 
     public void addToNewGuild(int nameId, int guildsId) throws SQLException {
         bllFacade.addToNewGuild(nameId, guildsId);
+    }
+    
+    public List<Integer> getByGuildsIdSumOfHoursList(int guildsId) throws SQLException, IOException
+    {
+        List<Integer> getHours = new ArrayList<>();
+        getHours.add(bllFacade.getByGuildsIdSumOfHours(guildsId));
+        return getHours;
+        
     }
 }

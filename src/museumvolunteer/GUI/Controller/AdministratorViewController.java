@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -88,6 +89,10 @@ public class AdministratorViewController implements Initializable {
     private Button exportVolunteerToExcel;
     @FXML
     private Button exportGuildToExcel;
+    @FXML
+    private Button hoursForGuildBtn;
+    @FXML
+    private Label hoursForGuild;
 
     /**
      * Initializes the AdministratorViewController class.
@@ -512,5 +517,11 @@ public class AdministratorViewController implements Initializable {
                 System.out.println("HandleInfo " + ex);
             }
         }
+    }
+
+    @FXML
+    private void handleViewTotalHoursForGuild(ActionEvent event) throws SQLException, IOException {
+        int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
+        hoursForGuild.setText(String.valueOf(volunteerModel.getByGuildsIdSumOfHoursList(guildsId)));
     }
 }

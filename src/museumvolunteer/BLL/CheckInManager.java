@@ -50,6 +50,10 @@ public class CheckInManager {
         return checkInDAO.getByGuildsIdToExcel(guildsId);
     }
     
+    public int getByGuildsIdSumOfHours(int guildsId) throws SQLException, IOException {
+        return checkInDAO.getByGuildsIdSumOfHours(guildsId);
+    }
+    
     /**
      * Adds a checkIn to database table Hours.
      * @param ci

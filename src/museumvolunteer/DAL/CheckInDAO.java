@@ -166,7 +166,10 @@ public class CheckInDAO {
         int guildsId = rs.getInt("guildsId");
         int nameId = rs.getInt("nameId");
         int hours = rs.getInt("hours");
-
+        CheckIn ci = new CheckIn(id, dateTime, guildsId, nameId, hours);
+        
+        getHoursValue(ci);
+        
         return new CheckIn(id, dateTime, guildsId, nameId, hours);
     }
 
@@ -242,6 +245,25 @@ public class CheckInDAO {
         }
     }
     
+    public int getByGuildsIdSumOfHours(int guildsId) throws SQLException, IOException {
+        //List<CheckIn> allTimeStampsByGuildsId = new ArrayList<>();
+        String sql = "SELECT * FROM Hours WHERE guildsId = ?";
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, guildsId);
+            ResultSet rs = ps.executeQuery();
+            int sum = 0;
+            while (rs.next()) 
+            {
+                 CheckIn ci = getOneCheckIn(rs);
+                  sum += ci.getHoursValue();
+                //allTimeStampsByGuildsId.add(ci);
+            }
+            System.out.println(sum);
+            return sum;
+        }
+    }
+    
     public List<CheckIn> getByGuildsIdToExcel(int guildsId) throws SQLException, IOException {
         List<CheckIn> allTimeStamps = new ArrayList<>();
         String sql = "SELECT * FROM Hours WHERE guildsId = ?";
@@ -272,5 +294,16 @@ public class CheckInDAO {
 
             return allTimeStamps;
         }
+    }
+    
+    private void getHoursValue(CheckIn ci)
+    {
+        List<Integer> hoursPerGuild = new ArrayList<>();
+        hoursPerGuild.add(ci.getHoursValue());
+        System.out.println(hoursPerGuild);
+       // ci.getHoursValue()
+        //int sum = 0;
+        
+        
     }
 }
