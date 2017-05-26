@@ -522,6 +522,6 @@ public class AdministratorViewController implements Initializable {
     @FXML
     private void handleViewTotalHoursForGuild(ActionEvent event) throws SQLException, IOException {
         int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
-        hoursForGuild.setText(String.valueOf(volunteerModel.getByGuildsIdSumOfHoursList(guildsId)));
+        hoursForGuild.setText(String.valueOf(volunteerModel.getByGuildsIdSumOfHoursList(guildsId).get(0)));
     }
 }
