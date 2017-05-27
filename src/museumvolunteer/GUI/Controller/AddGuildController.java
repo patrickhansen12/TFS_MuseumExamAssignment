@@ -6,7 +6,10 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -28,6 +31,8 @@ public class AddGuildController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -35,13 +40,20 @@ public class AddGuildController implements Initializable {
     }    
     
     public AddGuildController() throws IOException, SQLException {
-        guildModel = GuildsModel.getInstance();
+        guildModel = new GuildsModel();
     }
 
     @FXML
-    private void returnButton(ActionEvent event) {
-        Stage stage = (Stage) addGuildScreen.getScene().getWindow();
-        stage.close();
+    private void returnButton(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AdministratorView.fxml"));
+        Scene scene = new Scene(root);
+        stage.setTitle("Frivillig");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
+        Stage stage2 = (Stage) addGuildScreen.getScene().getWindow();
+        stage2.close();
     }
 
     @FXML
@@ -58,8 +70,7 @@ public class AddGuildController implements Initializable {
             guildNameBox.clear();
             guildNameBox.requestFocus();
 
-            Stage stage = (Stage) addGuildScreen.getScene().getWindow();
-            stage.close();
+            returnButton(event);
         }
     }
     

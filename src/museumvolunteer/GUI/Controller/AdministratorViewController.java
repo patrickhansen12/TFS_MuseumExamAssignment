@@ -7,7 +7,6 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -49,7 +48,7 @@ import museumvolunteer.GUI.Model.VolunteerModel;
  * @author Nicolai, Patrick, Kasper, Casper
  */
 public class AdministratorViewController implements Initializable {
-    
+
     @FXML
     private AnchorPane adminScreen;
     @FXML
@@ -74,17 +73,8 @@ public class AdministratorViewController implements Initializable {
     private TextField txtFieldHours;
     @FXML
     private DatePicker datePicker;
-
-    //private variables.
-    private VolunteerModel volunteerModel;
-    private GuildsModel guildsModel;
-    private Volunteer volunteer;
-    private Guild guild;
-    private CheckIn checkIn;
-    private AdminModel adminModel;
     @FXML
     private TextField searchNameField;
-    private BLLFacade bllFacade;
     @FXML
     private Button exportVolunteerToExcel;
     @FXML
@@ -93,17 +83,32 @@ public class AdministratorViewController implements Initializable {
     private Button hoursForGuildBtn;
     @FXML
     private Label hoursForGuild;
+    @FXML
+    private Button infoAboutManagerBtn;
+
+    //private variables.
+    private VolunteerModel volunteerModel;
+    private GuildsModel guildsModel;
+    private Volunteer volunteer;
+    private Guild guild;
+    private CheckIn checkIn;
+    private AdminModel adminModel;
+    private Manager manager;
+    private BLLFacade bllFacade;
+    public int currentUser = 1;
 
     /**
      * Initializes the AdministratorViewController class.
      *
+     * @param url
      * @param rb
      */
-    public void clearTables() {
-        nameAdminTable.getItems().clear();
-        hoursAdminTable.getItems().clear();
-    }
-    
+//    public void clearTables() {
+//        managerAdminTable.getItems().clear();
+//        nameAdminTable.getItems().clear();
+//        hoursAdminTable.getItems().clear();
+//    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
@@ -121,9 +126,9 @@ public class AdministratorViewController implements Initializable {
      * @throws SQLException
      */
     public AdministratorViewController() throws IOException, SQLException {
-        volunteerModel = VolunteerModel.getInstance();
-        guildsModel = GuildsModel.getInstance();
-        adminModel = AdminModel.getInstance();
+        volunteerModel = new VolunteerModel();
+        guildsModel = new GuildsModel();
+        adminModel = new AdminModel();
         bllFacade = new BLLFacade();
     }
 
@@ -153,7 +158,6 @@ public class AdministratorViewController implements Initializable {
      */
     @FXML
     private void addGuildButton(ActionEvent event) throws IOException {
-        clearTables();
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AddGuild.fxml"));
         Scene scene = new Scene(root);
@@ -161,6 +165,10 @@ public class AdministratorViewController implements Initializable {
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
+
+        Stage stage2;
+        stage2 = (Stage) adminScreen.getScene().getWindow();
+        stage2.close();
     }
 
     /**
@@ -171,14 +179,21 @@ public class AdministratorViewController implements Initializable {
      */
     @FXML
     private void addVolunteerButton(ActionEvent event) throws IOException {
-        clearTables();
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AddVolunteer.fxml"));
+        Parent root;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/museumvolunteer/GUI/View/AddVolunteer.fxml"));
+        root = loader.load();
+        AddVolunteerController controller = loader.getController();
+        controller.pullCurrentUser(currentUser);
         Scene scene = new Scene(root);
         stage.setTitle("Tilføj frivillig");
         stage.setResizable(false);
+
         stage.setScene(scene);
         stage.show();
+
+        Stage stage2 = (Stage) adminScreen.getScene().getWindow();
+        stage2.close();
     }
 
     /**
@@ -225,7 +240,7 @@ public class AdministratorViewController implements Initializable {
             alert.setContentText("Du skal vælge en frivillig, før du kan slette dem.");
             alert.showAndWait();
         }
-        
+
         if (nameAdminTable.getSelectionModel().getSelectedItem() != null) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Dialog with Custom Actions");
@@ -256,15 +271,16 @@ public class AdministratorViewController implements Initializable {
      */
     @FXML
     private void addManagerButton(ActionEvent event) throws IOException {
-        clearTables();
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AddManager.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Tilføj manager");
         stage.setResizable(false);
-//        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
+
+        stage = (Stage) adminScreen.getScene().getWindow();
+        stage.close();
     }
 
     /**
@@ -282,7 +298,7 @@ public class AdministratorViewController implements Initializable {
             alert.setContentText("Du skal vælge en manager, før du kan slette vedkommende.");
             alert.showAndWait();
         }
-        
+
         if (managerAdminTable.getSelectionModel().getSelectedItem() != null) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Dialog with Custom Actions");
@@ -309,7 +325,7 @@ public class AdministratorViewController implements Initializable {
      */
     @FXML
     private void removeHoursButton(ActionEvent event) throws SQLException {
-        
+
         if (hoursAdminTable.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Fejl");
@@ -337,14 +353,14 @@ public class AdministratorViewController implements Initializable {
     @FXML
     private void addHoursButton(ActionEvent event) throws SQLException, IOException {
         if (datePicker.getValue() != null && guildAdminTable.getSelectionModel().getSelectedItem().getIdValue() != -1 && nameAdminTable.getSelectionModel().getSelectedItem().getIdValue() != -1 && !txtFieldHours.getText().isEmpty()) {
-            
+
             LocalDateTime timeStamp = datePicker.getValue().atTime(LocalTime.now());
             java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(timeStamp);
-            
+
             int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
             int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getIdValue();
             volunteerModel.setCheckInsByNameIdGuildsId(guildsId, nameId);
-            
+
             int hours = Integer.parseInt(txtFieldHours.getText().trim());
             volunteerModel.addHours(new CheckIn(dateTime, guildsId, nameId, hours));
             dateAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
@@ -359,9 +375,9 @@ public class AdministratorViewController implements Initializable {
             alert.setContentText(nameAdminTable.getSelectionModel().getSelectedItem().getNameAsString() + " har bidraget med " + txtFieldHours.getText() + " time(r)" + " til " + guildAdminTable.getSelectionModel().getSelectedItem().getNameAsString());
             txtFieldHours.setText("");
             hoursAdminTable.refresh();
-            
+
             alert.showAndWait();
-            
+
         } else if (datePicker.getValue() == null || guildAdminTable.getSelectionModel().getSelectedItem().getIdValue() == -1 || nameAdminTable.getSelectionModel().getSelectedItem().getIdValue() == -1 || txtFieldHours.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fejl");
@@ -370,10 +386,16 @@ public class AdministratorViewController implements Initializable {
             alert.showAndWait();
         }
     }
-    
+
     private void dataBind() throws SQLException {
+        //clearTables();
+
+        //adminModel.getAllManagers().clear();
+        managerAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
+        managerAdminTable.getItems().setAll(adminModel.getAllManagers());
+        guildsModel.getGuilds().clear();
         guildAdminColumn.setCellValueFactory(guildAdminCol -> guildAdminCol.getValue().getName());
-        guildAdminTable.setItems(guildsModel.getGuilds());
+        guildAdminTable.getItems().setAll(guildsModel.getGuildsFromFacade());
         guildAdminTable.setPlaceholder(new Label("Der er ikke nogen \nlaug at vise"));
         hoursAdminTable.setPlaceholder(new Label("Der er ikke nogen \ntimer at vise"));
         nameAdminTable.setPlaceholder(new Label("Der er ikke nogen \nnavne at vise"));
@@ -381,8 +403,6 @@ public class AdministratorViewController implements Initializable {
 
 //        nameAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
 //        nameAdminTable.setItems(volunteerModel.getAllVolunteers());
-        managerAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
-        managerAdminTable.setItems(adminModel.getAllManagers());
     }
 
     /**
@@ -396,7 +416,7 @@ public class AdministratorViewController implements Initializable {
         if (guildAdminTable.getSelectionModel().getSelectedItem() != null) {
             int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
             volunteerModel.getNamesByGuildId(guildsId);
-            
+
             nameAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
             nameAdminTable.setItems(volunteerModel.getAllVolunteers());
             hoursAdminTable.getItems().clear();
@@ -424,34 +444,34 @@ public class AdministratorViewController implements Initializable {
             hoursAdminTable.setItems(volunteerModel.getAllCheckIns());
         }
     }
-    
+
     @FXML
     public void handleExportToExcel(ActionEvent event) throws SQLException, IOException {
         int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
         String volunteerName = nameAdminTable.getSelectionModel().getSelectedItem().getNameAsString();
         int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getIdValue();
         volunteerModel.setCheckInsByNameIdGuildsIdToExcel(guildsId, nameId);
-        
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Export til Excel");
         alert.setHeaderText(null);
         alert.setContentText("Du har eksporteret data om " + volunteerName + " til Excel");
         alert.showAndWait();
     }
-    
+
     @FXML
     public void handleExportGuildDataToExcel(ActionEvent event) throws SQLException, IOException {
         int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
         String guildName = guildAdminTable.getSelectionModel().getSelectedItem().getNameAsString();
         volunteerModel.setCheckInsByGuildsIdToExcel(guildsId);
-        
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Export til Excel");
         alert.setHeaderText(null);
         alert.setContentText("Du har eksporteret data om " + guildName + " til Excel");
         alert.showAndWait();
     }
-    
+
     @FXML
     private void searchNameList(KeyEvent event) throws SQLException {
         String query = searchNameField.getText().trim();
@@ -486,7 +506,7 @@ public class AdministratorViewController implements Initializable {
             alert.setContentText("Du skal vælge en frivillig før du kan se informationer om dem.");
             alert.showAndWait();
         }
-        
+
         if (nameAdminTable.getSelectionModel().getSelectedItem() != null) {
             try {
                 int id = nameAdminTable.getSelectionModel().getSelectedItem().getIdValue();
@@ -503,23 +523,74 @@ public class AdministratorViewController implements Initializable {
                 Scene scene = new Scene(root);
                 stage.setTitle("Rediger frivillig");
                 stage.setResizable(false);
-                clearTables();
+                //clearTables();
 //                stage.initStyle(StageStyle.UNDECORATED);
 
                 stage.setScene(scene);
                 stage.show();
 
-//                stage = (Stage) adminScreen.getScene().getWindow();
-//                stage.close();
+                stage = (Stage) adminScreen.getScene().getWindow();
+                stage.close();
             } catch (IOException ex) {
                 System.out.println("HandleInfo " + ex);
             }
         }
     }
-    
+
     @FXML
     private void handleViewTotalHoursForGuild(ActionEvent event) throws SQLException, IOException {
         int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
         hoursForGuild.setText(String.valueOf(volunteerModel.getByGuildsIdSumOfHoursList(guildsId).get(0)));
     }
+
+    @FXML
+    private void handleInfoAboutManager(ActionEvent event) throws SQLException {
+        if (managerAdminTable.getSelectionModel().getSelectedItem() == null) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Du skal vælge en manager, før du kan se informationer om dem.");
+            alert.showAndWait();
+        }
+
+        if (managerAdminTable.getSelectionModel().getSelectedItem() != null) {
+            try {
+                int id = managerAdminTable.getSelectionModel().getSelectedItem().getIdValue();
+                String name = managerAdminTable.getSelectionModel().getSelectedItem().getNameAsString();
+                String email = managerAdminTable.getSelectionModel().getSelectedItem().getEmailAsString();
+                String phoneNumber = managerAdminTable.getSelectionModel().getSelectedItem().getPhoneNumberAsString();
+                String username = managerAdminTable.getSelectionModel().getSelectedItem().getUsername();
+                String password = managerAdminTable.getSelectionModel().getSelectedItem().getPassword();
+                Stage stage = new Stage();
+                Parent root;
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/museumvolunteer/GUI/View/ManagerInfoView.fxml"));
+                root = loader.load();
+                ManagerInfoViewController controller = loader.getController();
+                controller.getManagerData(new Manager(id, name, email, phoneNumber, username, password));
+                Scene scene = new Scene(root);
+                stage.setTitle("Rediger manager");
+                stage.setResizable(false);
+
+                //clearTables();
+                //managerAdminTable.setItems(adminModel.getAllManagers());
+//                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+
+                Stage stage2;
+                stage2 = (Stage) adminScreen.getScene().getWindow();
+                stage2.close();
+            } catch (IOException ex) {
+                System.out.println("HandleInfo " + ex);
+            }
+        }
+    }
+
+    private void populateTables(ActionEvent event) throws SQLException {
+        managerAdminTable.getColumns().clear();
+        managerAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
+        managerAdminTable.getColumns().addAll(managerAdminColumn);
+        managerAdminTable.setItems(adminModel.getAllManagers());
+    }
+
 }

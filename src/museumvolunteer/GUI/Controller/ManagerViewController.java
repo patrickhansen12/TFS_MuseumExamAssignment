@@ -7,7 +7,6 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -34,7 +33,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import museumvolunteer.BE.CheckIn;
 import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Volunteer;
@@ -71,6 +69,8 @@ public class ManagerViewController implements Initializable {
     private TableColumn<CheckIn, Timestamp> dateManagerColumn;
     @FXML
     private Button volunteerInfo;
+    @FXML
+    private TextField searchNameField;
 
     //private variables.
     private VolunteerModel volunteerModel;
@@ -78,12 +78,8 @@ public class ManagerViewController implements Initializable {
     private Volunteer volunteer;
     private CheckIn checkIn;
     private BLLFacade bllFacade;
-    @FXML
-    private TextField searchNameField;
-public void clearTables(){
-    nameManagerTable.getItems().clear();
-    hoursManagerTable.getItems().clear();
-}
+    public int currentUser = 0;
+
     /**
      * Initializes the ManagerViewController class.
      *
@@ -121,8 +117,8 @@ public void clearTables(){
      * @throws SQLException
      */
     public ManagerViewController() throws IOException, SQLException {
-        volunteerModel = VolunteerModel.getInstance();
-        guildsModel = GuildsModel.getInstance();
+        volunteerModel = new VolunteerModel();
+        guildsModel = new GuildsModel();
         bllFacade = new BLLFacade();
     }
 
@@ -135,14 +131,20 @@ public void clearTables(){
     @FXML
     private void addVolunteersButton(ActionEvent event) throws IOException {
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AddVolunteer.fxml"));
+        Parent root;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/museumvolunteer/GUI/View/AddVolunteer.fxml"));
+        root = loader.load();
+        AddVolunteerController controller = loader.getController();
+        controller.pullCurrentUser(currentUser);
         Scene scene = new Scene(root);
         stage.setTitle("Tilføj frivillig");
         stage.setResizable(false);
-//        stage.initStyle(StageStyle.UNDECORATED);  
-        clearTables();
+
         stage.setScene(scene);
         stage.show();
+
+        Stage stage2 = (Stage) ManagerScreen.getScene().getWindow();
+        stage2.close();
     }
 
     /**
@@ -185,6 +187,11 @@ public void clearTables(){
         }
     }
 
+//    public void clearTables() {
+//        nameManagerTable.getItems().clear();
+//        hoursManagerTable.getItems().clear();
+//    }
+
     /**
      * Returns the manager to MainView.
      *
@@ -197,7 +204,7 @@ public void clearTables(){
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/MainView.fxml"));
 
         Scene scene = new Scene(root);
-        stage.setTitle("Frivillig dokumentation");
+        stage.setTitle("Indgang");
         stage.setResizable(false);
 
         stage.setScene(scene);
@@ -209,11 +216,12 @@ public void clearTables(){
 
     private void dataBind() throws SQLException {
 
-        guildManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
-        guildManagerTable.setItems(guildsModel.getGuilds());
+        //guildsModel.getGuilds().clear();
+        guildManagerColumn.setCellValueFactory(guildAdminCol -> guildAdminCol.getValue().getName());
+        guildManagerTable.getItems().setAll(guildsModel.getGuilds());
         guildManagerTable.setPlaceholder(new Label("Der er ikke nogen \nlaug at vise"));
-        nameManagerTable.setPlaceholder(new Label("Der er ikke nogen \nnavne at vise"));
-        hoursManagerTable.setPlaceholder(new Label("Der er ikke nogen \ntimer at vise"));
+        nameManagerTable.setPlaceholder(new Label("Der er ikke nogen \ntimer at vise"));
+        hoursManagerTable.setPlaceholder(new Label("Der er ikke nogen \nnavne at vise"));
     }
 
     /**
@@ -238,7 +246,7 @@ public void clearTables(){
 //            hoursManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
 //            dateManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
 //            hoursManagerTable.setItems(volunteerModel.getAllCheckIns());
-              hoursManagerTable.getItems().clear();
+            hoursManagerTable.getItems().clear();
 //
 //        }
             searchNameField.clear();
@@ -262,7 +270,7 @@ public void clearTables(){
             int guildsId = guildManagerTable.getSelectionModel().getSelectedItem().getIdValue();
             int nameId = nameManagerTable.getSelectionModel().getSelectedItem().getIdValue();
             int hours = Integer.parseInt(txtFieldHours.getText().trim());
-            VolunteerModel.getInstance().addHours(new CheckIn(dateTime, guildsId, nameId, hours));
+            volunteerModel.addHours(new CheckIn(dateTime, guildsId, nameId, hours));
             volunteerModel.setCheckInsByNameIdGuildsId(guildsId, nameId);
             hoursManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHoursValue()));
             dateManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
@@ -357,15 +365,18 @@ public void clearTables(){
                 root = loader.load();
                 VolunteerInfoViewController controller = loader.getController();
                 controller.doMagicStuff(new Volunteer(id, name, email, phoneNumber, guildsId));
+                controller.pullCurrentUser(currentUser);
                 Scene scene = new Scene(root);
                 stage.setTitle("Rediger frivillig");
                 stage.setResizable(false);
 //                stage.initStyle(StageStyle.UNDECORATED);
-                 clearTables();
+                //clearTables();
                 stage.setScene(scene);
                 stage.show();
-                stage = (Stage) ManagerScreen.getScene().getWindow();
-              
+
+                Stage stage2 = (Stage) ManagerScreen.getScene().getWindow();
+                stage2.close();
+
             } catch (IOException ex) {
                 System.out.println("HandleInfo " + ex);
             }
@@ -383,8 +394,7 @@ public void clearTables(){
         searchResult = bllFacade.search(searchStrategy, guildId);
         volunteerModel.setFilteredNames(searchResult);
         nameManagerTable.setItems(volunteerModel.getNames().sorted());
-        if(query.isEmpty())
-        {
+        if (query.isEmpty()) {
             int guildsId = guildManagerTable.getSelectionModel().getSelectedItem().getIdValue();
             volunteerModel.getNamesByGuildId(guildsId);
             nameManagerColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());

@@ -16,7 +16,7 @@ import museumvolunteer.BLL.BLLFacade;
 public class VolunteerModel {
 
     //local variables.
-    private static VolunteerModel INSTANCE;
+    //private static VolunteerModel INSTANCE;
     private BLLFacade bllFacade;
 
     /**
@@ -27,33 +27,36 @@ public class VolunteerModel {
     private ObservableList<Volunteer> sortedVolunteers;
     private ObservableList<CheckIn> allCheckIns;
 
-    /**
-     * The method to get a reference to this Singleton:
-     *
-     * @return
-     * @throws java.io.IOException
-     * @throws java.sql.SQLException
-     */
-    public static synchronized VolunteerModel getInstance() throws IOException, SQLException {
-        if (INSTANCE == null) {
-            INSTANCE = new VolunteerModel();
-        }
-        return INSTANCE;
-    }
+//    /**
+//     * The method to get a reference to this Singleton:
+//     *
+//     * @return
+//     * @throws java.io.IOException
+//     * @throws java.sql.SQLException
+//     */
+//    public static synchronized VolunteerModel getInstance() throws IOException, SQLException {
+//        if (INSTANCE == null) {
+//            INSTANCE = new VolunteerModel();
+//        }
+//        return INSTANCE;
+//    }
 
     /**
      * Constructs new name- and checkInManagers, creates observable arraylists
      * out of the observable lists Volunteer and CheckIn.
+     * @throws java.io.IOException
+     * @throws java.sql.SQLException
      */
-    private VolunteerModel() throws IOException, SQLException {
+    public VolunteerModel() throws IOException, SQLException {
+        this.allVolunteers = allVolunteers;
         bllFacade = new BLLFacade();
-        allVolunteers = FXCollections.observableArrayList();
-        allVolunteers.addAll(bllFacade.getAllVolunteers());
-        
+        List<Volunteer> allVolunteers2 = new ArrayList<>(bllFacade.getAllVolunteers());
+        allVolunteers = FXCollections.observableList(allVolunteers2);
+        List<CheckIn> allCheckIns2 = new ArrayList<>(bllFacade.getAllCheckIns());
+        allCheckIns = FXCollections.observableList(allCheckIns2);
         sortedVolunteers = FXCollections.observableArrayList();
         items = FXCollections.observableArrayList();
 
-        
 //        allCheckIns = FXCollections.observableArrayList();
 //        allCheckIns.addAll(bllFacade.getAllCheckIns());
     }
@@ -61,6 +64,7 @@ public class VolunteerModel {
     /**
      * Gets the list of all volunteers added to the system.
      * @return
+     * @throws java.sql.SQLException
      */
     public ObservableList<Volunteer> getAllVolunteers() throws SQLException { 
         return allVolunteers;
@@ -135,8 +139,7 @@ public class VolunteerModel {
      * @throws SQLException
      */
     public void getNamesByGuildId(int guildsId) throws SQLException {
-        allVolunteers = FXCollections.observableArrayList();
-        allVolunteers.addAll(bllFacade.getAllVolunteersByGuildId(guildsId));
+        allVolunteers = FXCollections.observableList(bllFacade.getAllVolunteersByGuildId(guildsId));
     }
 
     /**
@@ -172,18 +175,15 @@ public class VolunteerModel {
      * @throws java.io.IOException
      */
     public void setCheckInsByNameIdGuildsId(int guildsId, int nameId) throws SQLException, IOException {
-        allCheckIns = FXCollections.observableArrayList();
-        allCheckIns.addAll(bllFacade.getAllCheckInsByNameIdGuildsId(guildsId, nameId));
+        allCheckIns = FXCollections.observableList(bllFacade.getAllCheckInsByNameIdGuildsId(guildsId, nameId));
     }
     
     public void setCheckInsByNameIdGuildsIdToExcel(int guildsId, int nameId) throws SQLException, IOException {
-        allCheckIns = FXCollections.observableArrayList();
-        allCheckIns.addAll(bllFacade.exportCheckInsByNameIdGuildsIdToExcel(guildsId, nameId));
+        allCheckIns = FXCollections.observableList(bllFacade.exportCheckInsByNameIdGuildsIdToExcel(guildsId, nameId));
     }
     
     public void setCheckInsByGuildsIdToExcel(int guildsId) throws SQLException, IOException {
-        allCheckIns = FXCollections.observableArrayList();
-        allCheckIns.addAll(bllFacade.exportCheckInsByGuildsIdToExcel(guildsId));
+        allCheckIns = FXCollections.observableList(bllFacade.exportCheckInsByGuildsIdToExcel(guildsId));
     }
     
 //    public void getByGuildsIdSumOfHours(int guildsId) throws SQLException, IOException {

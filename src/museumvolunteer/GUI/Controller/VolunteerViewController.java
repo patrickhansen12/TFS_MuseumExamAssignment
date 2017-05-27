@@ -57,13 +57,14 @@ public class VolunteerViewController implements Initializable {
     private TextField noteHoursField;
     @FXML
     private DatePicker datePick;
+    @FXML
+    private TextField searchNameField;
 
     //private variables.
     private VolunteerModel volunteerModel;
     private GuildsModel guildsModel;
     private BLLFacade bllFacade;
-    @FXML
-    private TextField searchNameField;
+    
 
     /**
      * Initializes the VolunteerViewController class.
@@ -107,8 +108,8 @@ public class VolunteerViewController implements Initializable {
      * @throws SQLException
      */
     public VolunteerViewController() throws IOException, SQLException {
-        volunteerModel = VolunteerModel.getInstance();
-        guildsModel = GuildsModel.getInstance();
+        volunteerModel = new VolunteerModel();
+        guildsModel = new GuildsModel();
         bllFacade = new BLLFacade();
     }
 
@@ -123,7 +124,7 @@ public class VolunteerViewController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/MainView.fxml"));
 
         Scene scene = new Scene(root);
-        stage.setTitle("Frivillig dokumentation");
+        stage.setTitle("Indgang");
         stage.setResizable(false);
 
         stage.setScene(scene);

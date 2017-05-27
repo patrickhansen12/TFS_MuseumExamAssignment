@@ -50,7 +50,12 @@ public class AdminManager {
     public void deleteManager(Manager m) throws SQLException {
         managerDAO.deleteManager(m);
     }
+    
     public List<Admin> getAllAdmins() throws SQLException {
         return managerDAO.getAllAdmins();
+    }
+    
+    public void updateManager(Manager m) throws SQLException {
+        managerDAO.updateManager(m);
     }
 }

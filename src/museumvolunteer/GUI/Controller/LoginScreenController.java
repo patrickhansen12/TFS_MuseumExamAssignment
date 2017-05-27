@@ -49,7 +49,7 @@ public class LoginScreenController implements Initializable {
      */
     public LoginScreenController() throws IOException, SQLException
     {
-        adminModel = AdminModel.getInstance();
+        adminModel = new AdminModel();
         bllFacade = new BLLFacade();
     }
     
@@ -111,8 +111,7 @@ public class LoginScreenController implements Initializable {
         }
         for(int i = 0; i <= adminModel.getAllAdmins().size() - 1; i++)
         {
-            currentUser = i;
-            
+            currentUser = i;           
             if (usernameField.getText().trim().equals(adminModel.getAllAdmins().get(currentUser).getUsername()) && passwordField.getText().trim().equals(adminModel.getAllAdmins().get(currentUser).getPassword()))
             {
                 logInA();
@@ -139,7 +138,9 @@ public class LoginScreenController implements Initializable {
     private void logIn() throws IOException, SQLException
     {
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/ManagerView.fxml"));
+        Parent root;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/museumvolunteer/GUI/View/ManagerView.fxml"));
+        root = loader.load();
         Scene scene = new Scene(root);
         stage.setTitle("Logged in as " + adminModel.getAllManagers().get(currentUser).getNameAsString());
         stage.setScene(scene);

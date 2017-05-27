@@ -125,4 +125,25 @@ public class AdminDAO {
         return new Admin(id, name, email, phoneNumber, username, password);
     }
     
+    /**
+     * Updates database table Managers.
+     *
+     * @param m
+     * @throws SQLException
+     */
+    public void updateManager(Manager m) throws SQLException {
+        try (Connection con = cm.getConnection()) {
+            String sql = "UPDATE Managers SET name = ?, email = ?, phoneNumber = ?, username = ?, password = ? WHERE id = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, m.getNameAsString());
+            ps.setString(2, m.getEmailAsString());
+            ps.setString(3, m.getPhoneNumberAsString());
+            ps.setString(4, m.getUsername());
+            ps.setString(5, m.getPassword());
+            ps.setInt(6, m.getIdValue());
+            
+            ps.executeUpdate();
+        }
+    }
+    
 }

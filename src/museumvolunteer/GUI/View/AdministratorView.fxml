@@ -58,7 +58,7 @@
                 <Font size="20.0" />
             </font>
         </Button>
-        <TableView fx:id="managerAdminTable" layoutX="405.0" layoutY="130.0" prefHeight="300.0" prefWidth="175.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0">
+        <TableView fx:id="managerAdminTable" layoutX="405.0" layoutY="130.0" prefHeight="266.0" prefWidth="175.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0">
             <columns>
                 <TableColumn fx:id="managerAdminColumn" prefWidth="173.0" text="Tovholder" />
             </columns>
@@ -99,8 +99,9 @@
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="hoursForGuildBtn" layoutX="245.0" layoutY="482.0" mnemonicParsing="false" onAction="#handleViewTotalHoursForGuild" text="Button" />
+      <Button fx:id="hoursForGuildBtn" layoutX="226.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleViewTotalHoursForGuild" styleClass="buttonGreen" text="Timer for laug" />
       <Label fx:id="hoursForGuild" layoutX="339.0" layoutY="487.0" text="Label" />
+      <Button fx:id="infoAboutManagerBtn" layoutX="20.0" layoutY="417.0" mnemonicParsing="false" onAction="#handleInfoAboutManager" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Info om manager" />
     </children>
     <stylesheets>
         <URL value="@css/ColorSchemes.css" />

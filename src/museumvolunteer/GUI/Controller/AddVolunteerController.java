@@ -6,10 +6,12 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -50,7 +52,7 @@ public class AddVolunteerController implements Initializable {
     private GuildsModel guildsModel;
     int guildToogle = 1;
     private VolunteerModel volunteerModel;
-    
+    int user;
 
     /**
      * Initializes the AddVolunteerController class.
@@ -62,7 +64,7 @@ public class AddVolunteerController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             guildColumn.setCellValueFactory(guildCol -> guildCol.getValue().getName());
-            guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIdValue()));
+            guildIdColumn.setCellValueFactory(guildIdCol -> guildIdCol.getValue().getId().asObject());
             guildTable.setItems(guildsModel.getGuilds());
             guildBox.setVisible(false);
             guildNameBox.setEditable(false);
@@ -72,14 +74,14 @@ public class AddVolunteerController implements Initializable {
     }
 
     /**
-     * gets an instance of guildsModel.
+     * gets an instance of guildsModel and volunteerModel.
      *
      * @throws IOException
      * @throws SQLException
      */
     public AddVolunteerController() throws IOException, SQLException {
-        guildsModel = GuildsModel.getInstance();
-        volunteerModel = VolunteerModel.getInstance();
+        guildsModel = new GuildsModel();
+        volunteerModel = new VolunteerModel();
     }
 
     /**
@@ -107,8 +109,32 @@ public class AddVolunteerController implements Initializable {
             nameBox.clear();
             nameBox.requestFocus();
 
-            Stage stage = (Stage) addScreen.getScene().getWindow();
-            stage.close();
+            if(user == 0)
+            {
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/ManagerView.fxml"));
+            Scene scene = new Scene(root);
+            stage.setTitle("Frivillig dokumentation");
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+
+            Stage stage2 = (Stage) addScreen.getScene().getWindow();
+            stage2.close();
+            }
+            else if(user == 1)
+            {
+                Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AdministratorView.fxml"));
+            Scene scene = new Scene(root);
+            stage.setTitle("Frivillig dokumentation");
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+
+            Stage stage2 = (Stage) addScreen.getScene().getWindow();
+            stage2.close();
+            }
         }
     }
 
@@ -118,9 +144,33 @@ public class AddVolunteerController implements Initializable {
      * @param event
      */
     @FXML
-    private void returnButton(ActionEvent event) {
-        Stage stage = (Stage) addScreen.getScene().getWindow();
-        stage.close();
+    private void returnButton(ActionEvent event) throws IOException {
+        if(user == 0)
+            {
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/ManagerView.fxml"));
+            Scene scene = new Scene(root);
+            stage.setTitle("Frivillig dokumentation");
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+
+            Stage stage2 = (Stage) addScreen.getScene().getWindow();
+            stage2.close();
+            }
+            else if(user == 1)
+            {
+                Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AdministratorView.fxml"));
+            Scene scene = new Scene(root);
+            stage.setTitle("Frivillig dokumentation");
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+
+            Stage stage2 = (Stage) addScreen.getScene().getWindow();
+            stage2.close();
+            }
     }
 
 //    /**
@@ -148,16 +198,27 @@ public class AddVolunteerController implements Initializable {
 //                break;
 //        }
 //    }
-
     /**
-     * if a guild is clicked inside the nameManagerTable, the guild name will be put into the guildBox textfield.
-     * @param event 
+     * if a guild is clicked inside the nameManagerTable, the guild name will be
+     * put into the guildBox textfield.
+     *
+     * @param event
      */
     @FXML
     private void guildClicked(MouseEvent event) {
-    String guildName = guildTable.getSelectionModel().getSelectedItem().getName().getValue();
-    guildNameBox.setText("" + guildName);
+        String guildName = guildTable.getSelectionModel().getSelectedItem().getName().getValue();
+        guildNameBox.setText(guildName);
         int guildIdBox = guildTable.getSelectionModel().getSelectedItem().getIdValue();
-        guildBox.setText("" + guildIdBox);
+        guildBox.setText(String.valueOf(guildIdBox));
     }
+
+    /**
+     *
+     * @param currentUser
+     */
+    public void pullCurrentUser(int currentUser) {
+        user = currentUser;
+    }
+    
+    
 }

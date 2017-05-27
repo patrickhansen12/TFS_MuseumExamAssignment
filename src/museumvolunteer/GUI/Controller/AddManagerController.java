@@ -6,7 +6,10 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -34,16 +37,19 @@ public class AddManagerController implements Initializable {
     private Label emailManager;
     @FXML
     private Label phoneNumberManager;
-    
-    private AdminModel adminModel;
-    private Manager manager;
     @FXML
     private TextField usernameBox;
     @FXML
     private TextField passwordBox;
 
+    private AdminModel adminModel;
+    private Manager manager;
+
     /**
      * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -51,13 +57,11 @@ public class AddManagerController implements Initializable {
     }
 
     public AddManagerController() throws IOException, SQLException {
-        adminModel = AdminModel.getInstance();
+        adminModel = new AdminModel();
     }
 
-    
-
     @FXML
-    private void performButton(ActionEvent event) throws SQLException {
+    private void performButton(ActionEvent event) throws SQLException, IOException {
         if (nameBox.getText().equals("") || usernameBox.getText().equals("") || passwordBox.getText().equals("")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fejl");
@@ -72,18 +76,22 @@ public class AddManagerController implements Initializable {
             String password = passwordBox.getText().trim();
             adminModel.addManager(new Manager(name, email, phoneNumber, username, password));
 
-            Stage stage = (Stage) addManagerScreen.getScene().getWindow();
-            stage.close();
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AdministratorView.fxml"));
+            Scene scene = new Scene(root);
+            stage.setTitle("Tovholder");
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+            Stage stage2 = (Stage) addManagerScreen.getScene().getWindow();
+            stage2.close();
         }
     }
-    
 
     @FXML
-    private void returnButton(ActionEvent event) 
-    {
-        Stage stage = (Stage) addManagerScreen.getScene().getWindow();
-        stage.close();
+    private void returnButton(ActionEvent event) throws IOException {
+        Stage stage2 = (Stage) addManagerScreen.getScene().getWindow();
+        stage2.close();
     }
 
-    
 }

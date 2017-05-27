@@ -42,6 +42,7 @@ public interface IBLLFacade {
     public Manager addManager(Manager m) throws SQLException;
     public List<Manager> getAllManagers() throws SQLException;
     public void deleteManager(Manager m) throws SQLException;
+    public void updateManager(Manager m) throws SQLException;
 
     public List<Admin> getAllAdmins() throws SQLException;
 

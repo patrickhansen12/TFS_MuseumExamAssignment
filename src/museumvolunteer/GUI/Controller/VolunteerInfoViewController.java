@@ -61,7 +61,6 @@ public class VolunteerInfoViewController implements Initializable {
     private TableColumn<Guild, String> guildColumn;
     @FXML
     private TextField guildNameText;
-    private TextField newGuildBox;
     @FXML
     private TableView<Guild> currentGuildId;
     @FXML
@@ -73,6 +72,8 @@ public class VolunteerInfoViewController implements Initializable {
     private VolunteerModel volunteerModel;
     private Volunteer thisVolunteer;
     private GuildsModel guildsModel;
+    private TextField newGuildBox;
+    int user;
 
     /**
      * Initializes the VolunteerInfoViewController class.
@@ -83,6 +84,7 @@ public class VolunteerInfoViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+            System.out.println(user);
             guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
             guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIdValue()));
             guildTable.setItems(guildsModel.getGuilds());
@@ -102,8 +104,8 @@ public class VolunteerInfoViewController implements Initializable {
      * @throws SQLException
      */
     public VolunteerInfoViewController() throws IOException, SQLException {
-        volunteerModel = VolunteerModel.getInstance();
-        guildsModel = GuildsModel.getInstance();
+        volunteerModel = new VolunteerModel();
+        guildsModel = new GuildsModel();
     }
 
     /**
@@ -133,11 +135,45 @@ public class VolunteerInfoViewController implements Initializable {
      */
     @FXML
     private void handleUpdate(ActionEvent event) throws SQLException, IOException {
-        String name = nameBox.getText().trim();
+        if(user == 0)
+        {String name = nameBox.getText().trim();
         String email = emailBox.getText().trim();
         String phoneNumber = phoneNumberBox.getText().trim();
         volunteerModel.updateVolunteer(new Volunteer(thisVolunteer.getIdValue(), name, email, phoneNumber));
-        backVolunteerInfo(event);
+        Stage stage = new Stage();
+        Parent root;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/museumvolunteer/GUI/View/ManagerView.fxml"));
+        root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setTitle("Frivillig dokumentation");
+        stage.setResizable(false);
+
+        stage.setScene(scene);
+        stage.show();
+
+        Stage stage2 = (Stage) volunteerInfoScreen.getScene().getWindow();
+        stage2.close();
+        }
+        else if(user == 1)
+        {
+            String name = nameBox.getText().trim();
+        String email = emailBox.getText().trim();
+        String phoneNumber = phoneNumberBox.getText().trim();
+        volunteerModel.updateVolunteer(new Volunteer(thisVolunteer.getIdValue(), name, email, phoneNumber));
+        Stage stage = new Stage();
+        Parent root;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/museumvolunteer/GUI/View/AdministratorView.fxml"));
+        root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setTitle("Frivillig dokumentation");
+        stage.setResizable(false);
+
+        stage.setScene(scene);
+        stage.show();
+
+        Stage stage2 = (Stage) volunteerInfoScreen.getScene().getWindow();
+        stage2.close();
+        }
     }
 
     /**
@@ -147,17 +183,6 @@ public class VolunteerInfoViewController implements Initializable {
      */
     @FXML
     private void backVolunteerInfo(ActionEvent event) throws IOException {
-//        Stage stage = new Stage();
-//        Parent root;
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/museumvolunteer/GUI/View/ManagerView.fxml"));
-//        root = loader.load();
-//        Scene scene = new Scene(root);
-//        stage.setTitle("Frivillig dokumentation");
-//        stage.setResizable(false);
-//
-//        stage.setScene(scene);
-//        stage.show();
-
         Stage stage = (Stage) volunteerInfoScreen.getScene().getWindow();
         stage.close();
     }
@@ -189,5 +214,9 @@ public class VolunteerInfoViewController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(nameBox.getText() + " er nu tilføjet i " + guildNameText.getText());
         alert.showAndWait();
+    }
+
+    public void pullCurrentUser(int currentUser) {
+        user = currentUser;
     }
 }

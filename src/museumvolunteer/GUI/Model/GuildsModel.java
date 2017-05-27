@@ -2,6 +2,8 @@ package museumvolunteer.GUI.Model;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import museumvolunteer.BE.Guild;
@@ -13,7 +15,7 @@ import museumvolunteer.BLL.BLLFacade;
 public class GuildsModel {
 
     //private variables.
-    private static GuildsModel INSTANCE;
+    //private static GuildsModel INSTANCE;
     private BLLFacade bllFacade;
 
     //Observable list of BE Guild.
@@ -23,26 +25,29 @@ public class GuildsModel {
     /**
      * Constructs a new GuildsManager and creates an observable arraylist out of
      * the observable list Guild.
-     */
-    private GuildsModel() throws IOException, SQLException {
-        bllFacade = new BLLFacade();
-        guilds = FXCollections.observableArrayList();
-        guilds.addAll(bllFacade.getAllGuilds());
-    }
-
-    /**
-     * The method to get a reference to this Singleton:
-     *
-     * @return
      * @throws java.io.IOException
      * @throws java.sql.SQLException
      */
-    public static synchronized GuildsModel getInstance() throws IOException, SQLException {
-        if (INSTANCE == null) {
-            INSTANCE = new GuildsModel();
-        }
-        return INSTANCE;
+    public GuildsModel() throws IOException, SQLException {
+        this.guilds = guilds;
+        bllFacade = new BLLFacade();
+        List<Guild> guilds2 = new ArrayList<>(bllFacade.getAllGuilds());
+        guilds = FXCollections.observableList(guilds2);
     }
+
+//    /**
+//     * The method to get a reference to this Singleton:
+//     *
+//     * @return
+//     * @throws java.io.IOException
+//     * @throws java.sql.SQLException
+//     */
+//    public static synchronized GuildsModel getInstance() throws IOException, SQLException {
+//        if (INSTANCE == null) {
+//            INSTANCE = new GuildsModel();
+//        }
+//        return INSTANCE;
+//    }
 
     /**
      * This method returns an observable list of BE class Guild.
@@ -54,10 +59,16 @@ public class GuildsModel {
         return guilds;
     }
     
+    public List<Guild> getGuildsFromFacade() throws SQLException
+    {
+        guilds.clear();
+        guilds.addAll(bllFacade.getAllGuilds());
+        return guilds;
+    }
+    
     public ObservableList<Guild> getGuildsByNameId(int nameId) throws SQLException 
     {
-        guildsByNameId = FXCollections.observableArrayList();
-        guildsByNameId.addAll(bllFacade.getGuildsByNameId(nameId));
+        guildsByNameId = FXCollections.observableList(bllFacade.getGuildsByNameId(nameId));
         return guildsByNameId;
     }
 
