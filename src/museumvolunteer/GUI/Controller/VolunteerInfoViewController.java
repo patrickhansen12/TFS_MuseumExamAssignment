@@ -73,7 +73,7 @@ public class VolunteerInfoViewController implements Initializable {
     private Volunteer thisVolunteer;
     private GuildsModel guildsModel;
     private TextField newGuildBox;
-    int user;
+    public int userVolunteerInfo;
 
     /**
      * Initializes the VolunteerInfoViewController class.
@@ -84,7 +84,6 @@ public class VolunteerInfoViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            System.out.println(user);
             guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
             guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIdValue()));
             guildTable.setItems(guildsModel.getGuilds());
@@ -135,44 +134,13 @@ public class VolunteerInfoViewController implements Initializable {
      */
     @FXML
     private void handleUpdate(ActionEvent event) throws SQLException, IOException {
-        if(user == 0)
-        {String name = nameBox.getText().trim();
-        String email = emailBox.getText().trim();
-        String phoneNumber = phoneNumberBox.getText().trim();
-        volunteerModel.updateVolunteer(new Volunteer(thisVolunteer.getIdValue(), name, email, phoneNumber));
-        Stage stage = new Stage();
-        Parent root;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/museumvolunteer/GUI/View/ManagerView.fxml"));
-        root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setTitle("Frivillig dokumentation");
-        stage.setResizable(false);
-
-        stage.setScene(scene);
-        stage.show();
-
-        Stage stage2 = (Stage) volunteerInfoScreen.getScene().getWindow();
-        stage2.close();
-        }
-        else if(user == 1)
+        if(userVolunteerInfo == 0)
         {
-            String name = nameBox.getText().trim();
-        String email = emailBox.getText().trim();
-        String phoneNumber = phoneNumberBox.getText().trim();
-        volunteerModel.updateVolunteer(new Volunteer(thisVolunteer.getIdValue(), name, email, phoneNumber));
-        Stage stage = new Stage();
-        Parent root;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/museumvolunteer/GUI/View/AdministratorView.fxml"));
-        root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setTitle("Frivillig dokumentation");
-        stage.setResizable(false);
-
-        stage.setScene(scene);
-        stage.show();
-
-        Stage stage2 = (Stage) volunteerInfoScreen.getScene().getWindow();
-        stage2.close();
+            enterManagerView();
+        }
+        else if(userVolunteerInfo == 1)
+        {
+            enterAdminView();
         }
     }
 
@@ -182,9 +150,8 @@ public class VolunteerInfoViewController implements Initializable {
      * @param event
      */
     @FXML
-    private void backVolunteerInfo(ActionEvent event) throws IOException {
-        Stage stage = (Stage) volunteerInfoScreen.getScene().getWindow();
-        stage.close();
+    private void backVolunteerInfo(ActionEvent event) throws IOException, SQLException {
+        handleUpdate(event);
     }
 
     /**
@@ -199,6 +166,13 @@ public class VolunteerInfoViewController implements Initializable {
         guildBox.setText("" + guildId);
         String guildNameBox = guildTable.getSelectionModel().getSelectedItem().getNameAsString();
         guildNameText.setText("" + guildNameBox);
+        if (guildNameBox.isEmpty() || guildId == -1) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Slip ikke musen for hurtigt, når du scroller nedad lauglisten.");
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -216,7 +190,59 @@ public class VolunteerInfoViewController implements Initializable {
         alert.showAndWait();
     }
 
-    public void pullCurrentUser(int currentUser) {
-        user = currentUser;
+    public void pullCurrentUserVolunteerInfo(int currentUserVolunteerInfo) {
+        userVolunteerInfo = currentUserVolunteerInfo;
+    }
+    
+    /**
+     * Method for entering administratorView if userVolunteerInfo == 1;
+     * @throws SQLException
+     * @throws IOException 
+     */
+    public void enterAdminView() throws SQLException, IOException
+    {
+        String name = nameBox.getText().trim();
+        String email = emailBox.getText().trim();
+        String phoneNumber = phoneNumberBox.getText().trim();
+        volunteerModel.updateVolunteer(new Volunteer(thisVolunteer.getIdValue(), name, email, phoneNumber));
+        Stage stage = new Stage();
+        Parent root;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/museumvolunteer/GUI/View/AdministratorView.fxml"));
+        root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setTitle("Frivillig dokumentation");
+        stage.setResizable(false);
+
+        stage.setScene(scene);
+        stage.show();
+
+        Stage stage2 = (Stage) volunteerInfoScreen.getScene().getWindow();
+        stage2.close();
+    }
+    
+    /**
+     * Method for entering managerView if userVolunteerInfo == 0;
+     * @throws SQLException
+     * @throws IOException 
+     */
+    public void enterManagerView() throws SQLException, IOException
+    {
+        String name = nameBox.getText().trim();
+        String email = emailBox.getText().trim();
+        String phoneNumber = phoneNumberBox.getText().trim();
+        volunteerModel.updateVolunteer(new Volunteer(thisVolunteer.getIdValue(), name, email, phoneNumber));
+        Stage stage = new Stage();
+        Parent root;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/museumvolunteer/GUI/View/ManagerView.fxml"));
+        root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setTitle("Frivillig dokumentation");
+        stage.setResizable(false);
+
+        stage.setScene(scene);
+        stage.show();
+        
+        Stage stage2 = (Stage) volunteerInfoScreen.getScene().getWindow();
+        stage2.close();
     }
 }

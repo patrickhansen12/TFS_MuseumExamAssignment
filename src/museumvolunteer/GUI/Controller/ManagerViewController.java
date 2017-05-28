@@ -78,7 +78,8 @@ public class ManagerViewController implements Initializable {
     private Volunteer volunteer;
     private CheckIn checkIn;
     private BLLFacade bllFacade;
-    public int currentUser = 0;
+    public int currentUserAddVolunteer = 0;
+    public int currentUserVolunteerInfo = 0;
 
     /**
      * Initializes the ManagerViewController class.
@@ -135,7 +136,7 @@ public class ManagerViewController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/museumvolunteer/GUI/View/AddVolunteer.fxml"));
         root = loader.load();
         AddVolunteerController controller = loader.getController();
-        controller.pullCurrentUser(currentUser);
+        controller.pullCurrentUserAddVolunteer(currentUserAddVolunteer);
         Scene scene = new Scene(root);
         stage.setTitle("Tilføj frivillig");
         stage.setResizable(false);
@@ -365,7 +366,7 @@ public class ManagerViewController implements Initializable {
                 root = loader.load();
                 VolunteerInfoViewController controller = loader.getController();
                 controller.doMagicStuff(new Volunteer(id, name, email, phoneNumber, guildsId));
-                controller.pullCurrentUser(currentUser);
+                controller.pullCurrentUserVolunteerInfo(currentUserVolunteerInfo);
                 Scene scene = new Scene(root);
                 stage.setTitle("Rediger frivillig");
                 stage.setResizable(false);

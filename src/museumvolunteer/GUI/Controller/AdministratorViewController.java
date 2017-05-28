@@ -95,7 +95,8 @@ public class AdministratorViewController implements Initializable {
     private AdminModel adminModel;
     private Manager manager;
     private BLLFacade bllFacade;
-    public int currentUser = 1;
+    public int currentUserAddVolunteer = 1;
+    public int currentUserVolunteerInfo = 1;
 
     /**
      * Initializes the AdministratorViewController class.
@@ -184,7 +185,7 @@ public class AdministratorViewController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/museumvolunteer/GUI/View/AddVolunteer.fxml"));
         root = loader.load();
         AddVolunteerController controller = loader.getController();
-        controller.pullCurrentUser(currentUser);
+        controller.pullCurrentUserAddVolunteer(currentUserAddVolunteer);
         Scene scene = new Scene(root);
         stage.setTitle("Tilføj frivillig");
         stage.setResizable(false);
@@ -507,7 +508,7 @@ public class AdministratorViewController implements Initializable {
             alert.showAndWait();
         }
 
-        if (nameAdminTable.getSelectionModel().getSelectedItem() != null) {
+        else if (nameAdminTable.getSelectionModel().getSelectedItem() != null) {
             try {
                 int id = nameAdminTable.getSelectionModel().getSelectedItem().getIdValue();
                 String name = nameAdminTable.getSelectionModel().getSelectedItem().getNameAsString();
@@ -520,6 +521,7 @@ public class AdministratorViewController implements Initializable {
                 root = loader.load();
                 VolunteerInfoViewController controller = loader.getController();
                 controller.doMagicStuff(new Volunteer(id, name, email, phoneNumber, guildsId));
+                controller.pullCurrentUserVolunteerInfo(currentUserVolunteerInfo);
                 Scene scene = new Scene(root);
                 stage.setTitle("Rediger frivillig");
                 stage.setResizable(false);
@@ -577,8 +579,7 @@ public class AdministratorViewController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
 
-                Stage stage2;
-                stage2 = (Stage) adminScreen.getScene().getWindow();
+                Stage stage2 = (Stage) adminScreen.getScene().getWindow();
                 stage2.close();
             } catch (IOException ex) {
                 System.out.println("HandleInfo " + ex);

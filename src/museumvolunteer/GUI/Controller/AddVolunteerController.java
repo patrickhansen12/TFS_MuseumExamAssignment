@@ -50,9 +50,8 @@ public class AddVolunteerController implements Initializable {
 
     //private variables.
     private GuildsModel guildsModel;
-    int guildToogle = 1;
     private VolunteerModel volunteerModel;
-    int user;
+    int userAddVolunteer;
 
     /**
      * Initializes the AddVolunteerController class.
@@ -109,31 +108,10 @@ public class AddVolunteerController implements Initializable {
             nameBox.clear();
             nameBox.requestFocus();
 
-            if(user == 0)
-            {
-            Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/ManagerView.fxml"));
-            Scene scene = new Scene(root);
-            stage.setTitle("Frivillig dokumentation");
-            stage.setResizable(false);
-            stage.setScene(scene);
-            stage.show();
-
-            Stage stage2 = (Stage) addScreen.getScene().getWindow();
-            stage2.close();
-            }
-            else if(user == 1)
-            {
-                Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AdministratorView.fxml"));
-            Scene scene = new Scene(root);
-            stage.setTitle("Frivillig dokumentation");
-            stage.setResizable(false);
-            stage.setScene(scene);
-            stage.show();
-
-            Stage stage2 = (Stage) addScreen.getScene().getWindow();
-            stage2.close();
+            if (userAddVolunteer == 0) {
+                enterManagerView();
+            } else if (userAddVolunteer == 1) {
+                enterAdminView();
             }
         }
     }
@@ -145,32 +123,11 @@ public class AddVolunteerController implements Initializable {
      */
     @FXML
     private void returnButton(ActionEvent event) throws IOException {
-        if(user == 0)
-            {
-            Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/ManagerView.fxml"));
-            Scene scene = new Scene(root);
-            stage.setTitle("Frivillig dokumentation");
-            stage.setResizable(false);
-            stage.setScene(scene);
-            stage.show();
-
-            Stage stage2 = (Stage) addScreen.getScene().getWindow();
-            stage2.close();
-            }
-            else if(user == 1)
-            {
-                Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AdministratorView.fxml"));
-            Scene scene = new Scene(root);
-            stage.setTitle("Frivillig dokumentation");
-            stage.setResizable(false);
-            stage.setScene(scene);
-            stage.show();
-
-            Stage stage2 = (Stage) addScreen.getScene().getWindow();
-            stage2.close();
-            }
+        if (userAddVolunteer == 0) {
+            enterManagerView();
+        } else if (userAddVolunteer == 1) {
+            enterAdminView();
+        }
     }
 
 //    /**
@@ -206,19 +163,59 @@ public class AddVolunteerController implements Initializable {
      */
     @FXML
     private void guildClicked(MouseEvent event) {
+
         String guildName = guildTable.getSelectionModel().getSelectedItem().getName().getValue();
         guildNameBox.setText(guildName);
         int guildIdBox = guildTable.getSelectionModel().getSelectedItem().getIdValue();
         guildBox.setText(String.valueOf(guildIdBox));
+        if (guildName.isEmpty() || guildIdBox == -1) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Slip ikke musen for hurtigt, når du scroller nedad lauglisten.");
+            alert.showAndWait();
+        }
     }
 
     /**
-     *
-     * @param currentUser
+     * sends the value of int currentUserAddVolunteer from either administratorView or ManagerView into instance variable userAddVolunteer.
+     * @param currentUserAddVolunteer
      */
-    public void pullCurrentUser(int currentUser) {
-        user = currentUser;
+    public void pullCurrentUserAddVolunteer(int currentUserAddVolunteer) {
+        userAddVolunteer = currentUserAddVolunteer;
     }
-    
-    
+
+    /**
+     * Enters the administratorView if userAddVolunteer == 1;
+     * @throws IOException 
+     */
+    public void enterAdminView() throws IOException {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AdministratorView.fxml"));
+        Scene scene = new Scene(root);
+        stage.setTitle("Frivillig dokumentation");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
+
+        Stage stage2 = (Stage) addScreen.getScene().getWindow();
+        stage2.close();
+    }
+
+    /**
+     * Enters the managerView if userAddVolunteer == 0;
+     * @throws IOException 
+     */
+    public void enterManagerView() throws IOException {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/ManagerView.fxml"));
+        Scene scene = new Scene(root);
+        stage.setTitle("Frivillig dokumentation");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
+
+        Stage stage2 = (Stage) addScreen.getScene().getWindow();
+        stage2.close();
+    }
 }
