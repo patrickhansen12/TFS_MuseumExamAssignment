@@ -184,6 +184,7 @@ public class ManagerViewController implements Initializable {
                 //volunteerModel.deleteVolunteer(volunteer);
                 nameManagerTable.getItems().remove(selectedItem);
                 nameManagerTable.getSelectionModel().clearSelection();
+                hoursManagerTable.getItems().clear();
             }
         }
     }

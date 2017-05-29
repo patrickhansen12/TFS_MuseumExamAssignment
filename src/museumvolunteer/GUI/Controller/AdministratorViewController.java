@@ -258,6 +258,8 @@ public class AdministratorViewController implements Initializable {
                 volunteerModel.deleteVolunteer(volunteer);
                 nameAdminTable.getItems().remove(selectedItem);
                 nameAdminTable.getSelectionModel().clearSelection();
+            hoursAdminTable.getItems().clear();
+           handleGuildHours();
             }
         }
     }
