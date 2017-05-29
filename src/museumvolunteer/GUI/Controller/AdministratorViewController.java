@@ -80,8 +80,6 @@ public class AdministratorViewController implements Initializable {
     @FXML
     private Button exportGuildToExcel;
     @FXML
-    private Button hoursForGuildBtn;
-    @FXML
     private Label hoursForGuild;
     @FXML
     private Button infoAboutManagerBtn;
@@ -415,7 +413,7 @@ public class AdministratorViewController implements Initializable {
             
             int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
             volunteerModel.getNamesByGuildId(guildsId);
-handleGuildHours();
+            handleGuildHours();
             nameAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
             nameAdminTable.setItems(volunteerModel.getAllVolunteers());
             hoursAdminTable.getItems().clear();
@@ -538,11 +536,7 @@ handleGuildHours();
         }
     }
 
-    @FXML
-    private void handleViewTotalHoursForGuild(ActionEvent event) throws SQLException, IOException {
-        int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
-        hoursForGuild.setText(String.valueOf(volunteerModel.getByGuildsIdSumOfHoursList(guildsId).get(0)));
-    }
+    
      public void handleGuildHours() throws SQLException, IOException{
             int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
         hoursForGuild.setText(String.valueOf(volunteerModel.getByGuildsIdSumOfHoursList(guildsId).get(0))); 
