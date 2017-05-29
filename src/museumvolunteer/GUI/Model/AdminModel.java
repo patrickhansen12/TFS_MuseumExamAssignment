@@ -15,54 +15,17 @@ import museumvolunteer.BLL.BLLFacade;
  */
 public class AdminModel {
 
-    //private static AdminModel INSTANCE;
     private BLLFacade bllFacade;
 
     private ObservableList<Manager> allManagers;
     private ObservableList<Admin> allAdmins;
 
-//    /**
-//     * The method to get a reference to this Singleton:
-//     *
-//     * @return
-//     * @throws java.io.IOException
-//     * @throws java.sql.SQLException
-//     */
-//    public static synchronized AdminModel getInstance() throws IOException, SQLException {
-//        if (INSTANCE == null) {
-//            INSTANCE = new AdminModel();
-//        }
-//        return INSTANCE;
-//    }
-
     public AdminModel() throws SQLException, IOException {
-        this.allManagers = allManagers;
         bllFacade = new BLLFacade();
         List<Manager> allManagers2 = new ArrayList<>(bllFacade.getAllManagers());
         allManagers = FXCollections.observableList(allManagers2);
         List<Admin> allAdmins2 = new ArrayList<>(bllFacade.getAllAdmins());
         allAdmins = FXCollections.observableList(allAdmins2);
-        //allAdmins.addAll();
-//        allManagers.addListener(new ListChangeListener() 
-//        {
-//            @Override
-//            public void onChanged(ListChangeListener.Change c) 
-//            {
-//                try {
-//                    if(c.next())
-//                        System.out.println(c.wasRemoved());
-//                    getAllManagers();
-//                    if(c.wasRemoved()) 
-//                    {
-//                        System.out.println(c.wasUpdated());
-//                    }
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(AdminModel.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//            
-//        });
-
     }
 
     /**
@@ -86,13 +49,6 @@ public class AdminModel {
     public ObservableList<Manager> getAllManagers() throws SQLException {
         return allManagers;
     }
-    
-//    public ObservableList<Manager> getAllManagersFromFacade() throws SQLException 
-//    {       
-//        allManagers.clear();
-//        allManagers.addAll(bllFacade.getAllManagers());
-//        return allManagers;
-//    }
 
     public ObservableList<Admin> getAllAdmins() throws SQLException {
         return allAdmins;
@@ -114,6 +70,5 @@ public class AdminModel {
         bllFacade.updateManager(m);
         allManagers.remove(m);
         allManagers.add(m);
-
     }
 }

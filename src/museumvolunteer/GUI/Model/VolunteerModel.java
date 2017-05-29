@@ -27,20 +27,6 @@ public class VolunteerModel {
     private ObservableList<Volunteer> sortedVolunteers;
     private ObservableList<CheckIn> allCheckIns;
 
-//    /**
-//     * The method to get a reference to this Singleton:
-//     *
-//     * @return
-//     * @throws java.io.IOException
-//     * @throws java.sql.SQLException
-//     */
-//    public static synchronized VolunteerModel getInstance() throws IOException, SQLException {
-//        if (INSTANCE == null) {
-//            INSTANCE = new VolunteerModel();
-//        }
-//        return INSTANCE;
-//    }
-
     /**
      * Constructs new name- and checkInManagers, creates observable arraylists
      * out of the observable lists Volunteer and CheckIn.
@@ -48,7 +34,6 @@ public class VolunteerModel {
      * @throws java.sql.SQLException
      */
     public VolunteerModel() throws IOException, SQLException {
-        this.allVolunteers = allVolunteers;
         bllFacade = new BLLFacade();
         List<Volunteer> allVolunteers2 = new ArrayList<>(bllFacade.getAllVolunteers());
         allVolunteers = FXCollections.observableList(allVolunteers2);
@@ -56,9 +41,6 @@ public class VolunteerModel {
         allCheckIns = FXCollections.observableList(allCheckIns2);
         sortedVolunteers = FXCollections.observableArrayList();
         items = FXCollections.observableArrayList();
-
-//        allCheckIns = FXCollections.observableArrayList();
-//        allCheckIns.addAll(bllFacade.getAllCheckIns());
     }
 
     /**
@@ -114,7 +96,6 @@ public class VolunteerModel {
      * @throws SQLException
      */
     public void deleteVolunteer(Volunteer v) throws SQLException {
-        //bllFacade.deleteVolunteer(v);
         allVolunteers.remove(v);
     }
     
@@ -185,11 +166,6 @@ public class VolunteerModel {
     public void setCheckInsByGuildsIdToExcel(int guildsId) throws SQLException, IOException {
         allCheckIns = FXCollections.observableList(bllFacade.exportCheckInsByGuildsIdToExcel(guildsId));
     }
-    
-//    public void getByGuildsIdSumOfHours(int guildsId) throws SQLException, IOException {
-//        //allCheckIns = FXCollections.observableArrayList();
-//        bllFacade.getByGuildsIdSumOfHours(guildsId);
-//    }
 
     public void addToNewGuild(int nameId, int guildsId) throws SQLException {
         bllFacade.addToNewGuild(nameId, guildsId);
@@ -200,6 +176,5 @@ public class VolunteerModel {
         List<Integer> getHours = new ArrayList<>();
         getHours.add(bllFacade.getByGuildsIdSumOfHours(guildsId));
         return getHours;
-        
     }
 }

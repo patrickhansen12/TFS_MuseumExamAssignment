@@ -24,15 +24,6 @@ public class NamesManager {
         namesDAO = new NamesDAO();
     }
 
-//    /**
-//     * Creates and returns a new Volunteer object.
-//     * @param name
-//     * @return The new Volunteer object.
-//     */
-//    public Volunteer createNewVolunteer(String name)
-//    {
-//        return new Volunteer(name);
-//    }
     /**
      * Method for calling getAllVolunteers() in namesDAO.
      *
@@ -53,16 +44,6 @@ public class NamesManager {
     public Volunteer addVolunteer(Volunteer v) throws SQLException {
         return namesDAO.add(v);
     }
-
-//    /**
-//     * Method for calling deleteVolunteer() in namesDAO.
-//     *
-//     * @param v
-//     * @throws SQLException
-//     */
-//    public void deleteVolunteer(Volunteer v) throws SQLException {
-//        namesDAO.deleteVolunteer(v);
-//    }
     
     public void deleteVolunteerByNameIdGuildsId(int nameId, int guildsId) throws SQLException
     {

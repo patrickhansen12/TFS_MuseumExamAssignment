@@ -27,28 +27,6 @@ public class GuildsDAO {
         cm = new ConnectionManager();
     }
 
-//    /**
-//     * Adds a guild object to database table Guilds containing name and nameId.
-//     * @param g
-//     * @return
-//     * @throws SQLException 
-//     */
-//    public Guild add(Guild g) throws SQLException
-//    {
-//        String sql = "INSERT INTO Guilds(name, nameId) VALUES(?, ?)";
-//        try (Connection con = cm.getConnection())
-//        {
-//            PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-//            ps.setString(1, g.getName());
-//            ps.setInt(2, g.getNameId());
-//
-//            ps.executeUpdate();
-//            ResultSet generatedKey = ps.getGeneratedKeys();
-//            generatedKey.next();
-//            int id = generatedKey.getInt(1);
-//            return new Guild(id, g);   
-//        }
-//    }
     /**
      * Updates name of the specified guild in database table Guilds.
      *
@@ -77,14 +55,6 @@ public class GuildsDAO {
             generatedKey.next();
             int id = generatedKey.getInt(1);
             return new Guild(id, g.getNameAsString());
-
-//        String sql2 = "INSERT INTO Works_For(nameId, guildsId) VALUES(?, ?)";
-//            PreparedStatement ps2 = con.prepareStatement(sql2);
-//            ps2.setInt(1, g.getNamesId());
-//            ps2.setInt(2, id);
-//
-//            ps2.executeUpdate();
-//            return new Guild(id, g.getName(), g.getNamesId());
         }
     }
 
@@ -181,22 +151,6 @@ public class GuildsDAO {
         }
     }
 
-//    /**
-//     * Method for deleting a selected guild for a specific volunteer.
-//     * @param id
-//     * @throws SQLException 
-//     */
-//    public void deleteByNameId(int id) throws SQLException
-//    {
-//        String sql = "DELETE FROM Guilds where nameId = ?";
-//        try (Connection con = cm.getConnection())
-//        {
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setInt(1, id);
-//
-//            ps.executeUpdate();
-//        }
-//    }
     /**
      * Populates a new ArrayList of Volunteers with volunteers for a specific
      * guild gathered from database table Guilds.

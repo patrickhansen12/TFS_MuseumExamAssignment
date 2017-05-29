@@ -61,10 +61,7 @@ public class LoginScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        // TODO
-     
-//        usernameField.setText("Svend123");
-//        passwordField.setText("123Svend");
+        
     }    
 
     /**

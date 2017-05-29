@@ -42,5 +42,4 @@ public class ConnectionManager {
     public Connection getConnection() throws SQLServerException {
         return ds.getConnection();
     }
-
 }

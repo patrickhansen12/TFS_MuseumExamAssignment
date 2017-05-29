@@ -23,7 +23,7 @@ public class MainViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        // TODO
+        
     }    
 
     /**
@@ -60,7 +60,6 @@ public class MainViewController implements Initializable {
         Scene scene = new Scene(root);
         stage.setTitle("Login");
         stage.setResizable(false);
-//        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
         closeWindow();
@@ -75,7 +74,6 @@ public class MainViewController implements Initializable {
         Scene scene = new Scene(root);
         stage.setTitle("Login");
         stage.setResizable(false);
-//        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
         closeWindow();

@@ -89,43 +89,17 @@ public class ManagerViewController implements Initializable {
         try {
             datePicker.setValue(LocalDate.now());
             dataBind();
-//            List<Guild> allGuilds = guildManagerTable.getItems();
-//            List<String> allGuildNames = new ArrayList<String>();
-//            for (Guild g : allGuilds) {
-//                String nameString = g.getNameAsString();
-//                allGuildNames.add(nameString);
-//            }
-//            nameManagerTable.setItems(volunteerModel.getNames());
-//
-//            Guild g = guildManagerTable.getSelectionModel().getSelectedItem();
-//            if (g != null) {
-//                int guildId = g.getIdValue();
-//                List<String> allVolunteers = bllFacade.getAllVolunteerNames(guildId);
-//                volunteerModel.setFilteredNames(allVolunteers);
-//            }
         } catch (SQLException ex) {
             Logger.getLogger(VolunteerViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    /**
-     * Gets instances of singleton models volunteerModel and guildsModel.
-     *
-     * @throws IOException
-     * @throws SQLException
-     */
     public ManagerViewController() throws IOException, SQLException {
         volunteerModel = new VolunteerModel();
         guildsModel = new GuildsModel();
         bllFacade = new BLLFacade();
     }
 
-    /**
-     * Opens the AddVolunteer view.
-     *
-     * @param event
-     * @throws IOException
-     */
     @FXML
     private void addVolunteersButton(ActionEvent event) throws IOException {
         Stage stage = new Stage();
@@ -178,18 +152,12 @@ public class ManagerViewController implements Initializable {
                 int guildsId = guildManagerTable.getSelectionModel().getSelectedItem().getIdValue();
                 int nameId = nameManagerTable.getSelectionModel().getSelectedItem().getIdValue();
                 volunteerModel.deleteVolunteerByNameIdGuildsId(nameId, guildsId);
-                //volunteerModel.deleteVolunteer(volunteer);
                 nameManagerTable.getItems().remove(selectedItem);
                 nameManagerTable.getSelectionModel().clearSelection();
                 hoursManagerTable.getItems().clear();
             }
         }
     }
-
-//    public void clearTables() {
-//        nameManagerTable.getItems().clear();
-//        hoursManagerTable.getItems().clear();
-//    }
 
     /**
      * Returns the manager to MainView.
@@ -215,7 +183,6 @@ public class ManagerViewController implements Initializable {
 
     private void dataBind() throws SQLException {
 
-        //guildsModel.getGuilds().clear();
         guildManagerColumn.setCellValueFactory(guildAdminCol -> guildAdminCol.getValue().getName());
         guildManagerTable.getItems().setAll(guildsModel.getGuilds());
         guildManagerTable.setPlaceholder(new Label("Der er ikke nogen \nlaug at vise"));
@@ -239,15 +206,7 @@ public class ManagerViewController implements Initializable {
             nameManagerColumn.setCellValueFactory(managerManagerCol -> managerManagerCol.getValue().getName());
             nameManagerTable.setItems(volunteerModel.getAllVolunteers());
 
-//                int guildsId = -1;
-//                int hourId = -1;
-//                volunteerModel.setCheckInsByNameIdGuildsId(guildsId, hourId);
-//            hoursManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHours()));
-//            dateManagerColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
-//            hoursManagerTable.setItems(volunteerModel.getAllCheckIns());
             hoursManagerTable.getItems().clear();
-//
-//        }
             searchNameField.clear();
 
         }
@@ -368,8 +327,6 @@ public class ManagerViewController implements Initializable {
                 Scene scene = new Scene(root);
                 stage.setTitle("Rediger frivillig");
                 stage.setResizable(false);
-//                stage.initStyle(StageStyle.UNDECORATED);
-                //clearTables();
                 stage.setScene(scene);
                 stage.show();
 

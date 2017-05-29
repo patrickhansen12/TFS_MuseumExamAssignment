@@ -12,8 +12,6 @@ import museumvolunteer.DAL.AdminDAO;
  */
 public class AdminManager {
 
-    private Manager manager;
-    private Admin admin;
     private AdminDAO managerDAO;
     
     public AdminManager() throws IOException {

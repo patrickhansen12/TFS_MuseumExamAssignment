@@ -130,31 +130,6 @@ public class AddVolunteerController implements Initializable {
         }
     }
 
-//    /**
-//     * Method for showing guildManagerTable inside the "notes" windoow.
-//     *
-//     * @param event
-//     */
-//    @FXML
-//    private void openGuildList(ActionEvent event) {
-//        switch (guildToogle) {
-//            case 1:
-//                guildTable.setVisible(true);
-//                guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-//                guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getId()));
-//                guildTable.setItems(guildsModel.getGuilds());
-//                guildToogle = 2;
-//                guildTable.getSelectionModel().clearSelection();
-//                break;
-//
-//            case 2:
-//                guildTable.getSelectionModel().clearSelection();
-//                guildTable.setVisible(false);
-//                guildToogle = 1;
-//
-//                break;
-//        }
-//    }
     /**
      * if a guild is clicked inside the nameManagerTable, the guild name will be
      * put into the guildBox textfield.

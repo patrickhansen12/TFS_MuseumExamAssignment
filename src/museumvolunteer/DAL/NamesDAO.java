@@ -77,23 +77,6 @@ public class NamesDAO {
         }
     }
 
-//    /**
-//     * Deletes a selected volunteer from database table Volunteer.
-//     *
-//     * @param v
-//     * @throws SQLException
-//     */
-//    public void deleteVolunteer(Volunteer v) throws SQLException {       
-//        try (Connection con = cm.getConnection()) {
-//            String sql = "DELETE FROM Names WHERE id = ?";
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setInt(1, v.getIdValue());
-//            ps.executeUpdate();
-//        } catch (SQLException sqlEx) {
-//            System.out.println("Du har ikke valgt en frivillig at slette. " + sqlEx);
-//        }
-//    }
-
     /**
      * Reflects attributes for a volunteer in database table Volunteer.
      *
@@ -126,12 +109,6 @@ public class NamesDAO {
             ps.setString(3, v.getPhoneNumberAsString());
             ps.setInt(4, v.getIdValue());
             ps.executeUpdate();
-
-//        String sql2 = "UPDATE Works_For SET guildsId = ? FROM Works_For INNER JOIN Names on Works_For.nameId = Names.id WHERE id = ?";
-//            PreparedStatement ps2 = con.prepareStatement(sql2);
-//            ps2.setInt(1, v.getGuildsId());
-//            ps2.setInt(2, v.getId());
-//            ps2.executeUpdate();
         }
     }
 

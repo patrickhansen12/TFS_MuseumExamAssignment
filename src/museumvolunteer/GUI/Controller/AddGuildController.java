@@ -26,19 +26,20 @@ public class AddGuildController implements Initializable {
     private TextField guildNameBox;
     @FXML
     private AnchorPane addGuildScreen;
-    
+
     private GuildsModel guildModel;
 
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+
+    }
+
     public AddGuildController() throws IOException, SQLException {
         guildModel = new GuildsModel();
     }
@@ -73,5 +74,4 @@ public class AddGuildController implements Initializable {
             returnButton(event);
         }
     }
-    
 }

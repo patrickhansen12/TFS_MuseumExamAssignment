@@ -15,8 +15,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -48,6 +46,8 @@ public class ManagerInfoViewController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -76,7 +76,6 @@ public class ManagerInfoViewController implements Initializable {
         Scene scene = new Scene(root);
         stage.setTitle("Frivillig");
         stage.setResizable(false);
-//        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
         Stage stage2 = (Stage) managerInfoScreen.getScene().getWindow();
@@ -97,6 +96,5 @@ public class ManagerInfoViewController implements Initializable {
         phoneNumberBox.setText(m.getPhoneNumberAsString());
         usernameBox.setText(m.getUsername());
         passwordBox.setText(m.getPassword());
-    }
-    
+    }   
 }

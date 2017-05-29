@@ -9,8 +9,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class Guild extends Person{
 
     //instance variables
-//    private IntegerProperty id;
-//    private StringProperty name;
     private IntegerProperty namesId;
     /**
      * Default constructor.

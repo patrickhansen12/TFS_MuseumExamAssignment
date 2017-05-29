@@ -16,6 +16,5 @@ public abstract class QuerySearchTemplate implements SearchPattern
      */
     public QuerySearchTemplate(String query) {
         this.query = query;
-    }
-    
+    }  
 }

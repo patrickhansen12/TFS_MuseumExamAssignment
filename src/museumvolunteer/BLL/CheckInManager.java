@@ -87,7 +87,6 @@ public class CheckInManager {
      * Deletes a selected checkIn from database table Hours according to id.
      * @param guildsId
      * @param nameId
-     * @param id
      * @throws SQLException
      */
     public void deleteCheckInByGuildsIdNameId(int guildsId, int nameId) throws SQLException

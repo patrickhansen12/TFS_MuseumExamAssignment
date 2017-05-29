@@ -36,11 +36,6 @@ public class BLLFacade implements IBLLFacade{
     public Volunteer addVolunteer(Volunteer v) throws SQLException {
         return namesManager.addVolunteer(v);
     }
-
-//    @Override
-//    public void deleteVolunteer(Volunteer v) throws SQLException {
-//        namesManager.deleteVolunteer(v);
-//    }
     
     @Override
     public void deleteVolunteerByNameIdGuildsId(int nameId, int guildsId) throws SQLException {

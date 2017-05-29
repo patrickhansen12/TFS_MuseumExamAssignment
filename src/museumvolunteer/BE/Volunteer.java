@@ -9,10 +9,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class Volunteer extends Person{
     
     //Instance variables.
-//    private IntegerProperty id;
-//    private StringProperty name;
-//    private StringProperty email;
-//    private StringProperty phoneNumber;
     private IntegerProperty guildsId;
 
     /**
@@ -24,10 +20,6 @@ public class Volunteer extends Person{
      * @param guildsId
      */
     public Volunteer(int id, String name, String email, String phoneNumber, int guildsId) {
-//        this.id = new SimpleIntegerProperty(id);
-//        this.name = new SimpleStringProperty(name);
-//        this.email = new SimpleStringProperty(email);
-//        this.phoneNumber = new SimpleStringProperty(phoneNumber);
         super(id, name, email, phoneNumber);
         this.guildsId = new SimpleIntegerProperty(guildsId);
     }
@@ -64,10 +56,6 @@ public class Volunteer extends Person{
         super(id, name, email, phoneNumber);
     }
 
-    /**
-     *
-     * @return
-     */
     public int getGuildsIdValue() {
         return guildsId.get();
     }

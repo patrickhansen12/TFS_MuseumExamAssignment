@@ -15,7 +15,6 @@ import museumvolunteer.BLL.BLLFacade;
 public class GuildsModel {
 
     //private variables.
-    //private static GuildsModel INSTANCE;
     private BLLFacade bllFacade;
 
     //Observable list of BE Guild.
@@ -29,25 +28,10 @@ public class GuildsModel {
      * @throws java.sql.SQLException
      */
     public GuildsModel() throws IOException, SQLException {
-        this.guilds = guilds;
         bllFacade = new BLLFacade();
         List<Guild> guilds2 = new ArrayList<>(bllFacade.getAllGuilds());
         guilds = FXCollections.observableList(guilds2);
     }
-
-//    /**
-//     * The method to get a reference to this Singleton:
-//     *
-//     * @return
-//     * @throws java.io.IOException
-//     * @throws java.sql.SQLException
-//     */
-//    public static synchronized GuildsModel getInstance() throws IOException, SQLException {
-//        if (INSTANCE == null) {
-//            INSTANCE = new GuildsModel();
-//        }
-//        return INSTANCE;
-//    }
 
     /**
      * This method returns an observable list of BE class Guild.
@@ -71,24 +55,6 @@ public class GuildsModel {
         guildsByNameId = FXCollections.observableList(bllFacade.getGuildsByNameId(nameId));
         return guildsByNameId;
     }
-
-//    /**
-//     * Creates an observable list of guilds and adds all guilds on the specific student by id into CheckInManager.
-//     * @param id
-//     * @throws SQLException 
-//     */
-//    public void setCheckInListById(int id) throws SQLException {
-//
-//        studentCheckIn = FXCollections.observableArrayList();
-//        studentCheckIn.addAll(checkInMgr.getAllCheckInsById(id));
-//    }
-//    /**
-//     * delete checkIn.
-//     */
-//    public void deleteCheckIn(Guild g) throws SQLException {
-//        guildsMgr.delete(g);
-//        guilds.remove(g);
-//    }
 
     /**
      * update guild name.

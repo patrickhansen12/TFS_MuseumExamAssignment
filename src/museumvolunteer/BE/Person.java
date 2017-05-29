@@ -37,11 +37,9 @@ public abstract class Person {
     
     @Override
     public String toString(){
-        return getNameAsString();
-        
-}
-
-   
+        return getNameAsString();    
+    }
+ 
     public StringProperty getEmail() {
         return email;
     }

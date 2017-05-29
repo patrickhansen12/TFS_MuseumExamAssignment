@@ -23,24 +23,6 @@ public class GuildsManager {
         guildsDAO = new GuildsDAO();
     }
 
-//    /**
-//     * ArrayList of BE class Guild.
-//     * @param id
-//     * @return
-//     * @throws SQLException 
-//     */
-//    public List<Guild> getAllGuildsById(int id) throws SQLException {
-//        return guildsDAO.getByNameId(id);
-//    }
-//    /**
-//     * Method for calling add() in guildsDAO.
-//     * @param g
-//     * @return
-//     * @throws SQLException 
-//     */
-//    public Guild add(Guild g) throws SQLException {
-//        return guildsDAO.add(g);
-//    }
     /**
      * Method for calling getAllGuilds() in guildsDAO.
      *
@@ -61,15 +43,6 @@ public class GuildsManager {
         guildsDAO.delete(g);
     }
 
-//    /**
-//     * Method for calling deleteByNameId() in guildsDAO.
-//     * @param id
-//     * @throws SQLException 
-//     */
-//    public void deleteByNameId(int id) throws SQLException
-//    {
-//        guildsDAO.deleteByNameId(id);
-//    }
     /**
      * Updates the name of the guild clicked.
      * @param g

@@ -38,7 +38,7 @@ public class AddManagerController implements Initializable {
     private AdminModel adminModel;
 
     /**
-     * Initializes the controller class.
+     * Initializes the AddManagerController class.
      *
      * @param url
      * @param rb
@@ -92,5 +92,4 @@ public class AddManagerController implements Initializable {
         Stage stage2 = (Stage) addManagerScreen.getScene().getWindow();
         stage2.close();
     }
-
 }

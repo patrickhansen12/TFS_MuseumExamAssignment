@@ -54,25 +54,6 @@ public class CheckInDAO {
         return new CheckIn(ci);
     }
 
-//    /**
-//     * Updates 
-//     * @param ts
-//     * @throws SQLException
-//     */
-//    public void update(CheckIn ts) throws SQLException {
-//        String sql = "UPDATE Hours"
-//                + "SET timeStamp = ?, "
-//                + "    nameId = ?, "
-//                + "WHERE id = ?";
-//        try (Connection con = cm.getConnection()) {
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setTimestamp(1, ts.getDateTime());
-//            ps.setInt(2, ts.getHours());
-//            ps.setInt(3, ts.getId());
-//
-//            ps.executeUpdate();
-//        }
-//    }
     /**
      * Deletes hours from database table Hours according to specified id.
      *
@@ -243,7 +224,6 @@ public class CheckInDAO {
     }
     
     public int getByGuildsIdSumOfHours(int guildsId) throws SQLException, IOException {
-        //List<CheckIn> allTimeStampsByGuildsId = new ArrayList<>();
         String sql = "SELECT * FROM Hours WHERE guildsId = ?";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -254,7 +234,6 @@ public class CheckInDAO {
             {
                  CheckIn ci = getOneCheckIn(rs);
                   sum += ci.getHoursValue();
-                //allTimeStampsByGuildsId.add(ci);
             }
             return sum;
         }
@@ -291,12 +270,4 @@ public class CheckInDAO {
             return allTimeStamps;
         }
     }
-    
-//    private void getHoursValue(CheckIn ci)
-//    {
-//        List<Integer> hoursPerGuild = new ArrayList<>();
-//        hoursPerGuild.add(ci.getHoursValue());
-//       // ci.getHoursValue()
-//        //int sum = 0;
-//    }
 }

@@ -24,8 +24,8 @@
       </TableView>
       <TableView fx:id="hoursManagerTable" layoutX="383.0" layoutY="93.0" prefHeight="400.0" prefWidth="175.0" AnchorPane.leftAnchor="415.0" AnchorPane.topAnchor="120.0">
         <columns>
-            <TableColumn fx:id="dateManagerColumn" prefWidth="130.0" text="Dato" />
-          <TableColumn fx:id="hoursManagerColumn" prefWidth="42.0" text="Timer" />
+            <TableColumn fx:id="dateManagerColumn" prefWidth="121.0" text="Dato" />
+          <TableColumn fx:id="hoursManagerColumn" prefWidth="51.0" text="Timer" />
         </columns>
        
       </TableView>

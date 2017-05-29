@@ -45,9 +45,6 @@ public class CheckIn {
         this(-1, dateTime, guildsId, nameId, hours);
     }
 
-//    public void setHours(int hours) {
-//        this.hours = hours;
-//    }
     /**
      * Special constructor.
      * @param id
@@ -61,38 +58,18 @@ public class CheckIn {
         this(-1, ci.getDateTime(), ci.getGuildsIdValue(), ci.getNameIdValue(), ci.getHoursValue());
     }
 
-//    public CheckIn(Timestamp dateTime, int hours)
-//    {
-//        this(-1, dateTime, -1, hours);
-//    }
-    /**
-     *
-     * @return
-     */
     public int getIdValue() {
         return id.get();
     }
 
-    /**
-     *
-     * @return
-     */
     public Timestamp getDateTime() {
         return dateTime;
     }
 
-    /**
-     *
-     * @return
-     */
     public int getNameIdValue() {
         return nameId.get();
     }
 
-    /**
-     *
-     * @return
-     */
     public int getHoursValue() {
         return hours.get();
     }
