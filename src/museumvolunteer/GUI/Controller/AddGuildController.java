@@ -44,8 +44,14 @@ public class AddGuildController implements Initializable {
         guildModel = new GuildsModel();
     }
 
+    /**
+     * returns the user to the administratorView.
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
-    private void returnButton(ActionEvent event) throws IOException {
+    public void returnButton(ActionEvent event) throws IOException, SQLException {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AdministratorView.fxml"));
         Scene scene = new Scene(root);

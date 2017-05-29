@@ -80,7 +80,7 @@ public class CheckInManager {
      * @throws SQLException
      */
     public void deleteCheckIn(CheckIn ci) throws SQLException {
-        checkInDAO.delete(ci);
+        checkInDAO.deleteCheckIn(ci);
     }
     
     /**

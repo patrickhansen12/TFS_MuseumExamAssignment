@@ -66,11 +66,11 @@ public class ManagerInfoViewController implements Initializable {
         String username = usernameBox.getText().trim();
         String password = passwordBox.getText().trim();
         adminModel.updateManager(new Manager(thisManager.getIdValue(), name, email, phoneNumber, username, password));
-        backManagerInfo(event);
+        returnButton(event);
     }
 
     @FXML
-    private void backManagerInfo(ActionEvent event) throws IOException {
+    public void returnButton(ActionEvent event) throws IOException, SQLException {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AdministratorView.fxml"));
         Scene scene = new Scene(root);

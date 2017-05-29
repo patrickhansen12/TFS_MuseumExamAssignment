@@ -46,7 +46,7 @@ import museumvolunteer.GUI.Model.VolunteerModel;
 /**
  * @author Nicolai, Patrick, Kasper, Casper
  */
-public class AdministratorViewController implements Initializable {
+public class AdministratorViewController extends AController implements Initializable {
 
     @FXML
     private AnchorPane adminScreen;
@@ -127,9 +127,11 @@ public class AdministratorViewController implements Initializable {
      *
      * @param event
      * @throws IOException
+     * @throws java.sql.SQLException
      */
     @FXML
-    private void returnAdmin(ActionEvent event) throws IOException {
+    @Override
+    public void returnButton(ActionEvent event) throws IOException, SQLException {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/MainView.fxml"));
         Scene scene = new Scene(root);
@@ -393,8 +395,10 @@ public class AdministratorViewController implements Initializable {
      *
      * @param event
      * @throws SQLException
+     * @throws java.io.IOException
      */
     @FXML
+    @Override
     public void handleGuildsVolunteers(MouseEvent event) throws SQLException, IOException {
         if (guildAdminTable.getSelectionModel().getSelectedItem() != null) {
 
@@ -458,7 +462,8 @@ public class AdministratorViewController implements Initializable {
     }
 
     @FXML
-    private void searchNameList(KeyEvent event) throws SQLException {
+    @Override
+    public void searchNameList(KeyEvent event) throws SQLException {
         String query = searchNameField.getText().trim();
         List<String> searchResult = null;
         SearchPattern searchStrategy;

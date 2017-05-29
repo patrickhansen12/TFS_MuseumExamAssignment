@@ -167,9 +167,10 @@ public class LoginScreenController implements Initializable {
      * Return to mainView.
      * @param event
      * @throws IOException 
+     * @throws java.sql.SQLException 
      */
     @FXML
-    private void returnLogIn(ActionEvent event) throws IOException 
+    public void returnButton(ActionEvent event) throws IOException, SQLException 
     {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/MainView.fxml"));

@@ -44,7 +44,7 @@
             <Font size="20.0" />
          </font></Label>
       <TextField fx:id="guildBox" layoutX="119.0" layoutY="143.0" prefHeight="31.0" prefWidth="182.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="200.0" />
-      <Button layoutX="448.0" layoutY="561.0" mnemonicParsing="false" onAction="#backVolunteerInfo" prefHeight="45.0" prefWidth="110.0" styleClass="buttonGreen" text="Tilbage" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+      <Button layoutX="448.0" layoutY="561.0" mnemonicParsing="false" onAction="#returnButton" prefHeight="45.0" prefWidth="110.0" styleClass="buttonGreen" text="Tilbage" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
          <font>
             <Font size="20.0" />
          </font></Button>

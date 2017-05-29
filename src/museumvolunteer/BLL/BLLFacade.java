@@ -58,8 +58,8 @@ public class BLLFacade implements IBLLFacade{
     }
 
     @Override
-    public List<String> search(SearchPattern comparer, int guildsId) throws SQLException {
-        return namesManager.search(comparer, guildsId);
+    public List<String> searchVolunteer(SearchPattern comparer, int guildsId) throws SQLException {
+        return namesManager.searchVolunteers(comparer, guildsId);
     }
 
     @Override

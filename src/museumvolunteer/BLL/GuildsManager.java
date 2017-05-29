@@ -34,13 +34,13 @@ public class GuildsManager {
     }
 
     /**
-     * Method for calling delete() in guildsDAO.
+     * Method for calling deleteGuild() in guildsDAO.
      *
      * @param g
      * @throws SQLException
      */
     public void deleteGuild(Guild g) throws SQLException {
-        guildsDAO.delete(g);
+        guildsDAO.deleteGuild(g);
     }
 
     /**
@@ -49,11 +49,11 @@ public class GuildsManager {
      * @throws SQLException
      */
     public void updateGuild(Guild g) throws SQLException {
-        guildsDAO.update(g);
+        guildsDAO.updateGuild(g);
     }
     
     public Guild addGuild(Guild g) throws SQLException {
-        return guildsDAO.add(g);
+        return guildsDAO.addGuild(g);
     }
 
     public List<Guild> getGuildsByNameId(int nameId) throws SQLException {

@@ -20,7 +20,7 @@ public interface IBLLFacade {
     public List<Volunteer> getAllVolunteersByGuildId(int guildsId) throws SQLException;
     public List<String> getAllVolunteerNames(int guildsId) throws SQLException;
     public void deleteVolunteerByNameIdGuildsId(int nameId, int guildsId) throws SQLException;
-    public List<String> search(SearchPattern comparer, int guildsId) throws SQLException;
+    public List<String> searchVolunteer(SearchPattern comparer, int guildsId) throws SQLException;
     public void addToNewGuild(int nameId, int guildsId) throws SQLException;
     
     public List<Guild> getAllGuilds() throws SQLException;

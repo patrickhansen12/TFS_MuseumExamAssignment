@@ -64,7 +64,7 @@
                 <Font size="20.0" />
             </font>
         </Button>
-        <Button layoutX="448.0" layoutY="561.0" mnemonicParsing="false" onAction="#backManagerInfo" prefHeight="45.0" prefWidth="110.0" styleClass="buttonGreen" text="Tilbage" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+        <Button layoutX="448.0" layoutY="561.0" mnemonicParsing="false" onAction="#returnButton" prefHeight="45.0" prefWidth="110.0" styleClass="buttonGreen" text="Tilbage" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
             <font>
                 <Font size="20.0" />
             </font>

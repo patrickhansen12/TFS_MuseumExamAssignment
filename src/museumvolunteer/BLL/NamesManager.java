@@ -57,7 +57,7 @@ public class NamesManager {
      * @throws SQLException
      */
     public void updateVolunteer(Volunteer v) throws SQLException {
-        namesDAO.update(v);
+        namesDAO.updateVolunteer(v);
     }
 
     /**
@@ -96,7 +96,7 @@ public class NamesManager {
      * @return
      * @throws SQLException
      */
-    public List<String> search(SearchPattern comparer, int guildsId) throws SQLException {
+    public List<String> searchVolunteers(SearchPattern comparer, int guildsId) throws SQLException {
         List<String> allVolunteers = getAllVolunteerNames(guildsId);
         List<String> result = new ArrayList<>();
         for (String name : allVolunteers) {

@@ -43,7 +43,7 @@ import museumvolunteer.GUI.Model.VolunteerModel;
 /**
  * @author Nicolai, Patrick, Kasper, Casper
  */
-public class ManagerViewController implements Initializable {
+public class ManagerViewController extends AController implements Initializable {
 
     @FXML
     private TableView<Guild> guildManagerTable;
@@ -161,9 +161,11 @@ public class ManagerViewController implements Initializable {
      *
      * @param event
      * @throws IOException
+     * @throws java.sql.SQLException
      */
     @FXML
-    private void returnManager(ActionEvent event) throws IOException {
+    @Override
+    public void returnButton(ActionEvent event) throws IOException, SQLException {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/MainView.fxml"));
 
@@ -192,9 +194,11 @@ public class ManagerViewController implements Initializable {
      *
      * @param event
      * @throws SQLException
+     * @throws java.io.IOException
      */
     @FXML
-    private void handleGuildsVolunteers(MouseEvent event) throws SQLException, IOException {
+    @Override
+    public void handleGuildsVolunteers(MouseEvent event) throws SQLException, IOException {
         if (guildManagerTable.getSelectionModel().getSelectedItem().getIdValue() != -1) {
 
             int guildId = guildManagerTable.getSelectionModel().getSelectedItem().getIdValue();
@@ -337,7 +341,8 @@ public class ManagerViewController implements Initializable {
     }
 
     @FXML
-    private void searchNameList(KeyEvent event) throws SQLException {
+    @Override
+    public void searchNameList(KeyEvent event) throws SQLException {
 
         String query = searchNameField.getText().trim();
         List<String> searchResult = null;

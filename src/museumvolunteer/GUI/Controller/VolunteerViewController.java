@@ -39,7 +39,7 @@ import museumvolunteer.GUI.Model.VolunteerModel;
 /**
  * @author Nicolai, Patrick, Kasper, Casper
  */
-public class VolunteerViewController implements Initializable {
+public class VolunteerViewController extends AController implements Initializable {
 
     @FXML
     private TableView<Guild> guildTable;
@@ -89,9 +89,11 @@ public class VolunteerViewController implements Initializable {
      *
      * @param event
      * @throws IOException
+     * @throws java.sql.SQLException
      */
     @FXML
-    private void backVolunteer(ActionEvent event) throws IOException {
+    @Override
+    public void returnButton(ActionEvent event) throws IOException, SQLException {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/MainView.fxml"));
 
@@ -124,7 +126,8 @@ public class VolunteerViewController implements Initializable {
      * @throws SQLException
      */
     @FXML
-    private void handleGuildsVolunteers(MouseEvent event) throws SQLException {
+    @Override
+    public void handleGuildsVolunteers(MouseEvent event) throws SQLException {
         if (guildTable.getSelectionModel().getSelectedItem() != null) {
             if (event.isPrimaryButtonDown() == false) {
                 int guildId = guildTable.getSelectionModel().getSelectedItem().getIdValue();
@@ -151,11 +154,9 @@ public class VolunteerViewController implements Initializable {
 
             LocalDateTime timeStamp = datePick.getValue().atTime(LocalTime.now());
             java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(timeStamp);
-            //datePicker timeStamp = datePick.getDayCellFactory().trim();
             int guildsId = guildTable.getSelectionModel().getSelectedItem().getIdValue();
             int nameId = nameTable.getSelectionModel().getSelectedItem().getIdValue();
             volunteerModel.setCheckInsByNameIdGuildsId(guildsId, nameId);
-            //int nameId = Integer.parseInt(nameColumn.getText().trim());
             int hours = Integer.parseInt(noteHoursField.getText().trim());
             volunteerModel.addHours(new CheckIn(dateTime, guildsId, nameId, hours));
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -181,7 +182,8 @@ public class VolunteerViewController implements Initializable {
      * @throws SQLException
      */
     @FXML
-    private void searchNameList(KeyEvent event) throws SQLException {
+    @Override
+    public void searchNameList(KeyEvent event) throws SQLException {
         String query = searchNameField.getText().trim();
         List<String> searchResult = null;
         SearchPattern searchStrategy;

@@ -125,7 +125,7 @@ public class VolunteerModel {
     }
 
     /**
-     * Observable list with the purpose of being able to search through volunteers, when a guild is clicked.
+     * Observable list with the purpose of being able to searchVolunteer through volunteers, when a guild is clicked.
      * @return
      */
     public ObservableList<Volunteer> getNames() {
@@ -181,6 +181,6 @@ public class VolunteerModel {
     
     public List<String> search(SearchPattern comparer, int guildsId) throws SQLException
     {
-        return bllFacade.search(comparer, guildsId);
+        return bllFacade.searchVolunteer(comparer, guildsId);
     }
 }

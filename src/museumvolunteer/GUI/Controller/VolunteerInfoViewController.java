@@ -126,9 +126,11 @@ public class VolunteerInfoViewController implements Initializable {
      * Return the manager to ManagerViewController.
      *
      * @param event
+     * @throws java.io.IOException
+     * @throws java.sql.SQLException
      */
     @FXML
-    private void backVolunteerInfo(ActionEvent event) throws IOException, SQLException {
+    public void returnButton(ActionEvent event) throws IOException, SQLException {
         if(userVolunteerInfo == 0)
         {
             enterManagerView();

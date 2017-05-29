@@ -99,7 +99,7 @@ public class NamesDAO {
      * @param v
      * @throws SQLException
      */
-    public void update(Volunteer v) throws SQLException {
+    public void updateVolunteer(Volunteer v) throws SQLException {
         
         try (Connection con = cm.getConnection()) {
             String sql = "UPDATE Names SET name = ?, email = ?, phoneNumber = ? WHERE id = ?";

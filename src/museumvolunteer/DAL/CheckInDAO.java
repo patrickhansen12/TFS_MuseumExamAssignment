@@ -60,7 +60,7 @@ public class CheckInDAO {
      * @param ts
      * @throws SQLException
      */
-    public void delete(CheckIn ts) throws SQLException {
+    public void deleteCheckIn(CheckIn ts) throws SQLException {
         try (Connection con = cm.getConnection()) {
             String sql = "DELETE FROM Hours where id = ?";
             PreparedStatement ps = con.prepareStatement(sql);

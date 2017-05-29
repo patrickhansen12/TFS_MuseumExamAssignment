@@ -120,9 +120,11 @@ public class AddVolunteerController implements Initializable {
      * Returns the manager to ManagerView.
      *
      * @param event
+     * @throws java.io.IOException
+     * @throws java.sql.SQLException
      */
     @FXML
-    private void returnButton(ActionEvent event) throws IOException {
+    public void returnButton(ActionEvent event) throws IOException, SQLException {
         if (userAddVolunteer == 0) {
             enterManagerView();
         } else if (userAddVolunteer == 1) {

@@ -33,7 +33,7 @@ public class GuildsDAO {
      * @param g
      * @throws SQLException
      */
-    public void update(Guild g) throws SQLException {
+    public void updateGuild(Guild g) throws SQLException {
         String sql = "UPDATE Guilds SET name = ? WHERE id = ?";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -44,7 +44,7 @@ public class GuildsDAO {
         }
     }
 
-    public Guild add(Guild g) throws SQLException {
+    public Guild addGuild(Guild g) throws SQLException {
         String sql = "INSERT INTO Guilds(name) VALUES(?)";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -64,7 +64,7 @@ public class GuildsDAO {
      * @param g
      * @throws SQLException
      */
-    public void delete(Guild g) throws SQLException {
+    public void deleteGuild(Guild g) throws SQLException {
         String sql = "DELETE FROM Guilds where id = ?";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
