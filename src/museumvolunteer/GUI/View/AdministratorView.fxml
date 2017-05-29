@@ -10,11 +10,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<<<<<<< HEAD
 <AnchorPane id="AnchorPane" fx:id="adminScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AdministratorViewController">
-=======
 <AnchorPane id="AnchorPane" fx:id="adminScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AdministratorViewController">
->>>>>>> origin/master
     <children>
         <TableView fx:id="guildAdminTable" layoutX="16.0" layoutY="130.0" onMouseClicked="#handleGuildsVolunteers" prefHeight="300.0" prefWidth="175.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="140.0">
             <columns>
@@ -107,16 +104,13 @@
          <font>
             <Font size="27.0" />
          </font></Label>
-<<<<<<< HEAD
       <Button layoutX="20.0" layoutY="417.0" mnemonicParsing="false" onAction="#handleInfoAboutManager" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Info om manager" />
       <Label layoutX="224.0" layoutY="454.0" text="Laugets timer i alt">
-=======
       <Button fx:id="infoAboutManagerBtn" layoutX="20.0" layoutY="417.0" mnemonicParsing="false" onAction="#handleInfoAboutManager" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Info om manager" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="20.0">
          <font>
             <Font size="16.0" />
          </font></Button>
       <Label layoutX="224.0" layoutY="454.0" text="Laugets timer i alt" AnchorPane.leftAnchor="224.0" AnchorPane.topAnchor="454.0">
->>>>>>> origin/master
          <font>
             <Font size="20.0" />
          </font>
