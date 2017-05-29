@@ -325,7 +325,7 @@ public class AdministratorViewController implements Initializable {
      * @throws SQLException
      */
     @FXML
-    private void removeHoursButton(ActionEvent event) throws SQLException {
+    private void removeHoursButton(ActionEvent event) throws SQLException, IOException {
 
         if (hoursAdminTable.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(AlertType.ERROR);
@@ -340,6 +340,7 @@ public class AdministratorViewController implements Initializable {
             volunteerModel.deleteHours(checkIn);
             hoursAdminTable.getItems().remove(selectedItem);
             hoursAdminTable.getSelectionModel().clearSelection();
+        handleGuildHours();
         }
     }
 
@@ -376,7 +377,7 @@ public class AdministratorViewController implements Initializable {
             alert.setContentText(nameAdminTable.getSelectionModel().getSelectedItem().getNameAsString() + " har bidraget med " + txtFieldHours.getText() + " time(r)" + " til " + guildAdminTable.getSelectionModel().getSelectedItem().getNameAsString());
             txtFieldHours.setText("");
             hoursAdminTable.refresh();
-
+handleGuildHours();
             alert.showAndWait();
 
         } else if (datePicker.getValue() == null || guildAdminTable.getSelectionModel().getSelectedItem().getIdValue() == -1 || nameAdminTable.getSelectionModel().getSelectedItem().getIdValue() == -1 || txtFieldHours.getText().isEmpty()) {
@@ -413,14 +414,16 @@ public class AdministratorViewController implements Initializable {
      * @throws SQLException
      */
     @FXML
-    public void handleGuildsVolunteers(MouseEvent event) throws SQLException {
+    public void handleGuildsVolunteers(MouseEvent event) throws SQLException, IOException {
         if (guildAdminTable.getSelectionModel().getSelectedItem() != null) {
+            
             int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
             volunteerModel.getNamesByGuildId(guildsId);
-
+handleGuildHours();
             nameAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
             nameAdminTable.setItems(volunteerModel.getAllVolunteers());
             hoursAdminTable.getItems().clear();
+
         }
         searchNameField.clear();
     }
@@ -544,6 +547,10 @@ public class AdministratorViewController implements Initializable {
         int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
         hoursForGuild.setText(String.valueOf(volunteerModel.getByGuildsIdSumOfHoursList(guildsId).get(0)));
     }
+     public void handleGuildHours() throws SQLException, IOException{
+            int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
+        hoursForGuild.setText(String.valueOf(volunteerModel.getByGuildsIdSumOfHoursList(guildsId).get(0))); 
+     }
 
     @FXML
     private void handleInfoAboutManager(ActionEvent event) throws SQLException {
