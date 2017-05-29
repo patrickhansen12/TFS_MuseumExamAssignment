@@ -181,7 +181,7 @@ public class VolunteerViewController implements Initializable {
      * @throws SQLException
      */
     @FXML
-    void searchNameList(KeyEvent event) throws SQLException {
+    private void searchNameList(KeyEvent event) throws SQLException {
         String query = searchNameField.getText().trim();
         List<String> searchResult = null;
         SearchPattern searchStrategy;
