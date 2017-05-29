@@ -124,7 +124,7 @@ public class GuildsDAO {
      * @return
      * @throws SQLException
      */
-    public Guild getOneGuild(ResultSet rs) throws SQLException {
+    private Guild getOneGuild(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
         String name = rs.getString("name");
 

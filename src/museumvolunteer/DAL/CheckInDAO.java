@@ -141,7 +141,7 @@ public class CheckInDAO {
      * @return
      * @throws SQLException
      */
-    public CheckIn getOneCheckIn(ResultSet rs) throws SQLException {
+    private CheckIn getOneCheckIn(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
         Timestamp dateTime = rs.getTimestamp("timeStamp");
         int guildsId = rs.getInt("guildsId");

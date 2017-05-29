@@ -81,7 +81,6 @@ public class AdminDAO {
             int id = generatedKey.getInt(1);
             return new Manager(id, m.getNameAsString(), m.getEmailAsString(), m.getPhoneNumberAsString(), m.getUsername(), m.getPassword());    
         }
-    
     }
     
     /**
