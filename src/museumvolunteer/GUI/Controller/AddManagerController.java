@@ -90,6 +90,13 @@ public class AddManagerController implements Initializable {
 
     @FXML
     private void returnButton(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/museumvolunteer/GUI/View/AdministratorView.fxml"));
+        Scene scene = new Scene(root);
+        stage.setTitle("Tovholder");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
         Stage stage2 = (Stage) addManagerScreen.getScene().getWindow();
         stage2.close();
     }
