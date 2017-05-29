@@ -19,7 +19,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import museumvolunteer.BLL.BLLFacade;
 import museumvolunteer.GUI.Model.AdminModel;
 
 /**
@@ -40,7 +39,6 @@ public class LoginScreenController implements Initializable {
     
     private AdminModel adminModel;
     
-    private BLLFacade bllFacade;
 
     /**
      * 
@@ -50,7 +48,6 @@ public class LoginScreenController implements Initializable {
     public LoginScreenController() throws IOException, SQLException
     {
         adminModel = new AdminModel();
-        bllFacade = new BLLFacade();
     }
     
     /**

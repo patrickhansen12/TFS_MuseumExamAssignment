@@ -37,7 +37,6 @@ import museumvolunteer.BE.CheckIn;
 import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Manager;
 import museumvolunteer.BE.Volunteer;
-import museumvolunteer.BLL.BLLFacade;
 import museumvolunteer.BLL.ContainsSearch;
 import museumvolunteer.BLL.SearchPattern;
 import museumvolunteer.GUI.Model.AdminModel;
@@ -92,7 +91,6 @@ public class AdministratorViewController implements Initializable {
     private CheckIn checkIn;
     private AdminModel adminModel;
     private Manager manager;
-    private BLLFacade bllFacade;
     public int currentUserAddVolunteer = 1;
     public int currentUserVolunteerInfo = 1;
 
@@ -122,7 +120,6 @@ public class AdministratorViewController implements Initializable {
         volunteerModel = new VolunteerModel();
         guildsModel = new GuildsModel();
         adminModel = new AdminModel();
-        bllFacade = new BLLFacade();
     }
 
     /**
@@ -467,7 +464,7 @@ public class AdministratorViewController implements Initializable {
         SearchPattern searchStrategy;
         searchStrategy = new ContainsSearch(query);
         int guildId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
-        searchResult = bllFacade.search(searchStrategy, guildId);
+        searchResult = volunteerModel.search(searchStrategy, guildId);
         volunteerModel.setFilteredNames(searchResult);
         nameAdminTable.setItems(volunteerModel.getNames().sorted());
         if (query.isEmpty()) {

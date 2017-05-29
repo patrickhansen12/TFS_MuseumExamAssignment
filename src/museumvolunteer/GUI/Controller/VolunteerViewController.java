@@ -31,7 +31,6 @@ import javafx.stage.Stage;
 import museumvolunteer.BE.CheckIn;
 import museumvolunteer.BE.Guild;
 import museumvolunteer.BE.Volunteer;
-import museumvolunteer.BLL.BLLFacade;
 import museumvolunteer.BLL.ContainsSearch;
 import museumvolunteer.BLL.SearchPattern;
 import museumvolunteer.GUI.Model.GuildsModel;
@@ -62,7 +61,6 @@ public class VolunteerViewController implements Initializable {
     //private variables.
     private VolunteerModel volunteerModel;
     private GuildsModel guildsModel;
-    private BLLFacade bllFacade;
 
     /**
      * Initializes the VolunteerViewController class.
@@ -84,7 +82,6 @@ public class VolunteerViewController implements Initializable {
     public VolunteerViewController() throws IOException, SQLException {
         volunteerModel = new VolunteerModel();
         guildsModel = new GuildsModel();
-        bllFacade = new BLLFacade();
     }
 
     /**
@@ -190,7 +187,7 @@ public class VolunteerViewController implements Initializable {
         SearchPattern searchStrategy;
         searchStrategy = new ContainsSearch(query);
         int guildId = guildTable.getSelectionModel().getSelectedItem().getIdValue();
-        searchResult = bllFacade.search(searchStrategy, guildId);
+        searchResult = volunteerModel.search(searchStrategy, guildId);
         volunteerModel.setFilteredNames(searchResult);
         nameTable.setItems(volunteerModel.getNames().sorted());
         if (query.isEmpty()) {

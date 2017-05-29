@@ -45,7 +45,7 @@ public class AddManagerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }
 
     public AddManagerController() throws IOException, SQLException {

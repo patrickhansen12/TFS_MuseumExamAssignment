@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import museumvolunteer.BE.CheckIn;
 import museumvolunteer.BE.Volunteer;
 import museumvolunteer.BLL.BLLFacade;
+import museumvolunteer.BLL.SearchPattern;
 
 /**
  * @author Nicolai, Patrick, Kasper, Casper
@@ -176,5 +177,10 @@ public class VolunteerModel {
         List<Integer> getHours = new ArrayList<>();
         getHours.add(bllFacade.getByGuildsIdSumOfHours(guildsId));
         return getHours;
+    }
+    
+    public List<String> search(SearchPattern comparer, int guildsId) throws SQLException
+    {
+        return bllFacade.search(comparer, guildsId);
     }
 }
