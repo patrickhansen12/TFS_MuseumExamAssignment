@@ -184,7 +184,7 @@ public class VolunteerInfoViewController implements Initializable {
      * @throws SQLException
      * @throws IOException 
      */
-    public void enterAdminView() throws SQLException, IOException
+    private void enterAdminView() throws SQLException, IOException
     {
         Stage stage = new Stage();
         Parent root;
@@ -206,7 +206,7 @@ public class VolunteerInfoViewController implements Initializable {
      * @throws SQLException
      * @throws IOException 
      */
-    public void enterManagerView() throws SQLException, IOException
+    private void enterManagerView() throws SQLException, IOException
     {
         Stage stage = new Stage();
         Parent root;

@@ -73,8 +73,8 @@ public class ManagerViewController implements Initializable {
     private GuildsModel guildsModel;
     private Volunteer volunteer;
     private CheckIn checkIn;
-    public int currentUserAddVolunteer = 0;
-    public int currentUserVolunteerInfo = 0;
+    int currentUserAddVolunteer = 0;
+    int currentUserVolunteerInfo = 0;
 
     /**
      * Initializes the ManagerViewController class.
