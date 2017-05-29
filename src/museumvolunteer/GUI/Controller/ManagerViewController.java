@@ -21,7 +21,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
@@ -67,8 +66,6 @@ public class ManagerViewController implements Initializable {
     private TextField txtFieldHours;
     @FXML
     private TableColumn<CheckIn, Timestamp> dateManagerColumn;
-    @FXML
-    private Button volunteerInfo;
     @FXML
     private TextField searchNameField;
 

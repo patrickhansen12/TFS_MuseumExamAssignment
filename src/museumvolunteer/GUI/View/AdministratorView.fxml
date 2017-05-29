@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="adminScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AdministratorViewController">
+<AnchorPane id="AnchorPane" fx:id="adminScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AdministratorViewController">
     <children>
         <TableView fx:id="guildAdminTable" layoutX="16.0" layoutY="130.0" onMouseClicked="#handleGuildsVolunteers" prefHeight="300.0" prefWidth="175.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="140.0">
             <columns>
@@ -24,8 +24,8 @@
         </TableView>
         <TableView fx:id="hoursAdminTable" layoutX="554.0" layoutY="130.0" prefHeight="300.0" prefWidth="175.0" AnchorPane.leftAnchor="605.0" AnchorPane.topAnchor="220.0">
             <columns>
-            <TableColumn fx:id="dateAdminColumn" prefWidth="130.0" text="Dato" />
-                <TableColumn fx:id="hoursAdminColumn" prefWidth="42.0" text="Timer" />
+            <TableColumn fx:id="dateAdminColumn" prefWidth="113.0" text="Dato" />
+                <TableColumn fx:id="hoursAdminColumn" prefWidth="59.0" text="Timer" />
             </columns>
         </TableView>
         <Button layoutX="32.0" layoutY="23.0" mnemonicParsing="false" onAction="#addGuildButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilføj laug" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="20.0">
@@ -80,7 +80,7 @@
         </Button>
       <TextField fx:id="txtFieldHours" layoutX="605.0" layoutY="504.0" prefHeight="30.0" prefWidth="175.0" AnchorPane.leftAnchor="605.0" AnchorPane.topAnchor="180.0" />
       <DatePicker fx:id="datePicker" layoutX="605.0" layoutY="463.0" prefHeight="30.0" prefWidth="175.0" AnchorPane.leftAnchor="605.0" AnchorPane.topAnchor="140.0" />
-      <Button fx:id="exportVolunteerToExcel" layoutX="558.0" layoutY="536.0" mnemonicParsing="false" onAction="#handleExportToExcel" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Export frivillig data" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
+      <Button layoutX="558.0" layoutY="536.0" mnemonicParsing="false" onAction="#handleExportToExcel" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Export frivillig data" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
          <font>
             <Font size="16.0" />
          </font></Button>
@@ -94,7 +94,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="exportGuildToExcel" layoutX="56.0" layoutY="487.0" mnemonicParsing="false" onAction="#handleExportGuildDataToExcel" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Export laug data" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="20.0">
+      <Button layoutX="56.0" layoutY="487.0" mnemonicParsing="false" onAction="#handleExportGuildDataToExcel" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Export laug data" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="20.0">
          <font>
             <Font size="16.0" />
          </font>
@@ -103,7 +103,7 @@
          <font>
             <Font size="27.0" />
          </font></Label>
-      <Button fx:id="infoAboutManagerBtn" layoutX="20.0" layoutY="417.0" mnemonicParsing="false" onAction="#handleInfoAboutManager" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Info om manager" />
+      <Button layoutX="20.0" layoutY="417.0" mnemonicParsing="false" onAction="#handleInfoAboutManager" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Info om manager" />
       <Label layoutX="224.0" layoutY="454.0" text="Laugets timer i alt">
          <font>
             <Font size="20.0" />

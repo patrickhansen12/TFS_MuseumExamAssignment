@@ -40,16 +40,6 @@ public class VolunteerInfoViewController implements Initializable {
     @FXML
     private TextField phoneNumberBox;
     @FXML
-    private Label nameLbl;
-    @FXML
-    private Label emailLbl;
-    @FXML
-    private Label phoneNumberLbl;
-    @FXML
-    private Button confirmButton;
-    @FXML
-    private Label guildLbl;
-    @FXML
     private TextField guildBox;
     @FXML
     private AnchorPane volunteerInfoScreen;

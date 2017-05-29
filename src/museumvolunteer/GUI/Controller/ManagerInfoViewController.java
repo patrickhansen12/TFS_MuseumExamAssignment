@@ -39,18 +39,6 @@ public class ManagerInfoViewController implements Initializable {
     @FXML
     private TextField phoneNumberBox;
     @FXML
-    private Label nameLbl;
-    @FXML
-    private Label emailLbl;
-    @FXML
-    private Label phoneNumberLbl;
-    @FXML
-    private Label usernamelbl;
-    @FXML
-    private Label passwordlbl;
-    @FXML
-    private Button confirmButton;
-    @FXML
     private TextField usernameBox;
     @FXML
     private TextField passwordBox;

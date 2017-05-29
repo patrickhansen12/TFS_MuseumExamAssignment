@@ -21,7 +21,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
@@ -76,13 +75,7 @@ public class AdministratorViewController implements Initializable {
     @FXML
     private TextField searchNameField;
     @FXML
-    private Button exportVolunteerToExcel;
-    @FXML
-    private Button exportGuildToExcel;
-    @FXML
     private Label hoursForGuild;
-    @FXML
-    private Button infoAboutManagerBtn;
 
     //private variables.
     private VolunteerModel volunteerModel;

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="volunteerInfoScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.VolunteerInfoViewController">
+<AnchorPane id="AnchorPane" fx:id="volunteerInfoScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.VolunteerInfoViewController">
    <children>
       <TextField fx:id="nameBox" layoutX="120.0" layoutY="7.0" prefHeight="31.0" prefWidth="250.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="20.0">
          <font>
@@ -23,23 +23,23 @@
          <font>
             <Font size="20.0" />
          </font></TextField>
-      <Label fx:id="nameLbl" layoutX="55.0" layoutY="12.0" text="Navn" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <Label layoutX="55.0" layoutY="12.0" text="Navn" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
          <font>
             <Font size="20.0" />
          </font></Label>
-      <Label fx:id="emailLbl" layoutX="55.0" layoutY="54.0" text="Email" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="80.0">
+      <Label layoutX="55.0" layoutY="54.0" text="Email" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="80.0">
          <font>
             <Font size="20.0" />
          </font></Label>
-      <Label fx:id="phoneNumberLbl" layoutX="47.0" layoutY="102.0" text="Telefon" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0">
+      <Label layoutX="47.0" layoutY="102.0" text="Telefon" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0">
          <font>
             <Font size="20.0" />
          </font></Label>
-      <Button fx:id="confirmButton" layoutX="20.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleUpdate" prefHeight="45.0" prefWidth="220.0" styleClass="buttonGreen" text="Godkend ændringer" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="440.0">
+      <Button layoutX="20.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleUpdate" prefHeight="45.0" prefWidth="220.0" styleClass="buttonGreen" text="Godkend ændringer" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="440.0">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Label fx:id="guildLbl" layoutX="37.0" layoutY="148.0" text="Laug" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="200.0">
+      <Label layoutX="37.0" layoutY="148.0" text="Laug" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="200.0">
          <font>
             <Font size="20.0" />
          </font></Label>

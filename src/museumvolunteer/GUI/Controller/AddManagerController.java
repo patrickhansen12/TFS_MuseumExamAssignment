@@ -11,7 +11,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -32,18 +31,11 @@ public class AddManagerController implements Initializable {
     @FXML
     private AnchorPane addManagerScreen;
     @FXML
-    private Label nameManager;
-    @FXML
-    private Label emailManager;
-    @FXML
-    private Label phoneNumberManager;
-    @FXML
     private TextField usernameBox;
     @FXML
     private TextField passwordBox;
 
     private AdminModel adminModel;
-    private Manager manager;
 
     /**
      * Initializes the controller class.

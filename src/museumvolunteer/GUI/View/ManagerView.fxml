@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="ManagerScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.ManagerViewController">
+<AnchorPane id="AnchorPane" fx:id="ManagerScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.ManagerViewController">
    <children>
       <TableView fx:id="guildManagerTable" layoutX="20.0" layoutY="100.0" onMouseClicked="#handleGuildsVolunteers" prefHeight="400.0" prefWidth="175.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="120.0">
         <columns>
@@ -55,7 +55,7 @@
          <font>
             <Font size="16.0" />
          </font></TextField>
-      <Button fx:id="volunteerInfo" layoutX="215.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleInfo" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Info om frivillig" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="215.0">
+      <Button layoutX="215.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleInfo" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Info om frivillig" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="215.0">
          <font>
             <Font size="20.0" />
          </font></Button>
