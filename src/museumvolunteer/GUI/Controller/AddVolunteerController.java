@@ -164,16 +164,20 @@ public class AddVolunteerController implements Initializable {
     @FXML
     private void guildClicked(MouseEvent event) {
 
+        if(guildTable.getSelectionModel().getSelectedItem().getName().getValue() != null)
+        {
         String guildName = guildTable.getSelectionModel().getSelectedItem().getName().getValue();
         guildNameBox.setText(guildName);
         int guildIdBox = guildTable.getSelectionModel().getSelectedItem().getIdValue();
         guildBox.setText(String.valueOf(guildIdBox));
+        
         if (guildName.isEmpty() || guildIdBox == -1) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fejl");
             alert.setHeaderText(null);
             alert.setContentText("Slip ikke musen for hurtigt, når du scroller nedad lauglisten.");
             alert.showAndWait();
+        }
         }
     }
 

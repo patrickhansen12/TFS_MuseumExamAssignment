@@ -67,7 +67,6 @@ public class NamesDAO {
             generatedKey.next();
             int id = generatedKey.getInt(1);
            
-            System.out.println(id);
             String sql2 = "INSERT INTO Works_For(nameId, guildsId) VALUES(?, ?)";
             PreparedStatement ps2 = con.prepareStatement(sql2);
             ps2.setInt(1, id);
