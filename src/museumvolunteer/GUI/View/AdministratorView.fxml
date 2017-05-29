@@ -28,12 +28,12 @@
                 <TableColumn fx:id="hoursAdminColumn" prefWidth="42.0" text="Timer" />
             </columns>
         </TableView>
-        <Button layoutX="32.0" layoutY="23.0" mnemonicParsing="false" onAction="#addGuildButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilf?j laug" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="20.0">
+        <Button layoutX="32.0" layoutY="23.0" mnemonicParsing="false" onAction="#addGuildButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilføj laug" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="20.0">
             <font>
                 <Font size="20.0" />
             </font>
         </Button>
-        <Button layoutX="199.0" layoutY="23.0" mnemonicParsing="false" onAction="#addVolunteerButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilf?j frivillig" AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="20.0">
+        <Button layoutX="199.0" layoutY="23.0" mnemonicParsing="false" onAction="#addVolunteerButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilføj frivillig" AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="20.0">
             <font>
                 <Font size="20.0" />
             </font>
@@ -48,7 +48,7 @@
                 <Font size="20.0" />
             </font>
         </Button>
-        <Button layoutX="370.0" layoutY="23.0" mnemonicParsing="false" onAction="#addManagerButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilf?j tovholder" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+        <Button layoutX="370.0" layoutY="23.0" mnemonicParsing="false" onAction="#addManagerButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilføj tovholder" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
             <font>
                 <Font size="20.0" />
             </font>
@@ -68,7 +68,7 @@
                 <Font size="20.0" />
             </font>
         </Button>
-        <Button layoutX="605.0" layoutY="27.0" mnemonicParsing="false" onAction="#addHoursButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilf?j timer" AnchorPane.leftAnchor="605.0" AnchorPane.topAnchor="20.0">
+        <Button layoutX="605.0" layoutY="27.0" mnemonicParsing="false" onAction="#addHoursButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilføj timer" AnchorPane.leftAnchor="605.0" AnchorPane.topAnchor="20.0">
             <font>
                 <Font size="20.0" />
             </font>
