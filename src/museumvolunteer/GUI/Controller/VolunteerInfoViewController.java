@@ -88,7 +88,7 @@ public class VolunteerInfoViewController implements Initializable {
         guildsModel = new GuildsModel();
     }
 
-    public void doMagicStuff(Volunteer v) throws SQLException {
+    public void transferVolunteerInfo(Volunteer v) throws SQLException {
         thisVolunteer = v;
         currentGuildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
         currentGuildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIdValue()));

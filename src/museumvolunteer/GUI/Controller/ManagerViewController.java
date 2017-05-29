@@ -319,7 +319,7 @@ public class ManagerViewController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/museumvolunteer/GUI/View/VolunteerInfoView.fxml"));
                 root = loader.load();
                 VolunteerInfoViewController controller = loader.getController();
-                controller.doMagicStuff(new Volunteer(id, name, email, phoneNumber, guildsId));
+                controller.transferVolunteerInfo(new Volunteer(id, name, email, phoneNumber, guildsId));
                 controller.pullCurrentUserVolunteerInfo(currentUserVolunteerInfo);
                 Scene scene = new Scene(root);
                 stage.setTitle("Rediger frivillig");
