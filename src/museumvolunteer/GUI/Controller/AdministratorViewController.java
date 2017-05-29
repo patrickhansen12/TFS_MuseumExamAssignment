@@ -202,17 +202,20 @@ public class AdministratorViewController implements Initializable {
             alert.setContentText("Du skal vælge et laug, før du kan slette det.");
             alert.showAndWait();
         }
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Er du sikker?");
-        alert.setHeaderText(null);
-        alert.setContentText("Er du sikker på du vil slette dette laug?");
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            Guild selectedItem = guildAdminTable.getSelectionModel().getSelectedItem();
-            guild = selectedItem;
-            guildsModel.deleteGuild(guild);
-            guildAdminTable.getItems().remove(selectedItem);
-            guildAdminTable.getSelectionModel().clearSelection();
+        
+        if (guildAdminTable.getSelectionModel().getSelectedItem() != null) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Er du sikker?");
+            alert.setHeaderText(null);
+            alert.setContentText("Er du sikker på du vil slette dette laug?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                Guild selectedItem = guildAdminTable.getSelectionModel().getSelectedItem();
+                guild = selectedItem;
+                guildsModel.deleteGuild(guild);
+                guildAdminTable.getItems().remove(selectedItem);
+                guildAdminTable.getSelectionModel().clearSelection();
+            }
         }
     }
 
