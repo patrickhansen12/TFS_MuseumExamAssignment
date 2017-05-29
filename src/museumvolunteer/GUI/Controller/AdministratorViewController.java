@@ -354,30 +354,23 @@ public class AdministratorViewController implements Initializable {
      */
     @FXML
     private void addHoursButton(ActionEvent event) throws SQLException, IOException {
-        if (datePicker.getValue() != null && guildAdminTable.getSelectionModel().getSelectedItem().getIdValue() != -1 && nameAdminTable.getSelectionModel().getSelectedItem().getIdValue() != -1 && !txtFieldHours.getText().isEmpty()) {
-
+      if (datePicker.getValue() != null && guildAdminTable.getSelectionModel().getSelectedItem().getIdValue() != -1 && nameAdminTable.getSelectionModel().getSelectedItem().getIdValue() != -1 && !txtFieldHours.getText().isEmpty()) {
             LocalDateTime timeStamp = datePicker.getValue().atTime(LocalTime.now());
             java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(timeStamp);
-
             int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
             int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getIdValue();
-            volunteerModel.setCheckInsByNameIdGuildsId(guildsId, nameId);
-
             int hours = Integer.parseInt(txtFieldHours.getText().trim());
             volunteerModel.addHours(new CheckIn(dateTime, guildsId, nameId, hours));
-            dateAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
+            volunteerModel.setCheckInsByNameIdGuildsId(guildsId, nameId);
             hoursAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getHoursValue()));
+            dateAdminColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
             hoursAdminTable.setItems(volunteerModel.getAllCheckIns());
-//hoursAdminTable.getColumns().get(0).setVisible(false);
-//        hoursAdminTable.getColumns().get(1).setVisible(false);
-//      hoursAdminTable.getSelectionModel().clearSelection();
+            handleGuildHours();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Bidragede timer");
             alert.setHeaderText(null);
             alert.setContentText(nameAdminTable.getSelectionModel().getSelectedItem().getNameAsString() + " har bidraget med " + txtFieldHours.getText() + " time(r)" + " til " + guildAdminTable.getSelectionModel().getSelectedItem().getNameAsString());
-            txtFieldHours.setText("");
-            hoursAdminTable.refresh();
-handleGuildHours();
+            txtFieldHours.clear();
             alert.showAndWait();
 
         } else if (datePicker.getValue() == null || guildAdminTable.getSelectionModel().getSelectedItem().getIdValue() == -1 || nameAdminTable.getSelectionModel().getSelectedItem().getIdValue() == -1 || txtFieldHours.getText().isEmpty()) {
@@ -388,6 +381,9 @@ handleGuildHours();
             alert.showAndWait();
         }
     }
+
+   
+    
 
     private void dataBind() throws SQLException {
         //clearTables();
