@@ -21,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
@@ -88,6 +89,12 @@ public class AdministratorViewController implements Initializable {
     private BLLFacade bllFacade;
     public int currentUserAddVolunteer = 1;
     public int currentUserVolunteerInfo = 1;
+    @FXML
+    private Button exportVolunteerToExcel;
+    @FXML
+    private Button exportGuildToExcel;
+    @FXML
+    private Button infoAboutManagerBtn;
 
     /**
      * Initializes the AdministratorViewController class.

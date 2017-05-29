@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="adminScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AdministratorViewController">
+<AnchorPane id="AnchorPane" fx:id="adminScreen" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundGreen" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumvolunteer.GUI.Controller.AdministratorViewController">
     <children>
         <TableView fx:id="guildAdminTable" layoutX="16.0" layoutY="130.0" onMouseClicked="#handleGuildsVolunteers" prefHeight="300.0" prefWidth="175.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="140.0">
             <columns>
@@ -24,8 +24,8 @@
         </TableView>
         <TableView fx:id="hoursAdminTable" layoutX="554.0" layoutY="130.0" prefHeight="300.0" prefWidth="175.0" AnchorPane.leftAnchor="605.0" AnchorPane.topAnchor="220.0">
             <columns>
-            <TableColumn fx:id="dateAdminColumn" prefWidth="130.0" text="Dato" />
-                <TableColumn fx:id="hoursAdminColumn" prefWidth="42.0" text="Timer" />
+            <TableColumn fx:id="dateAdminColumn" prefWidth="115.0" text="Dato" />
+                <TableColumn fx:id="hoursAdminColumn" prefWidth="57.0" text="Timer" />
             </columns>
         </TableView>
         <Button layoutX="32.0" layoutY="23.0" mnemonicParsing="false" onAction="#addGuildButton" prefHeight="45.0" prefWidth="175.0" styleClass="buttonGreen" text="Tilføj laug" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="20.0">
