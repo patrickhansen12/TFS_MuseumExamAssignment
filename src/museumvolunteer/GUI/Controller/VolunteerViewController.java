@@ -119,7 +119,7 @@ public class VolunteerViewController extends AController implements Initializabl
     private void dataBind() throws SQLException {
 
         guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
-        guildTable.setItems(guildsModel.getGuilds());
+        guildTable.setItems(guildsModel.getGuilds().sorted());
         nameTable.setPlaceholder(new Label("Der er ikke nogen \nnavne at vise"));
         guildTable.setPlaceholder(new Label("Der er ikke nogen \nlaug at vise"));
     }
@@ -138,7 +138,7 @@ public class VolunteerViewController extends AController implements Initializabl
                 int guildId = guildTable.getSelectionModel().getSelectedItem().getIdValue();
                 volunteerModel.getNamesByGuildId(guildId);
                 nameColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
-                nameTable.setItems(volunteerModel.getAllVolunteers());
+                nameTable.setItems(volunteerModel.getAllVolunteers().sorted());
             }
         }
         searchNameField.clear();
@@ -201,7 +201,7 @@ public class VolunteerViewController extends AController implements Initializabl
             int guildsId = guildTable.getSelectionModel().getSelectedItem().getIdValue();
             volunteerModel.getNamesByGuildId(guildsId);
             nameColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
-            nameTable.setItems(volunteerModel.getAllVolunteers());
+            nameTable.setItems(volunteerModel.getAllVolunteers().sorted());
         }
     }
 }

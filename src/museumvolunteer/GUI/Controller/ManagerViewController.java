@@ -198,7 +198,7 @@ public class ManagerViewController extends AController implements Initializable 
     private void dataBind() throws SQLException {
 
         guildManagerColumn.setCellValueFactory(guildAdminCol -> guildAdminCol.getValue().getName());
-        guildManagerTable.getItems().setAll(guildsModel.getGuilds());
+        guildManagerTable.getItems().setAll(guildsModel.getGuilds().sorted());
         guildManagerTable.setPlaceholder(new Label("Der er ikke nogen \nlaug at vise"));
         nameManagerTable.setPlaceholder(new Label("Der er ikke nogen \ntimer at vise"));
         hoursManagerTable.setPlaceholder(new Label("Der er ikke nogen \nnavne at vise"));
@@ -220,7 +220,7 @@ public class ManagerViewController extends AController implements Initializable 
             volunteerModel.getNamesByGuildId(guildId);
 
             nameManagerColumn.setCellValueFactory(managerManagerCol -> managerManagerCol.getValue().getName());
-            nameManagerTable.setItems(volunteerModel.getAllVolunteers());
+            nameManagerTable.setItems(volunteerModel.getAllVolunteers().sorted());
 
             hoursManagerTable.getItems().clear();
             searchNameField.clear();
@@ -376,7 +376,7 @@ public class ManagerViewController extends AController implements Initializable 
             int guildsId = guildManagerTable.getSelectionModel().getSelectedItem().getIdValue();
             volunteerModel.getNamesByGuildId(guildsId);
             nameManagerColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
-            nameManagerTable.setItems(volunteerModel.getAllVolunteers());
+            nameManagerTable.setItems(volunteerModel.getAllVolunteers().sorted());
         }
     }
 }

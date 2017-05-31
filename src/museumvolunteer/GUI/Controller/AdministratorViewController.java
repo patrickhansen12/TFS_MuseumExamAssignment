@@ -388,7 +388,7 @@ public class AdministratorViewController extends AController implements Initiali
     private void dataBind() throws SQLException {
 
         managerAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
-        managerAdminTable.getItems().setAll(adminModel.getAllManagers());
+        managerAdminTable.getItems().setAll(adminModel.getAllManagers().sorted());
         guildsModel.getGuilds().clear();
         guildAdminColumn.setCellValueFactory(guildAdminCol -> guildAdminCol.getValue().getName());
         guildAdminTable.getItems().setAll(guildsModel.getGuildsFromFacade());
@@ -414,7 +414,7 @@ public class AdministratorViewController extends AController implements Initiali
             volunteerModel.getNamesByGuildId(guildsId);
             handleGuildHours();
             nameAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
-            nameAdminTable.setItems(volunteerModel.getAllVolunteers());
+            nameAdminTable.setItems(volunteerModel.getAllVolunteers().sorted());
             hoursAdminTable.getItems().clear();
 
         }
@@ -516,7 +516,7 @@ public class AdministratorViewController extends AController implements Initiali
             int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
             volunteerModel.getNamesByGuildId(guildsId);
             nameAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
-            nameAdminTable.setItems(volunteerModel.getAllVolunteers());
+            nameAdminTable.setItems(volunteerModel.getAllVolunteers().sorted());
         }
     }
 
