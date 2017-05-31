@@ -147,7 +147,7 @@ public class ManagerViewController extends AController implements Initializable 
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Dialog with Custom Actions");
             alert.setHeaderText(null);
-            alert.setContentText("Er du sikker på du vil slette " + nameManagerTable.getSelectionModel().getSelectedItem().getNameAsString() + "?");
+            alert.setContentText("Er du sikker på du vil slette " + nameManagerTable.getSelectionModel().getSelectedItem().getNameAsString() + " fra " + guildManagerTable.getSelectionModel().getSelectedItem() + "?");
             ButtonType buttonTypeThis = new ButtonType("Godkend");
             ButtonType buttonTypeCancel = new ButtonType("Anuller", ButtonData.CANCEL_CLOSE);
             alert.getButtonTypes().setAll(buttonTypeThis, buttonTypeCancel);
@@ -155,13 +155,14 @@ public class ManagerViewController extends AController implements Initializable 
             if (result.get() == buttonTypeThis) {
                 Volunteer selectedItem = nameManagerTable.getSelectionModel().getSelectedItem();
                 volunteer = selectedItem;
-
                 int guildsId = guildManagerTable.getSelectionModel().getSelectedItem().getIdValue();
                 int nameId = nameManagerTable.getSelectionModel().getSelectedItem().getIdValue();
                 volunteerModel.deleteVolunteerByNameIdGuildsId(nameId, guildsId);
-                nameManagerTable.getItems().remove(selectedItem);
+                volunteerModel.deleteVolunteer(volunteer);
+             
                 nameManagerTable.getSelectionModel().clearSelection();
-                hoursManagerTable.getItems().clear();
+                        nameManagerTable.setItems(volunteerModel.getAllVolunteers());
+              
             }
         }
     }

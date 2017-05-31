@@ -240,7 +240,7 @@ public class AdministratorViewController extends AController implements Initiali
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Dialog with Custom Actions");
             alert.setHeaderText(null);
-            alert.setContentText("Er du sikker på du vil slette " + nameAdminTable.getSelectionModel().getSelectedItem().getNameAsString() + "fra " + guildAdminTable.getSelectionModel().getSelectedItem() + "?");
+            alert.setContentText("Er du sikker på du vil slette " + nameAdminTable.getSelectionModel().getSelectedItem().getNameAsString() + " fra " + guildAdminTable.getSelectionModel().getSelectedItem() + "?");
             ButtonType buttonTypeThis = new ButtonType("Godkend");
             ButtonType buttonTypeCancel = new ButtonType("Anuller", ButtonData.CANCEL_CLOSE);
             alert.getButtonTypes().setAll(buttonTypeThis, buttonTypeCancel);
@@ -252,10 +252,13 @@ public class AdministratorViewController extends AController implements Initiali
                 int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getIdValue();
                 volunteerModel.deleteVolunteerByNameIdGuildsId(nameId, guildsId);
                 volunteerModel.deleteVolunteer(volunteer);
-                nameAdminTable.getItems().remove(selectedItem);
+             
                 nameAdminTable.getSelectionModel().clearSelection();
-                hoursAdminTable.getItems().clear();
+                        nameAdminTable.setItems(volunteerModel.getAllVolunteers());
+              
+                
                 handleGuildHours();
+                searchNameField.clear();
             }
         }
     }
