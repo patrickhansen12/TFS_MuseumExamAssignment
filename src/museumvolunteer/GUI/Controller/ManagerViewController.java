@@ -223,7 +223,7 @@ public class ManagerViewController extends AController implements Initializable 
      */
     @FXML
     private void addHoursButton(ActionEvent event) throws SQLException, IOException {
-        if (datePicker.getValue() != null && guildManagerTable.getSelectionModel().getSelectedItem().getIdValue() != -1 && nameManagerTable.getSelectionModel().getSelectedItem().getIdValue() != -1 && !txtFieldHours.getText().isEmpty()) {
+        if (datePicker.getValue() != null && guildManagerTable.getSelectionModel().getSelectedItem() != null && nameManagerTable.getSelectionModel().getSelectedItem() != null && !txtFieldHours.getText().isEmpty()) {
             LocalDateTime timeStamp = datePicker.getValue().atTime(LocalTime.now());
             java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(timeStamp);
             int guildsId = guildManagerTable.getSelectionModel().getSelectedItem().getIdValue();
@@ -242,7 +242,7 @@ public class ManagerViewController extends AController implements Initializable 
             txtFieldHours.clear();
             alert.showAndWait();
 
-        } else if (datePicker.getValue() == null || guildManagerTable.getSelectionModel().getSelectedItem().getIdValue() == -1 || nameManagerTable.getSelectionModel().getSelectedItem().getIdValue() == -1 || txtFieldHours.getText().isEmpty()) {
+        } else if (datePicker.getValue() == null || guildManagerTable.getSelectionModel().getSelectedItem() == null || nameManagerTable.getSelectionModel().getSelectedItem() == null || txtFieldHours.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fejl");
             alert.setHeaderText(null);

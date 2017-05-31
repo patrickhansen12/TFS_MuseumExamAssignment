@@ -150,7 +150,7 @@ public class VolunteerViewController extends AController implements Initializabl
     @FXML
     private void insertHours(ActionEvent event) throws SQLException, IOException {
 
-        if (datePick.getValue() != null && guildTable.getSelectionModel().getSelectedItem().getIdValue() != -1 && nameTable.getSelectionModel().getSelectedItem().getIdValue() != -1 && !noteHoursField.getText().isEmpty()) {
+        if (datePick.getValue() != null && guildTable.getSelectionModel().getSelectedItem() != null && nameTable.getSelectionModel().getSelectedItem() != null && !noteHoursField.getText().isEmpty()) {
 
             LocalDateTime timeStamp = datePick.getValue().atTime(LocalTime.now());
             java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(timeStamp);
@@ -165,7 +165,7 @@ public class VolunteerViewController extends AController implements Initializabl
             alert.setContentText("Du har bidraget med " + noteHoursField.getText() + " timer");
             noteHoursField.clear();
             alert.showAndWait();
-        } else if (datePick.getValue() == null || guildTable.getSelectionModel().getSelectedItem().getIdValue() == -1 || nameTable.getSelectionModel().getSelectedItem().getIdValue() == -1 || noteHoursField.getText().isEmpty()) {
+        } else if (datePick.getValue() == null || guildTable.getSelectionModel().getSelectedItem() == null || nameTable.getSelectionModel().getSelectedItem() == null || noteHoursField.getText().isEmpty()) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Fejl");
             alert.setHeaderText(null);
