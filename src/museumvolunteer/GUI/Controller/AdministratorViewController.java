@@ -206,7 +206,7 @@ public class AdministratorViewController extends AController implements Initiali
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Er du sikker?");
             alert.setHeaderText(null);
-            alert.setContentText("Er du sikker på du vil slette dette laug?");
+            alert.setContentText("Er du sikker på du vil slette " +guildAdminTable.getSelectionModel().getSelectedItem() + "?" );
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 Guild selectedItem = guildAdminTable.getSelectionModel().getSelectedItem();
@@ -214,6 +214,8 @@ public class AdministratorViewController extends AController implements Initiali
                 guildsModel.deleteGuild(guild);
                 guildAdminTable.getItems().remove(selectedItem);
                 guildAdminTable.getSelectionModel().clearSelection();
+                hoursAdminTable.getItems().clear();
+                nameAdminTable.getItems().clear();
             }
         }
     }
@@ -239,7 +241,7 @@ public class AdministratorViewController extends AController implements Initiali
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Dialog with Custom Actions");
             alert.setHeaderText(null);
-            alert.setContentText("Er du sikker på du vil slette " + nameAdminTable.getSelectionModel().getSelectedItem().getNameAsString() + "?");
+            alert.setContentText("Er du sikker på du vil slette " + nameAdminTable.getSelectionModel().getSelectedItem().getNameAsString() + "fra " + guildAdminTable.getSelectionModel().getSelectedItem() + "?");
             ButtonType buttonTypeThis = new ButtonType("Godkend");
             ButtonType buttonTypeCancel = new ButtonType("Anuller", ButtonData.CANCEL_CLOSE);
             alert.getButtonTypes().setAll(buttonTypeThis, buttonTypeCancel);
@@ -435,7 +437,12 @@ public class AdministratorViewController extends AController implements Initiali
     }
 
     @FXML
+<<<<<<< HEAD
     private void handleExportToExcel(ActionEvent event) throws SQLException, IOException {
+=======
+    public void handleExportToExcel(ActionEvent event) throws SQLException, IOException {
+
+>>>>>>> origin/master
         int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
         String volunteerName = nameAdminTable.getSelectionModel().getSelectedItem().getNameAsString();
         int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getIdValue();
