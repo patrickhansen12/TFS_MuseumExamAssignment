@@ -62,6 +62,7 @@ public class VolunteerInfoViewController implements Initializable {
     private GuildsModel guildsModel;
     private TextField newGuildBox;
     public int userVolunteerInfo;
+    private SQLException sqlException;
 
     /**
      * Initializes the VolunteerInfoViewController class.
@@ -178,7 +179,8 @@ public class VolunteerInfoViewController implements Initializable {
      * @throws SQLException 
      */
     @FXML
-    private void addToGuild(ActionEvent event) throws SQLException {
+    private void addToGuild(ActionEvent event) {
+        try {
         int nameId = thisVolunteer.getIdValue();
         int guildsId = Integer.parseInt(guildBox.getText());
         volunteerModel.addToNewGuild(nameId, guildsId);
@@ -190,6 +192,16 @@ public class VolunteerInfoViewController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(nameBox.getText() + " er nu tilføjet i " + guildNameText.getText());
         alert.showAndWait();
+        }
+        catch(SQLException sqlEx)
+        {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Samme laug");
+            alert.setHeaderText(null);
+            alert.setContentText("Du kan ikke tilføje en frivillig til et laug, vedkommende allerede er medlem af.");
+            alert.showAndWait();
+            System.out.println(sqlEx);
+        }
     }
 
     /**
