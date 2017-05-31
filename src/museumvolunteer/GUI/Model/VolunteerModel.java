@@ -16,21 +16,15 @@ import museumvolunteer.BLL.SearchPattern;
  */
 public class VolunteerModel {
 
-    //local variables.
-    //private static VolunteerModel INSTANCE;
+    //instance variables.
     private BLLFacade bllFacade;
-
-    /**
-     * Lists of all volunteers and checkIns currently in view.
-     */
     private final ObservableList<String> items;
     private ObservableList<Volunteer> allVolunteers;
     private ObservableList<Volunteer> sortedVolunteers;
     private ObservableList<CheckIn> allCheckIns;
 
     /**
-     * Constructs new name- and checkInManagers, creates observable arraylists
-     * out of the observable lists Volunteer and CheckIn.
+     * Instantiates bllFacade, populates allVolunteers and allCheckIns with data from the database.
      * @throws java.io.IOException
      * @throws java.sql.SQLException
      */
@@ -92,7 +86,7 @@ public class VolunteerModel {
     }
 
     /**
-     * Deletes a selected volunteer from observable list Volunteer and the database.
+     * Deletes a selected volunteer from observable list Volunteer.
      * @param v
      * @throws SQLException
      */
@@ -100,6 +94,12 @@ public class VolunteerModel {
         allVolunteers.remove(v);
     }
     
+    /**
+     * Deletes the chosen volunteer from the database.
+     * @param nameId
+     * @param guildsId
+     * @throws SQLException 
+     */
     public void deleteVolunteerByNameIdGuildsId(int nameId, int guildsId) throws SQLException {
         bllFacade.deleteVolunteerByNameIdGuildsId(nameId, guildsId);
     }
@@ -160,18 +160,44 @@ public class VolunteerModel {
         allCheckIns = FXCollections.observableList(bllFacade.getAllCheckInsByNameIdGuildsId(guildsId, nameId));
     }
     
+    /**
+     * Populates allCheckIns with checkIns according to nameId and guildsId of the chosen volunteer, and exports to excel.
+     * @param guildsId
+     * @param nameId
+     * @throws SQLException
+     * @throws IOException 
+     */
     public void setCheckInsByNameIdGuildsIdToExcel(int guildsId, int nameId) throws SQLException, IOException {
         allCheckIns = FXCollections.observableList(bllFacade.exportCheckInsByNameIdGuildsIdToExcel(guildsId, nameId));
     }
     
+    /**
+     * Populates allCheckIns with checkIns according to guildsId of the chosen guild, and exports to excel.
+     * @param guildsId
+     * @throws SQLException
+     * @throws IOException 
+     */
     public void setCheckInsByGuildsIdToExcel(int guildsId) throws SQLException, IOException {
         allCheckIns = FXCollections.observableList(bllFacade.exportCheckInsByGuildsIdToExcel(guildsId));
     }
 
+    /**
+     * Parses nameId and guildsId into addToNewGuild() in bllFacade.
+     * @param nameId
+     * @param guildsId
+     * @throws SQLException 
+     */
     public void addToNewGuild(int nameId, int guildsId) throws SQLException {
         bllFacade.addToNewGuild(nameId, guildsId);
     }
     
+    /**
+     * Method for parsing guildsId of the chosen guild into getByGuildsIdSumOfHours() in bllFacade. Returns the summed up hours for the guild.
+     * @param guildsId
+     * @return
+     * @throws SQLException
+     * @throws IOException 
+     */
     public List<Integer> getByGuildsIdSumOfHoursList(int guildsId) throws SQLException, IOException
     {
         List<Integer> getHours = new ArrayList<>();
@@ -179,6 +205,13 @@ public class VolunteerModel {
         return getHours;
     }
     
+    /**
+     * Parses comparer and guildsId into searchVolunteer in bllFacade.
+     * @param comparer
+     * @param guildsId
+     * @return
+     * @throws SQLException 
+     */
     public List<String> search(SearchPattern comparer, int guildsId) throws SQLException
     {
         return bllFacade.searchVolunteer(comparer, guildsId);
