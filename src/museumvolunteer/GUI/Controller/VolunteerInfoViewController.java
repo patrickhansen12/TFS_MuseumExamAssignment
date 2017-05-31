@@ -62,7 +62,6 @@ public class VolunteerInfoViewController implements Initializable {
     private GuildsModel guildsModel;
     private TextField newGuildBox;
     public int userVolunteerInfo;
-    private SQLException sqlException;
 
     /**
      * Initializes the VolunteerInfoViewController class.
@@ -193,7 +192,7 @@ public class VolunteerInfoViewController implements Initializable {
         alert.setContentText(nameBox.getText() + " er nu tilføjet i " + guildNameText.getText());
         alert.showAndWait();
         }
-        catch(SQLException sqlEx)
+        catch (SQLException sqlEx)
         {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Samme laug");
