@@ -435,7 +435,7 @@ public class AdministratorViewController extends AController implements Initiali
     }
 
     @FXML
-    public void handleExportToExcel(ActionEvent event) throws SQLException, IOException {
+    private void handleExportToExcel(ActionEvent event) throws SQLException, IOException {
         int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
         String volunteerName = nameAdminTable.getSelectionModel().getSelectedItem().getNameAsString();
         int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getIdValue();
@@ -449,7 +449,7 @@ public class AdministratorViewController extends AController implements Initiali
     }
 
     @FXML
-    public void handleExportGuildDataToExcel(ActionEvent event) throws SQLException, IOException {
+    private void handleExportGuildDataToExcel(ActionEvent event) throws SQLException, IOException {
         int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
         String guildName = guildAdminTable.getSelectionModel().getSelectedItem().getNameAsString();
         volunteerModel.setCheckInsByGuildsIdToExcel(guildsId);
@@ -517,7 +517,7 @@ public class AdministratorViewController extends AController implements Initiali
         }
     }
 
-    public void handleGuildHours() throws SQLException, IOException {
+    private void handleGuildHours() throws SQLException, IOException {
         int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
         hoursForGuild.setText(String.valueOf(volunteerModel.getByGuildsIdSumOfHoursList(guildsId).get(0)));
     }

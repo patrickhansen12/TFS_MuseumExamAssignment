@@ -232,8 +232,8 @@ public class CheckInDAO {
             int sum = 0;
             while (rs.next()) 
             {
-                 CheckIn ci = getOneCheckIn(rs);
-                  sum += ci.getHoursValue();
+                CheckIn ci = getOneCheckIn(rs);
+                sum += ci.getHoursValue();
             }
             return sum;
         }
