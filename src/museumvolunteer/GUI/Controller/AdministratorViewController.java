@@ -447,6 +447,13 @@ public class AdministratorViewController extends AController implements Initiali
      */
     @FXML
     private void handleExportToExcel(ActionEvent event) throws SQLException, IOException {
+           if (nameAdminTable.getSelectionModel().getSelectedItem() == null) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Du skal vælge en frivillig, før du kan eksportere dataen til Excel.");
+            alert.showAndWait();
+        }else{
         int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
         String volunteerName = nameAdminTable.getSelectionModel().getSelectedItem().getNameAsString();
         int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getIdValue();
@@ -458,6 +465,7 @@ public class AdministratorViewController extends AController implements Initiali
         alert.setContentText("Du har eksporteret data om " + volunteerName + " til Excel");
         alert.showAndWait();
     }
+    }
 
     /**
      * Method for grabbing guildsId and parsing it into setCheckInsByGuildsIdToExcel in volunteerModel.
@@ -467,6 +475,13 @@ public class AdministratorViewController extends AController implements Initiali
      */
     @FXML
     private void handleExportGuildDataToExcel(ActionEvent event) throws SQLException, IOException {
+          if (guildAdminTable.getSelectionModel().getSelectedItem() == null) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Du skal vælge et guild, før du kan eksportere dataen til Excel.");
+            alert.showAndWait();
+        }else{
         int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
         String guildName = guildAdminTable.getSelectionModel().getSelectedItem().getNameAsString();
         volunteerModel.setCheckInsByGuildsIdToExcel(guildsId);
@@ -477,7 +492,7 @@ public class AdministratorViewController extends AController implements Initiali
         alert.setContentText("Du har eksporteret data om " + guildName + " til Excel");
         alert.showAndWait();
     }
-
+    }
     /**
      * Method for searching through volunteers in nameAdminTable.
      * @param event
