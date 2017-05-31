@@ -437,12 +437,7 @@ public class AdministratorViewController extends AController implements Initiali
     }
 
     @FXML
-<<<<<<< HEAD
     private void handleExportToExcel(ActionEvent event) throws SQLException, IOException {
-=======
-    public void handleExportToExcel(ActionEvent event) throws SQLException, IOException {
-
->>>>>>> origin/master
         int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
         String volunteerName = nameAdminTable.getSelectionModel().getSelectedItem().getNameAsString();
         int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getIdValue();
