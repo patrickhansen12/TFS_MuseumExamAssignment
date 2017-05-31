@@ -14,10 +14,10 @@ import museumvolunteer.BLL.BLLFacade;
  */
 public class GuildsModel {
 
-    //private variables.
+    //instance variables.
     private BLLFacade bllFacade;
 
-    //Observable list of BE Guild.
+    //Observable lists of BE Guild.
     private ObservableList<Guild> guilds;
     private ObservableList<Guild> guildsByNameId;
 
@@ -43,6 +43,11 @@ public class GuildsModel {
         return guilds;
     }
     
+    /**
+     * Clears the observable list guilds, adds all data from the database and returns list guilds.
+     * @return
+     * @throws SQLException 
+     */
     public List<Guild> getGuildsFromFacade() throws SQLException
     {
         guilds.clear();
@@ -50,6 +55,12 @@ public class GuildsModel {
         return guilds;
     }
     
+    /**
+     * Populates observable list guildsByNameId with data from the database, and then returns the list guildsByNameId.
+     * @param nameId
+     * @return
+     * @throws SQLException 
+     */
     public ObservableList<Guild> getGuildsByNameId(int nameId) throws SQLException 
     {
         guildsByNameId = FXCollections.observableList(bllFacade.getGuildsByNameId(nameId));
@@ -65,12 +76,22 @@ public class GuildsModel {
         bllFacade.updateGuild(g);
     }
     
+    /**
+     * Deletes the chosen guild from the database and observable list guilds.
+     * @param g
+     * @throws SQLException 
+     */
     public void deleteGuild(Guild g) throws SQLException
     {
         bllFacade.deleteGuild(g);
         guilds.remove(g);
     }
     
+    /**
+     * Adds a guild to the database and the observable list guilds.
+     * @param g
+     * @throws SQLException 
+     */
     public void addGuild(Guild g) throws SQLException {
         bllFacade.addGuild(g);
         guilds.add(g);

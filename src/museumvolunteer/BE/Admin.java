@@ -5,6 +5,7 @@ package museumvolunteer.BE;
  */
 public class Admin extends Person{
 
+    //instance variables
     private String username;
     private String password;
 
@@ -13,15 +14,19 @@ public class Admin extends Person{
      *
      * @param id
      * @param name
+     * @param email
+     * @param phoneNumber
+     * @param username
+     * @param password
      */
-    public Admin(int id, String name) {
-        super(id, name, null, null);
-    }
-    
     public Admin(int id, String name, String email, String phoneNumber, String username, String password) {
         super(id, name, email, phoneNumber);
         this.username = username;
         this.password = password;
+    }
+    
+    public Admin(int id, String name) {
+        super(id, name, null, null);
     }
     
     public String getUsername() {

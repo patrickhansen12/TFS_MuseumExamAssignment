@@ -24,7 +24,7 @@ public class GuildsManager {
     }
 
     /**
-     * Method for calling getAllGuilds() in guildsDAO.
+     * Method for returning getAllGuilds() in guildsDAO.
      *
      * @return
      * @throws SQLException
@@ -52,10 +52,22 @@ public class GuildsManager {
         guildsDAO.updateGuild(g);
     }
     
+    /**
+     * Method for returning addGuild() in guildsDAO.
+     * @param g
+     * @return
+     * @throws SQLException 
+     */
     public Guild addGuild(Guild g) throws SQLException {
         return guildsDAO.addGuild(g);
     }
 
+    /**
+     * Method for returning getGuildsByNameId() in guildsDAO.
+     * @param nameId
+     * @return
+     * @throws SQLException 
+     */
     public List<Guild> getGuildsByNameId(int nameId) throws SQLException {
         return guildsDAO.getGuildsByNameId(nameId);
     }

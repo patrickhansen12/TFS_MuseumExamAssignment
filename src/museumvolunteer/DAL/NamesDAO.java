@@ -15,7 +15,7 @@ import museumvolunteer.BE.Volunteer;
  */
 public class NamesDAO {
 
-    //private variable for the connectionManager.
+    //instance variable for the connectionManager.
     private final ConnectionManager cm;
 
     /**
@@ -48,6 +48,7 @@ public class NamesDAO {
 
     /**
      * Method for adding a new volunteer to database table Names.
+     * For second String query, we insert nameId and guildsId into Works_For.
      *
      * @param v
      * @return
@@ -152,6 +153,12 @@ public class NamesDAO {
         }
     }
 
+    /**
+     * Method for allowing a volunteer to be a member of more than 1 guild.
+     * @param nameId
+     * @param guildsId
+     * @throws SQLException 
+     */
     public void addToNewGuild(int nameId, int guildsId) throws SQLException {
 
         try (Connection con = cm.getConnection()) {
@@ -164,6 +171,12 @@ public class NamesDAO {
         }
     }
     
+    /**
+     * Deletes a chosen volunteer from database table Works_For.
+     * @param nameId
+     * @param guildsId
+     * @throws SQLException 
+     */
     public void deleteVolunteerByNameIdGuildsId(int nameId, int guildsId) throws SQLException {
 
         try (Connection con = cm.getConnection()) {

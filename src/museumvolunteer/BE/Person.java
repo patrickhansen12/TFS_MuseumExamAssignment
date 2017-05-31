@@ -9,11 +9,20 @@ import javafx.beans.property.StringProperty;
  * @author Nicolai, Patrick, Kasper, Casper
  */
 public abstract class Person {
+    
+    //instance variables
     private IntegerProperty id;
     private StringProperty name;
     private StringProperty email;
     private StringProperty phoneNumber;
 
+    /**
+     * Default constructor
+     * @param id
+     * @param name
+     * @param email
+     * @param phoneNumber 
+     */
     public Person(int id, String name, String email, String phoneNumber) {
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
@@ -32,7 +41,6 @@ public abstract class Person {
     public String getNameAsString()
     {
         return name.get();
-        
     }
     
     @Override

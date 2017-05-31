@@ -19,8 +19,7 @@ public class AdminManager {
     }
     
     /**
-     * Method for calling addManager() in managerDAO.
-     *
+     * Method for returning addManager() in managerDAO.
      * @param m
      * @return
      * @throws SQLException
@@ -30,8 +29,7 @@ public class AdminManager {
     }
     
     /**
-     * Method for calling getAllManagers() in managerDAO.
-     *
+     * Method for returning getAllManagers() in managerDAO.
      * @return
      * @throws SQLException
      */
@@ -41,7 +39,6 @@ public class AdminManager {
     
     /**
      * Method for calling deleteManager() in managerDAO.
-     *
      * @param m
      * @throws SQLException
      */
@@ -49,10 +46,19 @@ public class AdminManager {
         managerDAO.deleteManager(m);
     }
     
+    /**
+     * Method for calling getAllAdmins() in managerDAO.
+     * @return
+     * @throws SQLException 
+     */
     public List<Admin> getAllAdmins() throws SQLException {
         return managerDAO.getAllAdmins();
     }
     
+    /**
+     * Method for calling getAllAdmins() in managerDAO.
+     * @throws SQLException 
+     */
     public void updateManager(Manager m) throws SQLException {
         managerDAO.updateManager(m);
     }

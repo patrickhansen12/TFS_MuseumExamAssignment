@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumvolunteer.GUI.Controller;
 
 import java.io.IOException;
@@ -22,9 +17,7 @@ import museumvolunteer.BE.Manager;
 import museumvolunteer.GUI.Model.AdminModel;
 
 /**
- * FXML Controller class
- *
- * @author Casper
+ * @author Nicolai, Patrick, Kasper, Casper
  */
 public class ManagerInfoViewController implements Initializable {
 
@@ -54,10 +47,21 @@ public class ManagerInfoViewController implements Initializable {
         // TODO
     }
 
+    /**
+     * instantiates adminModel.
+     * @throws IOException
+     * @throws SQLException 
+     */
     public ManagerInfoViewController() throws IOException, SQLException {
         adminModel = new AdminModel();
     }
 
+    /**
+     * grabs data from all textfields and parses them into updateManager by creating a new object of BE class Manager.
+     * @param event
+     * @throws SQLException
+     * @throws IOException 
+     */
     @FXML
     private void handleUpdate(ActionEvent event) throws SQLException, IOException {
         String name = nameBox.getText().trim();
@@ -69,6 +73,12 @@ public class ManagerInfoViewController implements Initializable {
         returnButton(event);
     }
 
+    /**
+     * Returns the user to the AdministratorView.
+     * @param event
+     * @throws IOException
+     * @throws SQLException 
+     */
     @FXML
     public void returnButton(ActionEvent event) throws IOException, SQLException {
         Stage stage = new Stage();

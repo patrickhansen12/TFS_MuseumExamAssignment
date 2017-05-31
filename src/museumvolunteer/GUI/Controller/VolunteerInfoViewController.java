@@ -56,7 +56,7 @@ public class VolunteerInfoViewController implements Initializable {
     @FXML
     private TableColumn<Guild, Integer> currentGuildIdColumn;
     
-    //private variabler.
+    //instance variables.
     private VolunteerModel volunteerModel;
     private Volunteer thisVolunteer;
     private GuildsModel guildsModel;
@@ -83,11 +83,21 @@ public class VolunteerInfoViewController implements Initializable {
         }
     }
 
+    /**
+     * instantiates volunteerModel and guildsModel.
+     * @throws IOException
+     * @throws SQLException 
+     */
     public VolunteerInfoViewController() throws IOException, SQLException {
         volunteerModel = new VolunteerModel();
         guildsModel = new GuildsModel();
     }
 
+    /**
+     * Method for parsing data from administratorview/managerview and into the textfields.
+     * @param v
+     * @throws SQLException 
+     */
     public void transferVolunteerInfo(Volunteer v) throws SQLException {
         thisVolunteer = v;
         currentGuildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
@@ -162,6 +172,11 @@ public class VolunteerInfoViewController implements Initializable {
         }
     }
 
+    /**
+     * Grabs nameId and guildsId, then parses them into addToNewGuild in volunteerModel.
+     * @param event
+     * @throws SQLException 
+     */
     @FXML
     private void addToGuild(ActionEvent event) throws SQLException {
         int nameId = thisVolunteer.getIdValue();
@@ -177,6 +192,10 @@ public class VolunteerInfoViewController implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Method for recieving the value of currentUserVolunteerInfo from either administratorView or managerView.
+     * @param currentUserVolunteerInfo 
+     */
     public void pullCurrentUserVolunteerInfo(int currentUserVolunteerInfo) {
         userVolunteerInfo = currentUserVolunteerInfo;
     }

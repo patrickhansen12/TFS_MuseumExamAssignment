@@ -46,10 +46,24 @@ public class CheckInManager {
         return checkInDAO.getByNameIdGuildsIdToExcel(guildsId, nameId);
     }
     
+    /**
+     * Selects all checkIns for the chosen guild and prints to an excel file stored in the application folder.
+     * @param guildsId
+     * @return
+     * @throws SQLException
+     * @throws IOException 
+     */
     public List<CheckIn> exportCheckInsByGuildsIdToExcel(int guildsId) throws SQLException, IOException {
         return checkInDAO.getByGuildsIdToExcel(guildsId);
     }
     
+    /**
+     * Returns getByGuildsIdSumOfHours() from checkInDAO. Parses guildsId from the GUI layer.
+     * @param guildsId
+     * @return
+     * @throws SQLException
+     * @throws IOException 
+     */
     public int getByGuildsIdSumOfHours(int guildsId) throws SQLException, IOException {
         return checkInDAO.getByGuildsIdSumOfHours(guildsId);
     }
@@ -84,7 +98,7 @@ public class CheckInManager {
     }
     
     /**
-     * Deletes a selected checkIn from database table Hours according to id.
+     * Deletes a selected checkIn from database table Hours according to guildsId and nameId.
      * @param guildsId
      * @param nameId
      * @throws SQLException

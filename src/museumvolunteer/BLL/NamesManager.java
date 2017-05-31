@@ -25,7 +25,7 @@ public class NamesManager {
     }
 
     /**
-     * Method for calling getAllVolunteers() in namesDAO.
+     * Method for returning getAllVolunteers() in namesDAO.
      *
      * @return
      * @throws SQLException
@@ -35,7 +35,7 @@ public class NamesManager {
     }
 
     /**
-     * Method for calling add() in namesDAO.
+     * Method for returning add() in namesDAO.
      *
      * @param v
      * @return
@@ -45,6 +45,12 @@ public class NamesManager {
         return namesDAO.add(v);
     }
     
+    /**
+     * Method for calling deleteVolunteerByNameIdGuildsId() in namesDAO.
+     * @param nameId
+     * @param guildsId
+     * @throws SQLException 
+     */
     public void deleteVolunteerByNameIdGuildsId(int nameId, int guildsId) throws SQLException
     {
         namesDAO.deleteVolunteerByNameIdGuildsId(nameId, guildsId);
@@ -61,7 +67,7 @@ public class NamesManager {
     }
 
     /**
-     * ArrayList of BE class Volunteer.
+     * Method for returning getByGuildsId() in namesDAO.
      *
      * @param guildsId
      * @return
@@ -107,6 +113,12 @@ public class NamesManager {
         return result;
     }
 
+    /**
+     * Method for calling addToNewGuild() in namesDAO.
+     * @param nameId
+     * @param guildsId
+     * @throws SQLException 
+     */
     public void addToNewGuild(int nameId, int guildsId) throws SQLException {
         namesDAO.addToNewGuild(nameId, guildsId);
     }

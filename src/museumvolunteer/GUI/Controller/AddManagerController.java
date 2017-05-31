@@ -52,6 +52,12 @@ public class AddManagerController implements Initializable {
         adminModel = new AdminModel();
     }
 
+    /**
+     * Gets values from the textfields and parses them into addManager() in adminModel.
+     * @param event
+     * @throws SQLException
+     * @throws IOException 
+     */
     @FXML
     private void performButton(ActionEvent event) throws SQLException, IOException {
         if (nameBox.getText().equals("") || usernameBox.getText().equals("") || passwordBox.getText().equals("")) {

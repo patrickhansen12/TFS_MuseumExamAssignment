@@ -6,6 +6,7 @@ package museumvolunteer.BE;
 
 public class Manager extends Person{
 
+    //instance variables
     private String username;
     private String password;
 

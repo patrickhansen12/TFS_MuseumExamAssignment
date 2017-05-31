@@ -15,7 +15,7 @@ import museumvolunteer.BE.Guild;
  */
 public class GuildsDAO {
 
-    //private variable for connectionManager.
+    //instance variable for connectionManager.
     private final ConnectionManager cm;
 
     /**
@@ -44,6 +44,12 @@ public class GuildsDAO {
         }
     }
 
+    /**
+     * Inserts the chosen name of a guild into database table Guilds.
+     * @param g
+     * @return
+     * @throws SQLException 
+     */
     public Guild addGuild(Guild g) throws SQLException {
         String sql = "INSERT INTO Guilds(name) VALUES(?)";
         try (Connection con = cm.getConnection()) {
@@ -132,7 +138,7 @@ public class GuildsDAO {
     }
 
     /**
-     * Method for returning all guilds on a guild.
+     * Method for returning all names from a chosen guild.
      *
      * @return
      * @throws SQLException

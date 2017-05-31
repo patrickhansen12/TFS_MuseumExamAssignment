@@ -12,7 +12,7 @@ import java.util.Properties;
  */
 public class ConnectionManager {
 
-    //private variables.
+    //instance variables.
     private static final String CONFIG_FILE_NAME = "VikingeMuseum.cfg";
     private final SQLServerDataSource ds;
 

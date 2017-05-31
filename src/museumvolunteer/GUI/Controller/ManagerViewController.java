@@ -68,7 +68,7 @@ public class ManagerViewController extends AController implements Initializable 
     @FXML
     private TextField searchNameField;
 
-    //private variables.
+    //instance variables.
     private VolunteerModel volunteerModel;
     private GuildsModel guildsModel;
     private Volunteer volunteer;
@@ -92,11 +92,21 @@ public class ManagerViewController extends AController implements Initializable 
         }
     }
 
+    /**
+     * instantiates volunteerModel and guildsModel.
+     * @throws IOException
+     * @throws SQLException 
+     */
     public ManagerViewController() throws IOException, SQLException {
         volunteerModel = new VolunteerModel();
         guildsModel = new GuildsModel();
     }
 
+    /**
+     * Parses the value of instance variable currentUserAddVolunteer into AddVolunteer.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void addVolunteersButton(ActionEvent event) throws IOException {
         Stage stage = new Stage();
@@ -180,6 +190,10 @@ public class ManagerViewController extends AController implements Initializable 
         stage.close();
     }
 
+    /**
+     * Method ran in initialize. Populates all tableviews with data.
+     * @throws SQLException 
+     */
     private void dataBind() throws SQLException {
 
         guildManagerColumn.setCellValueFactory(guildAdminCol -> guildAdminCol.getValue().getName());
@@ -340,6 +354,11 @@ public class ManagerViewController extends AController implements Initializable 
         }
     }
 
+    /**
+     * Method for searching through volunteers in nameManagerTable.
+     * @param event
+     * @throws SQLException 
+     */
     @FXML
     @Override
     public void searchNameList(KeyEvent event) throws SQLException {

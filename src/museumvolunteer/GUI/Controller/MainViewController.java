@@ -65,6 +65,11 @@ public class MainViewController implements Initializable {
         closeWindow();
     }
     
+    /**
+     * Method for opening the LoginScreen.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void adminButton(ActionEvent event) throws IOException
     {

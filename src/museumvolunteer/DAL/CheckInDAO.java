@@ -20,7 +20,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class CheckInDAO {
 
-    //private variable for connectionManager.
+    //instance variable for connectionManager.
     private final ConnectionManager cm;
 
     /**
@@ -112,7 +112,7 @@ public class CheckInDAO {
     }
 
     /**
-     * Gets hours matching nameId on the volunteer selected.
+     * Gets hours matching nameId of the volunteer selected.
      *
      * @param guildsId
      * @param nameId
@@ -135,7 +135,7 @@ public class CheckInDAO {
     }
 
     /**
-     * Reflection of the database table Hours.
+     * Reflection of the attributes in database table Hours.
      *
      * @param rs
      * @return
@@ -188,6 +188,14 @@ public class CheckInDAO {
         }
     }
 
+    /**
+     * Prints out data for a chosen volunteer in an excel spreadsheet.
+     * @param guildsId
+     * @param nameId
+     * @return
+     * @throws SQLException
+     * @throws IOException 
+     */
     public List<CheckIn> getByNameIdGuildsIdToExcel(int guildsId, int nameId) throws SQLException, IOException {
         List<CheckIn> allTimeStamps = new ArrayList<>();
         String sql = "SELECT * FROM Hours WHERE guildsId = ? AND nameId = ?";
@@ -223,6 +231,13 @@ public class CheckInDAO {
         }
     }
     
+    /**
+     * Selects all hours according to guildsId, then returns the sum of the hours.
+     * @param guildsId
+     * @return
+     * @throws SQLException
+     * @throws IOException 
+     */
     public int getByGuildsIdSumOfHours(int guildsId) throws SQLException, IOException {
         String sql = "SELECT * FROM Hours WHERE guildsId = ?";
         try (Connection con = cm.getConnection()) {
@@ -239,6 +254,13 @@ public class CheckInDAO {
         }
     }
     
+    /**
+     * Prints out data about a chosen guilds into an excel spreadsheet.
+     * @param guildsId
+     * @return
+     * @throws SQLException
+     * @throws IOException 
+     */
     public List<CheckIn> getByGuildsIdToExcel(int guildsId) throws SQLException, IOException {
         List<CheckIn> allTimeStamps = new ArrayList<>();
         String sql = "SELECT * FROM Hours WHERE guildsId = ?";

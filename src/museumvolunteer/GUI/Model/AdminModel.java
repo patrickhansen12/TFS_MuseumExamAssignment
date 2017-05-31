@@ -15,11 +15,16 @@ import museumvolunteer.BLL.BLLFacade;
  */
 public class AdminModel {
 
+    //instance variables.
     private BLLFacade bllFacade;
-
     private ObservableList<Manager> allManagers;
     private ObservableList<Admin> allAdmins;
 
+    /**
+     * Instantiates bllFacade, populates allManagers and allAdmins with data from the database through bllFacade.
+     * @throws SQLException
+     * @throws IOException 
+     */
     public AdminModel() throws SQLException, IOException {
         bllFacade = new BLLFacade();
         List<Manager> allManagers2 = new ArrayList<>(bllFacade.getAllManagers());
@@ -50,6 +55,11 @@ public class AdminModel {
         return allManagers;
     }
 
+    /**
+     * Method for returning all data from an observable list of BE class Admin.
+     * @return
+     * @throws SQLException 
+     */
     public ObservableList<Admin> getAllAdmins() throws SQLException {
         return allAdmins;
     }
@@ -66,6 +76,11 @@ public class AdminModel {
         allManagers.remove(m);
     }
     
+    /**
+     * Updates the values of a chosen manager.
+     * @param m
+     * @throws SQLException 
+     */
     public void updateManager(Manager m) throws SQLException {
         bllFacade.updateManager(m);
         allManagers.remove(m);

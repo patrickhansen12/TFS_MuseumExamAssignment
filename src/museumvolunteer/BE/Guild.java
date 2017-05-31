@@ -10,12 +10,6 @@ public class Guild extends Person{
 
     //instance variables
     private IntegerProperty namesId;
-    /**
-     * Default constructor.
-     *
-     * @param id
-     * @param name
-     */
     
     /**
      * Default constructor.

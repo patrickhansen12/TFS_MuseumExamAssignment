@@ -48,7 +48,7 @@ public class AddVolunteerController implements Initializable {
     @FXML
     private TextField guildNameBox;
 
-    //private variables.
+    //instance variables.
     private GuildsModel guildsModel;
     private VolunteerModel volunteerModel;
     int userAddVolunteer;
@@ -73,8 +73,6 @@ public class AddVolunteerController implements Initializable {
     }
 
     /**
-     * gets an instance of guildsModel and volunteerModel.
-     *
      * @throws IOException
      * @throws SQLException
      */

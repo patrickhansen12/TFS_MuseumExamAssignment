@@ -63,6 +63,12 @@ public class AddGuildController implements Initializable {
         stage2.close();
     }
 
+    /**
+     * Grabs the value of textfield guildNameBox, and parses it into addGuild() in guildModel.
+     * @param event
+     * @throws SQLException
+     * @throws IOException 
+     */
     @FXML
     private void performButton(ActionEvent event) throws SQLException, IOException {
         if (guildNameBox.getText().equals("")) {

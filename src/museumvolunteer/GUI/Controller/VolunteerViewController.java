@@ -58,7 +58,7 @@ public class VolunteerViewController extends AController implements Initializabl
     @FXML
     private TextField searchNameField;
 
-    //private variables.
+    //instance variables.
     private VolunteerModel volunteerModel;
     private GuildsModel guildsModel;
 
@@ -79,6 +79,11 @@ public class VolunteerViewController extends AController implements Initializabl
         }
     }
 
+    /**
+     * Instantiates volunteerModel and guildsModel.
+     * @throws IOException
+     * @throws SQLException 
+     */
     public VolunteerViewController() throws IOException, SQLException {
         volunteerModel = new VolunteerModel();
         guildsModel = new GuildsModel();

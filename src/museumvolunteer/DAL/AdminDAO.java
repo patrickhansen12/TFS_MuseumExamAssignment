@@ -99,6 +99,11 @@ public class AdminDAO {
         }
     }
     
+    /**
+     * Gets all admins from database table Admin.
+     * @return
+     * @throws SQLException 
+     */
     public List<Admin> getAllAdmins() throws SQLException {
         List<Admin> allAdmins = new ArrayList<>();
 
@@ -112,7 +117,13 @@ public class AdminDAO {
             return allAdmins;
         }
     }
-        
+    
+    /**
+     * Reflects the attributes in database table Admin.
+     * @param rs
+     * @return
+     * @throws SQLException 
+     */
     private Admin getOneAdmin(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
         String name = rs.getString("name");

@@ -83,7 +83,7 @@ public class AdministratorViewController extends AController implements Initiali
     @FXML
     private Button infoAboutManagerBtn;
 
-    //private variables.
+    //instance variables.
     private VolunteerModel volunteerModel;
     private GuildsModel guildsModel;
     private Volunteer volunteer;
@@ -111,8 +111,7 @@ public class AdministratorViewController extends AController implements Initiali
     }
 
     /**
-     * gets instances of volunteerModel and guildsModel.
-     *
+     * Instantiates volunteerModel, guildsModel and adminModel.
      * @throws IOException
      * @throws SQLException
      */
@@ -379,6 +378,10 @@ public class AdministratorViewController extends AController implements Initiali
         }
     }
 
+    /**
+     * Method which is ran in initialize. Populates all tableviews with data.
+     * @throws SQLException 
+     */
     private void dataBind() throws SQLException {
 
         managerAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
@@ -393,7 +396,7 @@ public class AdministratorViewController extends AController implements Initiali
     }
 
     /**
-     * Populates ameAdminTable with volunteers matching the clicked guild.
+     * Populates adAdminTable with volunteers matching the clicked guild.
      *
      * @param event
      * @throws SQLException
@@ -436,6 +439,12 @@ public class AdministratorViewController extends AController implements Initiali
         }
     }
 
+    /**
+     * Method for grabbing guildsId, nameId and parsing it into setCheckInsByNameIdGuildsIdToExcel in volunteerModel.
+     * @param event
+     * @throws SQLException
+     * @throws IOException 
+     */
     @FXML
     private void handleExportToExcel(ActionEvent event) throws SQLException, IOException {
         int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
@@ -450,6 +459,12 @@ public class AdministratorViewController extends AController implements Initiali
         alert.showAndWait();
     }
 
+    /**
+     * Method for grabbing guildsId and parsing it into setCheckInsByGuildsIdToExcel in volunteerModel.
+     * @param event
+     * @throws SQLException
+     * @throws IOException 
+     */
     @FXML
     private void handleExportGuildDataToExcel(ActionEvent event) throws SQLException, IOException {
         int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
@@ -463,6 +478,11 @@ public class AdministratorViewController extends AController implements Initiali
         alert.showAndWait();
     }
 
+    /**
+     * Method for searching through volunteers in nameAdminTable.
+     * @param event
+     * @throws SQLException 
+     */
     @FXML
     @Override
     public void searchNameList(KeyEvent event) throws SQLException {
@@ -482,6 +502,11 @@ public class AdministratorViewController extends AController implements Initiali
         }
     }
 
+    /**
+     * Method for parsing data from administratorView to VolunteerInfoView. Opens VolunteerInfoView.
+     * @param event
+     * @throws SQLException 
+     */
     @FXML
     private void handleInfo(ActionEvent event) throws SQLException {
         if (nameAdminTable.getSelectionModel().getSelectedItem() == null) {
@@ -519,11 +544,21 @@ public class AdministratorViewController extends AController implements Initiali
         }
     }
 
+    /**
+     * Shows timeStamps for the chosen volunteer.
+     * @throws SQLException
+     * @throws IOException 
+     */
     private void handleGuildHours() throws SQLException, IOException {
         int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
         hoursForGuild.setText(String.valueOf(volunteerModel.getByGuildsIdSumOfHoursList(guildsId).get(0)));
     }
 
+    /**
+     * Method for parsing data about the chosen manager from administratorView into ManagerInfoView.
+     * @param event
+     * @throws SQLException 
+     */
     @FXML
     private void handleInfoAboutManager(ActionEvent event) throws SQLException {
         if (managerAdminTable.getSelectionModel().getSelectedItem() == null) {

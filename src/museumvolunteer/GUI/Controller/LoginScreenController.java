@@ -35,13 +35,13 @@ public class LoginScreenController implements Initializable {
     @FXML
     private Label publicMessageLabel;
     
+    //instance variables.
     private int currentUser;
-    
     private AdminModel adminModel;
     
 
     /**
-     * 
+     * Instantiates adminModel.
      * @throws java.io.IOException
      * @throws java.sql.SQLException
      */
@@ -89,7 +89,7 @@ public class LoginScreenController implements Initializable {
     }
     
     /**
-     * Temporary login details.
+     * username and password validation.
      * @throws IOException 
      */
     private void signIn()throws IOException, SQLException

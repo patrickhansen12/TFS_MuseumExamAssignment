@@ -6,7 +6,7 @@ package museumvolunteer.BLL;
 public interface SearchPattern {
 
     /**
-     *
+     * Boolean for comparing words.
      * @param word
      * @return
      */
