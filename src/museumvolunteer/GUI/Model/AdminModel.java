@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import museumvolunteer.BE.Admin;
 import museumvolunteer.BE.Manager;
+import museumvolunteer.BE.ManagerMock;
 import museumvolunteer.BLL.BLLFacade;
 
 /**
@@ -19,6 +20,7 @@ public class AdminModel {
     private BLLFacade bllFacade;
     private ObservableList<Manager> allManagers;
     private ObservableList<Admin> allAdmins;
+    private ObservableList<ManagerMock> allManagersMock = FXCollections.observableArrayList();
 
     /**
      * Instantiates bllFacade, populates allManagers and allAdmins with data from the database through bllFacade.
@@ -30,7 +32,7 @@ public class AdminModel {
         List<Manager> allManagers2 = new ArrayList<>(bllFacade.getAllManagers());
         allManagers = FXCollections.observableList(allManagers2);
         List<Admin> allAdmins2 = new ArrayList<>(bllFacade.getAllAdmins());
-        allAdmins = FXCollections.observableList(allAdmins2);
+        allAdmins = FXCollections.observableList(allAdmins2);      
     }
 
     /**
@@ -85,5 +87,22 @@ public class AdminModel {
         bllFacade.updateManager(m);
         allManagers.remove(m);
         allManagers.add(m);
+    }
+    
+    public ObservableList<ManagerMock> getAllManagersMock()
+    {
+        allManagersMock.add new
+        allManagersMock.add("Birthe");
+        allManagersMock.add("Ulla");
+        allManagersMock.add("Arne");
+        allManagersMock.add("Malthe");
+        allManagersMock.add("Gerda");
+        allManagersMock.add("Svend");
+        allManagersMock.add("Oluf");
+        allManagersMock.add("Ronja");
+        allManagersMock.add("Egon");
+        return allManagersMock;
+        ManagerMock managerMock = new ManagerMock(username, password);
+        new ManagerMock(, password)
     }
 }
