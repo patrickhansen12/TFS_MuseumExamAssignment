@@ -58,7 +58,7 @@ public class LoginScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        
+        System.out.println(adminModel.getAllManagersMock().get(1).getUsername());
     }    
 
     /**
