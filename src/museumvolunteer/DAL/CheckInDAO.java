@@ -11,10 +11,6 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.Month;
 import museumvolunteer.BE.CheckIn;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -289,7 +285,7 @@ public class CheckInDAO {
                 index++;
                 allTimeStamps.add(getOneCheckIn(rs));
             }
-            FileOutputStream fileOut = new FileOutputStream("Laug Id "+ guildsId +" "+ LocalDate.now().getMonth() + ".xlsx");
+            FileOutputStream fileOut = new FileOutputStream("DataOmLaug.xlsx");            
             wb.write(fileOut);
             ps.close();
             rs.close();
