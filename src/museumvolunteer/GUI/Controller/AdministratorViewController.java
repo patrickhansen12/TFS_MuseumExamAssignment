@@ -193,7 +193,7 @@ public class AdministratorViewController extends AController implements Initiali
      * @param event
      */
     @FXML
-    private void removeGuildButton(ActionEvent event) throws SQLException {
+    private void removeGuildButton(ActionEvent event) throws SQLException, IOException {
         if (guildAdminTable.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Fejl");
@@ -209,13 +209,19 @@ public class AdministratorViewController extends AController implements Initiali
             alert.setContentText("Er du sikker på du vil slette " +guildAdminTable.getSelectionModel().getSelectedItem() + "?" );
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
+                hoursAdminTable.getItems().clear();
+           
                 Guild selectedItem = guildAdminTable.getSelectionModel().getSelectedItem();
                 guild = selectedItem;
+               
                 guildsModel.deleteGuild(guild);
+              
                 guildAdminTable.getItems().remove(selectedItem);
+                
                 guildAdminTable.getSelectionModel().clearSelection();
-                hoursAdminTable.getItems().clear();
-                nameAdminTable.getItems().clear();
+                
+                handleGuildHours();
+                
             }
         }
     }
@@ -253,7 +259,7 @@ public class AdministratorViewController extends AController implements Initiali
                 int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getIdValue();
                 volunteerModel.deleteVolunteerByNameIdGuildsId(nameId, guildsId);
                 volunteerModel.deleteVolunteer(volunteer);
-   hoursAdminTable.getItems().clear();
+                hoursAdminTable.getItems().clear();
                 nameAdminTable.getSelectionModel().clearSelection();
                         nameAdminTable.setItems(volunteerModel.getAllVolunteers());
               

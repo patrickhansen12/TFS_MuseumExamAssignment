@@ -17,21 +17,21 @@ public class AdminModel {
        private ObservableList<ManagerMock> allManagersMock = FXCollections.observableArrayList();
         public ObservableList<ManagerMock> getAllManagersMock()
     {
-        ManagerMock managerMock2 = new ManagerMock("Allan", "1");
-        ManagerMock managerMock3 = new ManagerMock("Hans", "2");
-        ManagerMock managerMock4 = new ManagerMock("Ulla", "3");
-        ManagerMock managerMock5 = new ManagerMock("Hermann", "4");
-        ManagerMock managerMock6 = new ManagerMock("Benny", "5");
-        ManagerMock managerMock7 = new ManagerMock("Bertha", "6");
-        ManagerMock managerMock8 = new ManagerMock("Ulrik", "7");
-        ManagerMock managerMock9 = new ManagerMock("Matilde", "8");
-        ManagerMock managerMock10 = new ManagerMock("Henry", "9");
-        ManagerMock managerMock11 = new ManagerMock("Susanne", "10");
-        ManagerMock managerMock12 = new ManagerMock("Gurli", "11");
-        ManagerMock managerMock13 = new ManagerMock("Magnus", "12");
-        ManagerMock managerMock14 = new ManagerMock("Mikkel", "13");
-        ManagerMock managerMock15 = new ManagerMock("Arne", "14");
-        ManagerMock managerMock16 = new ManagerMock("Martin", "15");
+        ManagerMock managerMock2 = new ManagerMock("Allan", "0");
+        ManagerMock managerMock3 = new ManagerMock("Hans", "1");
+        ManagerMock managerMock4 = new ManagerMock("Ulla", "2");
+        ManagerMock managerMock5 = new ManagerMock("Hermann", "3");
+        ManagerMock managerMock6 = new ManagerMock("Benny", "4");
+        ManagerMock managerMock7 = new ManagerMock("Bertha", "5");
+        ManagerMock managerMock8 = new ManagerMock("Ulrik", "6");
+        ManagerMock managerMock9 = new ManagerMock("Matilde", "7");
+        ManagerMock managerMock10 = new ManagerMock("Henry", "8");
+        ManagerMock managerMock11 = new ManagerMock("Susanne", "9");
+        ManagerMock managerMock12 = new ManagerMock("Gurli", "10");
+        ManagerMock managerMock13 = new ManagerMock("Magnus", "11");
+        ManagerMock managerMock14 = new ManagerMock("Mikkel", "12");
+        ManagerMock managerMock15 = new ManagerMock("Arne", "13");
+        ManagerMock managerMock16 = new ManagerMock("Martin", "14");
         allManagersMock.add(managerMock2);
         allManagersMock.add(managerMock3);
         allManagersMock.add(managerMock4);

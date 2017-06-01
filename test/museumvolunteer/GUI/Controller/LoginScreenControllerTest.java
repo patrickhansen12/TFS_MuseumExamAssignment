@@ -22,31 +22,40 @@ public class LoginScreenControllerTest
 {
     private AdminModel adminModel;
     private int currentUser;
+    private boolean test = false;
     
-    private String usernameField = "hej";
-    private String passwordField = "goddag";
+    private String usernameField = "Hans";
+    private String passwordField = "1";
 /**
  *
  * @author patrick
  */
 
+    public LoginScreenControllerTest(){
+        adminModel = new AdminModel();
+    }
     
 
   @Test
-    private void testSignInManager()
+    public void completeTestSignInManager()
     {
-        for (int i = 0; i <= adminModel.getAllManagersMock().size() - 1; i++)
-        {
-            currentUser = i;
-            
-            if (usernameField.trim().equals(adminModel.getAllManagersMock().get(currentUser).getUsername()) && passwordField.trim().equals(adminModel.getAllManagersMock().get(currentUser).getPassword()))
-            {
-            
-            }
 
-        }
+        
+        assertEquals(adminModel.getAllManagersMock().get(1).getUsername(), usernameField.trim());
+        assertEquals(adminModel.getAllManagersMock().get(1).getPassword(), passwordField.trim());
+        
     }
+    
 
+  @Test
+    public void failTestSignInManager()
+    {
+
+        
+        assertEquals(adminModel.getAllManagersMock().get(2).getUsername(), usernameField.trim());
+        assertEquals(adminModel.getAllManagersMock().get(2).getPassword(), passwordField.trim());
+        
+    }
     /**
      * Test of initialize method, of class LoginScreenController.
      */
