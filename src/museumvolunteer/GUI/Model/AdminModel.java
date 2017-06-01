@@ -91,18 +91,20 @@ public class AdminModel {
     
     public ObservableList<ManagerMock> getAllManagersMock()
     {
-        allManagersMock.add new
-        allManagersMock.add("Birthe");
-        allManagersMock.add("Ulla");
-        allManagersMock.add("Arne");
-        allManagersMock.add("Malthe");
-        allManagersMock.add("Gerda");
-        allManagersMock.add("Svend");
-        allManagersMock.add("Oluf");
-        allManagersMock.add("Ronja");
-        allManagersMock.add("Egon");
-        return allManagersMock;
-        ManagerMock managerMock = new ManagerMock(username, password);
-        new ManagerMock(, password)
+        new ManagerMock("Allan", "1");
+        new ManagerMock("Hans", "2");
+        new ManagerMock("Ulla", "3");
+        new ManagerMock("Hermann", "4");
+        new ManagerMock("Benny", "5");
+        new ManagerMock("Bertha", "6");
+        new ManagerMock("Ulrik", "7");
+        new ManagerMock("Matilde", "8");
+        new ManagerMock("Henry", "9");
+        new ManagerMock("Susanne", "10");
+        new ManagerMock("Gurli", "11");
+        new ManagerMock("Magnus", "12");
+        new ManagerMock("Mikkel", "13");
+        new ManagerMock("Arne", "14");
+        new ManagerMock("Martin", "15");
     }
 }
