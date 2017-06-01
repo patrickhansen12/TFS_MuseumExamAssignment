@@ -1,5 +1,6 @@
 package museumvolunteer.GUI.Controller;
 
+import com.sun.deploy.util.StringUtils;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -145,6 +146,15 @@ public class VolunteerViewController extends AController implements Initializabl
     }
 
     /**
+     * checks if the input contains numbers, returns false if contains anything but numeric values
+     * @param input
+     * @return 
+     */
+    public static boolean isNumeric(String input){
+        return input.matches("\\d+?\\d?");
+    }
+    
+    /**
      * Method for adding hours to a specific volunteer, when both guild and name
      * is selected.
      *
@@ -154,8 +164,7 @@ public class VolunteerViewController extends AController implements Initializabl
      */
     @FXML
     private void insertHours(ActionEvent event) throws SQLException, IOException {
-
-        if (datePick.getValue() != null && guildTable.getSelectionModel().getSelectedItem() != null && nameTable.getSelectionModel().getSelectedItem() != null && !noteHoursField.getText().isEmpty()) {
+        if (isNumeric(noteHoursField.getText().trim()) == true && datePick.getValue() != null && guildTable.getSelectionModel().getSelectedItem() != null && nameTable.getSelectionModel().getSelectedItem() != null && !noteHoursField.getText().isEmpty()) {
 
             LocalDateTime timeStamp = datePick.getValue().atTime(LocalTime.now());
             java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(timeStamp);
@@ -175,6 +184,12 @@ public class VolunteerViewController extends AController implements Initializabl
             alert.setTitle("Fejl");
             alert.setHeaderText(null);
             alert.setContentText("Du skal vælge både laug, navn og antal timers frivilligt arbjede, før du kan indtaste timer.");
+            alert.showAndWait();
+        } else if (isNumeric(noteHoursField.getText().trim()) != true){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Timer kan kun dokumenteres med tal");
             alert.showAndWait();
         }
     }

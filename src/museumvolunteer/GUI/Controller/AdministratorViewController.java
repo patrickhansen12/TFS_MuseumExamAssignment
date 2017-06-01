@@ -39,6 +39,7 @@ import museumvolunteer.BE.Manager;
 import museumvolunteer.BE.Volunteer;
 import museumvolunteer.BLL.ContainsSearch;
 import museumvolunteer.BLL.SearchPattern;
+import static museumvolunteer.GUI.Controller.VolunteerViewController.isNumeric;
 import museumvolunteer.GUI.Model.AdminModel;
 import museumvolunteer.GUI.Model.GuildsModel;
 import museumvolunteer.GUI.Model.VolunteerModel;
@@ -344,6 +345,15 @@ public class AdministratorViewController extends AController implements Initiali
     }
 
     /**
+     * checks if the input contains numbers, returns false if contains anything but numeric values
+     * @param input
+     * @return 
+     */
+    public static boolean isNumeric(String input){
+        return input.matches("\\d+?\\d?");
+    }
+    
+    /**
      * Adds hours to the selected volunteer, into observable list CheckIn and
      * database table Hours.
      *
@@ -353,7 +363,7 @@ public class AdministratorViewController extends AController implements Initiali
      */
     @FXML
     private void addHoursButton(ActionEvent event) throws SQLException, IOException {
-        if (datePicker.getValue() != null && guildAdminTable.getSelectionModel().getSelectedItem() != null && nameAdminTable.getSelectionModel().getSelectedItem() != null && !txtFieldHours.getText().isEmpty()) {
+        if (isNumeric(txtFieldHours.getText().trim()) == true && datePicker.getValue() != null && guildAdminTable.getSelectionModel().getSelectedItem() != null && nameAdminTable.getSelectionModel().getSelectedItem() != null && !txtFieldHours.getText().isEmpty()) {
             LocalDateTime timeStamp = datePicker.getValue().atTime(LocalTime.now());
             java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(timeStamp);
             int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
@@ -377,6 +387,12 @@ public class AdministratorViewController extends AController implements Initiali
             alert.setTitle("Fejl");
             alert.setHeaderText(null);
             alert.setContentText("Du skal vælge både laug, navn og antal timers frivilligt arbejde, før du kan indtaste timer.");
+            alert.showAndWait();
+        } else if (isNumeric(txtFieldHours.getText().trim()) != true){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null);
+            alert.setContentText("Timer kan kun dokumenteres med tal");
             alert.showAndWait();
         }
     }
