@@ -64,7 +64,7 @@ public class AddVolunteerController implements Initializable {
         try {
             guildColumn.setCellValueFactory(guildCol -> guildCol.getValue().getName());
             guildIdColumn.setCellValueFactory(guildIdCol -> guildIdCol.getValue().getId().asObject());
-            guildTable.setItems(guildsModel.getGuilds());
+            guildTable.setItems(guildsModel.getGuilds().sorted());
             guildBox.setVisible(false);
             guildNameBox.setEditable(false);
         } catch (SQLException ex) {

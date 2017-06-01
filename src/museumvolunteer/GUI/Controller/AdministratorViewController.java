@@ -252,7 +252,7 @@ public class AdministratorViewController extends AController implements Initiali
                 int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getIdValue();
                 volunteerModel.deleteVolunteerByNameIdGuildsId(nameId, guildsId);
                 volunteerModel.deleteVolunteer(volunteer);
-             
+   hoursAdminTable.getItems().clear();
                 nameAdminTable.getSelectionModel().clearSelection();
                         nameAdminTable.setItems(volunteerModel.getAllVolunteers());
               
@@ -389,9 +389,9 @@ public class AdministratorViewController extends AController implements Initiali
 
         managerAdminColumn.setCellValueFactory(managerAdminCol -> managerAdminCol.getValue().getName());
         managerAdminTable.getItems().setAll(adminModel.getAllManagers().sorted());
-        guildsModel.getGuilds().clear();
+//        guildsModel.getGuilds().clear();
         guildAdminColumn.setCellValueFactory(guildAdminCol -> guildAdminCol.getValue().getName());
-        guildAdminTable.getItems().setAll(guildsModel.getGuildsFromFacade());
+        guildAdminTable.getItems().setAll(guildsModel.getGuilds().sorted());
         guildAdminTable.setPlaceholder(new Label("Der er ikke nogen \nlaug at vise"));
         hoursAdminTable.setPlaceholder(new Label("Der er ikke nogen \ntimer at vise"));
         nameAdminTable.setPlaceholder(new Label("Der er ikke nogen \nnavne at vise"));

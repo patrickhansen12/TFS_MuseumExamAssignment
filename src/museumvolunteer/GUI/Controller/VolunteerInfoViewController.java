@@ -74,7 +74,7 @@ public class VolunteerInfoViewController implements Initializable {
         try {
             guildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
             guildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIdValue()));
-            guildTable.setItems(guildsModel.getGuilds());
+            guildTable.setItems(guildsModel.getGuilds().sorted());
             guildBox.setVisible(false);
 
             guildNameText.setEditable(false);
@@ -102,7 +102,7 @@ public class VolunteerInfoViewController implements Initializable {
         thisVolunteer = v;
         currentGuildColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getNameAsString()));
         currentGuildIdColumn.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIdValue()));
-        currentGuildId.setItems(guildsModel.getGuildsByNameId(v.getIdValue()));
+        currentGuildId.setItems(guildsModel.getGuildsByNameId(v.getIdValue()).sorted());
         nameBox.setText(v.getNameAsString());
         emailBox.setText(v.getEmailAsString());
         phoneNumberBox.setText(v.getPhoneNumberAsString());
