@@ -8,6 +8,7 @@ package museumvolunteer.DAL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import museumvolunteer.BE.ManagerMock;
+import museumvolunteer.BE.ManagerMock;
 
 /**
  *
