@@ -39,7 +39,7 @@ import museumvolunteer.BE.Manager;
 import museumvolunteer.BE.Volunteer;
 import museumvolunteer.BLL.ContainsSearch;
 import museumvolunteer.BLL.SearchPattern;
-import static museumvolunteer.GUI.Controller.VolunteerViewController.isNumeric;
+import museumvolunteer.DAL.CheckInDAO;
 import museumvolunteer.GUI.Model.AdminModel;
 import museumvolunteer.GUI.Model.GuildsModel;
 import museumvolunteer.GUI.Model.VolunteerModel;
@@ -92,6 +92,7 @@ public class AdministratorViewController extends AController implements Initiali
     private CheckIn checkIn;
     private AdminModel adminModel;
     private Manager manager;
+    private CheckInDAO checkInDAO;
     public int currentUserAddVolunteer = 1;
     public int currentUserVolunteerInfo = 1;
 
@@ -120,6 +121,7 @@ public class AdministratorViewController extends AController implements Initiali
         volunteerModel = new VolunteerModel();
         guildsModel = new GuildsModel();
         adminModel = new AdminModel();
+        checkInDAO = new CheckInDAO();
     }
 
     /**
@@ -509,7 +511,7 @@ public class AdministratorViewController extends AController implements Initiali
         }else{
         int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
         String guildName = guildAdminTable.getSelectionModel().getSelectedItem().getNameAsString();
-        volunteerModel.setCheckInsByGuildsIdToExcel(guildsId);
+        checkInDAO.getByGuildsIdToExcel(guildsId, guildName);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Export til Excel");

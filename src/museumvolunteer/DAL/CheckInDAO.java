@@ -258,11 +258,12 @@ public class CheckInDAO {
     /**
      * Prints out data about a chosen guilds into an excel spreadsheet.
      * @param guildsId
+     * @param guildName
      * @return
      * @throws SQLException
      * @throws IOException 
      */
-    public List<CheckIn> getByGuildsIdToExcel(int guildsId) throws SQLException, IOException {
+    public List<CheckIn> getByGuildsIdToExcel(int guildsId, String guildName) throws SQLException, IOException {
         List<CheckIn> allTimeStamps = new ArrayList<>();
         String sql = "SELECT * FROM Hours WHERE guildsId = ?";
         try (Connection con = cm.getConnection()) {
@@ -285,7 +286,7 @@ public class CheckInDAO {
                 index++;
                 allTimeStamps.add(getOneCheckIn(rs));
             }
-            FileOutputStream fileOut = new FileOutputStream("DataOmLaug.xlsx");            
+            FileOutputStream fileOut = new FileOutputStream(guildName + ".xlsx");            
             wb.write(fileOut);
             ps.close();
             rs.close();
