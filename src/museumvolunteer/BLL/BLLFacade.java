@@ -93,8 +93,8 @@ public class BLLFacade implements IBLLFacade{
     }
 
     @Override
-    public List<CheckIn> exportCheckInsByNameIdGuildsIdToExcel(int guildsId, int nameId) throws SQLException, IOException {
-        return checkInManager.exportCheckInsByNameIdGuildsIdToExcel(guildsId, nameId);
+    public List<CheckIn> exportCheckInsByNameIdGuildsIdToExcel(int guildsId, int nameId, String volunteerName, String guildName) throws SQLException, IOException {
+        return checkInManager.exportCheckInsByNameIdGuildsIdToExcel(guildsId, nameId, volunteerName, guildName);
     }
     
     @Override

@@ -31,7 +31,7 @@ public interface IBLLFacade {
     public int getByGuildsIdSumOfHours(int guildsId) throws SQLException, IOException;
     
     public List<CheckIn> getAllCheckInsByNameIdGuildsId(int guildsId, int nameId) throws SQLException, IOException;
-    public List<CheckIn> exportCheckInsByNameIdGuildsIdToExcel(int guildsId, int nameId) throws SQLException, IOException;
+    public List<CheckIn> exportCheckInsByNameIdGuildsIdToExcel(int guildsId, int nameId, String volunteerName, String guildName) throws SQLException, IOException;
     public List<CheckIn> exportCheckInsByGuildsIdToExcel(int guildsId, String guildName) throws SQLException, IOException;
     public CheckIn addCheckIn(CheckIn ci) throws SQLException;
     public List<CheckIn> getAllCheckIns() throws SQLException;

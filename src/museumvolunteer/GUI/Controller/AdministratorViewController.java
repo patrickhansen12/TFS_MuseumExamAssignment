@@ -484,7 +484,8 @@ public class AdministratorViewController extends AController implements Initiali
         int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
         String volunteerName = nameAdminTable.getSelectionModel().getSelectedItem().getNameAsString();
         int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getIdValue();
-        volunteerModel.setCheckInsByNameIdGuildsIdToExcel(guildsId, nameId);
+        String guildName = guildAdminTable.getSelectionModel().getSelectedItem().getNameAsString();
+        volunteerModel.setCheckInsByNameIdGuildsIdToExcel(guildsId, nameId, volunteerName, guildName);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Export til Excel");

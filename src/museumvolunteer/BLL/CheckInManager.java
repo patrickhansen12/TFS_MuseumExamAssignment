@@ -38,17 +38,20 @@ public class CheckInManager {
      * Selects all checkIns for the chosen volunteer and prints to an excel file stored in the application folder.
      * @param guildsId
      * @param nameId
+     * @param volunteerName
+     * @param guildName
      * @return
      * @throws SQLException
      * @throws IOException 
      */
-    public List<CheckIn> exportCheckInsByNameIdGuildsIdToExcel(int guildsId, int nameId) throws SQLException, IOException {
-        return checkInDAO.getByNameIdGuildsIdToExcel(guildsId, nameId);
+    public List<CheckIn> exportCheckInsByNameIdGuildsIdToExcel(int guildsId, int nameId, String volunteerName, String guildName) throws SQLException, IOException {
+        return checkInDAO.getByNameIdGuildsIdToExcel(guildsId, nameId, volunteerName, guildName);
     }
     
     /**
      * Selects all checkIns for the chosen guild and prints to an excel file stored in the application folder.
      * @param guildsId
+     * @param guildName
      * @return
      * @throws SQLException
      * @throws IOException 

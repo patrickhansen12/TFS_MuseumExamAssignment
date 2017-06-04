@@ -195,11 +195,13 @@ public class CheckInDAO {
      * Prints out data for a chosen volunteer in an excel spreadsheet.
      * @param guildsId
      * @param nameId
+     * @param volunteerName
+     * @param guildName
      * @return
      * @throws SQLException
      * @throws IOException 
      */
-    public List<CheckIn> getByNameIdGuildsIdToExcel(int guildsId, int nameId) throws SQLException, IOException {
+    public List<CheckIn> getByNameIdGuildsIdToExcel(int guildsId, int nameId, String volunteerName, String guildName) throws SQLException, IOException {
         List<CheckIn> allTimeStamps = new ArrayList<>();
         String sql = "SELECT * FROM Hours WHERE guildsId = ? AND nameId = ?";
         try (Connection con = cm.getConnection()) {
@@ -210,22 +212,22 @@ public class CheckInDAO {
             XSSFWorkbook wb = new XSSFWorkbook();
             XSSFSheet sheet = wb.createSheet("Timer for frivillig");
             XSSFRow header = sheet.createRow(0);
-            header.createCell(0).setCellValue("Tidsstempel");
-            header.createCell(1).setCellValue("Laug id");
-            header.createCell(2).setCellValue("Id på frivillig");
-            header.createCell(3).setCellValue("Antal timer");
+            header.createCell(1).setCellValue("Tidsstempel");
+            header.createCell(3).setCellValue("" + guildName);
+            header.createCell(6).setCellValue("" + volunteerName);
+            header.createCell(9).setCellValue("Antal timer");
 
             int index = 1;
             while (rs.next()) {
                 XSSFRow row = sheet.createRow(index);
                 row.createCell(0).setCellValue(rs.getString("timeStamp"));
-                row.createCell(1).setCellValue(rs.getString("guildsId"));
-                row.createCell(2).setCellValue(rs.getString("nameId"));
-                row.createCell(3).setCellValue(rs.getString("hours"));
+                row.createCell(3).setCellValue(rs.getString("guildsId"));
+                row.createCell(6).setCellValue(rs.getString("nameId"));
+                row.createCell(9).setCellValue(rs.getString("hours"));
                 index++;
                 allTimeStamps.add(getOneCheckIn(rs));
             }
-            FileOutputStream fileOut = new FileOutputStream("DataOmFrivillig.xlsx");
+            FileOutputStream fileOut = new FileOutputStream(guildName + " " + volunteerName + " " + LocalDate.now().getMonth() + ".xlsx");
             wb.write(fileOut);
             ps.close();
             rs.close();
