@@ -213,17 +213,17 @@ public class CheckInDAO {
             XSSFSheet sheet = wb.createSheet("Timer for frivillig");
             XSSFRow header = sheet.createRow(0);
             header.createCell(1).setCellValue("Tidsstempel");
-            header.createCell(3).setCellValue("" + guildName);
-            header.createCell(6).setCellValue("" + volunteerName);
-            header.createCell(9).setCellValue("Antal timer");
+            //header.createCell(3).setCellValue("" + guildName);
+            //header.createCell(6).setCellValue("" + volunteerName);
+            header.createCell(3).setCellValue("Antal timer");
 
             int index = 1;
             while (rs.next()) {
                 XSSFRow row = sheet.createRow(index);
                 row.createCell(0).setCellValue(rs.getString("timeStamp"));
-                row.createCell(3).setCellValue(rs.getString("guildsId"));
-                row.createCell(6).setCellValue(rs.getString("nameId"));
-                row.createCell(9).setCellValue(rs.getString("hours"));
+                //row.createCell(3).setCellValue(rs.getString("guildsId"));
+                //row.createCell(6).setCellValue(rs.getString("nameId"));
+                row.createCell(3).setCellValue(rs.getString("hours"));
                 index++;
                 allTimeStamps.add(getOneCheckIn(rs));
             }
