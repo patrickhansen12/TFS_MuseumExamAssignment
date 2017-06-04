@@ -9,8 +9,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDateTime;
 import museumvolunteer.BE.CheckIn;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -274,19 +276,19 @@ public class CheckInDAO {
             XSSFSheet sheet = wb.createSheet("Timer for laug");
             XSSFRow header = sheet.createRow(0);
             header.createCell(0).setCellValue("Tidsstempel");
-            header.createCell(1).setCellValue("Laug id");
+            header.createCell(1).setCellValue(""+ guildName);
             header.createCell(2).setCellValue("Antal timer");
 
             int index = 1;
             while (rs.next()) {
                 XSSFRow row = sheet.createRow(index);
                 row.createCell(0).setCellValue(rs.getString("timeStamp"));
-                row.createCell(1).setCellValue(rs.getString("guildsId"));
+//                row.createCell(1).setCellValue(rs.getString("guildsId"));
                 row.createCell(2).setCellValue(rs.getString("hours"));
                 index++;
                 allTimeStamps.add(getOneCheckIn(rs));
             }
-            FileOutputStream fileOut = new FileOutputStream(guildName + ".xlsx");            
+            FileOutputStream fileOut = new FileOutputStream(guildName+ " "+ LocalDate.now().getMonth()+ ".xlsx");            
             wb.write(fileOut);
             ps.close();
             rs.close();
