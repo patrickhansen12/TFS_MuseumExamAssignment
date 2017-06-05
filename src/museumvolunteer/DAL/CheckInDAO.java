@@ -276,15 +276,15 @@ public class CheckInDAO {
             XSSFSheet sheet = wb.createSheet("Timer for laug");
             XSSFRow header = sheet.createRow(0);
             header.createCell(0).setCellValue("Tidsstempel");
-            header.createCell(1).setCellValue(""+ guildName);
-            header.createCell(2).setCellValue("Antal timer");
+//            header.createCell(1).setCellValue(""+ guildName);
+            header.createCell(3).setCellValue("Antal timer");
 
             int index = 1;
             while (rs.next()) {
                 XSSFRow row = sheet.createRow(index);
                 row.createCell(0).setCellValue(rs.getString("timeStamp"));
 //                row.createCell(1).setCellValue(rs.getString("guildsId"));
-                row.createCell(2).setCellValue(rs.getString("hours"));
+                row.createCell(3).setCellValue(rs.getString("hours"));
                 index++;
                 //allTimeStamps.add(getOneCheckIn(rs));
             }
