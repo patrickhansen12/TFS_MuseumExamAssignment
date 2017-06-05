@@ -40,12 +40,11 @@ public class CheckInManager {
      * @param nameId
      * @param volunteerName
      * @param guildName
-     * @return
      * @throws SQLException
      * @throws IOException 
      */
-    public List<CheckIn> exportCheckInsByNameIdGuildsIdToExcel(int guildsId, int nameId, String volunteerName, String guildName) throws SQLException, IOException {
-        return checkInDAO.getByNameIdGuildsIdToExcel(guildsId, nameId, volunteerName, guildName);
+    public void exportCheckInsByNameIdGuildsIdToExcel(int guildsId, int nameId, String volunteerName, String guildName) throws SQLException, IOException {
+        checkInDAO.setByNameIdGuildsIdToExcel(guildsId, nameId, volunteerName, guildName);
     }
     
     /**
@@ -57,7 +56,7 @@ public class CheckInManager {
      * @throws IOException 
      */
     public List<CheckIn> exportCheckInsByGuildsIdToExcel(int guildsId, String guildName) throws SQLException, IOException {
-        return checkInDAO.getByGuildsIdToExcel(guildsId, guildName);
+        return checkInDAO.setByGuildsIdToExcel(guildsId, guildName);
     }
     
     /**

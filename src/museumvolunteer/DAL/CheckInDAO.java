@@ -197,12 +197,11 @@ public class CheckInDAO {
      * @param nameId
      * @param volunteerName
      * @param guildName
-     * @return
      * @throws SQLException
      * @throws IOException 
      */
-    public List<CheckIn> getByNameIdGuildsIdToExcel(int guildsId, int nameId, String volunteerName, String guildName) throws SQLException, IOException {
-        List<CheckIn> allTimeStamps = new ArrayList<>();
+    public void setByNameIdGuildsIdToExcel(int guildsId, int nameId, String volunteerName, String guildName) throws SQLException, IOException {
+        //List<CheckIn> allTimeStamps = new ArrayList<>();
         String sql = "SELECT * FROM Hours WHERE guildsId = ? AND nameId = ?";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -225,14 +224,14 @@ public class CheckInDAO {
                 //row.createCell(6).setCellValue(rs.getString("nameId"));
                 row.createCell(3).setCellValue(rs.getString("hours"));
                 index++;
-                allTimeStamps.add(getOneCheckIn(rs));
+                //allTimeStamps.add(getOneCheckIn(rs));
             }
             FileOutputStream fileOut = new FileOutputStream(guildName + " " + volunteerName + " " + LocalDate.now().getMonth() + ".xlsx");
             wb.write(fileOut);
             ps.close();
             rs.close();
 
-            return allTimeStamps;
+            //return allTimeStamps;
         }
     }
     
@@ -263,12 +262,11 @@ public class CheckInDAO {
      * Prints out data about a chosen guilds into an excel spreadsheet.
      * @param guildsId
      * @param guildName
-     * @return
      * @throws SQLException
      * @throws IOException 
      */
-    public List<CheckIn> getByGuildsIdToExcel(int guildsId, String guildName) throws SQLException, IOException {
-        List<CheckIn> allTimeStamps = new ArrayList<>();
+    public void setByGuildsIdToExcel(int guildsId, String guildName) throws SQLException, IOException {
+        //List<CheckIn> allTimeStamps = new ArrayList<>();
         String sql = "SELECT * FROM Hours WHERE guildsId = ?";
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -288,14 +286,14 @@ public class CheckInDAO {
 //                row.createCell(1).setCellValue(rs.getString("guildsId"));
                 row.createCell(2).setCellValue(rs.getString("hours"));
                 index++;
-                allTimeStamps.add(getOneCheckIn(rs));
+                //allTimeStamps.add(getOneCheckIn(rs));
             }
             FileOutputStream fileOut = new FileOutputStream(guildName+ " "+ LocalDate.now().getMonth()+ ".xlsx");            
             wb.write(fileOut);
             ps.close();
             rs.close();
 
-            return allTimeStamps;
+            //return allTimeStamps;
         }
     }
 }

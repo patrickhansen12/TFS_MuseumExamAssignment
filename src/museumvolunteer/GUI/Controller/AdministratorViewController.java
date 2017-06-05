@@ -114,6 +114,7 @@ public class AdministratorViewController extends AController implements Initiali
 
     /**
      * Instantiates volunteerModel, guildsModel and adminModel.
+     *
      * @throws IOException
      * @throws SQLException
      */
@@ -203,27 +204,27 @@ public class AdministratorViewController extends AController implements Initiali
             alert.setContentText("Du skal vælge et laug, før du kan slette det.");
             alert.showAndWait();
         }
-        
+
         if (guildAdminTable.getSelectionModel().getSelectedItem() != null) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Er du sikker?");
             alert.setHeaderText(null);
-            alert.setContentText("Er du sikker på du vil slette " +guildAdminTable.getSelectionModel().getSelectedItem() + "?" );
+            alert.setContentText("Er du sikker på du vil slette " + guildAdminTable.getSelectionModel().getSelectedItem() + "?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 hoursAdminTable.getItems().clear();
-           
+
                 Guild selectedItem = guildAdminTable.getSelectionModel().getSelectedItem();
                 guild = selectedItem;
-               
+
                 guildsModel.deleteGuild(guild);
-              
+
                 guildAdminTable.getItems().remove(selectedItem);
-                
+
                 guildAdminTable.getSelectionModel().clearSelection();
-                
+
                 handleGuildHours();
-                
+
             }
         }
     }
@@ -263,9 +264,8 @@ public class AdministratorViewController extends AController implements Initiali
                 volunteerModel.deleteVolunteer(volunteer);
                 hoursAdminTable.getItems().clear();
                 nameAdminTable.getSelectionModel().clearSelection();
-                        nameAdminTable.setItems(volunteerModel.getAllVolunteers());
-              
-                
+                nameAdminTable.setItems(volunteerModel.getAllVolunteers());
+
                 handleGuildHours();
                 searchNameField.clear();
             }
@@ -353,14 +353,16 @@ public class AdministratorViewController extends AController implements Initiali
     }
 
     /**
-     * checks if the input contains numbers, returns false if contains anything but numeric values
+     * checks if the input contains numbers, returns false if contains anything
+     * but numeric values
+     *
      * @param input
-     * @return 
+     * @return
      */
-    public static boolean isNumeric(String input){
+    public static boolean isNumeric(String input) {
         return input.matches("\\d+?\\d?");
     }
-    
+
     /**
      * Adds hours to the selected volunteer, into observable list CheckIn and
      * database table Hours.
@@ -396,7 +398,7 @@ public class AdministratorViewController extends AController implements Initiali
             alert.setHeaderText(null);
             alert.setContentText("Du skal vælge både laug, navn og antal timers frivilligt arbejde, før du kan indtaste timer.");
             alert.showAndWait();
-        } else if (isNumeric(txtFieldHours.getText().trim()) != true){
+        } else if (isNumeric(txtFieldHours.getText().trim()) != true) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Fejl");
             alert.setHeaderText(null);
@@ -407,7 +409,8 @@ public class AdministratorViewController extends AController implements Initiali
 
     /**
      * Method which is ran in initialize. Populates all tableviews with data.
-     * @throws SQLException 
+     *
+     * @throws SQLException
      */
     private void dataBind() throws SQLException {
 
@@ -467,64 +470,70 @@ public class AdministratorViewController extends AController implements Initiali
     }
 
     /**
-     * Method for grabbing guildsId, nameId and parsing it into setCheckInsByNameIdGuildsIdToExcel in volunteerModel.
+     * Method for grabbing guildsId, nameId and parsing it into
+     * setCheckInsByNameIdGuildsIdToExcel in volunteerModel.
+     *
      * @param event
      * @throws SQLException
-     * @throws IOException 
+     * @throws IOException
      */
     @FXML
     private void handleExportToExcel(ActionEvent event) throws SQLException, IOException {
-           if (nameAdminTable.getSelectionModel().getSelectedItem() == null) {
+        if (nameAdminTable.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Fejl");
             alert.setHeaderText(null);
             alert.setContentText("Du skal vælge en frivillig, før du kan eksportere dataen til Excel.");
             alert.showAndWait();
-        }else{
-        int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
-        String volunteerName = nameAdminTable.getSelectionModel().getSelectedItem().getNameAsString();
-        int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getIdValue();
-        String guildName = guildAdminTable.getSelectionModel().getSelectedItem().getNameAsString();
-        volunteerModel.setCheckInsByNameIdGuildsIdToExcel(guildsId, nameId, volunteerName, guildName);
+        } else {
+            int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
+            String volunteerName = nameAdminTable.getSelectionModel().getSelectedItem().getNameAsString();
+            int nameId = nameAdminTable.getSelectionModel().getSelectedItem().getIdValue();
+            String guildName = guildAdminTable.getSelectionModel().getSelectedItem().getNameAsString();
+            volunteerModel.setCheckInsByNameIdGuildsIdToExcel(guildsId, nameId, volunteerName, guildName);
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Export til Excel");
-        alert.setHeaderText(null);
-        alert.setContentText("Du har eksporteret data om " + volunteerName + " til Excel");
-        alert.showAndWait();
-    }
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Export til Excel");
+            alert.setHeaderText(null);
+            alert.setContentText("Du har eksporteret data om " + volunteerName + " til Excel");
+            alert.showAndWait();
+        }
     }
 
     /**
-     * Method for grabbing guildsId and parsing it into setCheckInsByGuildsIdToExcel in volunteerModel.
+     * Method for grabbing guildsId and parsing it into
+     * setCheckInsByGuildsIdToExcel in volunteerModel.
+     *
      * @param event
      * @throws SQLException
-     * @throws IOException 
+     * @throws IOException
      */
     @FXML
     private void handleExportGuildDataToExcel(ActionEvent event) throws SQLException, IOException {
-          if (guildAdminTable.getSelectionModel().getSelectedItem() == null) {
+        if (guildAdminTable.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Fejl");
             alert.setHeaderText(null);
             alert.setContentText("Du skal vælge et guild, før du kan eksportere dataen til Excel.");
             alert.showAndWait();
-        }else{
-        int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
-        String guildName = guildAdminTable.getSelectionModel().getSelectedItem().getNameAsString();
-        checkInDAO.getByGuildsIdToExcel(guildsId, guildName);
+        } else {
+            int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
+            String guildName = guildAdminTable.getSelectionModel().getSelectedItem().getNameAsString();
+            checkInDAO.setByGuildsIdToExcel(guildsId, guildName);
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Export til Excel");
-        alert.setHeaderText(null);
-        alert.setContentText("Du har eksporteret data om " + guildName + " til Excel");
-        alert.showAndWait();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Export til Excel");
+            alert.setHeaderText(null);
+            alert.setContentText("Du har eksporteret data om " + guildName + " til Excel");
+            alert.showAndWait();
+        }
     }
-    }
+
     /**
      * Method for searching through volunteers in nameAdminTable.
+     *
      * @param event
-     * @throws SQLException 
+     * @throws SQLException
      */
     @FXML
     @Override
@@ -546,9 +555,11 @@ public class AdministratorViewController extends AController implements Initiali
     }
 
     /**
-     * Method for parsing data from administratorView to VolunteerInfoView. Opens VolunteerInfoView.
+     * Method for parsing data from administratorView to VolunteerInfoView.
+     * Opens VolunteerInfoView.
+     *
      * @param event
-     * @throws SQLException 
+     * @throws SQLException
      */
     @FXML
     private void handleInfo(ActionEvent event) throws SQLException {
@@ -589,8 +600,9 @@ public class AdministratorViewController extends AController implements Initiali
 
     /**
      * Shows timeStamps for the chosen volunteer.
+     *
      * @throws SQLException
-     * @throws IOException 
+     * @throws IOException
      */
     private void handleGuildHours() throws SQLException, IOException {
         int guildsId = guildAdminTable.getSelectionModel().getSelectedItem().getIdValue();
@@ -598,9 +610,11 @@ public class AdministratorViewController extends AController implements Initiali
     }
 
     /**
-     * Method for parsing data about the chosen manager from administratorView into ManagerInfoView.
+     * Method for parsing data about the chosen manager from administratorView
+     * into ManagerInfoView.
+     *
      * @param event
-     * @throws SQLException 
+     * @throws SQLException
      */
     @FXML
     private void handleInfoAboutManager(ActionEvent event) throws SQLException {
