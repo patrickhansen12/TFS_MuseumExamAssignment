@@ -55,8 +55,8 @@ public class CheckInManager {
      * @throws SQLException
      * @throws IOException 
      */
-    public List<CheckIn> exportCheckInsByGuildsIdToExcel(int guildsId, String guildName) throws SQLException, IOException {
-        return checkInDAO.setByGuildsIdToExcel(guildsId, guildName);
+    public void exportCheckInsByGuildsIdToExcel(int guildsId, String guildName) throws SQLException, IOException {
+        checkInDAO.setByGuildsIdToExcel(guildsId, guildName);
     }
     
     /**

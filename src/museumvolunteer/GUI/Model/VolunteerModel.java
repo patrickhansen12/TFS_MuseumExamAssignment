@@ -176,11 +176,12 @@ public class VolunteerModel {
     /**
      * Populates allCheckIns with checkIns according to guildsId of the chosen guild, and exports to excel.
      * @param guildsId
+     * @param guildName
      * @throws SQLException
      * @throws IOException 
      */
     public void setCheckInsByGuildsIdToExcel(int guildsId, String guildName) throws SQLException, IOException {
-        allCheckIns = FXCollections.observableList(bllFacade.exportCheckInsByGuildsIdToExcel(guildsId, guildName));
+        bllFacade.exportCheckInsByGuildsIdToExcel(guildsId, guildName);
     }
 
     /**
